@@ -4,6 +4,8 @@ import { SigninComponent } from './containers/signin/signin.component';
 import { LocalHomeComponent } from './containers/local-home/local-home.component';
 import { LoginComponent } from './containers/login/login.component';
 import { SignOutComponent } from './containers/sign-out/sign-out.component';
+import { LandinglogoComponent } from './containers/landinglogo/landinglogo.component';
+import { LoginImgComponent } from './containers/login-img/login-img.component';
 
 @NgModule({
   declarations: [
@@ -11,6 +13,8 @@ import { SignOutComponent } from './containers/sign-out/sign-out.component';
     LoginComponent,
     SignOutComponent,
     SigninComponent,
+    LandinglogoComponent,
+    LoginImgComponent,
   ],
   imports: [CommonModule],
 })

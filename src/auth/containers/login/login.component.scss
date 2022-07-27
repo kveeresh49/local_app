@@ -1,0 +1,77 @@
+@import '../../../varible';
+
+.banner-parent{
+  position: relative;
+}
+.banner{
+  background-image: url(../../../assets/images/login-banner.png);
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+
+}
+
+i {
+  margin-left: -30px;
+  cursor: pointer;
+}
+
+
+.login-box{
+  border-radius: 10px;
+  box-shadow: $boxShadow;
+  padding: 30px;
+  background-color: #fff;
+}
+h3{
+  font-size: 30px;
+  color: #2D3648;
+}
+
+p{
+  color: #8B8888;
+}
+
+.login-submit-btn{
+  background-color: #FF7A00;
+  width: 100%;
+  border: none;
+  color: #fff;
+  padding: 15px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.Request-otp-btn{
+  border: 1px solid #FF7A00;
+  width: 100%;
+  color: #FF7A00;
+  background-color: #fff;
+  font-size: 18px;
+padding: 15px;
+border-radius: 5px;
+}
+
+.signup-link{
+  color: #FF7A00;
+  text-decoration: none;
+}
+
+.agree-text{
+  color: #2D3648;
+  font-size: 12px;
+
+}
+
+.forgot-password{
+  font-size: 14px;
+}
+
+.form-label{
+  color: #8B8888;
+}
