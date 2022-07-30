@@ -40,6 +40,42 @@ $prefix: "mo-";
   margin-top: 100px;
 }
 
+.ms-6{
+  margin-left: 60px;
+}
+.ms-7{
+  margin-left: 70px;
+}
+.ms-8{
+  margin-left: 80px;
+}
+
+.ms-9{
+  margin-left: 90px;
+}
+
+.ms-10{
+  margin-left: 100px;
+}
+
+.me-6{
+  margin-left: 60px;
+}
+.me-7{
+  margin-left: 70px;
+}
+.me-8{
+  margin-left: 80px;
+}
+
+.me-9{
+  margin-left: 90px;
+}
+
+.me-10{
+  margin-left: 100px;
+}
+
 .mb-6{
   margin-bottom: 60px;
 }
@@ -95,7 +131,9 @@ $prefix: "mo-";
     padding: 30px;
     background-color: #fff;
 }
-
+.light-grey{
+  color:#6A6868
+}
 
 h3{
   font-size: 24px;
@@ -136,4 +174,25 @@ h3{
   position: absolute;
   bottom: 0;
   z-index: -1;
+}
+
+
+// navbar
+
+.brand-logo {
+  width:70%;
+}
+.navbar-toggler{
+  display: block !important;
+}
+
+@media (min-width:500px){
+  .navbar-light .navbar-toggler {
+    color: #fff;
+    font-size: inherit;
+    box-shadow: unset;
+    border: none;
+    padding: 0;
+    display: block !important;
+  }
 }
