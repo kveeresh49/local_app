@@ -1,9 +1,11 @@
 @import "../../varible";
 h3 {
   margin: 0;
+  color: #4F4F4F;
+  padding: 13px 0;
 }
 .bg-grey {
-  background-color: #dcdbdb;
+  background-color: #F4F2F2;
   margin: auto;
 }
 
@@ -63,4 +65,8 @@ input:focus {
 .app-store-btn {
   width: 25%;
   margin-right: 15px;
+}
+
+.back-to-top{
+  background: #DCDBDB;
 }

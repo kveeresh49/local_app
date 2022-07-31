@@ -196,3 +196,47 @@ h3{
     display: block !important;
   }
 }
+
+
+// home offers-banner
+
+.picsum-img-wrapper{
+  position: relative;
+  .top-left{
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 360px;
+    height: 160px;
+  }
+  .bottom-right{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 360px;
+    height: 160px;
+  }
+}
+.carousel-indicators{
+  bottom: -45px !important;
+  border-radius: 10px !important;
+  border: none !important;
+  // width: 10px !important;
+  // height: 10px !important;
+  button{
+  background-color: #949292 !important;
+
+  }
+}
+.carousel-caption{
+  top: -10px !important;
+}
+
+
+.carousel-indicators{
+  display: none !important;
+}
+.carousel-inner{
+  width: 90% !important;
+  margin: auto !important;
+}
