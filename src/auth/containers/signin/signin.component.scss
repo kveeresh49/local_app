@@ -1,41 +1,16 @@
 @import "../../../varible";
 
-.login-btn{
-  // background-color: #;
-  font-family: 'Poppins';
-font-weight: 400;
-font-size: 20px;
-// line-height: 36px;
-padding:  4px 15px;
-color: #FF7A00;
-border: 1px solid #FF7A00;
-border-radius: 10px;
-margin-right: 110px;
-}
-.form-label {
-  margin: 0;
+.login-btn {
   font-family: "Poppins";
   font-weight: 400;
-  font-size: 15px;
-  line-height: 24px;
-  color: #8b8888;
+  // font-size: 20px;
+  font-size: 18px;
+  padding: 4px 25px;
+  color: #ff7a00;
+  border: 1px solid #ff7a00;
+  border-radius: 10px;
+  margin-right: 70px;
 }
-.form-control {
-  border: 1px solid #c4c4c4;
-  border-radius: 5px;
-  font-family: "Poppins";
-  font-weight: 400;
-  font-size: 15px !important;
-  // line-height: 27px !important;
-}
-.form-control::placeholder {
-  color: #c4c4c4;
-  font-family: "Poppins";
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 27px;
-}
-
 
 .forgot-password {
   font-family: "Poppins";
@@ -67,7 +42,3 @@ margin-right: 110px;
   text-align: center;
   color: #ffffff;
 }
-
-
-
-

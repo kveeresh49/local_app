@@ -1,14 +1,6 @@
 @import "../../../varible";
 
-.login-box {
-  width: 558px;
-  background: #ffffff;
-  // margin-bottom: 2px;
-}
-i {
-  margin-left: -30px;
-  cursor: pointer;
-}
+
 
 .login-heading {
   font-family: "Poppins";
@@ -26,25 +18,24 @@ i {
   color: #8b8888;
 }
 
-.otp-btn{
-  background-color: #FF7A00 ;
+.otp-btn {
+  background-color: #ff7a00;
   color: #fff;
   border: none;
   border-radius: 5px;
   font-size: 18px;
 }
 
-
-.otp-field{
+.otp-field {
   width: 55%;
-  margin:70px  auto ;
-  .otp-point{
+  margin: 70px auto;
+  .otp-point {
     border: none !important;
     border-bottom: 1px solid #000000 !important;
     background-color: transparent !important;
-      width: 10px;
-      margin: 0 10px;
-      border-radius: 0px !important;
+    width: 10px;
+    margin: 0 10px;
+    border-radius: 0px !important;
   }
 }
 
@@ -58,9 +49,8 @@ i {
   margin-bottom: 10px;
 }
 
-
-.verify-btn{
-  background-color: #FF7A00;
+.verify-btn {
+  background-color: #ff7a00;
   width: 100%;
   border: none;
   color: #fff;
