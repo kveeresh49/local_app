@@ -1,20 +1,73 @@
-.login-submit-btn{
-  background-color: #FF7A00;
-  width: 100%;
-  border: none;
-  color: #fff;
-  padding: 15px;
-  font-size: 18px;
-  border-radius: 5px;
-}
+@import "../../../varible";
 
 .login-btn{
-  border: 1px solid #FF7A00;
-  font-weight: 500;
-  color: #FF7A00;
-  background-color: #fff;
-  font-size: 16px;
-padding: 5px 25px;
-border-radius: 5px;
-float: right;
+  // background-color: #;
+  font-family: 'Poppins';
+font-weight: 400;
+font-size: 20px;
+// line-height: 36px;
+padding:  4px 15px;
+color: #FF7A00;
+border: 1px solid #FF7A00;
+border-radius: 10px;
+margin-right: 110px;
 }
+.form-label {
+  margin: 0;
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+  color: #8b8888;
+}
+.form-control {
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 15px !important;
+  // line-height: 27px !important;
+}
+.form-control::placeholder {
+  color: #c4c4c4;
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 27px;
+}
+
+
+.forgot-password {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  color: #ff7a00;
+}
+
+.agree-text {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  // line-height: 18px;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.login-submit-btn {
+  width: 100%;
+  padding: 10px 0;
+  background: #ff7a00;
+  border-radius: 5px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  margin-top: 25px;
+  text-align: center;
+  color: #ffffff;
+}
+
+
+
+

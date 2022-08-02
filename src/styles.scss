@@ -23,7 +23,15 @@ $prefix: "mo-";
 
 @import "../src/_varible";
 
+@font-face {
+  font-family: "Poppins";
+  // src: url(../../../src/assets/fonts/Poppins-Font-2/Poppins-Regular);
+  src: url(assets/fonts/Poppins-Font-2/Poppins-Regular.ttf) format("opentype");
+}
 
+body{
+  font-family: "Poppins ";
+}
 .mt-6{
   margin-top: 60px;
 }
@@ -125,12 +133,7 @@ $prefix: "mo-";
 .text-orange{
   color: $orange;
 }
-.box-shadow{
-    border-radius: 10px;
-    box-shadow: $boxShadow;
-    padding: 30px;
-    background-color: #fff;
-}
+
 .light-grey{
   color:#6A6868
 }
@@ -160,13 +163,61 @@ h3{
 
 }
 
+// login-flow
+.login-box {
+  width: 558px;
+  border-radius: 10px;
+  box-shadow: $boxShadow;
+  padding: 25px;
+  background-color: #fff;
+}
 
-.banner-one-parent{
+.login-heading {
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 24px;
+  // line-height: 45px;
+  color: #2d3648;
+  margin-bottom: 10px;
+}
+.login-sub-titel {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #8b8888;
+}
+.form-label {
+  margin: 0 !important;
+  font-family: "Poppins" !important;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 24px !important;
+  color: #8b8888 !important;
+}
+.form-control {
+  border: 1px solid #c4c4c4 !important;
+  border-radius: 5px !important;
+  font-family: "Poppins" !important;
+  font-weight: 400 !important;
+  font-size: 18px !important;
+  line-height: 27px !important;
+}
+.form-control::placeholder {
+  color: #c4c4c4 !important;
+  font-family: "Poppins" !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 27px !important;
+}
+
+
+.body{
   position: relative;
 }
 .banner-one{
   background-image: url(assets/images/login-banner.png);
-  background-position: bottom;
+  background-position: bottom center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 300px;
