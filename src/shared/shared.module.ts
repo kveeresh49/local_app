@@ -1,10 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthModule } from 'src/auth/auth.module';
-import { StoreCardComponent } from 'src/shared/components/store-card/store-card.component';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { AuthModule } from 'src/components/auth/auth.module';
+import { StoreCardComponent } from './components/store-card/store-card.component';
 
 @NgModule({
   declarations: [StoreCardComponent],
@@ -13,15 +12,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     FormsModule,
     AuthModule,
-    FontAwesomeModule 
+    FontAwesomeModule,
   ],
   exports: [
     ReactiveFormsModule,
     FormsModule,
     AuthModule,
     StoreCardComponent,
-    FontAwesomeModule
-
+    FontAwesomeModule,
   ],
 })
 export class SharedModule {}

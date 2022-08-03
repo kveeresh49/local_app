@@ -8,6 +8,7 @@ import { LandinglogoComponent } from './containers/landinglogo/landinglogo.compo
 import { LoginImgComponent } from './containers/login-img/login-img.component';
 import { LoginOtpComponent } from './containers/login-otp/login-otp.component';
 import { ForgotpasswordComponent } from './containers/forgotpassword/forgotpassword.component';
+import { SharedModule } from 'src/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,6 @@ import { ForgotpasswordComponent } from './containers/forgotpassword/forgotpassw
     LoginOtpComponent,
     ForgotpasswordComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, SharedModule],
 })
 export class AuthModule {}
