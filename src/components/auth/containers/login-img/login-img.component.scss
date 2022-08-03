@@ -1,7 +1,7 @@
 .row {
   flex-direction: column;
 }
-.col-sm {
+.col-sm col-lg col-md {
   .row {
     flex-direction: row;
     text-align: center;
