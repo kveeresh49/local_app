@@ -10,6 +10,7 @@ import { OffersShopCategoriesComponent } from './offers-shop-categories/offers-s
 
 import  {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PopularStoresComponent } from './popular-stores/popular-stores.component'
+import { SharedModule } from 'src/shared-module/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PopularStoresComponent } from './popular-stores/popular-stores.componen
   imports: [
     CommonModule,
     LocalRoutingModule,
-    NgbModule
+    NgbModule,
+    SharedModule
   ]
 })
 export class LocalModule { }
