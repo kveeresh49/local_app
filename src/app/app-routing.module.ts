@@ -5,6 +5,7 @@ import { LocalHomeComponent } from 'src/components/auth/containers/local-home/lo
 import { LoginOtpComponent } from 'src/components/auth/containers/login-otp/login-otp.component';
 import { LoginComponent } from 'src/components/auth/containers/login/login.component';
 import { SigninComponent } from 'src/components/auth/containers/signin/signin.component';
+import { StoreDetailsComponent } from 'src/components/local/store-details/store-details.component';
 
 const routes: Routes = [
   { path: '', component: LocalHomeComponent },
@@ -13,6 +14,11 @@ const routes: Routes = [
   { path: 'otp', component: LoginOtpComponent },
   { path: 'forgotpassword', component: ForgotpasswordComponent },
   { path: 'local-home', component: LocalHomeComponent },
+  {
+    path: 'store',
+    component: StoreDetailsComponent,
+    children: [{ path: ':id', component: StoreDetailsComponent }],
+  },
 ];
 
 @NgModule({

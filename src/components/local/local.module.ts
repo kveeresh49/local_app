@@ -7,7 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { OffersShopCategoriesComponent } from './offers-shop-categories/offers-shop-categories.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PopularStoresComponent } from './popular-stores/popular-stores.component';
-
+import { StoreDetailsComponent } from './store-details/store-details.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +17,7 @@ import { PopularStoresComponent } from './popular-stores/popular-stores.componen
     DashboardComponent,
     OffersShopCategoriesComponent,
     PopularStoresComponent,
+    StoreDetailsComponent,
   ],
   imports: [LocalRoutingModule, NgbModule],
 })
