@@ -1,115 +1,114 @@
 .store-card-max-width {
-    max-width: 40vh;
-    max-height: 45vh !important;
-    height: 45vh !important;
-    border: 2px solid red;
+  max-width: 40vh;
+  max-height: 45vh !important;
+  height: 45vh !important;
 }
 
 .store-card-img-height {
-    max-height: 30vh;
+  max-height: 30vh;
 }
 
 .reticle-box {
-    width: 74px;
-    height: 93px;
-    left: 1008px;
-    top: 421px;
+  width: 74px;
+  height: 93px;
+  left: 1008px;
+  top: 421px;
 }
 
 .offer-tag {
-    background-image: linear-gradient(131deg,
-            rgba(255, 122, 0) 50%,
-            rgba(255, 255, 255, 0) 50%),
-        linear-gradient(229deg, rgba(255, 122, 0) 50%, rgba(254, 255, 255, 0) 50%);
-    width: 3.6rem;
-    height: 6.5rem;
-    position: absolute;
-    margin-left: 5rem;
-    z-index: 999;
+  background-image: linear-gradient(
+      131deg,
+      rgba(255, 122, 0) 50%,
+      rgba(255, 255, 255, 0) 50%
+    ),
+    linear-gradient(229deg, rgba(255, 122, 0) 50%, rgba(254, 255, 255, 0) 50%);
+  width: 3.6rem;
+  height: 6.5rem;
+  position: absolute;
+  margin-left: 5rem;
+  z-index: 999;
 }
 
 .wrapper {
-    position: relative;
-    width: 60px;
+  position: relative;
+  width: 60px;
 }
 
 .triangle {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #ddd;
-    border-bottom: 0px solid transparent;
-    left: 50%;
-    margin-left: -5px;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #ddd;
+  border-bottom: 0px solid transparent;
+  left: 50%;
+  margin-left: -5px;
 }
 
 .offer-text {
-    text-align: center;
-    font-size: 14px;
-    line-height: 18px;
-    margin-top: 6px;
-    color: #FFFFFF;
-    font-weight: bold;
+  text-align: center;
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 6px;
+  color: #ffffff;
+  font-weight: bold;
 }
 
-.wrap{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-  }
-  .heart{
-    width:7vw;
-    height:4vw;
-    background:red;
-    transform:rotate(45deg);
-    border-top-left-radius:4vw;
-    border-bottom-left-radius:4vw;
-  }
-  .heart::after{
-    content:"";
-    position:absolute;
-    left:1.5vw;
-    top:-1.5vw;
-    width:7vw;
-    height:4vw;
-    background:red;
-    transform:rotate(90deg);
-    border-top-left-radius:4vw;
-    border-bottom-left-radius:4vw;
-  }
+.wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.heart {
+  width: 7vw;
+  height: 4vw;
+  background: red;
+  transform: rotate(45deg);
+  border-top-left-radius: 4vw;
+  border-bottom-left-radius: 4vw;
+}
+.heart::after {
+  content: "";
+  position: absolute;
+  left: 1.5vw;
+  top: -1.5vw;
+  width: 7vw;
+  height: 4vw;
+  background: red;
+  transform: rotate(90deg);
+  border-top-left-radius: 4vw;
+  border-bottom-left-radius: 4vw;
+}
 
-  .heart-color {
-    font-weight: 100;
-  }
+.heart-color {
+  font-weight: 100;
+}
 
-  .fill-heart-color{
-    color: red;
-    font-weight: 100;
-    font-weight: 900
-  }
+.fill-heart-color {
+  color: red;
+  font-weight: 100;
+  font-weight: 900;
+}
 
-  .new-class{
-    background: #00b16e;
-    color: #fff;
-    border: 1px solid #00b16e;
-    background: #5BB600;
-    margin-top: 6px;
-    width: 61px;
-    height: 24px;
-    margin-right: 6px;
+.new-class {
+  background: #00b16e;
+  color: #fff;
+  border: 1px solid #00b16e;
+  background: #5bb600;
+  margin-top: 6px;
+  width: 61px;
+  height: 24px;
+  margin-right: 6px;
+}
 
+.star-calss {
+  font-size: 13px;
+  padding-top: 3px;
+}
 
-  }
-
-  .star-calss{
-    font-size: 13px;
-    padding-top: 3px;
-  }
-
-  .pipe-class {
-    margin-left: 7px;
-    margin-right: 6px;
-  }
+.pipe-class {
+  margin-left: 7px;
+  margin-right: 6px;
+}

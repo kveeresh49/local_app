@@ -35,17 +35,8 @@
               </div>
             </div>
             <div class="mb-2">
-              <div class="d-flex flex-row otp-field">
-                <input
-                  type="text"
-                  class="form-control otp-point col"
-                  autofocus=""
-                />
-                <input type="text" class="form-control otp-point col" />
-                <input type="text" class="form-control otp-point col" />
-                <input type="text" class="form-control otp-point col" />
-                <input type="text" class="form-control otp-point col" />
-                <input type="text" class="form-control otp-point col" />
+              <div class="d-flex flex-row ms-4 mt-4 mb-4">
+                <ng-otp-input [config]="{ length: 6 }"></ng-otp-input>
               </div>
             </div>
             <div class="resend-otp text-start">

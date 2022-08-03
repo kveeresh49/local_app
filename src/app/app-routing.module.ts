@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'signIn', component: SigninComponent },
   { path: 'otp', component: LoginOtpComponent },
   { path: 'forgotpassword', component: ForgotpasswordComponent },
+  { path: 'local-home', component: LocalHomeComponent },
 ];
 
 @NgModule({
