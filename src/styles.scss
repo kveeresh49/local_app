@@ -32,7 +32,7 @@ body {
 .local-form-label {
   margin: 0 !important;
   font-weight: 400 !important;
-  font-size: 13px !important;
+  font-size: 12px !important;
   line-height: 24px !important;
   color: #8b8888 !important;
 }
@@ -41,17 +41,8 @@ body {
   margin-top: 100px;
 }
 
-.color-orange {
-  color: $orange !important;
-}
-
-form-label {
-  margin: 0 !important;
-  font-family: "Poppins" !important;
-  font-weight: 400 !important;
-  font-size: 15px !important;
-  line-height: 24px !important;
-  color: #8b8888 !important;
+.orange {
+  color: $orange  !important;
 }
 
 .light-grey {
@@ -103,8 +94,6 @@ h3 {
 
 .form-control::placeholder {
   color: #c4c4c4 !important;
-  font-family: "Poppins" !important;
-  font-weight: 400 !important;
   font-size: 16px !important;
   line-height: 27px !important;
 }

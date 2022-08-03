@@ -1,9 +1,9 @@
-
+@import '../../../../varible';
 .login-btn {
   font-size: 18px;
   padding: 4px 25px;
-  color: #ff7a00;
-  border: 1px solid #ff7a00;
+  color: $orange;
+  border: 1px solid  $orange;
   border-radius: 10px;
   margin-left: 29rem !important;
   float: left;
@@ -21,7 +21,7 @@
 .login-submit-btn {
   width: 100%;
   padding: 10px 0;
-  background: #ff7a00;
+  background:  $orange;
   border-radius: 5px;
   font-style: normal;
   margin-top: 25px;
