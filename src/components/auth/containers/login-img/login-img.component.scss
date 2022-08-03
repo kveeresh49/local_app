@@ -1,0 +1,23 @@
+.row {
+  flex-direction: column;
+}
+.col-sm {
+  .row {
+    flex-direction: row;
+    text-align: center;
+  }
+}
+
+.login-vector-img {
+  width: 600px;
+  // height: 503px;
+}
+
+.app-store-btn {
+  width: 150px;
+  height: 50px;
+  margin: 0px;
+}
+.app-store-btn:last-child {
+  margin-left: 45px;
+}

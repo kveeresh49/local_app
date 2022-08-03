@@ -2,23 +2,165 @@
 
 // Functions first
 @import "../node_modules/bootstrap/scss/functions";
-
-// Variable overrides second
-$primary: #900;
-$enable-shadows: true;
-$prefix: "mo-";
 // Required Bootstrap imports
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/maps";
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/root";
-
-// Optional components
-@import "../node_modules/bootstrap/scss/utilities";
-@import "../node_modules/bootstrap/scss/reboot";
-@import "../node_modules/bootstrap/scss/containers";
-@import "../node_modules/bootstrap/scss/grid";
-@import "../node_modules/bootstrap/scss/helpers";
-@import "../node_modules/bootstrap/scss/utilities/api";
-
+// Varibles
 @import "../src/_varible";
+
+@font-face {
+  font-family: $font-family;
+  src: url(assets/fonts/Poppins-Font-2/Poppins-Regular.ttf) format("opentype");
+}
+body {
+  font-family: $font-family;
+}
+
+.local-card-login {
+  width: 61vh;
+  height: fit-content;
+  border-radius: 10px;
+  box-shadow: $boxShadow;
+  padding: 25px;
+  background-color: #fff;
+}
+
+.local-form-label {
+  margin: 0 !important;
+  font-weight: 400 !important;
+  font-size: 13px !important;
+  line-height: 24px !important;
+  color: #8b8888 !important;
+}
+
+.mt-10 {
+  margin-top: 100px;
+}
+
+.color-orange {
+  color: $orange !important;
+}
+
+form-label {
+  margin: 0 !important;
+  font-family: "Poppins" !important;
+  font-weight: 400 !important;
+  font-size: 15px !important;
+  line-height: 24px !important;
+  color: #8b8888 !important;
+}
+
+.light-grey {
+  color: #6a6868;
+}
+
+h3 {
+  font-size: 24px;
+  color: #2d3648;
+  font-weight: 500;
+}
+
+.login-sub-titel {
+  font-size: 20px;
+  font-weight: 400;
+  color: #8b8888;
+}
+
+.form-label {
+  font-size: 16px;
+  color: #8b8888;
+  font-weight: 400;
+}
+
+.agree-text {
+  color: #2d3648;
+  font-size: 12px;
+}
+
+.login-heading {
+  font-weight: 500;
+  font-size: 24px;
+  color: #2d3648;
+  margin-bottom: 10px;
+}
+
+.login-sub-titel {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #8b8888;
+}
+
+.form-control {
+  border: 1px solid #c4c4c4 !important;
+  border-radius: 5px !important;
+  line-height: 22px !important;
+}
+
+.form-control::placeholder {
+  color: #c4c4c4 !important;
+  font-family: "Poppins" !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 27px !important;
+}
+
+.banner-one {
+  background-image: url(assets/images/login-banner.png);
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 300px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+}
+
+// navbar
+
+.brand-logo {
+  width: 70%;
+}
+.navbar-toggler {
+  display: block !important;
+}
+
+@media (min-width: 500px) {
+  .navbar-light .navbar-toggler {
+    color: #fff;
+    font-size: inherit;
+    box-shadow: unset;
+    border: none;
+    padding: 0;
+    display: block !important;
+  }
+}
+
+// home offers-banner
+
+.picsum-img-wrapper {
+  position: relative;
+  .top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 360px;
+    height: 160px;
+  }
+  .bottom-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 360px;
+    height: 160px;
+  }
+}
+
+// Sub heading Styles
+
+.sub-heading-font-size {
+  font-size: 1rem !important;
+}
