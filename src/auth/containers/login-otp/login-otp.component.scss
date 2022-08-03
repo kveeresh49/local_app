@@ -1,28 +1,77 @@
-.otp-btn{
-  // border: 1px solid #FF7A00;
-  background-color: #FF7A00 ;
+@import "../../../varible";
+
+
+
+.login-heading {
+  font-family: "Poppins";
+  font-weight: 500;
+  font-size: 28px;
+  // line-height: 45px;
+  color: #2d3648;
+  margin-bottom: 10px;
+}
+.login-sub-titel {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #8b8888;
+}
+
+.otp-btn {
+  background-color: #ff7a00;
   color: #fff;
   border: none;
   border-radius: 5px;
   font-size: 18px;
 }
 
-.otp-point{
-  background-color: transparent !important;
-  border: none;
-  border-bottom: 1px solid #000;
-  width: 10px;
-  margin: 0 10px;
-  border-radius: 0px !important;
+.otp-field {
+  width: 55%;
+  margin: 70px auto;
+  .otp-point {
+    border: none !important;
+    border-bottom: 1px solid #000000 !important;
+    background-color: transparent !important;
+    width: 10px;
+    margin: 0 10px;
+    border-radius: 0px !important;
+  }
 }
 
+.agree-text {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  // line-height: 18px;
+  color: #000000;
+  margin-bottom: 10px;
+}
 
-.verify-btn{
-  background-color: #FF7A00;
+.verify-btn {
+  background-color: #ff7a00;
   width: 100%;
   border: none;
   color: #fff;
+  font-family: "Poppins";
+  line-height: 27px;
   padding: 15px;
+  font-weight: 500;
   font-size: 18px;
   border-radius: 5px;
+}
+
+.resend-otp {
+  margin: 15px 0;
+  p {
+    font-family: "Poppins";
+    font-weight: 400;
+    font-size: 18px;
+    color: #838383;
+    .create-account {
+      font-family: "Poppins";
+      color: #ff7a00;
+    }
+  }
 }
