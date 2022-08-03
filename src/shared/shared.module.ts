@@ -2,24 +2,17 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { AuthModule } from 'src/components/auth/auth.module';
+import { LandinglogoComponent } from './components/landinglogo/landinglogo.component';
 import { StoreCardComponent } from './components/store-card/store-card.component';
 
 @NgModule({
-  declarations: [StoreCardComponent],
+  declarations: [StoreCardComponent, LandinglogoComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    AuthModule,
     FontAwesomeModule,
   ],
-  exports: [
-    ReactiveFormsModule,
-    FormsModule,
-    AuthModule,
-    StoreCardComponent,
-    FontAwesomeModule,
-  ],
+  exports: [StoreCardComponent, LandinglogoComponent],
 })
 export class SharedModule {}

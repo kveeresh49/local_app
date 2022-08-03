@@ -2,192 +2,48 @@
 
 // Functions first
 @import "../node_modules/bootstrap/scss/functions";
-
-// Variable overrides second
-$primary: #900;
-$enable-shadows: true;
-$prefix: "mo-";
 // Required Bootstrap imports
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/maps";
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/root";
-
-// Optional components
-@import "../node_modules/bootstrap/scss/utilities";
-@import "../node_modules/bootstrap/scss/reboot";
-@import "../node_modules/bootstrap/scss/containers";
-@import "../node_modules/bootstrap/scss/grid";
-@import "../node_modules/bootstrap/scss/helpers";
-@import "../node_modules/bootstrap/scss/utilities/api";
-
+// Varibles
 @import "../src/_varible";
 
 @font-face {
-  font-family: "Poppins";
-  // src: url(../../../src/assets/fonts/Poppins-Font-2/Poppins-Regular);
+  font-family: $font-family;
   src: url(assets/fonts/Poppins-Font-2/Poppins-Regular.ttf) format("opentype");
 }
-
-body{
-  font-family: "Poppins ";
-}
-.mt-6{
-  margin-top: 60px;
-}
-.mt-7{
-  margin-top: 70px;
-}
-.mt-8{
-  margin-top: 80px;
-}
-.mt-9{
-  margin-top: 90px;
-}
-.mt-10{
-  margin-top: 100px;
+body {
+  font-family: $font-family;
 }
 
-.ms-6{
-  margin-left: 60px;
-}
-.ms-7{
-  margin-left: 70px;
-}
-.ms-8{
-  margin-left: 80px;
-}
-
-.ms-9{
-  margin-left: 90px;
-}
-
-.ms-10{
-  margin-left: 100px;
-}
-
-.me-6{
-  margin-left: 60px;
-}
-.me-7{
-  margin-left: 70px;
-}
-.me-8{
-  margin-left: 80px;
-}
-
-.me-9{
-  margin-left: 90px;
-}
-
-.me-10{
-  margin-left: 100px;
-}
-
-.mb-6{
-  margin-bottom: 60px;
-}
-.mb-7{
-  margin-bottom: 70px;
-}
-.mb-8{
-  margin-bottom: 80px;
-}
-.mb-9{
-  margin-bottom: 90;
-}
-.mb-10{
-  margin-bottom: 100px;
-}
-
-.pt-6{
-  padding-top: 60px;
-}
-.pt-7{
-  padding-top: 70px;
-}
-.pt-8{
-  padding-top: 80px;
-}
-.pt-9{
-  padding-top: 90px;
-}
-.pt-10{
-  padding-top: 100px;
-}
-.pb-6{
-  padding-bottom: 60px;
-}
-.pb-7{
-  padding-bottom: 70px;
-}
-.pb-8{
-  padding-bottom: 80px;
-}
-.pb-9{
-  padding-bottom: 90px;
-}
-.pb-10{
-  padding-bottom: 100px;
-}
-.text-orange{
-  color: $orange;
-}
-
-.light-grey{
-  color:#6A6868
-}
-
-h3{
-  font-size: 24px;
-  color: #2D3648;
-  font-weight: 500;
-}
-
-.login-sub-titel{
-  font-size: 20px;
-  font-weight: 400;
-  color: #8B8888;
-
-}
-
-.form-label{
-  font-size: 16px;
-  color: #8B8888;
-  font-weight: 400;
-}
-
-.agree-text{
-  color: #2D3648;
-  font-size: 12px;
-
-}
-
-// login-flow
-.login-box {
-  width: 558px;
+.local-card-login {
+  width: 61vh;
+  height: fit-content;
   border-radius: 10px;
   box-shadow: $boxShadow;
   padding: 25px;
   background-color: #fff;
 }
 
-.login-heading {
-  font-family: "Poppins";
-  font-weight: 500;
-  font-size: 24px;
-  // line-height: 45px;
-  color: #2d3648;
-  margin-bottom: 10px;
+.local-form-label {
+  margin: 0 !important;
+  font-weight: 400 !important;
+  font-size: 13px !important;
+  line-height: 24px !important;
+  color: #8b8888 !important;
 }
-.login-sub-titel {
-  font-family: "Poppins";
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  color: #8b8888;
+
+.mt-10 {
+  margin-top: 100px;
 }
-.form-label {
+
+.color-orange {
+  color: $orange !important;
+}
+
+form-label {
   margin: 0 !important;
   font-family: "Poppins" !important;
   font-weight: 400 !important;
@@ -195,14 +51,54 @@ h3{
   line-height: 24px !important;
   color: #8b8888 !important;
 }
+
+.light-grey {
+  color: #6a6868;
+}
+
+h3 {
+  font-size: 24px;
+  color: #2d3648;
+  font-weight: 500;
+}
+
+.login-sub-titel {
+  font-size: 20px;
+  font-weight: 400;
+  color: #8b8888;
+}
+
+.form-label {
+  font-size: 16px;
+  color: #8b8888;
+  font-weight: 400;
+}
+
+.agree-text {
+  color: #2d3648;
+  font-size: 12px;
+}
+
+.login-heading {
+  font-weight: 500;
+  font-size: 24px;
+  color: #2d3648;
+  margin-bottom: 10px;
+}
+
+.login-sub-titel {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  color: #8b8888;
+}
+
 .form-control {
   border: 1px solid #c4c4c4 !important;
   border-radius: 5px !important;
-  font-family: "Poppins" !important;
-  font-weight: 400 !important;
-  font-size: 18px !important;
-  line-height: 27px !important;
+  line-height: 22px !important;
 }
+
 .form-control::placeholder {
   color: #c4c4c4 !important;
   font-family: "Poppins" !important;
@@ -211,11 +107,7 @@ h3{
   line-height: 27px !important;
 }
 
-
-.body{
-  position: relative;
-}
-.banner-one{
+.banner-one {
   background-image: url(assets/images/login-banner.png);
   background-position: bottom center;
   background-repeat: no-repeat;
@@ -227,17 +119,16 @@ h3{
   z-index: -1;
 }
 
-
 // navbar
 
 .brand-logo {
-  width:70%;
+  width: 70%;
 }
-.navbar-toggler{
+.navbar-toggler {
   display: block !important;
 }
 
-@media (min-width:500px){
+@media (min-width: 500px) {
   .navbar-light .navbar-toggler {
     color: #fff;
     font-size: inherit;
@@ -248,19 +139,18 @@ h3{
   }
 }
 
-
 // home offers-banner
 
-.picsum-img-wrapper{
+.picsum-img-wrapper {
   position: relative;
-  .top-left{
-    position:absolute;
+  .top-left {
+    position: absolute;
     top: 0;
     left: 0;
     width: 360px;
     height: 160px;
   }
-  .bottom-right{
+  .bottom-right {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -268,26 +158,9 @@ h3{
     height: 160px;
   }
 }
-.carousel-indicators{
-  bottom: -45px !important;
-  border-radius: 10px !important;
-  border: none !important;
-  // width: 10px !important;
-  // height: 10px !important;
-  button{
-  background-color: #949292 !important;
 
-  }
-}
-.carousel-caption{
-  top: -10px !important;
-}
+// Sub heading Styles
 
-
-.carousel-indicators{
-  display: none !important;
-}
-.carousel-inner{
-  width: 90% !important;
-  margin: auto !important;
+.sub-heading-font-size {
+  font-size: 1rem !important;
 }

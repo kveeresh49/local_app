@@ -1,51 +1,19 @@
-@import "../../../varible";
+@import "../../../../varible";
 
-.login-box {
-  width: 558px;
-  background: #ffffff;
-  // margin-bottom: 2px;
-}
-i {
-  margin-left: -30px;
-  cursor: pointer;
+.card-margin-left-7 {
+  margin-left: 7rem;
 }
 
-.login-heading {
-  font-family: "Poppins";
-  font-weight: 500;
-  font-size: 28px;
-  // line-height: 45px;
-  color: #2d3648;
-  margin-bottom: 10px;
-}
-.login-sub-titel {
-  font-family: "Poppins";
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  color: #8b8888;
-}
-
-.or {
-  margin: 7px 0;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
+.or-text {
   align-items: center;
   color: #c4c4c4;
 }
 
 .forgot-password {
-  font-family: "Poppins";
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 21px;
   color: #ff7a00;
 }
 
 .agree-text {
-  font-family: "Poppins";
-  font-style: normal;
   font-weight: 300;
   font-size: 12px;
   color: #000000;
@@ -56,19 +24,11 @@ i {
   width: 100%;
   padding: 10px 0;
   background: #ff7a00;
-  border-radius: 5px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
   text-align: center;
   color: #ffffff;
 }
 
-.Request-otp-btn {
-  font-family: "Poppins";
-  font-weight: 500;
-  font-size: 18px;
+.request-otp-btn {
   text-align: center;
   color: #ff7a00;
   border: 1px solid #ff7a00;
@@ -79,17 +39,13 @@ i {
 
 .new-account {
   margin: 25px 0;
+
   p {
-    font-family: "Poppins";
-    font-weight: 400;
-    font-size: 18px;
     align-items: center;
     text-align: center;
     color: #838383;
+
     .create-account {
-      font-family: "Poppins";
-      font-weight: 400;
-      font-size: 18px;
       align-items: center;
       color: #ff7a00;
     }

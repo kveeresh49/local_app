@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { LocalRoutingModule } from './local-routing.module';
 import { LocalNavbarComponent } from './local-navbar/local-navbar.component';
 import { FooterComponent } from './footer/footer.component';
@@ -8,7 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { OffersShopCategoriesComponent } from './offers-shop-categories/offers-shop-categories.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PopularStoresComponent } from './popular-stores/popular-stores.component';
-import { SharedModule } from 'src/shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +18,6 @@ import { SharedModule } from 'src/shared/shared.module';
     OffersShopCategoriesComponent,
     PopularStoresComponent,
   ],
-  imports: [CommonModule, LocalRoutingModule, NgbModule, SharedModule],
+  imports: [LocalRoutingModule, NgbModule],
 })
 export class LocalModule {}

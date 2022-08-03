@@ -1,21 +1,7 @@
-@import "../../../varible";
+@import "../../../../varible";
 
-
-
-.login-heading {
-  font-family: "Poppins";
-  font-weight: 500;
-  font-size: 28px;
-  // line-height: 45px;
-  color: #2d3648;
-  margin-bottom: 10px;
-}
-.login-sub-titel {
-  font-family: "Poppins";
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  color: #8b8888;
+.card-margin-left-7 {
+  margin-left: 7rem;
 }
 
 .otp-btn {
@@ -24,6 +10,14 @@
   border: none;
   border-radius: 5px;
   font-size: 18px;
+}
+
+.login-submit-btn {
+  width: 100%;
+  padding: 10px 0;
+  background: #ff7a00;
+  text-align: center;
+  color: #ffffff;
 }
 
 .otp-field {
@@ -62,16 +56,16 @@
   border-radius: 5px;
 }
 
-.resend-otp {
-  margin: 15px 0;
-  p {
-    font-family: "Poppins";
-    font-weight: 400;
-    font-size: 18px;
-    color: #838383;
-    .create-account {
-      font-family: "Poppins";
-      color: #ff7a00;
-    }
-  }
-}
+// .resend-otp {
+//   margin: 15px 0;
+//   p {
+//     font-family: "Poppins";
+//     font-weight: 400;
+//     font-size: 18px;
+//     color: #838383;
+//     .create-account {
+//       font-family: "Poppins";
+//       color: #ff7a00;
+//     }
+//   }
+// }

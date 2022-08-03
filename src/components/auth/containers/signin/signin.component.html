@@ -11,92 +11,54 @@
 
 <div class="banner-one-parent">
   <div class="banner-one"></div>
-
   <section class="container-fluid">
     <div class="row">
       <div class="col-sm">
         <app-login-img></app-login-img>
       </div>
       <div class="col-sm">
-        <div class="login-box form-control-width">
+        <div class="local-card-login card-margin-left-7">
           <div class="text-start">
             <h3 class="login-heading">Welcome to The Local</h3>
-            <h4 class="login-sub-titel">
+            <h4 class="login-sub-titel sub-heading-font-size">
               Create your account to connent to local Shops
             </h4>
           </div>
           <form class="login-form">
             <div class="mb-2">
-              <label for="name" class="form-label">Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                placeholder="Enter User Name"
-              />
+              <label for="name" class="local-form-label">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter User Name" />
             </div>
-            <div class="mb-2 ">
+            <div class="mb-2">
               <div class="row">
-
-              <div class="col-8">
-                <label for="mobile-number" class="form-label"
-                  >Mobile Number</label
-                >
-                <input
-                  type="number"
-                  class="form-control"
-                  id="mobile-number"
-                  placeholder="Enter Mobile Number"
-                />
-              </div>
-              <div class="col-4 mt-4">
-                <input
-                  type="number"
-                  class="form-control"
-                  id="otp"
-                  placeholder="Send OTP"
-                />
+                <div class="col-8">
+                  <label for="mobile-number" class="local-form-label">Mobile Number</label>
+                  <input type="number" class="form-control" id="mobile-number" placeholder="Enter Mobile Number" />
+                </div>
+                <div class="col-4 mt-4">
+                  <input type="number" class="form-control" id="otp" placeholder="Send OTP" />
+                </div>
               </div>
             </div>
-
+            <div class="mb-2">
+              <label for="Email" class="local-form-label">Email</label>
+              <input type="email" class="form-control" id="Email" placeholder="Enter Your Email Address" />
             </div>
             <div class="mb-2">
-              <label for="Email" class="form-label">Email</label>
-              <input
-                type="email"
-                class="form-control"
-                id="Email"
-                placeholder="Enter Your Email Address"
-              />
+              <label for="password" class="local-form-label">Password</label>
+              <input type="number" class="form-control" id="password" placeholder="Set Password" />
             </div>
-            <div class="mb-2">
-              <label for="password" class="form-label">Password</label>
-              <input
-                type="number"
-                class="form-control"
-                id="password"
-                placeholder="Set Password"
-              />
+            <div class="mb-1">
+              <label for="confirm-password" class="local-form-label">Confirm Password</label>
+              <input type="number" class="form-control" id="confirm-password" placeholder=" Confirm Password" />
             </div>
-            <div class="mb-2">
-              <label for="confirm-password" class="form-label"
-                >Confirm Password</label
-              >
-              <input
-                type="number"
-                class="form-control"
-                id="confirm-password"
-                placeholder=" Confirm Password"
-              />
-            </div>
-            <button class="login-submit-btn btn">Create Account</button>
+            <button class="login-submit-btn btn mt-3">Create Account</button>
           </form>
-          <div class="agree-text mt-2">
+          <div class="agree-text mt-3">
             <p class="mb-0">
               By continuing, you agree to our
-              <a href="" class="text-orange text-decoration-none"
-                >Privacy Policy</a
-              >, <br />Terms and Conditions applied.
+              <a href="" class="color-orange text-decoration-none">Privacy Policy</a>, <br />Terms and Conditions
+              applied.
             </p>
           </div>
         </div>
