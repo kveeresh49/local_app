@@ -4,10 +4,10 @@ import { AuthModule } from 'src/components/auth/auth.module';
 import { LocalModule } from 'src/components/local/local.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, AuthModule, LocalModule],
+  imports: [BrowserModule, AppRoutingModule, BrowserAnimationsModule,AuthModule, LocalModule],
   providers: [],
   bootstrap: [AppComponent],
 })

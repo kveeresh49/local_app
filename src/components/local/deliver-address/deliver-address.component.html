@@ -1,0 +1,211 @@
+<div class="card local-card-adress">
+  <mat-stepper #stepper>
+    <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
+      <form [formGroup]="firstFormGroup">
+        <!-- <ng-template matStepLabel></ng-template> -->
+        <div class="row flex-column">
+          <div class="text-start mb-2">
+            <label for="" class="address-label">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-geo-alt-fill"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                />
+              </svg>
+              Deliver to
+            </label>
+            <p class="address-heading">R K Nagar, Secunderabad</p>
+          </div>
+          <div class="mb-2">
+            <button id="showMe" class="btn current-location-btn text-start">
+              <i class="fa fa-crosshairs" aria-hidden="true"></i>
+              Use My Location
+            </button>
+          </div>
+          <div class="mb-2">
+            <p class="saved-address-subtitel">Saved Addresses:</p>
+          </div>
+          <div class="row flex-column mb-1">
+            <div class="col-sm saved-address mb-1">
+              <div class="row align-items-center">
+                <div class="col-sm">
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                  <p class="address-category">Home</p>
+                </div>
+                <div class="col-sm">
+                  <h5 class="address-heading">R K Nagar, Secunderabad</h5>
+                  <p class="address-in-area-category">
+                    R K Nagar west maredpally, secunderbad , Telangana, 500026,
+                    india
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm saved-address mb-1 mt-2">
+              <div class="row align-items-center">
+                <div class="col-sm">
+                  <i class="fa fa-suitcase" aria-hidden="true"></i>
+                  <p class="address-category">Work</p>
+                </div>
+                <div class="col-sm">
+                  <h5 class="address-heading">R K Nagar, Secunderabad</h5>
+                  <p class="address-in-area-category">
+                    R K Nagar west maredpally, secunderbad , Telangana, 500026,
+                    india
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm saved-address mb-1 mt-1">
+              <div class="row align-items-center">
+                <div class="col-sm">
+                  <div class="other-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <p class="address-category">Other</p>
+                </div>
+                <div class="col-sm">
+                  <h5 class="address-heading">R K Nagar, Secunderabad</h5>
+                  <p class="address-in-area-category">
+                    R K Nagar west maredpally, secunderbad , Telangana, 500026,
+                    india
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-2">
+            <button
+              type="submit"
+              matStepperNext
+              mat-buttonclass="btn add-new-address-btn"
+            >
+              Add New address
+            </button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step
+      [stepControl]="secondFormGroup"
+      errorMessage="Address is required."
+    >
+      <form [formGroup]="secondFormGroup">
+        <!-- <ng-template matStepLabel></ng-template> -->
+        <div class="row flex-column text-start">
+          <div class="col-sm mb-2">
+            <div class="row me-2">
+              <div
+                class="col-sm d-flex p-0 back-to-saved-address align-items-center"
+              >
+                <!-- <button >
+                        <i class="bi bi-arrow-left-short"></i>
+                      </button> -->
+                <button
+                  class="btn me-3"
+                  type="button"
+                  mat-button
+                  matStepperPrevious
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-arrow-left"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+                    />
+                  </svg>
+                </button>
+                <h4 class="add-address-subtitel">Add Address</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="mb-2">
+              <input
+                type="text"
+                class="address-control"
+                id="name"
+                placeholder="Name"
+              />
+            </div>
+            <div class="mb-2 mt-1">
+              <input
+                type="text"
+                class="address-control"
+                id="name"
+                placeholder="House/Flat/Block no."
+              />
+            </div>
+            <div class="mb-2 mt-1">
+              <input
+                type="text"
+                class="address-control"
+                id="name"
+                placeholder="Apartment / Road / Area(Optional)"
+              />
+            </div>
+            <div class="mb-2 mt-1">
+              <input
+                type="text"
+                class="address-control"
+                id="name"
+                placeholder="Landmark"
+              />
+            </div>
+          </div>
+          <div class="col-sm">
+            <p class="saved-address-subtitel mb-3">Saved as:</p>
+            <div class="row saved-address mb-5">
+              <div class="col-sm">
+                <div class="col-sm">
+                  <i class="fa fa-home" aria-hidden="true"></i>
+                  <p class="address-category">Home</p>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="col-sm">
+                  <i class="fa fa-suitcase" aria-hidden="true"></i>
+                  <p class="address-category">Work</p>
+                </div>
+              </div>
+              <div class="col-sm">
+                <div class="other-icon">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <p class="address-category">Other</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm">
+            <div class="mt-2">
+              <button
+                type="submit"
+                class="btn save-address-btn"
+                mat-button
+                matStepperNext
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+  </mat-stepper>
+</div>

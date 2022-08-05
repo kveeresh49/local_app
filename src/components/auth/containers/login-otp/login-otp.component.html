@@ -1,65 +1,64 @@
 <div class="banner-one-parent">
   <app-landinglogo></app-landinglogo>
-  <div class="banner-one"></div>
-  <section class="container-fluid">
-    <div class="row">
-      <div class="col-sm col-lg col-md">
-        <app-login-img></app-login-img>
-      </div>
-      <div class="col-sm col-lg col-md">
-        <div class="local-card-login card-margin-left-7">
-          <div class="text-start">
-            <h3 class="login-heading">Login</h3>
-            <h4 class="login-sub-titel sub-heading-font-size">
-              We will send you an OTP to this number
-            </h4>
-          </div>
-          <form class="login-form">
-            <div class="mb-2">
-              <div class="row">
-                <div class="col-8">
-                  <label for="mobile-number" class="local-form-label"
-                    >Mobile Number</label
-                  >
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="mobile-number"
-                    placeholder="Enter Mobile Number"
-                  />
-                </div>
-                <div class="col-4">
-                  <br />
-                  <button class="btn otp-btn">Send OTP</button>
+  <div class="banner-one">
+    <section class="container-fluid">
+      <div class="row">
+        <div class="col-sm col-lg col-md">
+          <app-login-img></app-login-img>
+        </div>
+        <div class="col-sm col-lg col-md">
+          <div class="local-card-login card card-margin-left-7">
+            <div class="text-start">
+              <h3 class="login-heading">Login</h3>
+              <h4 class="login-sub-titel sub-heading-font-size">
+                We will send you an OTP to this number
+              </h4>
+            </div>
+            <form class="login-form">
+              <div class="mb-2">
+                <div class="row">
+                  <div class="col-8">
+                    <label for="mobile-number" class="local-form-label"
+                      >Mobile Number</label
+                    >
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="mobile-number"
+                      placeholder="Enter Mobile Number"
+                    />
+                  </div>
+                  <div class="col-4">
+                    <br />
+                    <button class="btn otp-btn">Send OTP</button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="mb-2">
-              <div class="d-flex flex-row ms-4 mt-4 mb-4">
-                <ng-otp-input [config]="{ length: 6 }"></ng-otp-input>
+              <div class="mb-2">
+                <div class="d-flex flex-row ms-4 mt-2 mb-2">
+                  <ng-otp-input [config]="{ length: 6 }"></ng-otp-input>
+                </div>
               </div>
-            </div>
-            <div class="resend-otp text-start">
-              <p class="login-sub-titel sub-heading-font-size">
-                Not recieved your code?
-                <a href="" class="text-decoration-none orange"
-                  >Resend code</a
-                >
-              </p>
-            </div>
+              <div class="resend-otp text-start">
+                <p class=" ">
+                  Not recieved your code?
+                  <a href="" class="text-decoration-none orange">Resend code</a>
+                </p>
+              </div>
 
-            <button class="login-submit-btn btn mb-3">Verify</button>
-            <div class="agree-text">
-              <p class="m-none">
-                By continuing, you agree to our
-                <a href="" class="text-decoration-none orange"
-                  >Privacy Policy</a
-                >, <br />Terms and Conditions applied.
-              </p>
-            </div>
-          </form>
+              <button class="login-submit-btn btn mb-3">Verify</button>
+              <div class="agree-text">
+                <p class="m-none">
+                  By continuing, you agree to our
+                  <a href="" class="text-decoration-none orange"
+                    >Privacy Policy</a
+                  >, <br />Terms and Conditions applied.
+                </p>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>

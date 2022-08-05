@@ -15,17 +15,20 @@
 
 .agree-text {
   font-weight: 300;
-  font-size: 12px;
+  font-size: 10px;
   color: #000000;
-  margin-bottom: 10px;
+  p {
+    margin-bottom: 5px;
+  }
 }
 
 .login-submit-btn {
   width: 100%;
-  padding: 10px 0;
+  padding: 7px 0;
   background: #ff7a00;
   text-align: center;
   color: #ffffff;
+  font-size: 13px;
 }
 
 .request-otp-btn {
@@ -34,20 +37,20 @@
   border: 1px solid #ff7a00;
   border-radius: 5px;
   width: 100%;
-  padding: 10px 0;
+  padding: 7px 0;
+  font-size: 13px;
 }
 
-.new-account {
-  margin: 25px 0;
+// .new-account {
+//   margin: 8px 0 0;
+//   font-size: 13px;
+//   text-align: center;
 
-  p {
-    align-items: center;
-    text-align: center;
-    color: #838383;
+//   p {
+//     color: #838383;
 
-    .create-account {
-      align-items: center;
-      color: #ff7a00;
-    }
-  }
-}
+//     .create-account {
+//       color: #ff7a00;
+//     }
+//   }
+// }

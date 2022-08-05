@@ -1,13 +1,5 @@
-.cart-btn {
-  border: 1px solid #ff7a00;
-  font-weight: 500;
-  color: #ff7a00;
-  background-color: #fff;
-  font-size: 16px;
-  padding: 5px 15px;
-  border-radius: 5px;
-  float: right;
-}
+@import '../../../varible';
+
 
 .form-control {
   background-color: #e7e7e7;
@@ -28,7 +20,7 @@
 }
 .navbar-light {
   .navbar-nav {
-    padding: 15px;
+    padding: 10px;
     .nav-item {
       padding: {
         right: 40px;
@@ -47,7 +39,7 @@
         position: relative;
         cursor: pointer;
         font-weight: 600;
-        font-size: 20px;
+        font-size: 14px;
         padding: 0;
         &.active,
         &:hover {
@@ -61,9 +53,38 @@
 .burger-menu {
   cursor: pointer;
   div {
-    width: 30px;
-    height: 3px;
+    width: 25px;
+    height: 2px;
     background-color: #fff;
     margin: 5px 0;
   }
+}
+
+
+
+
+.sidebar-slider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #D2CECE;
+  transform: translateX(-100%);
+  transition: ease-in-out 300ms transform;
+  width: 300px;
+  z-index: 2;
+}
+
+.sidebar-slider.sidebar-slide-in {
+  transform: translateX(0%);
+  transition: ease-in-out 600ms transform;
+}
+
+.sidebar-close {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: #2D3648;
+  cursor: pointer;
+  padding: 16px;
 }

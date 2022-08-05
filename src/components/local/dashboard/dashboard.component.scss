@@ -1,8 +1,33 @@
+@import "../../../varible";
+
+.profile-logo {
+  width: 75px;
+  height: 75px;
+  // border: 1px solid #2d3648;
+  border-radius: 50%;
+  display: block;
+  background-color: #c4c4c4;
+  margin: auto;
+  font-size: 50px;
+  color: #fff;
+  i {
+    font-size: 50px;
+  }
+}
 .sidemenu {
   width: 300px;
   height: 100%;
   background-color: #fff;
+  padding: 20px;
+  position: relative;
 }
+.btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+}
+
 .navbar {
   z-index: 2;
   width: 100%;
@@ -20,8 +45,8 @@
     img {
       position: absolute;
       left: 0;
-      height: 25px;
-      width: 23px;
+      height: 18px;
+      width: 18px;
       top: 0%;
       bottom: 0;
       margin: auto;
@@ -35,12 +60,12 @@
     .nav-link {
       font-style: normal;
       font-weight: 400;
-      font-size: 20px;
-      line-height: 27px;
+      font-size: 13px;
+      // line-height: 27px;
       color: #2d3648;
       cursor: pointer;
       padding: 0;
-      margin: 15px 30px;
+      margin: 10px 30px;
 
       // &.active,
       //     &:hover {
@@ -50,12 +75,56 @@
   }
 }
 
-.gold-crown-btn{
-  padding: 12px;
+.local-admin-name {
+  font-weight: 600;
+  font-size: 15px;
+  color: #2d3648;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: center;
+  width: 150px;
+  margin: auto;
+}
+
+.local-admin-id {
+  font-size: 13px;
+  color: #8b8888;
+  text-align: center;
+  width: 90px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.local-admin-mail {
+  font-size: 13px;
+  width: 120px;
+  margin: auto;
+  text-align: center;
+  color: #8b8888;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.gold-crown-btn {
+  padding: 9px;
   border-radius: 10px;
   color: #2d3648;
-  font-size: 20px;
-  img{
-    width: 30%;
+  font-size: 16px;
+  text-align: center;
+  img {
+    width: 22%;
   }
+}
+
+.arrow {
+  font-size: 10px;
+  font-weight: 900;
+  color: #2d3648;
+}
+
+.text-container {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }

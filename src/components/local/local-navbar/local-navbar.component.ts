@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./local-navbar.component.scss']
 })
 export class LocalNavbarComponent implements OnInit {
-
+  public sidebarShow: boolean = false;
   constructor() { }
 
   ngOnInit(): void {
