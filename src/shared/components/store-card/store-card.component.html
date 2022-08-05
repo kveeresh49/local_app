@@ -1,23 +1,25 @@
-<div class="container row">
-  <div class="row" style="margin-left: 1.5rem; margin-top: 5rem">
+<div class="container-fluid row">
+
+  <div class="row" style=" margin: 5rem auto;">
     <div>
+
+    </div>
+    <!-- <div class="reticle-box"></div> -->
+    <div class="card store-card-max-width p-0 ms-5">
       <div class="offer-tag">
         <div class="offer-text">
           <div>15%</div>
           <div>Off</div>
         </div>
       </div>
-    </div>
-    <div class="reticle-box"></div>
-    <div class="card store-card-max-width p-0">
       <img
         class="card-img-top store-card-img-height"
         src="../../../assets/images/offers/newimag.jpg"
         alt="Card image cap"
       />
-      <div class="card-body p-0 ps-2" style="font-family: 'Poppins'">
+      <div class="card-body p-0 ps-2 pb-1" style="font-family: 'Poppins'">
         <div>
-          <b>Shiva Veggies mart</b>
+          <b class="store-name">Shiva Veggies mart</b>
           <span
             style="color: #fff"
             class="btn-grey-border mb-0 float-end new-class"
@@ -26,14 +28,14 @@
             <span style="padding-left: 0.6rem">3.5</span>
           </span>
         </div>
-        <div>Vegetable Shop</div>
+        <div class="store-category">Grocery Store</div>
       </div>
-      <div class="card-footer bg-transparent border-success">
-        <span
+      <div class="card-footer bg-transparent ">
+        <span class="align-items-center"
           ><i class="fa-solid fa-star" style="color: #ff7a00"></i>
-          <span style="color: #ff7a00"> % off</span>
+          <span class="discount-in-percentage"> % Off</span>
           <span class="pipe-class">|</span>
-          <span style="color: #ff7a00">NEWSTORE</span>
+          <span  class= "new-store">NEWSTORE</span>
         </span>
         <span>
           <i
@@ -44,75 +46,9 @@
         ></span>
       </div>
     </div>
-    <div class="card store-card-max-width p-0" style="margin-left: 3.5rem">
-      <img
-        class="card-img-top store-card-img-height"
-        src="https://m.media-amazon.com/images/I/71tXwCcZaiL._SX522_.jpg"
-        alt="Card image cap"
-      />
-      <div class="card-body p-0 ps-2" style="font-family: 'Poppins'">
-        <div>
-          <b>Shiva Veggies mart</b>
-          <span
-            style="color: #fff"
-            class="btn-grey-border mb-0 float-end new-class"
-          >
-            <i class="fa-solid fa-star star-calss"></i>
-            <span style="padding-left: 0.6rem">3.5</span>
-          </span>
-        </div>
-        <div>Vegetable Shop</div>
-      </div>
-      <div class="card-footer bg-transparent border-success">
-        <span
-          ><i class="fa-solid fa-star" style="color: #ff7a00"></i>
-          <span style="color: #ff7a00"> % off</span>
-          <span class="pipe-class">|</span>
-          <span style="color: #ff7a00">NEWSTORE</span>
-        </span>
-        <span>
-          <i
-            class="fa-solid fa-heart heart-color float-end"
-            [ngClass]="getfavoriteStoreFlag ? 'fill-heart-color' : ''"
-            (click)="getfavoriteStore(getfavoriteStoreFlag)"
-          ></i
-        ></span>
-      </div>
-    </div>
-    <div class="card store-card-max-width p-0" style="margin-left: 3.5rem">
-      <img
-        class="card-img-top store-card-img-height"
-        src="https://m.media-amazon.com/images/I/71tXwCcZaiL._SX522_.jpg"
-        alt="Card image cap"
-      />
-      <div class="card-body p-0 ps-2" style="font-family: 'Poppins'">
-        <div>
-          <b>Shiva Veggies mart</b>
-          <span
-            style="color: #fff"
-            class="btn-grey-border mb-0 float-end new-class"
-          >
-            <i class="fa-solid fa-star star-calss"></i>
-            <span style="padding-left: 0.6rem">3.5</span>
-          </span>
-        </div>
-        <div>Vegetable Shop</div>
-      </div>
-      <div class="card-footer bg-transparent border-success">
-        <span
-          ><i class="fa-solid fa-star" style="color: #ff7a00"></i>
-          <span style="color: #ff7a00"> % off</span>
-          <span class="pipe-class">|</span>
-          <span style="color: #ff7a00">NEWSTORE</span>
-        </span>
-        <span>
-          <i
-            class="fa-solid fa-heart heart-color float-end"
-            [ngClass]="getfavoriteStoreFlag ? 'fill-heart-color' : ''"
-            (click)="getfavoriteStore(getfavoriteStoreFlag)"
-          ></i
-        ></span>
-      </div>
-    </div>
+
   </div>
 </div>
+
+
+

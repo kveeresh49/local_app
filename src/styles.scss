@@ -107,15 +107,13 @@ body {
 }
 
 .banner-one {
-  background-image: url(assets/images/login-banner.png);
-  background-position: bottom center;
+  background-image: url(./assets/images/login-banner.png);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 89.5vh;
+  height: 89.6vh;
   width: 100%;
-  // position: absolute;
   bottom: 0;
-  z-index: -1;
 }
 
 // navbar
