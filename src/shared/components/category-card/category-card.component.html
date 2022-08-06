@@ -1,1 +1,22 @@
-<p>category-card works!</p>
+<section class="container-fluid">
+    <div class="shop-by-categoires ">
+      <div class=" mt-10 mb-5">
+        <h2 class="text-center shop-by-categoires-heading">Shop by Categoires</h2>
+      </div>
+      <div class=" categoires-card-max-width " *ngFor="let cards of card" >
+        <div class="col-sm col-lg col-md">
+            <a href="" class="medical-stores text-decoration-none">
+              <img src="{{cards.productImg}}" alt="" class="shops-by-category-logos">
+                <span class="shop-titel titel-1">{{cards.titel}}</span>
+            </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <ul>
+    <li *ngFor="let item of friendslist">
+      {{item.name}} and
+      {{item.age}}
+    </li>
+  </ul> -->

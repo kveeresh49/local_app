@@ -6,6 +6,7 @@ import { LoginOtpComponent } from 'src/components/auth/containers/login-otp/logi
 import { LoginComponent } from 'src/components/auth/containers/login/login.component';
 import { SigninComponent } from 'src/components/auth/containers/signin/signin.component';
 import { StoreDetailsComponent } from 'src/components/local/store-details/store-details.component';
+import { CategoryCardComponent } from 'src/shared/components/category-card/category-card.component';
 
 const routes: Routes = [
   { path: '', component: LocalHomeComponent },
@@ -18,6 +19,11 @@ const routes: Routes = [
     path: 'store',
     component: StoreDetailsComponent,
     children: [{ path: ':id', component: StoreDetailsComponent }],
+  },
+  {
+    path: 'shops-by-categoires',
+    component: CategoryCardComponent,
+    children: [{ path: ':id', component: CategoryCardComponent }],
   },
 ];
 

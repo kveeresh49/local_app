@@ -12,13 +12,14 @@ export class CategoryCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // [
-  //   {
-  //     titile: "Madical store",
-  //     "productImg": "string",
-  //     "productType": "string",
-  //     "productBackgroundColor": "string",
-  //     "productFooterBackGround": "string"
-  //   }
-  // ]
+
+  card = [
+    {
+      titel: "Madical store",
+      productImg: "../../../assets/images/shop-categories/medical.png",
+      productType: "string",
+      productBackgroundColor: "string",
+      productFooterBackGround: "string"
+    }
+  ]
 }
