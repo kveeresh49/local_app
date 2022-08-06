@@ -139,10 +139,11 @@ input:focus-visible {
   margin-left: -20px;
 }
 .bi-arrow-left {
-  font-size: 30px;
+  // font-size: 30px;
   color: #2d3648;
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
+  margin-top: -15px;
 }
 .save-address-btn {
   color: #ffffff;
@@ -156,10 +157,10 @@ input:focus-visible {
 }
 
 .mat-stepper-previous {
-  background-color: #4eb664;
+  // background-color: #4eb664;
   border: none;
   i {
-    font-size: 20px;
+    font-size: 9px;
   }
 }
 

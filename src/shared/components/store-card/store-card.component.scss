@@ -3,12 +3,16 @@
   max-width: 40vh;
   max-height: 45vh !important;
   height: 50vh !important;
+  border-radius: 2px;
 }
 
 .store-card-img-height {
   max-height: 30vh;
 }
 
+.card-img-top{
+  border-radius: 2px;
+}
 .reticle-box {
   width: 74px;
   height: 93px;
@@ -62,6 +66,14 @@
 .store-category{
   color: #949292;
   font-size: 11px;
+  display: inline;
+}
+.area-radius{
+    margin-top: 5px;
+    margin-right: -40px;
+    font-size: 10px;
+    float: right;
+    color: #949292;
 }
 
 .wrap {
@@ -69,6 +81,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.percentage-icon{
+  width: 20px;
+  height: 15;
+}
+.card-footer{
+  padding: 5px;
+}
+.card-footer-text{
+  margin-top: -6px;
+  display: block;
 }
 
 .heart {

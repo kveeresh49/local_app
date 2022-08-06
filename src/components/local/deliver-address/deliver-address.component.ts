@@ -7,12 +7,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';;
   selector: 'app-deliver-address',
   templateUrl: './deliver-address.component.html',
   styleUrls: ['./deliver-address.component.scss'],
-  providers: [
-    {
-      provide: STEPPER_GLOBAL_OPTIONS,
-      useValue: { showError: true },
-    },
-  ],
+  // providers: [
+  //   {
+  //     provide: STEPPER_GLOBAL_OPTIONS,
+  //     useValue: { showError: false },
+  //   },
+  // ],
 })
 export class DeliverAddressComponent implements OnInit {
 
