@@ -1,6 +1,5 @@
-<div class="banner-one-parent">
+<div>
   <app-landinglogo></app-landinglogo>
-  <div class="banner-one">
     <section class="container-fluid">
       <div class="row">
         <div class="col-sm col-lg col-md">
@@ -21,22 +20,51 @@
                     <label for="mobile-number" class="local-form-label"
                       >Mobile Number</label
                     >
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="mobile-number"
-                      placeholder="Enter Mobile Number"
-                    />
+                    <div class="row col-md-12">
+                      <ngx-intl-tel-input
+                        [cssClass]="'custom form-control'"
+                        [inputId]="'my-input-id'"
+                        [preferredCountries]="[]"
+                        [enableAutoCountrySelect]="false"
+                        [enablePlaceholder]="true"
+                        [searchCountryFlag]="true"
+                        [searchCountryField]="[
+                          SearchCountryField.Iso2,
+                          SearchCountryField.Name
+                        ]"
+                        [selectFirstCountry]="false"
+                        [selectedCountryISO]="CountryISO.India"
+                        [maxLength]="10"
+                        [phoneValidation]="true"
+                        [customPlaceholder]="'950xxxxxxx0'"
+                        name="phone"
+                        #phoneField
+                      ></ngx-intl-tel-input>
+                    </div>
                   </div>
-                  <div class="col-4">
-                    <br />
-                    <button class="btn otp-btn">Send OTP</button>
+                  <div class="col-4 mt-3">
+                    <button
+                      class="login-submit-btn btn mt-1"
+                      (click)="startTimer()"
+                      [disabled]="isOtpDisabled"
+                    >
+                      {{ oTpheader }}
+                    </button>
+                  </div>
+                  <div class="mt-2 local-form-label orange" *ngIf="isOtpDisabled">
+                    Please wait {{ timeLeft }} second(s) before requesting a new
+                    One Time Password (OTP).
+                  </div>
+                  <div class="mt-2 local-form-label" *ngIf="newOtpFlag">
+                    Not recieved your code? <span class="orange cursor-pointer"  (click)="startTimer()">
+                      Resend code
+                    </span> 
                   </div>
                 </div>
               </div>
               <div class="mb-2">
-                <div class="d-flex flex-row ms-4 mt-2 mb-2">
-                  <ng-otp-input [config]="{ length: 6 }"></ng-otp-input>
+                <div class="d-flex flex-row ms-2 mt-4 mb-2">
+                  <ng-otp-input [config]="{ length: 6 , inputClass:'otpClass'}"></ng-otp-input>
                 </div>
               </div>
               <div class="resend-otp text-start">
@@ -60,5 +88,7 @@
         </div>
       </div>
     </section>
-  </div>
+    <div>
+      <img src="../../../../assets/images/login-banner.png" class="banner-one" />
+    </div>
 </div>

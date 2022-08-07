@@ -9,11 +9,12 @@ import { StoreDetailsComponent } from 'src/components/local/store-details/store-
 import { CategoryCardComponent } from 'src/shared/components/category-card/category-card.component';
 
 const routes: Routes = [
-  { path: '', component: LocalHomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signIn', component: SigninComponent },
-  { path: 'otp', component: LoginOtpComponent },
-  { path: 'forgotpassword', component: ForgotpasswordComponent },
+  {
+    path: '',
+    loadChildren: () => import('./../components/auth/auth.module').then(m => m.AuthModule)
+  },
+
+  
   { path: 'local-home', component: LocalHomeComponent },
   {
     path: 'store',

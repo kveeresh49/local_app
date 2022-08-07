@@ -18,7 +18,40 @@
   padding: 5px 0;
   background: $orange;
   border-radius: 5px;
-  font-size: 13px;
   text-align: center;
   color: #ffffff;
+  cursor: pointer !important;
 }
+
+.login-vector-img {
+  width: 100%;
+  height: 100%;
+}
+
+::ng-deep ngx-intl-tel-input .country-dropdown,
+::ng-deep .iti-arrow {
+  display: none !important;
+}
+
+::ng-deep #my-input-id:focus {
+  border: 1px solid;
+  border-color: #86b7fe !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+
+::ng-deep #my-input-id:focus-visible {
+  border-color: #86b7fe !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+
+::ng-deep .otp-input {
+  width: 7vh !important;
+  height: 5vh !important;
+}
+
+::ng-deep .iti--allow-dropdown {
+    width: 100% !important;
+    padding-right: 0px !important;
+  }

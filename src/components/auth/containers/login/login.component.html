@@ -1,66 +1,64 @@
-<div class="banner-one-parent">
+<div class="">
   <app-landinglogo></app-landinglogo>
-  <div class="banner-one">
-    <section class="container-fluid">
-      <div class="row">
-        <div class="col-sm col-lg col-md col-md col-lg">
-          <app-login-img></app-login-img>
-        </div>
-        <div class="col-sm col-lg col-md">
-          <div class="local-card-login card card-margin-left-7">
-            <div class="text-start">
-              <h3 class="login-heading">Login</h3>
-              <h4 class="login-sub-titel sub-heading-font-size">
-                We connect you with Your beloved Shops
-              </h4>
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-sm col-lg col-md col-md col-lg">
+        <app-login-img></app-login-img>
+      </div>
+      <div class="col-sm col-lg col-md">
+        <div class="local-card-login card card-margin-left-7 mt-4 mb-2">
+          <div class="text-start">
+            <h3 class="login-heading">Login</h3>
+            <h4 class="login-sub-titel sub-heading-font-size">
+              We connect you with Your beloved Shops
+            </h4>
+          </div>
+          <form class="login-form">
+            <div class="mb-2">
+              <label for="user-id" class="local-form-label">User ID</label>
+              <input
+                type="email"
+                class="form-control"
+                id="user-id"
+                placeholder="Enter User ID"
+              />
             </div>
-            <form class="login-form">
-              <div class="mb-2">
-                <label for="user-id" class="local-form-label">User ID</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="user-id"
-                  placeholder="Enter User ID"
-                />
-              </div>
-              <div class="">
-                <label for="password" class="local-form-label">Password</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="Enter Password"
-                />
-              </div>
-              <div class="text-end forgot-password mb-1">
-                <a href="" class="text-decoration-none local-form-label orange"
-                  >Forgot Password ?</a
-                >
-              </div>
-              <div class="agree-text">
-                <p class="m-none">
-                  By continuing, you agree to our
-                  <a href="" class="text-decoration-none orange"
-                    >Privacy Policy</a
-                  >, <br />Terms and Conditions applied.
-                </p>
-              </div>
-              <button class="login-submit-btn btn">Log In</button>
-              <p class="text-center or-text m-0 mt-1 mb-1"><span>or</span></p>
-              <button class="request-otp-btn btn">Request OTP</button>
-            </form>
-            <div class="new-account text-center">
-              <p>
-                New to Local ?
-                <a href="" class="text-decoration-none create-account"
-                  >Create your account</a
-                >
+            <div class="">
+              <label for="password" class="local-form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Enter Password"
+              />
+            </div>
+            <div class="text-end forgot-password mb-1">
+              <a class="text-decoration-none local-form-label orange cursor-pointer"
+              (click)="navigateForgetPassword()">Forgot Password ?</a
+              >
+            </div>
+            <div class="agree-text">
+              <p class="m-none">
+                By continuing, you agree to our
+                <a class="text-decoration-none orange">Privacy Policy</a
+                >, <br />Terms and Conditions applied.
               </p>
             </div>
+            <button class="login-submit-btn btn">Log In</button>
+            <p class="text-center or-text m-0 mt-1 mb-1"><span>or</span></p>
+            <button class="request-otp-btn btn">Request OTP</button>
+          </form>
+          <div class="new-account text-center">
+            <p>
+              New to Local ?
+              <a  class="text-decoration-none create-account cursor-pointer" (click)="navigateToAccount()"
+                >Create your account</a
+              >
+            </p>
           </div>
         </div>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
+  <img src="../../../../assets/images/login-banner.png" class="banner-one" />
 </div>
