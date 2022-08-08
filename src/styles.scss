@@ -7,17 +7,18 @@
 @import "../node_modules/bootstrap/scss/maps";
 @import "../node_modules/bootstrap/scss/mixins";
 @import "../node_modules/bootstrap/scss/root";
-// Varibles
+// Variables
 @import "../src/_varible";
 
 @font-face {
-  font-family: $font-family;
-  // src: url(assets/fonts/Poppins-Font-2/Poppins-Regular.ttf) format("opentype");
-  src: url(assets/fonts/Poppins-Font-2/Poppins-SemiBold.ttf) format("opentype");
+   src: url(./assets/fonts/Poppins-Font-2/Poppins-Regular.ttf) format("opentype");
+   font-family:"Poppins";
+  //  src: url(assets/fonts/Poppins-Font-2/poppins-semibold1.ttf) format("opentype");
 }
 
 body {
-  font-family: $font-family;
+  font-family:"Poppins" !important;
+  // font-weight: 600;
 }
 
 .local-card-login {
@@ -169,4 +170,12 @@ app-login-otp {
 
 .sub-heading-font-size {
   font-size: 1rem !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
