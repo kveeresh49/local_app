@@ -1,13 +1,12 @@
-<div class="banner-one-parent">
+<div class="">
   <app-landinglogo></app-landinglogo>
-  <div class="banner-one"></div>
   <section class="container-fluid">
     <div class="row">
       <div class="col-sm col-lg col-md col-md col-lg">
         <app-login-img></app-login-img>
       </div>
       <div class="col-sm col-lg col-md">
-        <div class="local-card-login card card-margin-left-7">
+        <div class="local-card-login card card-margin-left-7 mt-4 mb-2">
           <div class="text-start">
             <h3 class="login-heading">Login</h3>
             <h4 class="login-sub-titel sub-heading-font-size">
@@ -34,17 +33,14 @@
               />
             </div>
             <div class="text-end forgot-password mb-1">
-              <a
-                href=""
-                class="text-decoration-none local-form-label orange"
-                >Forgot Password ?</a
+              <a class="text-decoration-none local-form-label orange cursor-pointer"
+              (click)="navigateForgetPassword()">Forgot Password ?</a
               >
             </div>
             <div class="agree-text">
               <p class="m-none">
                 By continuing, you agree to our
-                <a href="" class="text-decoration-none orange"
-                  >Privacy Policy</a
+                <a class="text-decoration-none orange">Privacy Policy</a
                 >, <br />Terms and Conditions applied.
               </p>
             </div>
@@ -55,7 +51,7 @@
           <div class="new-account text-center">
             <p>
               New to Local ?
-              <a href="" class="text-decoration-none create-account"
+              <a  class="text-decoration-none create-account cursor-pointer" (click)="navigateToAccount()"
                 >Create your account</a
               >
             </p>
@@ -64,4 +60,5 @@
       </div>
     </div>
   </section>
+  <img src="../../../../assets/images/login-banner.png" class="banner-one" />
 </div>

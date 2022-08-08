@@ -11,9 +11,9 @@
 @import "../src/_varible";
 
 @font-face {
-   src: url(./assets/fonts/Poppins-Font-2/Poppins-Regular.ttf) format("opentype");
-   font-family:"Poppins";
-  //  src: url(assets/fonts/Poppins-Font-2/poppins-semibold1.ttf) format("opentype");
+  src: url(./assets/fonts/Poppins-Font-2/Poppins-Medium.ttf) format("opentype");
+  // src: url(assets/fonts/Poppins-Font-2/Poppins-SemiBold.ttf) format("opentype");
+  font-family: $font-family;
 }
 
 body {
@@ -23,19 +23,24 @@ body {
 
 .local-card-login {
   width: 61vh;
-  height: fit-content;
+  height: 70vh;
   border-radius: 10px;
   box-shadow: $boxShadow;
-  padding: 25px;
+  padding: 15px 20px;
   background-color: #fff;
+  z-index: 9999;
 }
 
 .local-form-label {
   margin: 0 !important;
   font-weight: 400 !important;
   font-size: 12px !important;
-  line-height: 24px !important;
+  // line-height: 24px !important;
   color: #8b8888 !important;
+}
+
+.cursor-pointer{
+  cursor: pointer !important;
 }
 
 .mt-10 {
@@ -43,72 +48,79 @@ body {
 }
 
 .orange {
-  color: $orange  !important;
+  color: $orange !important;
 }
 
 .light-grey {
   color: #6a6868;
 }
 
-h3 {
-  font-size: 24px;
-  color: #2d3648;
-  font-weight: 500;
-}
-
 .login-sub-titel {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 400;
   color: #8b8888;
 }
 
 .form-label {
-  font-size: 16px;
+  font-size: 14px;
   color: #8b8888;
   font-weight: 400;
 }
 
 .agree-text {
   color: #2d3648;
-  font-size: 12px;
+  font-size: 10px;
+  a {
+    color: $orange;
+  }
 }
 
 .login-heading {
   font-weight: 500;
-  font-size: 24px;
+  font-size: 18px;
   color: #2d3648;
   margin-bottom: 10px;
-}
-
-.login-sub-titel {
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  color: #8b8888;
 }
 
 .form-control {
   border: 1px solid #c4c4c4 !important;
   border-radius: 5px !important;
   line-height: 22px !important;
+  font-size: 12px !important;
+  padding: 5px 10px;
 }
 
 .form-control::placeholder {
   color: #c4c4c4 !important;
-  font-size: 16px !important;
-  line-height: 27px !important;
+  font-size: 12px !important;
+  // line-height: 27px !important;
+}
+
+.new-account {
+  margin: 15px 0;
+  font-size: 13px;
+  text-align: center;
+  font-weight: 400;
+  align-items: center;
+
+  p {
+    color: #838383;
+    margin: 0;
+    .create-account {
+      color: #ff7a00;
+    }
+  }
 }
 
 .banner-one {
-  background-image: url(assets/images/login-banner.png);
-  background-position: bottom center;
+  // background-image: url(./assets/images/login-banner.png);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 31vh !important;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 300px;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  z-index: -1;
 }
 
 // navbar
@@ -156,13 +168,13 @@ h3 {
 
 app-login-otp {
   .otp-input-data {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     border: solid 1px #c5c5c5;
     border: none;
     border-bottom: 1px solid;
     text-align: center;
-    font-size: 32px;
+    font-size: 14px;
   }
 }
 
@@ -170,6 +182,7 @@ app-login-otp {
 
 .sub-heading-font-size {
   font-size: 1rem !important;
+  font-size: 14px !important;
 }
 
 .flex {
@@ -178,4 +191,33 @@ app-login-otp {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.mat-horizontal-stepper-header-container {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  // margin-left: 17rem;
+}
+
+.mat-step-header .mat-step-icon-selected {
+  background-color: #4eb664;
+}
+
+.align-items-center {
+  align-items: center;
+}
+.mat-stepper-next {
+  border: 1px solid #2d3648;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 14px;
+  padding: 5px;
+  background-color: #fff;
+}
+
+::ng-deep ngx-intl-tel-input .country-dropdown,
+::ng-deep .iti-arrow {
+  display: none !important;
 }

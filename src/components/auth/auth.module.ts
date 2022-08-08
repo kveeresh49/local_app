@@ -8,6 +8,7 @@ import { LoginImgComponent } from './containers/login-img/login-img.component';
 import { LoginOtpComponent } from './containers/login-otp/login-otp.component';
 import { ForgotpasswordComponent } from './containers/forgotpassword/forgotpassword.component';
 import { SharedModule } from 'src/shared/shared.module';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { SharedModule } from 'src/shared/shared.module';
     LoginOtpComponent,
     ForgotpasswordComponent,
   ],
-  imports: [SharedModule],
+  imports: [SharedModule, AuthRoutingModule],
   exports: [
     LocalHomeComponent,
     SharedModule,

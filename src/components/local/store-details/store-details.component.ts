@@ -17,8 +17,8 @@ export class StoreDetailsComponent implements OnInit {
   // while scrolling Img whould be shink
   changeImagDiminution() {
     if (
-      document.body.scrollTop > 155 ||
-      document.documentElement.scrollTop > 155
+      document.body.scrollTop > 50 ||
+      document.documentElement.scrollTop > 50
     ) {
       var header = document.getElementsByClassName('store_img_fixed')[0];
       header.classList.add('store_img_shrink');
