@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocalTopbarComponent } from './local-topbar.component';
+import { SideNavComponent } from './side-nav.component';
 
-describe('LocalTopbarComponent', () => {
-  let component: LocalTopbarComponent;
-  let fixture: ComponentFixture<LocalTopbarComponent>;
+describe('SideNavComponent', () => {
+  let component: SideNavComponent;
+  let fixture: ComponentFixture<SideNavComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LocalTopbarComponent ]
+      declarations: [ SideNavComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LocalTopbarComponent);
+    fixture = TestBed.createComponent(SideNavComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
