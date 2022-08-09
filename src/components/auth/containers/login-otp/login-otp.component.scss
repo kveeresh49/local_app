@@ -53,18 +53,21 @@
 
   p {
     color: #838383;
+
     .create-account {
       color: #ff7a00;
     }
   }
 }
 
-.otp-input-data {
-  width: 25px !important;
-  height: 25px !important;
-  border: solid 1px #c5c5c5;
-  border: none;
-  border-bottom: 1px solid;
-  text-align: center;
-  font-size: 14px !important;
+
+
+::ng-deep .otp-input {
+  width: 7vh !important;
+  height: 5vh !important;
+}
+
+.login-vector-img {
+  width: 100%;
+  height: 100%;
 }

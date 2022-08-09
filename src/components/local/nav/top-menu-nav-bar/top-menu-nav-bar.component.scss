@@ -1,12 +1,5 @@
-@import '../../../varible';
+@import "../../../../varible";
 
-
-// .menu-bar{
-//   position: relative;
-//   app-local-topbar{
-//     position: fixed;
-//   }
-// }
 .form-control {
   background-color: #e7e7e7;
   border: none !important;
@@ -67,18 +60,13 @@
   }
 }
 
-
-
-
 .sidebar-slider {
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
-  background-color: #D2CECE;
   transform: translateX(-100%);
   transition: ease-in-out 300ms transform;
-  width: 300px;
   z-index: 2;
 }
 
@@ -91,7 +79,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  color: #2D3648;
+  color: #2d3648;
   cursor: pointer;
   padding: 16px;
 }
