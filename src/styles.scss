@@ -10,15 +10,28 @@
 // Variables
 @import "../src/_varible";
 
-@font-face {
-  src: url(./assets/fonts/Poppins-Font-2/Poppins-Medium.ttf) format("opentype");
-  // src: url(assets/fonts/Poppins-Font-2/Poppins-SemiBold.ttf) format("opentype");
-  font-family: $font-family;
-}
+// @font-face {
+//   src: url(./assets/fonts/Poppins-Font-2/Poppins-Medium.ttf) format("opentype");
+//   // src: url(assets/fonts/Poppins-Font-2/Poppins-SemiBold.ttf) format("opentype");
+//   font-family: $font-family;
+// }
+
+// body {
+//   font-family:"Poppins" !important;
+//   // font-weight: 600;
+// }
 
 body {
-  font-family:"Poppins" !important;
-  // font-weight: 600;
+  margin: 0; // 1
+  font-family: var(--#{$prefix}body-font-family) !important;
+  @include font-size(var(--#{$prefix}body-font-size));
+  font-weight: var(--#{$prefix}body-font-weight) !important;
+  line-height: var(--#{$prefix}body-line-height) !important;
+  color: var(--#{$prefix}body-color) !important;;
+  text-align: var(--#{$prefix}body-text-align) !important;;
+  background-color: var(--#{$prefix}body-bg) !important;; // 2
+  -webkit-text-size-adjust: 100%; // 3
+  -webkit-tap-highlight-color: rgba($black, 0) !important; // 4
 }
 
 .local-card-login {
