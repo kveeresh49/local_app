@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,14 +13,56 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router) {}
+  loginForm: FormGroup;
+  form: FormGroup;
+  submitted = false;
+  constructor(private router: Router, private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.createForm();
+  }
+
+  createForm(): void {
+    this.loginForm = this.fb.group({
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(30),
+          Validators.email
+        ],
+      ],
+      
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(20),
+        ],
+      ],
+    });
+  }
+
+  get f(): any {
+    return this.loginForm.controls;
+  }
 
   navigateToAccount(): void {
-    this.router.navigate(['/signIn']);
+    this.router.navigate(['/create-account']);
   }
   navigateForgetPassword(): void {
     this.router.navigate(['/forgotpassword']);
+  }
+
+  login() {
+    this.submitted = true;
+    if (this.loginForm.valid) {
+      this.router.navigate(['/local-dashboard']);
+    }
+  }
+  requestOTP() {
+    this.router.navigate(['/otp']);
   }
 }

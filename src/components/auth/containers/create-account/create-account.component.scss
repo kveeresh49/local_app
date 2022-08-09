@@ -52,6 +52,11 @@
 }
 
 ::ng-deep .iti--allow-dropdown {
-    width: 100% !important;
-    padding-right: 0px !important;
-  }
+  width: 100% !important;
+  padding-right: 0px !important;
+}
+
+.isInvalid {
+  font-size: 0.875em;
+  color: #dc3545;
+}

@@ -1,4 +1,4 @@
-<div class="">
+<div>
   <app-landinglogo></app-landinglogo>
   <section class="container-fluid">
     <div class="row">
@@ -13,15 +13,25 @@
               We connect you with Your beloved Shops
             </h4>
           </div>
-          <form class="login-form">
+          <form class="login-form" [formGroup]="loginForm">
             <div class="mb-2">
               <label for="user-id" class="local-form-label">User ID</label>
               <input
-                type="email"
+                type="text"
                 class="form-control"
                 id="user-id"
-                placeholder="Enter User ID"
+                placeholder="Enter Email"
+                name="email"
+                formControlName="email"
+                [ngClass]="{ 'is-invalid': submitted && f?.email?.errors }"
               />
+              <div
+                *ngIf="submitted && f?.email?.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email is invalid</div>
+              </div>
             </div>
             <div class="">
               <label for="password" class="local-form-label">Password</label>
@@ -29,29 +39,52 @@
                 type="password"
                 class="form-control"
                 id="password"
+                formControlName="password"
                 placeholder="Enter Password"
+                name="password"
+                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
               />
+              <div
+                *ngIf="f?.password?.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.password?.errors?.required">
+                  Password is required
+                </div>
+                <div *ngIf="f.password?.errors?.minlength">
+                  Password must be at least 5 characters
+                </div>
+                <div *ngIf="f.password.errors.maxlength">
+                  Username must not exceed 20 characters
+                </div>
+              </div>
             </div>
             <div class="text-end forgot-password mb-1">
-              <a class="text-decoration-none local-form-label orange cursor-pointer"
-              (click)="navigateForgetPassword()">Forgot Password ?</a
+              <a
+                class="text-decoration-none local-form-label orange cursor-pointer"
+                (click)="navigateForgetPassword()"
+                >Forgot Password ?</a
               >
             </div>
             <div class="agree-text">
               <p class="m-none">
                 By continuing, you agree to our
-                <a class="text-decoration-none orange">Privacy Policy</a
-                >, <br />Terms and Conditions applied.
+                <a class="text-decoration-none orange">Privacy Policy</a>,
+                <br />Terms and Conditions applied.
               </p>
             </div>
-            <button class="login-submit-btn btn">Log In</button>
+            <button class="login-submit-btn btn" (click)="login()">
+              Log In
+            </button>
             <p class="text-center or-text m-0 mt-1 mb-1"><span>or</span></p>
-            <button class="request-otp-btn btn">Request OTP</button>
+            <button class="request-otp-btn btn" (click)="requestOTP()">Request OTP</button>
           </form>
           <div class="new-account text-center">
             <p>
               New to Local ?
-              <a  class="text-decoration-none create-account cursor-pointer" (click)="navigateToAccount()"
+              <a
+                class="text-decoration-none create-account cursor-pointer"
+                (click)="navigateToAccount()"
                 >Create your account</a
               >
             </p>

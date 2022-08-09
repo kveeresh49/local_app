@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LocalHomeComponent } from 'src/components/auth/containers/local-home/local-home.component';
 import { StoreDetailsComponent } from 'src/components/local/store-details/store-details.component';
 import { CategoryCardComponent } from 'src/shared/components/category-card/category-card.component';
+// import { CategoryCardComponent } from 'src/shared/components/category-card/category-card.component';
 
 const routes: Routes = [
   {
