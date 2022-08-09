@@ -12,7 +12,7 @@ select::-ms-expand {
 .nav {
   padding: 10px 0;
   .nav-item {
-    margin: 0 20px;
+    margin: 0 29px;
     .nav-link {
       padding: 0 !important;
     }
@@ -86,21 +86,25 @@ select::-ms-expand {
 
 .fa-search {
   padding: 10px;
-  font-size: 18px;
-  color: #6a6868;
-  right: 30px;
-  top: 0;
+    font-size: 15px;
+    color: #6a6868;
+    right: 0px;
+    top: 5px;
+    bottom: 0;
 }
 .form-control {
-  width: 90%;
+  // width: 90%;
   padding: 10px 30px;
   background-color: #e7e7e7;
-
+font-size: 12px !important;
   // text-align: center;
 }
 
 .form-control:focus {
   box-shadow: none;
+}
+.form-control::placeholder{
+  font-size: 12px !important;
 }
 
 .bi-cart2 {
