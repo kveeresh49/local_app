@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.submitted = true;
     if (this.loginForm.valid) {
-      this.router.navigate(['/local-dashboard']);
+      this.router.navigate(['/store']);
     }
   }
   requestOTP() {
