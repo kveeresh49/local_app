@@ -1,4 +1,55 @@
+.carousel{
+  background: linear-gradient(87.93deg, #F2DAFF 43.24%, #EBCAFC 99.39%);
+border-radius: 15px;
+}
+.carousel-inner{
+  background: linear-gradient(87.93deg, #F2DAFF 43.24%, #EBCAFC 99.39%);
+  border-radius: 15px;
+  // background-color: red !important;
+}
+.background {
+  .top-left{
+    // width: 473.13px !important;
+    // height: 206.56px !important;
+    width: 35% !important;
+    height: 33% !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .bottom-right{
+    // width: 50%;
+    // height: 50%;
+    width:  30% !important;
+height: 28% !important;
+position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+.background{
+  position: relative;
 
+}
+.background::after{
+  background-image: '../../../assets/images/offers/carousel-bottom-right.png' !important;
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+  width: 100%;
+  height: 50%;
+  display: block;
+}
+.background::before{
+  background-image: '../../../assets/images/offers/carousel-top-left.png' !important;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  display: block;
+
+}
 .categoires-card-max-width {
   max-width: 25vh;
   max-height: 45vh !important;
@@ -70,8 +121,8 @@ text-align: center;
 
 .highlight{
   // width: 100%;
-  width: 500px;
-height: 250px;
+  width: 40%;
+height: 50%;
 background: #C4C4C4;
 border-radius: 20px;
 background-position: center center;
@@ -93,29 +144,32 @@ background-size: cover
 
 .highlight-titel{
   font-weight: 600;
-font-size: 30px;
-line-height: 45px;
+font-size: 18px;
 color: #FAFF00;
+text-overflow: ellipsis;
+white-space:nowrap;
+overflow: hidden;
+width: 223px;
 }
 
 
 .varieties-in-shops-titel{
   font-weight: 400;
-font-size: 20px;
-line-height: 30px;
+font-size: 15px;
 color: #FFFFFF;
 text-overflow: ellipsis;
 white-space: nowrap;
 overflow: hidden;
 width: 185px;
 
+
 }
 
 
 .discount-upto{
   font-weight: 600;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 13px;
+  // line-height: 30px;
   color: #FAFF00;
 }
 
