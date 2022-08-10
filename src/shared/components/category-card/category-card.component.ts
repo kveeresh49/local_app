@@ -22,4 +22,14 @@ export class CategoryCardComponent implements OnInit {
       productFooterBackGround: "string"
     }
   ]
+
+  highlightCard = [
+    {
+      titel:"Abhijeeth Wines",
+      varietiesInShops:"",
+      varietiesInShopsTitel:"",
+      DiscountInShops:"",
+      highlightBackgroundColor:"",
+    }
+  ]
 }

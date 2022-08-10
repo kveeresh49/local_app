@@ -33,7 +33,13 @@ h4 {
     // line-height: 30px;
     color: #2d3648;
     font-size: 12px;
+    &:hover,
+  &:focus,
+  &:active{
+    color: $orange;
   }
+  }
+
 }
 
 .form-label {
@@ -60,16 +66,43 @@ input:focus {
 }
 
 .social-media-link {
+  text-align: center;
   .nav-item {
     display: inline-block;
-    background-color: #4f4f4f;
+    // background-color: #4f4f4f;
+    margin: 0 10px;
     font-size: 24px;
     .nav-link{
-      svg{
-
+      i{
+    background: linear-gradient(180deg, #2F394B 0%, #090E1A 100%);
+        color: #fff;
+        padding: 5px 6px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 15px;
       }
+      .fa-facebook{
+        padding: 5px 8px;
+      }
+      // .fa-linkedin{
+      //   padding: 5px 6px;
+      // }
     }
   }
+}
+.pipe-line{
+  position: relative;
+}
+.pipe-line::after{
+  width: 1px;
+  height: 100%;
+  background-color: #C4C4C4;
+  content: "";
+  display: block;
+  margin: auto;
+  position: absolute;
+  top: 0px;
+  right: 50px;
 }
 .app-store-btn {
   width: 25%;
@@ -82,4 +115,8 @@ input:focus {
 
 .give-a-call{
   font-size: 12px;
+  a{
+  color: #2D3648;
+
+  }
 }
