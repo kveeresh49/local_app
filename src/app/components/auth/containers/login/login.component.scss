@@ -1,0 +1,54 @@
+@import "../../../../../varible";
+
+.card-margin-left-7 {
+  margin-left: 7rem;
+}
+
+.or-text {
+  align-items: center;
+  color: #c4c4c4;
+}
+
+.forgot-password {
+  color: #ff7a00;
+}
+
+.agree-text {
+  font-weight: 300;
+  font-size: 10px;
+  color: #000000;
+  p {
+    margin-bottom: 5px;
+  }
+}
+
+.login-submit-btn {
+  width: 100%;
+  padding: 7px 0;
+  background: #ff7a00;
+  text-align: center;
+  color: #ffffff;
+}
+
+.request-otp-btn {
+  text-align: center;
+  color: #ff7a00;
+  border: 1px solid #ff7a00;
+  border-radius: 5px;
+  width: 100%;
+  padding: 7px 0;
+}
+
+// .new-account {
+//   margin: 8px 0 0;
+//   font-size: 13px;
+//   text-align: center;
+
+//   p {
+//     color: #838383;
+
+//     .create-account {
+//       color: #ff7a00;
+//     }
+//   }
+// }
