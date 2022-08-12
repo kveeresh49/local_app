@@ -245,3 +245,19 @@ app-login-otp {
   color: #ffffff;
   cursor: pointer !important;
 }
+
+
+
+.slick-prev:before{
+  font-family: "Font Awesome 5 Free" !important;
+   font-weight: 900;
+   content: "\f053" !important;
+   color: #949292 !important;
+}
+
+.slick-next:before{
+  font-family: "Font Awesome 5 Free" !important;
+   font-weight: 900;
+   content: "\f054" !important;
+    color: #949292 !important;
+  }
