@@ -52,8 +52,8 @@ position: absolute;
 }
 .categoires-card-max-width {
   max-width: 25vh;
-  max-height: 45vh !important;
-  height: 50vh !important;
+  // max-height: 45vh !important;
+  height: 100% !important;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
   border-top-right-radius: 2px;
@@ -107,7 +107,7 @@ text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 77px;
+  width: 86px;
     margin: auto;
   display: block;
   }
@@ -121,14 +121,17 @@ text-align: center;
 
 .highlight{
   // width: 100%;
-  width: 40%;
+  width:60vh;
 height: 50%;
+margin-right: 30px;
 background: #C4C4C4;
 border-radius: 20px;
 background-position: center center;
 background-repeat: no-repeat;
-background-size: cover
-
+background-size: cover;
+&:last-child{
+  margin-right: 0;
+}
 }
 .todays-highlights-titel{
   font-weight: 600;
@@ -178,13 +181,18 @@ width: 185px;
   height: 180px;
   border-radius: 12px;
 }
-.varieties-in-shops-img-1{
-  border: 10px solid #FF3D00;
-}
+.varieties-in-shops-img{
+  width: 100%;
+  height: 100%;
+  border: 3px solid #FF3D00;
 
-.varieties-in-shops-img-2{
-  border: 10px solid #38A000;
 }
-.varieties-in-shops-img-3{
-  border: 10px solid #7574FF;
-}
+// .varieties-in-shops-img-1{
+// }
+
+// .varieties-in-shops-img-2{
+//   border: 10px solid #38A000;
+// }
+// .varieties-in-shops-img-3{
+//   border: 10px solid #7574FF;
+// }

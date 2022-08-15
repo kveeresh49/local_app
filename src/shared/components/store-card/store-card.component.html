@@ -2,80 +2,84 @@
 
 <app-category-card></app-category-card>
 
-<div class="container-fluid row">
-  <h2>Popular Stores</h2>
-  <div class="row" style="margin: 5rem auto">
-    <!-- <div>
-
-    </div> -->
-    <!-- <div class="reticle-box"></div> -->
-    <div class="card store-card-max-width p-0 ms-5">
-      <div class="offer-tag">
-        <div class="offer-text">
-          <div class="ms-3">
-            <div >15%</div>
-            <div>Off</div>
-          </div>
-        </div>
-      </div>
-      <img
-        class="card-img-top store-card-img-height"
-        src="../../../assets/images/offers/newimag.jpg"
-        alt="Card image cap"
-      />
-      <div class="card-body p-0 ps-2 pb-1" style="font-family: 'Poppins'">
-        <div class="row flex-column">
-          <div class="col-sm col-lg col-md">
-            <div class="d-flex">
-              <div class="col-sm col-lg col-md text-start">
-                <b class="store-name">Suresh Stores</b>
-              </div>
-              <div class="col-sm col-lg col-md text-end">
-                <span
-                  style="color: #fff"
-                  class="btn-grey-border mb-0 float-end new-class"
-                >
-                  <i class="fa-solid fa-star star-calss"></i>
-                  <span  class="rating-in-numbers">3.5</span>
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm col-lg col-md">
-            <div class="d-flex">
-              <div class="col-sm col-lg col-md text-start">
-                <b class="store-category">Grocery Store</b>
-              </div>
-              <div class="col-sm col-lg col-md text-end">
-                <span class="area-radius">4.7 km</span>
-              </div>
+<div class="container-fluid">
+  <h2 class="text-center mb-5 mt-5">Popular Stores</h2>
+  <div class="row d-flex justify-content-center" style="margin: 5rem auto">
+  <div class="slick-wrapper">
+  <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
+    (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+    <div ngxSlickItem *ngFor="let popularCard of popularCards" class="slide">
+      <div class="card store-card-max-width p-0">
+        <div class="offer-tag">
+          <div class="offer-text">
+            <div class="ms-3">
+              <div>{{popularCard.percentageText}}%</div>
+              <div>Off</div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="card-footer bg-transparent align-items-center">
-        <span class="card-footer-text">
-          <img
-            src="../../../assets/images/popular-stores/percentage-icon.png"
-            alt=""
-            srcset=""
-            class="percentage-icon"
-          />
-          <!-- <i class="fa-solid fa-star" style="color: #ff7a00"></i> -->
-          <span class="discount-in-percentage"> 15% Off</span>
-          <span class="pipe-class">|</span>
-          <span class="new-store">NEWSTORE</span>
-        </span>
-        <span>
-          <i
-            class="fa-solid fa-heart heart-color float-end"
-            [ngClass]="getfavoriteStoreFlag ? 'fill-heart-color' : ''"
-            (click)="getfavoriteStore(getfavoriteStoreFlag)"
-          ></i
-        ></span>
+        <img
+          class="card-img-top store-card-img-height"
+          src="{{popularCard.shopImage}}"
+          alt="Card image cap"
+        />
+        <div class="card-body p-3" style="font-family: 'Poppins'">
+          <div class="row flex-column">
+            <div class="col-sm col-lg col-md">
+              <div class="d-flex">
+                <div class="col-sm col-lg col-md text-start">
+                  <b class="store-name text-capitalize">{{popularCard.shopTitel}}</b>
+                </div>
+                <div class="col-sm col-lg col-md text-end">
+                  <span
+                    style="color: #fff"
+                    class="btn-grey-border mb-0 float-end new-class"
+                  >
+                    <i class="fa-solid fa-star star-calss"></i>
+                    <span  class="rating-in-numbers">{{popularCard.rating}}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm col-lg col-md">
+              <div class="d-flex">
+                <div class="col-sm col-lg col-md text-start">
+                  <b class="store-category text-capitalize">{{popularCard.storeCatogery}}</b>
+                </div>
+                <div class="col-sm col-lg col-md text-end">
+                  <span class="area-radius">{{popularCard.kilometers}} km</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer bg-transparent align-items-center">
+          <span class="card-footer-text">
+            <img
+              src="{{popularCard.percentageImage}}"
+              alt=""
+              srcset=""
+              class="percentage-icon"
+            />
+            <!-- <i class="fa-solid fa-star" style="color: #ff7a00"></i> -->
+            <span class="discount-in-percentage"> {{popularCard.discountText}}% Off</span>
+            <span class="pipe-class">|</span>
+            <span class="new-store text-capitalize">{{popularCard.newStore}}</span>
+          </span>
+          <span>
+            <i
+              class="fa-solid fa-heart heart-color float-end"
+              [ngClass]="getfavoriteStoreFlag ? 'fill-heart-color' : ''"
+              (click)="getfavoriteStore(getfavoriteStoreFlag)"
+            ></i
+          ></span>
+        </div>
       </div>
     </div>
+  </ngx-slick-carousel>
   </div>
+  </div>
+
 </div>
 
 
@@ -84,78 +88,93 @@
 
 
 
-<div class="container-fluid row">
-  <h2>Nearby  You</h2>
-  <div class="row" style="margin: 5rem auto">
-    <!-- <div>
 
-    </div> -->
-    <!-- <div class="reticle-box"></div> -->
-    <div class="card store-card-max-width p-0 ms-5">
-      <div class="offer-tag">
-        <div class="offer-text">
-          <div class="ms-3">
-            <div>15%</div>
-            <div>Off</div>
-          </div>
-        </div>
-      </div>
-      <img
-        class="card-img-top store-card-img-height"
-        src="../../../assets/images/popular-stores/Liquor-Stores.png"
-        alt="Card image cap"
-      />
-      <div class="card-body p-0 ps-2 pb-1" style="font-family: 'Poppins'">
-        <div class="row flex-column">
-          <div class="col-sm col-lg col-md">
-            <div class="d-flex">
-              <div class="col-sm col-lg col-md text-start">
-                <b class="store-name">jagadamba English Winevcxf</b>
-              </div>
-              <div class="col-sm col-lg col-md text-end">
-                <span
-                  style="color: #fff"
-                  class="btn-grey-border mb-0 float-end new-class"
-                >
-                  <i class="fa-solid fa-star star-calss"></i>
-                  <span  class="rating-in-numbers">3.5</span>
-                </span>
+
+
+
+
+     <!-- nearby-store-card- -->
+<div class="container-fluid">
+  <h2 class="text-center mb-5 mt-5">Nearby You</h2>
+  <div class="row d-flex justify-content-center" style="margin: 5rem auto">
+    <div class="slick-wrapper">
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
+        (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
+        <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+          <div class="card store-card-max-width p-0">
+            <div class="offer-tag">
+              <div class="offer-text">
+                <div class="ms-3">
+                  <div>{{slide.percentageText}}%</div>
+                  <div>Off</div>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm col-lg col-md">
-            <div class="d-flex">
-              <div class="col-sm col-lg col-md text-start">
-                <b class="store-category">Grocery Store</b>
+            <img
+              class="card-img-top store-card-img-height"
+              src="{{slide.shopImage}}"
+              alt="Card image cap"
+            />
+            <div class="card-body p-3" style="font-family: 'Poppins'">
+              <div class="row flex-column">
+                <div class="col-sm col-lg col-md">
+                  <div class="d-flex">
+                    <div class="col-sm col-lg col-md text-start">
+                      <b class="store-name text-capitalize">{{slide.shopTitel}}</b>
+                    </div>
+                    <div class="col-sm col-lg col-md text-end">
+                      <span
+                        style="color: #fff"
+                        class="btn-grey-border mb-0 float-end new-class"
+                      >
+                        <i class="fa-solid fa-star star-calss"></i>
+                        <span  class="rating-in-numbers">{{slide.rating}}</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm col-lg col-md">
+                  <div class="d-flex">
+                    <div class="col-sm col-lg col-md text-start">
+                      <b class="store-category text-capitalize">{{slide.storeCatogery}}</b>
+                    </div>
+                    <div class="col-sm col-lg col-md text-end">
+                      <span class="area-radius">{{slide.kilometers}} km</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="col-sm col-lg col-md text-end">
-                <span class="area-radius">4.7 km</span>
-              </div>
+            </div>
+            <div class="card-footer bg-transparent align-items-center">
+              <span class="card-footer-text">
+                <img
+                  src="{{slide.percentageImage}}"
+                  alt=""
+                  srcset=""
+                  class="percentage-icon"
+                />
+                <!-- <i class="fa-solid fa-star" style="color: #ff7a00"></i> -->
+                <span class="discount-in-percentage"> {{slide.discountText}}% Off</span>
+                <span class="pipe-class">|</span>
+                <span class="new-store text-capitalize">{{slide.newStore}}</span>
+              </span>
+              <span>
+                <i
+                  class="fa-solid fa-heart heart-color float-end"
+                  [ngClass]="getfavoriteStoreFlag ? 'fill-heart-color' : ''"
+                  (click)="getfavoriteStore(getfavoriteStoreFlag)"
+                ></i
+              ></span>
             </div>
           </div>
         </div>
+      </ngx-slick-carousel>
       </div>
-      <div class="card-footer bg-transparent align-items-center">
-        <span class="card-footer-text">
-          <img
-            src="../../../assets/images/popular-stores/percentage-icon.png"
-            alt=""
-            srcset=""
-            class="percentage-icon"
-          />
-          <!-- <i class="fa-solid fa-star" style="color: #ff7a00"></i> -->
-          <span class="discount-in-percentage"> 15% Off</span>
-          <span class="pipe-class">|</span>
-          <span class="new-store">NEWSTORE</span>
-        </span>
-        <span>
-          <i
-            class="fa-solid fa-heart heart-color float-end"
-            [ngClass]="getfavoriteStoreFlag ? 'fill-heart-color' : ''"
-            (click)="getfavoriteStore(getfavoriteStoreFlag)"
-          ></i
-        ></span>
-      </div>
-    </div>
   </div>
 </div>
+
+<!--
+  <button (click)="addSlide()">Add</button>
+  <button (click)="removeSlide()">Remove</button>
+  <button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
+  <button (click)="slickModal.unslick()">unslick</button> -->
