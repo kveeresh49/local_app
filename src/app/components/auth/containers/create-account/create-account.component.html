@@ -1,0 +1,324 @@
+<div>
+  <app-landinglogo></app-landinglogo>
+  <section class="container-fluid">
+    <div class="row">
+      <div class="col-sm col-lg col-md col-md col-lg">
+        <app-login-img></app-login-img>
+      </div>
+      <div class="col-sm col-lg col-md">
+        <div
+          class="local-card-login card card-margin-left-7 mb-2"
+          *ngIf="isLoggedIn; else loggedOut"
+        >
+          <div class="text-start">
+            <h3 class="login-heading mt-3">Welcome to The Local</h3>
+            <h4 class="login-sub-titel sub-heading-font-size">
+              Create your account to connent to local Shops
+            </h4>
+          </div>
+          <form class="login-form" [formGroup]="signInForm">
+            <div class="mb-2">
+              <label for="name" class="local-form-label">Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Enter User Name"
+                formControlName="name"
+                [ngClass]="{ 'is-invalid': submitted && f?.name?.errors }"
+              />
+              <div
+                *ngIf="submitted && f?.name?.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.name?.errors?.required">Name is required</div>
+                <div *ngIf="f.name?.errors?.minlength">
+                  Name must be at least 4 characters
+                </div>
+                <div *ngIf="f.name.errors.maxlength">
+                  Name must not exceed 20 characters
+                </div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <div class="row">
+                <div class="col-12">
+                  <label for="mobile-number" class="local-form-label"
+                    >Mobile Number</label
+                  >
+                  <div class="col-md-12">
+                    <ngx-intl-tel-input
+                      [cssClass]="'custom form-control'"
+                      [inputId]="'my-input-id'"
+                      [preferredCountries]="[]"
+                      [enableAutoCountrySelect]="false"
+                      [enablePlaceholder]="true"
+                      [searchCountryFlag]="true"
+                      [searchCountryField]="[
+                        SearchCountryField.Iso2,
+                        SearchCountryField.Name
+                      ]"
+                      [selectFirstCountry]="false"
+                      [selectedCountryISO]="CountryISO.India"
+                      [maxLength]="10"
+                      [phoneValidation]="true"
+                      [customPlaceholder]="'950xxxxxxx0'"
+                      #phoneField
+                      formControlName="phone"
+                      name="phone"
+                      [ngClass]="{
+                        'is-invalid': submitted && f?.phone?.errors
+                      }"
+                    ></ngx-intl-tel-input>
+                  </div>
+                </div>
+                <div class="isInvalid" *ngIf="submitted && f?.phone?.errors">
+                  <div *ngIf="f.phone?.errors?.required">
+                    Phone Number is required
+                  </div>
+                  <div *ngIf="f.phone?.errors?.validatePhoneNumber">
+                    Phone Number must be 10 characters
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="Email" class="local-form-label">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="Email"
+                name="email"
+                formControlName="email"
+                placeholder="Enter Your Email Address"
+                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+              />
+              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                <div *ngIf="f.email.errors.required">Email is required</div>
+                <div *ngIf="f.email.errors.email">Email is invalid</div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="password" class="local-form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Set Password"
+                formControlName="password"
+                [ngClass]="{
+                  'is-invalid': submitted && f.password.errors
+                }"
+              />
+              <div
+                *ngIf="submitted && f.password.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.password.errors.required">
+                  Password is required
+                </div>
+                <div *ngIf="f.password.errors.minlength">
+                  Password must be at least 6 characters
+                </div>
+                <div *ngIf="f.password.errors.maxlength">
+                  Username must not exceed 40 characters
+                </div>
+              </div>
+            </div>
+            <div class="mb-1">
+              <label for="confirm-password" class="local-form-label"
+                >Confirm Password</label
+              >
+              <input
+                type="password"
+                class="form-control"
+                id="confirm-password"
+                placeholder=" Confirm Password"
+                name="password"
+                formControlName="confirmPassword"
+                [ngClass]="{
+                  'is-invalid': submitted && f.confirmPassword.errors
+                }"
+              />
+              <div
+                *ngIf="submitted && f.confirmPassword.errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="f.confirmPassword.errors.required">
+                  Confirm Password is required
+                </div>
+                <div *ngIf="f.confirmPassword.errors.matching">
+                  Confirm Password does not match
+                </div>
+              </div>
+            </div>
+            <button
+              class="login-submit-btn btn mt-3"
+              (click)="clickToContinue()"
+            >
+              Continue
+            </button>
+          </form>
+          <div class="agree-text mt-1">
+            <p class="mb-0">
+              By continuing, you agree to our
+              <a href="" class="text-orange text-decoration-none"
+                >Privacy Policy</a
+              >, <br />Terms and Conditions applied.
+            </p>
+          </div>
+        </div>
+
+        <ng-template #loggedOut>
+          <div class="col-sm col-lg col-md">
+            <div class="local-card-login card card-margin-left-7 mb-2">
+              <div class="text-start">
+                <h3 class="login-heading mt-3">Welcome to The Local</h3>
+                <h4 class="login-sub-titel sub-heading-font-size">
+                  Create your account to connent to local Shops
+                </h4>
+              </div>
+              <form class="login-form" [formGroup]="verifyOtpForm">
+                <div class="mb-2">
+                  <div class="row">
+                    <div class="col-8">
+                      <label for="mobile-number" class="local-form-label"
+                        >Mobile Number ?
+                        <span class="orange" (click)="changeMobileNumber()"
+                          >Change</span
+                        ></label
+                      >
+                      <div class="row col-md-12">
+                        <ngx-intl-tel-input
+                          [cssClass]="'custom form-control'"
+                          [inputId]="'my-input-id'"
+                          [preferredCountries]="[]"
+                          [enableAutoCountrySelect]="false"
+                          [enablePlaceholder]="true"
+                          [searchCountryFlag]="true"
+                          [searchCountryField]="[
+                            SearchCountryField.Iso2,
+                            SearchCountryField.Name
+                          ]"
+                          [selectFirstCountry]="false"
+                          [selectedCountryISO]="CountryISO.India"
+                          [maxLength]="10"
+                          [phoneValidation]="true"
+                          [customPlaceholder]="'950xxxxxxx0'"
+                          #phoneField
+                          formControlName="phone"
+                          name="phone"
+                          [ngClass]="{
+                            'is-invalid':
+                              verifyOtpFormSubmiit && verifyOtp?.phone?.errors
+                          }"
+                        ></ngx-intl-tel-input>
+                      </div>
+                    </div>
+                    <div class="col-4 mt-4">
+                      <button
+                        class="login-submit-btn btn mt-1"
+                        (click)="sendOTP()"
+                        [disabled]="
+                          isOtpDisabled ||
+                          verifyOtp?.phone?.errors?.validatePhoneNumber ||
+                          verifyOtp?.phone?.errors?.required
+                        "
+                      >
+                        {{ oTpheader }}
+                      </button>
+                    </div>
+                    <div
+                      class="isInvalid"
+                      *ngIf="verifyOtpFormSubmiit && verifyOtp?.phone?.errors"
+                    >
+                      <div *ngIf="verifyOtp.phone?.errors?.required">
+                        Phone Number is required
+                      </div>
+                      <div *ngIf="verifyOtp.phone?.errors?.validatePhoneNumber">
+                        Phone Number must be 10 characters
+                      </div>
+                    </div>
+                    <div
+                      class="mt-2 local-form-label orange"
+                      *ngIf="isOtpDisabled"
+                    >
+                      Please wait {{ timeLeft }} second(s) before requesting a
+                      new One Time Password (OTP).
+                    </div>
+                    <div class="mt-2 local-form-label" *ngIf="newOtpFlag">
+                      Not recieved your code?
+                      <span class="orange cursor-pointer" (click)="sendOTP()">
+                        Resend code
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <div>
+                    <label
+                      for="mobile-number"
+                      class="local-form-label ms-1 mt-2 mb-2"
+                      >Enter OTP</label
+                    >
+                  </div>
+                  <div class="d-flex flex-row">
+                    <ng-otp-input
+                      [config]="{
+                        length: 6,
+                        inputClass: 'otpClass',
+                        allowNumbersOnly: true,
+                        disableAutoFocus: true
+                      }"
+                      [formCtrl]="otp"
+                      name="otp"
+                      [ngClass]="{
+                        'is-invalid':
+                          verifyOtpFormSubmiit && verifyOtp?.otp?.errors
+                      }"
+                      (onInputChange)="onOtpChange($event)"
+                    >
+                    </ng-otp-input>
+                  </div>
+                  <div
+                    *ngIf="verifyOtpFormSubmiit && verifyOtp?.otp?.errors"
+                    class="isInvalid"
+                  >
+                    <div *ngIf="verifyOtp?.otp?.errors?.required">
+                      OTP is required
+                    </div>
+                    <div *ngIf="verifyOtp?.otp?.errors?.minlength">
+                      OTP must be 6 characters
+                    </div>
+                    <div *ngIf="verifyOtp?.otp.errors.maxlength">
+                      Name must not exceed 20 characters
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="login-submit-btn btn mt-3"
+                  (click)="createAccount()"
+                >
+                  Create Account
+                </button>
+              </form>
+              <div class="agree-text mt-1">
+                <p class="mb-0">
+                  By continuing, you agree to our
+                  <a href="" class="text-orange text-decoration-none"
+                    >Privacy Policy</a
+                  >, <br />Terms and Conditions applied.
+                </p>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </section>
+  <div>
+    <img src="../../../../assets/images/login-banner.png" class="banner-one" />
+  </div>
+</div>
