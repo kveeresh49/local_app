@@ -14,7 +14,36 @@ export class CategoryCardComponent implements OnInit {
   ngOnInit(): void {
     this.showSlides(this.slideIndex);
   }
+  slideConfig = {
+    "slidesToShow": 4,
+    "slidesToScroll": 1,
+    "dots": false,
+    "infinite": false
+  };
 
+  // addSlide() {
+  //   this.slides.push(488)
+  // }
+
+  removeSlide() {
+    this.highlightCards.length = this.highlightCards.length - 1;
+  }
+
+  slickInit(e: any) {
+    console.log('slick initialized');
+  }
+
+  breakpoint(e: any) {
+    console.log('breakpoint');
+  }
+
+  afterChange(e: any) {
+    console.log('afterChange');
+  }
+
+  beforeChange(e: any) {
+    console.log('beforeChange');
+  }
 
   cards = [
     {
@@ -59,13 +88,41 @@ export class CategoryCardComponent implements OnInit {
     },
   ]
 
-  highlightCard = [
+  highlightCards = [
     {
       titel:"Abhijeeth Wines",
-      varietiesInShops:"",
-      varietiesInShopsTitel:"",
-      DiscountInShops:"",
-      highlightBackgroundColor:"",
+      shopCategory:"wide variety of wines",
+       varietiesInShops:"Rum, whisky, vodka",
+      offerUpTo:30,
+      shopImage:"../../../assets/images/highlights/highlights-image-1.png",
+    },
+    {
+      titel:"Abhijeeth Wines",
+      shopCategory:"wide variety of wines",
+       varietiesInShops:"Rum, whisky, vodka",
+      offerUpTo:30,
+      shopImage:"../../../assets/images/highlights/highlights-image-1.png",
+    },
+    {
+      titel:"Abhijeeth Wines",
+      shopCategory:"wide variety of wines",
+       varietiesInShops:"Rum, whisky, vodka",
+      offerUpTo:30,
+      shopImage:"../../../assets/images/highlights/highlights-image-1.png",
+    },
+    {
+      titel:"Abhijeeth Wines",
+      shopCategory:"wide variety of wines",
+       varietiesInShops:"Rum, whisky, vodka",
+      offerUpTo:30,
+      shopImage:"../../../assets/images/highlights/highlights-image-1.png",
+    },
+    {
+      titel:"Abhijeeth Wines",
+      shopCategory:"wide variety of wines",
+       varietiesInShops:"Rum, whisky, vodka",
+      offerUpTo:30,
+      shopImage:"../../../assets/images/highlights/highlights-image-1.png",
     }
   ] 
 

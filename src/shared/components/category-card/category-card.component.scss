@@ -108,7 +108,9 @@
 
 .shop-by-categoires {
   overflow: hidden;
-  position: relative;
+  width: 86px;
+  margin: auto;
+  display: block;
 }
 
 .medical-card-bg-clr {
@@ -142,7 +144,7 @@
 
 .liquor-title-card {
   background: #edd28d;
-  color: #7A6327;
+  color: #7a6327;
 }
 
 .vegetables-title-card {
@@ -157,23 +159,27 @@
 
 .farm-title-card {
   background: #a4d3b8;
-  color: #42564B;
+  color: #42564b;
 }
 
 .garden-title-card {
   background: #e7bb87;
-  color: #74542E;
+  color: #74542e;
 }
 
 .highlight {
   // width: 100%;
-  width: 40%;
+  width: 60vh;
   height: 50%;
+  margin-right: 30px;
   background: #c4c4c4;
   border-radius: 20px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  &:last-child {
+    margin-right: 0;
+  }
 }
 .todays-highlights-titel {
   font-weight: 600;
@@ -393,4 +399,9 @@
   line-height: 23px;
   text-align: center;
   color: #ffffff;
+}
+.varieties-in-shops-img {
+  width: 100%;
+  height: 100%;
+  border: 3px solid #ff3d00;
 }
