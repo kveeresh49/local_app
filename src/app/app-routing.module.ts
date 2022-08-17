@@ -13,8 +13,7 @@ const routes: Routes = [
       import('./components/auth/auth.module').then((m) => m.AuthModule),
   },
 
-  { path: 'local-home', component: LocalHomeComponent },
-  {path:'dash-address',component:DeliverAddressComponent},
+  { path: 'dash-address', component: DeliverAddressComponent },
   {
     path: 'store',
     component: StoreDetailsComponent,
