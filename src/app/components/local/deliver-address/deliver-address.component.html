@@ -1,4 +1,7 @@
 <div class="card local-card-adress">
+  <div style="text-align: right">
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
   <mat-stepper #stepper>
     <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
       <form [formGroup]="firstFormGroup">
