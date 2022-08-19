@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDividerModule} from '@angular/material/divider'
 @NgModule({
   declarations: [
     StoreCardComponent,
@@ -24,7 +26,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     FontAwesomeModule,
     NgOtpInputModule,
     NgxIntlTelInputModule,
-    SlickCarouselModule
+    SlickCarouselModule,
   ],
   exports: [
     CommonModule,
@@ -38,6 +40,9 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     MatFormFieldModule,
     MatInputModule,
     NgxIntlTelInputModule,
+    MatSidenavModule,
+    MatDividerModule
+
   ],
 })
 export class SharedModule {}

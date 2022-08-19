@@ -9,7 +9,7 @@ import { StoreDetailsComponent } from './store-details/store-details.component';
 const routes: Routes = [
   { path: 'local-dashboard', component: HomeComponent },
   { path: 'offers', component: OffersShopCategoriesComponent },
-  {path: 'deliver-address',component:DeliverAddressComponent}
+  {path: 'deliver-address',component:DeliverAddressComponent},
 ];
 
 @NgModule({
