@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserDetails } from '../../models/user-deatils';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +13,12 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   form: FormGroup;
   submitted = false;
-  constructor(private router: Router, private fb: FormBuilder) {}
+  user: UserDetails;
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -24,16 +26,16 @@ export class LoginComponent implements OnInit {
 
   createForm(): void {
     this.loginForm = this.fb.group({
-      email: [
+      userName: [
         '',
         [
           Validators.required,
           Validators.minLength(6),
           Validators.maxLength(30),
-          Validators.email
+          Validators.email,
         ],
       ],
-      
+
       password: [
         '',
         [
@@ -59,7 +61,17 @@ export class LoginComponent implements OnInit {
   login() {
     this.submitted = true;
     if (this.loginForm.valid) {
-      this.router.navigate(['/store']);
+      this.authService.userLogin$(this.loginForm.value).subscribe({
+        next: (userToken) => {
+          console.log(userToken, 'accountDetails');
+          sessionStorage.setItem('token', 'myToken');
+          this.router.navigate(['/local-dashboard']);
+        },
+        error: (e) => {
+          console.error(e);
+        },
+      });
+      // this.router.navigate(['/store']);
     }
   }
   requestOTP() {

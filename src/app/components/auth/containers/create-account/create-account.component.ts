@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   SearchCountryField,
   CountryISO,
@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Validation from 'src/shared/utils/validation';
 import { NgOtpInputComponent } from 'ng-otp-input';
+import { UserAccount } from '../../models/user-account';
+import { AuthService } from '../../auth.service';
+import { AlertComponent } from 'ngx-bootstrap/alert/alert.component';
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -17,7 +20,7 @@ export class CreateAccountComponent implements OnInit {
   @ViewChild('phoneField') phoneField: any;
   @ViewChild(NgOtpInputComponent, { static: false })
   ngOtpInput: NgOtpInputComponent;
-  separateDialCode = false;
+  createAccountForm: FormGroup;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
@@ -25,29 +28,33 @@ export class CreateAccountComponent implements OnInit {
     CountryISO.UnitedStates,
     CountryISO.UnitedKingdom,
   ];
-  timeLeft: number = 10;
+  timeLeft: number;
   interval: any;
-  oTpheader: string;
+  otpHeader: string;
   isOtpDisabled = false;
   newOtpFlag = false;
-  signInForm: FormGroup;
-  submitted = false;
+  isSubmitClick = false;
   otp: any;
-  otp1: any;
   verifyOtpForm: FormGroup;
   isLoggedIn = true;
-  verifyOtpFormSubmiit =false;
+  verifyOtpFormSubmit = false;
   loggedOut = false;
+  accountDetails: UserAccount;
+  alerts: any[] = [];
 
-  constructor(private router: Router, private fb: FormBuilder) {}
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.oTpheader = 'Send OTP';
+    this.otpHeader = 'Send OTP';
     this.createForm();
   }
 
   createForm(): void {
-    this.signInForm = this.fb.group(
+    this.createAccountForm = this.fb.group(
       {
         name: [
           '',
@@ -80,7 +87,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   get f(): any {
-    return this.signInForm.controls;
+    return this.createAccountForm.controls;
   }
 
   get verifyOtp(): any {
@@ -99,7 +106,7 @@ export class CreateAccountComponent implements OnInit {
   sendOTP(): void {
     this.ngOtpInput.otpForm.enable();
     this.newOtpFlag = false;
-    this.oTpheader = 'Resend OTP';
+    this.otpHeader = 'Resend OTP';
     this.timeLeft = 30;
     this.isOtpDisabled = true;
     this.interval = setInterval(() => {
@@ -126,28 +133,92 @@ export class CreateAccountComponent implements OnInit {
   }
 
   clickToContinue(): void {
-    this.submitted = true;
-    if(this.signInForm.valid){
+    this.isSubmitClick = true;
+    this.setCreateFormValidators();
+    if (this.createAccountForm.valid) {
       this.isLoggedIn = !this.isLoggedIn;
       this.loggedOut = !this.loggedOut;
       setTimeout(() => {
         this.verifyOtpForm
           .get('phone')
-          ?.setValue(this.signInForm.get('phone')?.value);
+          ?.setValue(this.createAccountForm.get('phone')?.value);
         this.ngOtpInput.otpForm.disable();
         this.verifyOtpForm.get('phone')?.disable();
         this.sendOTP();
       }, 10);
     }
-  
   }
 
-  createAccount():void {
-    this.verifyOtpFormSubmiit = true;
-    console.log(this.verifyOtpForm.valid,'this.verifyOtpForm')
-    if(this.verifyOtpForm.valid) {
-      this.router.navigate(['/local-dashboard'])
+  setCreateFormValidators(): void {
+    this.createAccountForm
+      .get('password')
+      ?.setValidators([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(40),
+      ]);
+    this.createAccountForm
+      .get('confirmPassword')
+      ?.setValidators([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(40),
+      ]);
+    this.createAccountForm.setValidators(
+      Validation.match('password', 'confirmPassword')
+    );
+    this.createAccountForm.get('password')?.updateValueAndValidity();
+    this.createAccountForm.get('confirmPassword')?.updateValueAndValidity();
+    this.createAccountForm.updateValueAndValidity();
+  }
+
+  clearCreateFormValidators(): void {
+    this.createAccountForm.get('confirmPassword')?.reset('');
+    this.createAccountForm.get('password')?.reset();
+    this.createAccountForm.clearValidators();
+    this.createAccountForm.get('password')?.clearValidators();
+    this.createAccountForm.get('confirmPassword')?.clearValidators();
+    this.createAccountForm.get('confirmPassword')?.updateValueAndValidity();
+    this.createAccountForm.get('password')?.updateValueAndValidity();
+  }
+
+  createAccountFormObj() {
+    this.accountDetails = new UserAccount(
+      this.createAccountForm.get('name')?.value,
+      this.createAccountForm.get('email')?.value,
+      this.createAccountForm.get('mobileNumber')?.value.number,
+      this.verifyOtpForm.get('otp')?.value,
+      this.createAccountForm.get('password')?.value
+    );
+  }
+
+  createAccount(): void {
+    this.verifyOtpFormSubmit = true;
+    console.log(this.verifyOtpForm.valid, 'this.verifyOtpForm');
+    if (this.verifyOtpForm.valid) {
+      this.createAccountFormObj();
+      this.authService.createUserAccount$(this.accountDetails).subscribe({
+        next: (accountDetails) => {
+          this.router.navigate(['/local-dashboard']);
+        },
+        error: (e) => {
+          this.alerts = [];
+          let error = {
+            type: 'danger',
+            msg: `${e.error}`,
+            timeout: 5000,
+          };
+          this.isLoggedIn = true;
+          this.verifyOtpFormSubmit = false;
+          this.clearCreateFormValidators();
+          this.alerts = [error];
+          console.error(e);
+        },
+      });
     }
   }
-}
 
+  onClosed(dismissedAlert: AlertComponent): void {
+    this.alerts = this.alerts.filter((alert) => alert !== dismissedAlert);
+  }
+}
