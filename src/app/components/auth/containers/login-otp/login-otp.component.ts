@@ -8,7 +8,6 @@ import {
   CountryISO,
   PhoneNumberFormat,
 } from 'ngx-intl-tel-input';
-import Validation from 'src/shared/utils/validation';
 import { AuthService } from '../../auth.service';
 //import { NgOtpInputComponent } from 'ng-otp-input';
 @Component({

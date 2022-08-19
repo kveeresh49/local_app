@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CategoryCardComponent } from 'src/shared/components/category-card/category-card.component';
-import { LocalHomeComponent } from './components/auth/containers/local-home/local-home.component';
 import { DeliverAddressComponent } from './components/local/deliver-address/deliver-address.component';
 import { StoreDetailsComponent } from './components/local/store-details/store-details.component';
-// import { CategoryCardComponent } from 'src/shared/components/category-card/category-card.component';
+import { CategoryCardComponent } from './shared/components/category-card/category-card.component';
 
 const routes: Routes = [
   {

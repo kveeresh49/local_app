@@ -8,11 +8,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PopularStoresComponent } from './popular-stores/popular-stores.component';
 import { StoreDetailsComponent } from './store-details/store-details.component';
 import { StoreNavbarComponent } from './store-navbar/store-navbar.component';
-import { SharedModule } from 'src/shared/shared.module';
 import { DeliverAddressComponent } from './deliver-address/deliver-address.component';
 import { SideNavComponent } from './nav/side-nav/side-nav.component';
 import { TopMenuNavBarComponent } from './nav/top-menu-nav-bar/top-menu-nav-bar.component';
 import { TopSearchNavBarComponent } from './nav/top-search-nav-bar/top-search-nav-bar.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [

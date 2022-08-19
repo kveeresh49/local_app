@@ -8,11 +8,11 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { AlertComponent } from './components/alert/alert.component';
+import { CategoryCardComponent } from './components/category-card/category-card.component';
 @NgModule({
   declarations: [
     StoreCardComponent,

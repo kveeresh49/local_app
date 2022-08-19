@@ -6,11 +6,12 @@ import {
 } from 'ngx-intl-tel-input';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import Validation from 'src/shared/utils/validation';
+
 import { NgOtpInputComponent } from 'ng-otp-input';
 import { UserAccount } from '../../models/user-account';
 import { AuthService } from '../../auth.service';
 import { AlertComponent } from 'ngx-bootstrap/alert/alert.component';
+import Validation from 'src/app/shared/utils/validation';
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
