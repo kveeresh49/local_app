@@ -7,7 +7,7 @@ import { LoginOtpComponent } from './containers/login-otp/login-otp.component';
 import { LoginComponent } from './containers/login/login.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent ,canActivate:[AuthGuard]},
   {
     path: 'create-account',
