@@ -15,6 +15,7 @@ export class AuthService {
   createUserAccount$(userAccountDetails: AccountDetails) {
     return this.http.post(`${this.apiUrl}User`, userAccountDetails);
   }
+
   userLogin$(userLoginDetails: AccountDetails) {
     return this.http.post(
       `${this.apiUrl}User/AuthenticateUser`,
@@ -25,7 +26,8 @@ export class AuthService {
   otpLogin$(otpLogin: any) {
     return this.http.post(`${this.apiUrl}User/OTPLogin`, otpLogin);
   }
-  resetPassword$(accountDetails:AccountDetails){
+
+  resetPassword$(accountDetails: AccountDetails) {
     return this.http.post(`${this.apiUrl}User/Reset`, accountDetails);
   }
 }

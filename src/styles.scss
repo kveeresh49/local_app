@@ -10,17 +10,6 @@
 // Variables
 @import "../src/variable";
 
-// @font-face {
-//   src: url(./assets/fonts/Poppins-Font-2/Poppins-Medium.ttf) format("opentype");
-//   // src: url(assets/fonts/Poppins-Font-2/Poppins-SemiBold.ttf) format("opentype");
-//   font-family: $font-family;
-// }
-
-// body {
-//   font-family:"Poppins" !important;
-//   // font-weight: 600;
-// }
-
 body {
   margin: 0; // 1
   font-family: var(--#{$prefix}body-font-family) !important;
@@ -68,7 +57,7 @@ body {
   color: #6a6868;
 }
 
-.login-sub-titel {
+.login-sub-title {
   font-size: 16px;
   font-weight: 400;
   color: #8b8888;
@@ -158,10 +147,8 @@ body {
 }
 
 // home offers-banner
-
 .picsum-img-wrapper {
   position: relative;
-
   .top-left {
     position: absolute;
     top: 0;
