@@ -6,6 +6,8 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-side-nav',
@@ -15,7 +17,8 @@ import {
 export class SideNavComponent implements OnInit {
   @Input() sidebarShow: boolean = false;
   @Output() closeSidebar = new EventEmitter<boolean>();
-  constructor() {}
+  @Output() clickEvent = new EventEmitter<boolean>();
+  constructor(private cookieService: CookieService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -27,5 +30,13 @@ export class SideNavComponent implements OnInit {
   closeSideNav() {
     this.sidebarShow = false;
     this.closeSidebar.emit(this.sidebarShow);
+  }
+
+  logout() {
+    this.cookieService.delete('userToken');
+    this.sidebarShow = false;
+    this.closeSidebar.emit(this.sidebarShow);
+    this.clickEvent.emit(true);
+    this.router.navigate(['./local-dashboard']);
   }
 }

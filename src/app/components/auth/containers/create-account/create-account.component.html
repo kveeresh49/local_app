@@ -1,3 +1,8 @@
+<!-- <div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" [dismissible]="true" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
+</div> -->
+<app-alert [alerts]="alerts"></app-alert>
+
 <div>
   <app-landinglogo></app-landinglogo>
   <section class="container-fluid">
@@ -16,7 +21,7 @@
               Create your account to connent to local Shops
             </h4>
           </div>
-          <form class="login-form" [formGroup]="signInForm">
+          <form class="login-form" [formGroup]="createAccountForm">
             <div class="mb-2">
               <label for="name" class="local-form-label">Name</label>
               <input
@@ -26,10 +31,10 @@
                 name="name"
                 placeholder="Enter User Name"
                 formControlName="name"
-                [ngClass]="{ 'is-invalid': submitted && f?.name?.errors }"
+                [ngClass]="{ 'is-invalid': isSubmitClick && f?.name?.errors }"
               />
               <div
-                *ngIf="submitted && f?.name?.errors"
+                *ngIf="isSubmitClick && f?.name?.errors"
                 class="invalid-feedback"
               >
                 <div *ngIf="f.name?.errors?.required">Name is required</div>
@@ -68,12 +73,15 @@
                       formControlName="phone"
                       name="phone"
                       [ngClass]="{
-                        'is-invalid': submitted && f?.phone?.errors
+                        'is-invalid': isSubmitClick && f?.phone?.errors
                       }"
                     ></ngx-intl-tel-input>
                   </div>
                 </div>
-                <div class="isInvalid" *ngIf="submitted && f?.phone?.errors">
+                <div
+                  class="isInvalid"
+                  *ngIf="isSubmitClick && f?.phone?.errors"
+                >
                   <div *ngIf="f.phone?.errors?.required">
                     Phone Number is required
                   </div>
@@ -92,9 +100,12 @@
                 name="email"
                 formControlName="email"
                 placeholder="Enter Your Email Address"
-                [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+                [ngClass]="{ 'is-invalid': isSubmitClick && f.email.errors }"
               />
-              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div
+                *ngIf="isSubmitClick && f.email.errors"
+                class="invalid-feedback"
+              >
                 <div *ngIf="f.email.errors.required">Email is required</div>
                 <div *ngIf="f.email.errors.email">Email is invalid</div>
               </div>
@@ -109,11 +120,11 @@
                 placeholder="Set Password"
                 formControlName="password"
                 [ngClass]="{
-                  'is-invalid': submitted && f.password.errors
+                  'is-invalid': isSubmitClick && f.password.errors
                 }"
               />
               <div
-                *ngIf="submitted && f.password.errors"
+                *ngIf="isSubmitClick && f.password.errors"
                 class="invalid-feedback"
               >
                 <div *ngIf="f.password.errors.required">
@@ -139,11 +150,11 @@
                 name="password"
                 formControlName="confirmPassword"
                 [ngClass]="{
-                  'is-invalid': submitted && f.confirmPassword.errors
+                  'is-invalid': isSubmitClick && f.confirmPassword.errors
                 }"
               />
               <div
-                *ngIf="submitted && f.confirmPassword.errors"
+                *ngIf="isSubmitClick && f.confirmPassword.errors"
                 class="invalid-feedback"
               >
                 <div *ngIf="f.confirmPassword.errors.required">
@@ -151,6 +162,12 @@
                 </div>
                 <div *ngIf="f.confirmPassword.errors.matching">
                   Confirm Password does not match
+                </div>
+                <div *ngIf="f.confirmPassword.errors.minlength">
+                  Password must be at least 6 characters
+                </div>
+                <div *ngIf="f.confirmPassword.errors.maxlength">
+                  Username must not exceed 40 characters
                 </div>
               </div>
             </div>
@@ -212,7 +229,7 @@
                           name="phone"
                           [ngClass]="{
                             'is-invalid':
-                              verifyOtpFormSubmiit && verifyOtp?.phone?.errors
+                              verifyOtpFormSubmit && verifyOtp?.phone?.errors
                           }"
                         ></ngx-intl-tel-input>
                       </div>
@@ -227,12 +244,12 @@
                           verifyOtp?.phone?.errors?.required
                         "
                       >
-                        {{ oTpheader }}
+                        {{ otpHeader }}
                       </button>
                     </div>
                     <div
                       class="isInvalid"
-                      *ngIf="verifyOtpFormSubmiit && verifyOtp?.phone?.errors"
+                      *ngIf="verifyOtpFormSubmit && verifyOtp?.phone?.errors"
                     >
                       <div *ngIf="verifyOtp.phone?.errors?.required">
                         Phone Number is required
@@ -276,14 +293,14 @@
                       name="otp"
                       [ngClass]="{
                         'is-invalid':
-                          verifyOtpFormSubmiit && verifyOtp?.otp?.errors
+                          verifyOtpFormSubmit && verifyOtp?.otp?.errors
                       }"
                       (onInputChange)="onOtpChange($event)"
                     >
                     </ng-otp-input>
                   </div>
                   <div
-                    *ngIf="verifyOtpFormSubmiit && verifyOtp?.otp?.errors"
+                    *ngIf="verifyOtpFormSubmit && verifyOtp?.otp?.errors"
                     class="isInvalid"
                   >
                     <div *ngIf="verifyOtp?.otp?.errors?.required">

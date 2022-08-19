@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +13,13 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   form: FormGroup;
   submitted = false;
-  constructor(private router: Router, private fb: FormBuilder) {}
+  alerts: any[];
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit(): void {
     this.createForm();
@@ -30,10 +33,9 @@ export class LoginComponent implements OnInit {
           Validators.required,
           Validators.minLength(6),
           Validators.maxLength(30),
-          Validators.email
+          Validators.email,
         ],
       ],
-      
       password: [
         '',
         [
@@ -42,6 +44,8 @@ export class LoginComponent implements OnInit {
           Validators.maxLength(20),
         ],
       ],
+      mobileNumber: '1111111111',
+      otp: '111111',
     });
   }
 
@@ -59,7 +63,28 @@ export class LoginComponent implements OnInit {
   login() {
     this.submitted = true;
     if (this.loginForm.valid) {
-      this.router.navigate(['/store']);
+      console.log(this.loginForm.value, 'this.loginForm.value');
+      this.authService.userLogin$(this.loginForm.value).subscribe({
+        next: (userToken: any) => {
+          console.log(JSON.stringify(userToken['token']), 'token');
+          this.cookieService.set(
+            'userToken',
+            JSON.stringify(userToken['token'])
+          );
+          this.cookieService.get('userToken');
+          this.router.navigate(['/local-dashboard']);
+        },
+        error: (e) => {
+          this.alerts = [];
+          let error: any = {
+            type: 'danger',
+            msg: `${e.error}`,
+            timeout: 5000,
+          };
+          this.alerts.push(error);
+          console.error(e);
+        },
+      });
     }
   }
   requestOTP() {

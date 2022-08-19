@@ -30,6 +30,7 @@
     "ng-otp-input": "^1.8.5",
     "ng2-sticky-nav": "^10.0.0",
     "ngx-bootstrap": "^9.0.0",
+    "ngx-cookie-service": "^14.0.1",
     "ngx-intl-tel-input": "^3.2.0",
     "ngx-slick-carousel": "^0.6.0",
     "rxjs": "~7.5.0",

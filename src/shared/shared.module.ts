@@ -11,11 +11,14 @@ import { MatInputModule } from '@angular/material/input';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { AlertComponent } from './components/alert/alert.component';
 @NgModule({
   declarations: [
     StoreCardComponent,
     LandinglogoComponent,
     CategoryCardComponent,
+    AlertComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +27,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     FontAwesomeModule,
     NgOtpInputModule,
     NgxIntlTelInputModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    AlertModule.forRoot()
   ],
   exports: [
     CommonModule,
@@ -38,6 +42,8 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
     MatFormFieldModule,
     MatInputModule,
     NgxIntlTelInputModule,
+    AlertModule,
+    AlertComponent
   ],
 })
 export class SharedModule {}

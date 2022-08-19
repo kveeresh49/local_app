@@ -8,6 +8,8 @@ import {
   PhoneNumberFormat,
 } from 'ngx-intl-tel-input';
 import Validation from 'src/shared/utils/validation';
+import { AuthService } from '../../auth.service';
+import { AccountDetails } from '../../models/account-details';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -27,17 +29,22 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
     CountryISO.UnitedKingdom,
   ];
   newOtpFlag: boolean;
-  oTpheader: string;
+  otpHeader: string;
   timeLeft: number;
   isOtpDisabled: boolean;
   interval: any;
-  forgotPassword: FormGroup;
+  forgotPasswordForm: FormGroup;
   submitted = false;
   otp: any;
-  constructor(private router: Router, private fb: FormBuilder) {}
+  alerts: any[];
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
-    this.oTpheader = 'Send OTP';
+    this.otpHeader = 'Send OTP';
     this.createForm();
   }
 
@@ -46,9 +53,9 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
   }
 
   createForm() {
-    this.forgotPassword = this.fb.group(
+    this.forgotPasswordForm = this.fb.group(
       {
-        phone: ['', [Validators.required, Validators.minLength(10)]],
+        mobileNumber: ['', [Validators.required, Validators.minLength(10)]],
         otp: ['', [Validators.required, Validators.minLength(6)]],
         password: [
           '',
@@ -58,8 +65,17 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
             Validators.maxLength(40),
           ],
         ],
-        confirmPassword: ['', Validators.required],
+        confirmPassword: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.maxLength(40),
+          ],
+        ],
+        email: '',
       },
+
       {
         validators: [Validation.match('password', 'confirmPassword')],
       }
@@ -68,17 +84,17 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
 
   onOtpChange(otp: any) {
     this.otp = otp;
-    this.forgotPassword.get('otp')?.setValue(otp);
+    this.forgotPasswordForm.get('otp')?.setValue(otp);
   }
 
   get f(): any {
-    return this.forgotPassword.controls;
+    return this.forgotPasswordForm.controls;
   }
 
   sendOTP(): void {
     this.ngOtpInput.otpForm.enable();
     this.newOtpFlag = false;
-    this.oTpheader = 'Resend OTP';
+    this.otpHeader = 'Resend OTP';
     this.timeLeft = 30;
     this.isOtpDisabled = true;
     this.interval = setInterval(() => {
@@ -100,18 +116,35 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
     }, 1);
   }
 
-  navigateToLoging() {
-    this.router.navigate(['/login']);
-  }
-
   navigateToAccount(): void {
     this.router.navigate(['/create-account']);
   }
 
-  login() {
+  reSetPassword() {
     this.submitted = true;
-    if (this.forgotPassword.valid) {
-      this.router.navigate(['/login']);
+    if (this.forgotPasswordForm.valid) {
+      let accountDetails: AccountDetails = {
+        email: this.forgotPasswordForm.get('email')?.value,
+        mobileNumber: this.forgotPasswordForm.get('mobileNumber')?.value.number,
+        password: this.forgotPasswordForm.get('password')?.value,
+        otp: this.forgotPasswordForm.get('otp')?.value,
+      };
+      this.authService.resetPassword$(accountDetails).subscribe({
+        next: (accountDetails: any) => {
+          this.router.navigate(['/login']);
+        },
+        error: (e) => {
+          this.alerts = [];
+          let error: any = {
+            type: 'danger',
+            msg: `${e.error}`,
+            timeout: 5000,
+          };
+          this.alerts.push(error);
+          console.error(e);
+        },
+      });
+      //this.router.navigate(['/login']);
     }
   }
 }

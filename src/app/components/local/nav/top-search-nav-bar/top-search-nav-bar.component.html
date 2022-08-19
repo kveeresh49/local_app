@@ -60,9 +60,15 @@
     </li>
     <li class="nav-item">
       <span class="nav-link">
-        <span class="light-grey text-decoration-none">Profile</span
-        ><b class="light-grey">/</b>
-        <span class="text-decoration-none light-grey">Login</span>
+        <span
+          class="light-grey text-decoration-none cursor-pointer"
+          *ngIf="isLoginUserFlag"
+          (click)="navigateProfile()"
+          >Profile</span
+        >
+        <a class="text-decoration-none light-grey cursor-pointer" *ngIf="!isLoginUserFlag"
+        (click)="navigateLogin()">Login</a
+        >
       </span>
     </li>
     <li class="nav-item">
@@ -93,4 +99,26 @@
   tabindex="-1"
 >
   <app-deliver-address></app-deliver-address>
+</div>
+
+<div
+  class="sidebar-slider"
+  [class.sidebar-slide-in]="sidebarShow"
+  style="z-index: 99999"
+>
+  <div class="text-start ps-4 sidebar-close">
+    <button
+      type="button"
+      class="btn-close mt-2"
+      aria-label="Close"
+      (click)="sidebarShow = !sidebarShow"
+    ></button>
+  </div>
+  <div class="sidebar-content">
+    <app-side-nav
+      [sidebarShow]="sidebarShow"
+      (closeSidebar)="closeSideNav($event)"
+      (clickEvent)="isLogout($event)"
+    ></app-side-nav>
+  </div>
 </div>
