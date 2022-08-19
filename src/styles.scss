@@ -249,7 +249,7 @@ app-login-otp {
 .alert-dismissible {
   padding-top: 8px !important;
   padding-bottom: 8px !important;
-  border-left: 1rem solid;
+  border-left: 14px solid !important;
 }
 
 .alert-dismissible .btn-close {
@@ -258,4 +258,16 @@ app-login-otp {
   right: 0;
   z-index: 2;
   padding: 1rem 1rem !important;
+}
+
+.z-index-local{
+  z-index: 9999 !important;
+}
+
+.w-65 {
+  width: 65% !important;
+}
+
+.height-fit-content {
+  height: fit-content;
 }
