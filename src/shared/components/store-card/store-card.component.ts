@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreCardComponent implements OnInit {
   getfavoriteStoreFlag = true;
+  psStartIndex = 0;
+  psEndIndex = 4;
+  psTotalPages = 0;
+  psCurrentPage = 1;
+  nsStartIndex = 0;
+  nsEndIndex = 4;
+  nsTotalPages = 0;
+  nsCurrentPage = 1;
   constructor() {}
 
   ngOnInit(): void {}
@@ -15,130 +23,139 @@ export class StoreCardComponent implements OnInit {
     this.getfavoriteStoreFlag = !getfavoriteStoreFlag;
   }
 
-
   // slides = [342, 453, 846, 855, 234, 564, 744, 243];
 
   slideConfig = {
-    "slidesToShow": 4,
-    "slidesToScroll": 1,
-    "dots": false,
-    "infinite": false
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    dots: false,
+    infinite: false,
   };
 
   popularCards = [
     {
-      percentageText:15,
-      shopImage: "../../../assets/images/popular-stores/store-1.png",
-      shopTitel: "suresh store",
-      storeCatogery:"grocery store",
-      kilometers:4.5,
-      rating:3.5,
-      percentageImage:"../../../assets/images/popular-stores/percentage-icon.png",
-      discountText:15,
-      newStore:"newstore"
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/store-1.png',
+      shopTitel: 'suresh store',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
     },
     {
-      percentageText:15,
-      shopImage: "../../../assets/images/popular-stores/store-1.png",
-      shopTitel: "suresh store",
-      storeCatogery:"grocery store",
-      kilometers:4.5,
-      rating:3.5,
-      percentageImage:"../../../assets/images/popular-stores/percentage-icon.png",
-      discountText:15,
-      newStore:"newstore"
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/store-1.png',
+      shopTitel: 'suresh store',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
     },
     {
-      percentageText:15,
-      shopImage: "../../../assets/images/popular-stores/store-1.png",
-      shopTitel: "suresh store",
-      storeCatogery:"grocery store",
-      kilometers:4.5,
-      rating:3.5,
-      percentageImage:"../../../assets/images/popular-stores/percentage-icon.png",
-      discountText:15,
-      newStore:"newstore"
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/store-1.png',
+      shopTitel: 'suresh store',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
     },
     {
-      percentageText:15,
-      shopImage: "../../../assets/images/popular-stores/store-1.png",
-      shopTitel: "suresh store",
-      storeCatogery:"grocery store",
-      kilometers:4.5,
-      rating:3.5,
-      percentageImage:"../../../assets/images/popular-stores/percentage-icon.png",
-      discountText:15,
-      newStore:"newstore"
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/store-1.png',
+      shopTitel: 'suresh store',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
     },
     {
-      percentageText:15,
-      shopImage: "../../../assets/images/popular-stores/store-1.png",
-      shopTitel: "suresh store",
-      storeCatogery:"grocery store",
-      kilometers:4.5,
-      rating:3.5,
-      percentageImage:"../../../assets/images/popular-stores/percentage-icon.png",
-      discountText:15,
-      newStore:"newstore"
-    }
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/store-1.png',
+      shopTitel: 'suresh store',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
+    },
   ];
 
   slides = [
     {
-      percentageText:15,
-      shopImage: "../../../assets/images/popular-stores/Liquor-Stores.png",
-      shopTitel: "jagadamba english wine",
-      storeCatogery:"grocery store",
-      kilometers:4.5,
-      rating:3.5,
-      percentageImage:"../../../assets/images/popular-stores/percentage-icon.png",
-      discountText:15,
-      newStore:"newstore"
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/Liquor-Stores.png',
+      shopTitel: 'jagadamba english wine',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
     },
     {
-      percentageText:15,
-      shopImage: "../../../assets/images/popular-stores/Liquor-Stores.png",
-      shopTitel: "jagadamba english wine",
-      storeCatogery:"grocery store",
-      kilometers:4.5,
-      rating:3.5,
-      percentageImage:"../../../assets/images/popular-stores/percentage-icon.png",
-      discountText:15,
-      newStore:"newstore"
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/Liquor-Stores.png',
+      shopTitel: 'jagadamba english wine',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
     },
     {
-      percentageText:15,
-      shopImage: "../../../assets/images/popular-stores/Liquor-Stores.png",
-      shopTitel: "jagadamba english wine",
-      storeCatogery:"grocery store",
-      kilometers:4.5,
-      rating:3.5,
-      percentageImage:"../../../assets/images/popular-stores/percentage-icon.png",
-      discountText:15,
-      newStore:"newstore"
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/Liquor-Stores.png',
+      shopTitel: 'jagadamba english wine',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
     },
     {
-      percentageText:15,
-      shopImage: "../../../assets/images/popular-stores/Liquor-Stores.png",
-      shopTitel: "jagadamba english wine",
-      storeCatogery:"grocery store",
-      kilometers:4.5,
-      rating:3.5,
-      percentageImage:"../../../assets/images/popular-stores/percentage-icon.png",
-      discountText:15,
-      newStore:"newstore"
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/Liquor-Stores.png',
+      shopTitel: 'jagadamba english wine',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
     },
     {
-      percentageText:15,
-      shopImage: "../../../assets/images/popular-stores/Liquor-Stores.png",
-      shopTitel: "jagadamba english wine",
-      storeCatogery:"grocery store",
-      kilometers:4.5,
-      rating:3.5,
-      percentageImage:"../../../assets/images/popular-stores/percentage-icon.png",
-      discountText:15,
-      newStore:"newstore"
-    }
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/Liquor-Stores.png',
+      shopTitel: 'jagadamba english wine',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
+    },
   ];
 
   // addSlide() {
@@ -165,4 +182,53 @@ export class StoreCardComponent implements OnInit {
     console.log('beforeChange');
   }
 
+  scrollStores(store: any, type: string) {
+    if (store === 'popularStore') {
+      if (type === 'next') {
+        this.psStartIndex = this.psStartIndex + 4;
+        this.psEndIndex = this.psEndIndex + 4;
+        this.psCurrentPage += 1;
+      }
+      if (type === 'prev') {
+        this.psStartIndex = this.psStartIndex - 4;
+        this.psEndIndex = this.psEndIndex - 4;
+        this.psCurrentPage -= 1;
+      }
+    }
+    if (store === 'nearByStore') {
+      if (type === 'next') {
+        this.nsStartIndex = this.nsStartIndex + 4;
+        this.nsEndIndex = this.nsEndIndex + 4;
+        this.nsCurrentPage += 1;
+      }
+      if (type === 'prev') {
+        this.nsStartIndex = this.nsStartIndex - 4;
+        this.nsEndIndex = this.nsEndIndex - 4;
+        this.nsCurrentPage -= 1;
+      }
+    }
+  }
+
+  pageSize(store:any) {
+    if(store === 'popularStore') {
+      this.psTotalPages = Math.ceil(this.popularCards.length / 4);
+      return this.psTotalPages;
+    }
+    else {
+      return Math.ceil(this.slides.length / 4)
+    }
+  }
+  
+  StartingPage(store:any) {
+    if (store === 'popularStore') {
+      this.psCurrentPage = 1;
+      this.psStartIndex = 0;
+      this.psEndIndex = 4;
+    }
+    if (store === 'nearByStore') {
+      this.nsCurrentPage = 1;
+      this.nsStartIndex = 0;
+      this.nsEndIndex = 4;
+    }
+  }
 }

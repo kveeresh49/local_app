@@ -1,79 +1,78 @@
-<div class="menu-bar">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid">
-        <div class="ms-3"></div>
-        s
-        <div
-          class="burger-menu me-5 sidebar-opener"
-          (click)="sidebarShow = !sidebarShow"
-        >
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div class="collapse navbar-collapse ms-4" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto align-items-center">
-            <li class="nav-item">
-              <span
-                class="nav-link"
-                href="/home"
-                routerLink="/home"
-                routerLinkActive="active"
-                >Medical</span
-              >
-            </li>
-            <li class="nav-item">
-              <span
-                class="nav-link"
-                href="/home"
-                routerLink="/home"
-                routerLinkActive="active"
-                >Groceries</span
-              >
-            </li>
-            <li class="nav-item">
-              <span class="nav-link" routerLinkActive="active">Liquor</span>
-            </li>
-            <li class="nav-item">
-              <span class="nav-link" routerLinkActive="active"
-                >Fruits & Vegetables</span
-              >
-            </li>
-            <li class="nav-item">
-              <span class="nav-link" routerLinkActive="active"
-                >From the Farms</span
-              >
-            </li>
-            <li class="nav-item">
-              <span class="nav-link" href="" routerLinkActive="active"
-                >Terrace Gardens</span
-              >
-            </li>
-            <li class="nav-item">
-              <span class="nav-link" href="" routerLinkActive="active"
-                >Gallery</span
-              >
-            </li>
-          </ul>
-        </div>
+<div class="menu-bar" style="position: sticky; top: 69px; z-index: 2">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <div class="ms-3"></div>
+      s
+      <div
+        class="burger-menu me-5 sidebar-opener"
+        (click)="sidebarShow = !sidebarShow"
+      >
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
-    </nav>
-  
-    <div class="sidebar-slider" [class.sidebar-slide-in]="sidebarShow">
-      <div class="text-start ps-4 sidebar-close">
-        <button
-          type="button"
-          class="btn-close mt-2"
-          aria-label="Close"
-          (click)="sidebarShow = !sidebarShow"
-        ></button>
-      </div>
-      <div class="sidebar-content">
-        <app-side-nav
-          [sidebarShow]="sidebarShow"
-          (closeSidebar)="closeSideNav($event)"
-        ></app-side-nav>
+      <div class="collapse navbar-collapse ms-4" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto align-items-center">
+          <li class="nav-item">
+            <span
+              class="nav-link"
+              href="/home"
+              routerLink="/home"
+              routerLinkActive="active"
+              >Medical</span
+            >
+          </li>
+          <li class="nav-item">
+            <span
+              class="nav-link"
+              href="/home"
+              routerLink="/home"
+              routerLinkActive="active"
+              >Groceries</span
+            >
+          </li>
+          <li class="nav-item">
+            <span class="nav-link" routerLinkActive="active">Liquor</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link" routerLinkActive="active"
+              >Fruits & Vegetables</span
+            >
+          </li>
+          <li class="nav-item">
+            <span class="nav-link" routerLinkActive="active"
+              >From the Farms</span
+            >
+          </li>
+          <li class="nav-item">
+            <span class="nav-link" href="" routerLinkActive="active"
+              >Terrace Gardens</span
+            >
+          </li>
+          <li class="nav-item">
+            <span class="nav-link" href="" routerLinkActive="active"
+              >Gallery</span
+            >
+          </li>
+        </ul>
       </div>
     </div>
+  </nav>
+
+  <div class="sidebar-slider" [class.sidebar-slide-in]="sidebarShow">
+    <div class="text-start ps-4 sidebar-close">
+      <button
+        type="button"
+        class="btn-close mt-2"
+        aria-label="Close"
+        (click)="sidebarShow = !sidebarShow"
+      ></button>
+    </div>
+    <div class="sidebar-content">
+      <app-side-nav
+        [sidebarShow]="sidebarShow"
+        (closeSidebar)="closeSideNav($event)"
+      ></app-side-nav>
+    </div>
   </div>
-  
+</div>
