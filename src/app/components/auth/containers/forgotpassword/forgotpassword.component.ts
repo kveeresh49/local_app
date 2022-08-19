@@ -116,10 +116,6 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
     }, 1);
   }
 
-  navigateToLoging() {
-    this.router.navigate(['/login']);
-  }
-
   navigateToAccount(): void {
     this.router.navigate(['/create-account']);
   }
