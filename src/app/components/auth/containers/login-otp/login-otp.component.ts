@@ -2,12 +2,14 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgOtpInputComponent } from 'ng-otp-input';
+import { CookieService } from 'ngx-cookie-service';
 import {
   SearchCountryField,
   CountryISO,
   PhoneNumberFormat,
 } from 'ngx-intl-tel-input';
 import Validation from 'src/shared/utils/validation';
+import { AuthService } from '../../auth.service';
 //import { NgOtpInputComponent } from 'ng-otp-input';
 @Component({
   selector: 'app-login-otp',
@@ -34,8 +36,14 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   otpForm: FormGroup;
   otp: any;
   submitted = false;
+  alerts: any[];
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit(): void {
     this.oTpheader = 'Send OTP';
@@ -52,7 +60,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
 
   createForm() {
     this.otpForm = this.fb.group({
-      phone: ['', [Validators.required, Validators.minLength(10)]],
+      mobile: ['', [Validators.required, Validators.minLength(10)]],
       otp: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -95,6 +103,33 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
     this.submitted = true;
     console.log(this.otpForm.valid);
     if (this.otpForm.valid) {
+      let otpObj = {
+        mobile: this.otpForm.get('mobile')?.value.number,
+        otp: this.otpForm.get('otp')?.value,
+      };
+      this.authService.otpLogin$(otpObj).subscribe({
+        next: (userToken: any) => {
+          this.cookieService.set(
+            'userToken',
+            JSON.stringify(userToken['token'])
+          );
+          this.cookieService.get('userToken');
+          this.router.navigate(['/local-dashboard']);
+        },
+        error: (e) => {
+          this.alerts = [];
+          let error = {
+            type: 'danger',
+            msg: `${e.error}`,
+            timeout: 5000,
+          };
+          // this.isLoggedIn = true;
+          // this.verifyOtpFormSubmit = false;
+          // this.clearCreateFormValidators();
+          this.alerts.push(error);
+          console.error(e);
+        },
+      });
       this.router.navigate(['/local-dashboard']);
     }
   }

@@ -5,21 +5,19 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
 } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cookieService: CookieService) {}
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log(next);
-    console.log(state);
+    console.log(this.cookieService.get('userToken'));
+    if (
+      this.cookieService.get('userToken') !== null &&
+      this.cookieService.get('userToken') !== ''
+    ) {
+      this.router.navigate(['/local-dashboard']);
+    }
     return true;
-//     if (sessionStorage.getItem('token')) {
-//         this.router.navigate(['/local-dashboard']);
-//       return true;
-//     }
-//     //this.router.navigate(['/login']);
-//     return false;
-
-//   }
-}
+  }
 }

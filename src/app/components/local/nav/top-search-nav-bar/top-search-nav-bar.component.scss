@@ -111,3 +111,29 @@ font-size: 12px !important;
   width: 20px;
   height: 20px;
 }
+
+
+
+.sidebar-slider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateX(-100%);
+  transition: ease-in-out 300ms transform;
+  z-index: 2;
+}
+
+.sidebar-slider.sidebar-slide-in {
+  transform: translateX(0%);
+  transition: ease-in-out 600ms transform;
+}
+
+.sidebar-close {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: #2d3648;
+  cursor: pointer;
+  padding: 16px;
+}

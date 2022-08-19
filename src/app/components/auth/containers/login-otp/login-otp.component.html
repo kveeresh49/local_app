@@ -1,5 +1,6 @@
 <div>
   <app-landinglogo></app-landinglogo>
+  <app-alert [alerts]="alerts"></app-alert>
   <section class="container-fluid">
     <div class="row">
       <div class="col-sm col-lg col-md">
@@ -37,12 +38,12 @@
                       [maxLength]="10"
                       [phoneValidation]="true"
                       [customPlaceholder]="'950xxxxxxx0'"
-                      name="phone"
-                      formControlName="phone"
-                      name="phone"
+                      name="mobile"
+                      formControlName="mobile"
+                      name="mobile"
                       #phoneField
                       [ngClass]="{
-                        'is-invalid': submitted && f?.phone?.errors
+                        'is-invalid': submitted && f?.mobile?.errors
                       }"
                     ></ngx-intl-tel-input>
                   </div>
@@ -60,11 +61,11 @@
                     {{ oTpheader }}
                   </button>
                 </div>
-                <div class="isInvalid" *ngIf="submitted && f?.phone?.errors">
-                  <div *ngIf="f.phone?.errors?.required">
+                <div class="isInvalid" *ngIf="submitted && f?.mobile?.errors">
+                  <div *ngIf="f.mobile?.errors?.required">
                     Phone Number is required
                   </div>
-                  <div *ngIf="f.phone?.errors?.validatePhoneNumber">
+                  <div *ngIf="f.mobile?.errors?.validatePhoneNumber">
                     Phone Number must be 10 characters
                   </div>
                 </div>
@@ -74,7 +75,7 @@
                   One Time Password (OTP).
                 </div>
                 <div class="mt-2 local-form-label" *ngIf="newOtpFlag">
-                  Not recieved your code?
+                  Not received your code?
                   <span class="orange"> click on Resend </span>
                 </div>
               </div>

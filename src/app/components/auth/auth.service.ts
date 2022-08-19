@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { UserAccount } from './models/user-account';
-import { UserDetails } from './models/user-deatils';
-
+import { AccountDetails } from './models/account-details';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,10 +12,20 @@ export class AuthService {
     return `${environment.devApi}`;
   }
 
-  createUserAccount$(userAccountDetails: UserAccount) {
+  createUserAccount$(userAccountDetails: AccountDetails) {
     return this.http.post(`${this.apiUrl}User`, userAccountDetails);
   }
-  userLogin$(userLoginDetails:UserDetails) {
-    return this.http.post(`${this.apiUrl}User/AuthenticateUser?userName=v1@gamil.com&password=111111`,{});
+  userLogin$(userLoginDetails: AccountDetails) {
+    return this.http.post(
+      `${this.apiUrl}User/AuthenticateUser`,
+      userLoginDetails
+    );
+  }
+
+  otpLogin$(otpLogin: any) {
+    return this.http.post(`${this.apiUrl}User/OTPLogin`, otpLogin);
+  }
+  resetPassword$(accountDetails:AccountDetails){
+    return this.http.post(`${this.apiUrl}User/Reset`, accountDetails);
   }
 }
