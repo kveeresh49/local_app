@@ -200,7 +200,7 @@ export class CreateAccountComponent implements OnInit {
       this.createAccountFormObj();
       this.authService.createUserAccount$(this.accountDetails).subscribe({
         next: (accountDetails) => {
-          this.router.navigate(['/local-dashboard']);
+          this.router.navigate(['dashboard']);
         },
         error: (e) => {
           this.alerts = [];

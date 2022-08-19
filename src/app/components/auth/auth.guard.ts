@@ -16,7 +16,7 @@ export class AuthGuard implements CanActivate {
       this.cookieService.get('userToken') !== null &&
       this.cookieService.get('userToken') !== ''
     ) {
-      this.router.navigate(['/local-dashboard']);
+      this.router.navigate(['dashboard']);
     }
     return true;
   }

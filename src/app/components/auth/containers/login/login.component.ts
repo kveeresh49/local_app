@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
             JSON.stringify(userToken['token'])
           );
           this.cookieService.get('userToken');
-          this.router.navigate(['/local-dashboard']);
+          this.router.navigate(['dashboard']);
         },
         error: (e) => {
           this.alerts = [];

@@ -29,7 +29,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   ];
   timeLeft: number = 10;
   interval: any;
-  oTpheader: string;
+  otpHeader: string;
   isOtpDisabled = false;
   newOtpFlag = false;
   otpForm: FormGroup;
@@ -45,7 +45,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this.oTpheader = 'Send OTP';
+    this.otpHeader = 'Send OTP';
     this.createForm();
   }
 
@@ -76,7 +76,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   sendOTP(): void {
     this.ngOtpInput.otpForm.enable();
     this.newOtpFlag = false;
-    this.oTpheader = 'Resend OTP';
+    this.otpHeader = 'Resend OTP';
     this.timeLeft = 30;
     this.isOtpDisabled = true;
     this.interval = setInterval(() => {
@@ -113,7 +113,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
             JSON.stringify(userToken['token'])
           );
           this.cookieService.get('userToken');
-          this.router.navigate(['/local-dashboard']);
+          this.router.navigate(['dashboard']);
         },
         error: (e) => {
           this.alerts = [];
@@ -129,7 +129,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
           console.error(e);
         },
       });
-      this.router.navigate(['/local-dashboard']);
+      this.router.navigate(['dashboard']);
     }
   }
 }

@@ -37,6 +37,6 @@ export class SideNavComponent implements OnInit {
     this.sidebarShow = false;
     this.closeSidebar.emit(this.sidebarShow);
     this.clickEvent.emit(true);
-    this.router.navigate(['./local-dashboard']);
+    this.router.navigate(['.dashboard']);
   }
 }
