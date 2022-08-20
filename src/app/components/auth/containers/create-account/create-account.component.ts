@@ -201,6 +201,7 @@ export class CreateAccountComponent implements OnInit {
       this.authService.createUserAccount$(this.accountDetails).subscribe({
         next: (accountDetails) => {
           this.router.navigate(['dashboard']);
+          this.authService.isloggedInUser.next(true);
         },
         error: (e) => {
           this.alerts = [];

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountDetails } from './models/account-details';
 @Injectable({
@@ -7,6 +8,7 @@ import { AccountDetails } from './models/account-details';
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
+  isloggedInUser = new BehaviorSubject<boolean>(false);
 
   get apiUrl(): string {
     return `${environment.devApi}`;

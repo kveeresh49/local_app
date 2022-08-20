@@ -117,6 +117,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
             JSON.stringify(userToken['token'])
           );
           this.cookieService.get('userToken');
+          this.authService.isloggedInUser.next(true);
           this.router.navigate(['/dashboard']);
         },
         error: (e) => {

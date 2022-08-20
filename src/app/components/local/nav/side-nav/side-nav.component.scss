@@ -67,10 +67,10 @@
       padding: 0;
       margin: 10px 30px;
 
-      // &.active,
-      //     &:hover {
-      //         color: #FF7A00;
-      //     }
+      &.active,
+          &:hover {
+              color: #FF7A00;
+          }
     }
   }
 }
