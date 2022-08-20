@@ -1,34 +1,30 @@
 <div class="sidebar-slider" [class.sidebar-slide-in]="sidebarShow">
-    <div class="sidebar-content">
+  <div class="sidebar-content">
     <div class="sidemenu text-center border">
       <div class="">
-        <button
-          type="button"
-          class="btn-close"
-          aria-label="Close"
-          (click)="closeSideNav()"
-        ></button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeSideNav()"></button>
       </div>
       <div class="profile">
         <span class="profile-logo">
           v
         </span>
         <div>
-          <h3 class="local-admin-name">
-            viswanath Gowtham bjhbhjhdfgdgdssggggggggggg
+          <h3 class="local-admin-name" *ngIf="!isLoginUserFlag else loggedInUser">
+            Guest
           </h3>
-          <p class="m-auto local-admin-id">123456789101112</p>
-          <p class="m-auto local-admin-mail">vamshi@gmail.com</p>
+          <ng-template #loggedInUser>
+            <h3 class="local-admin-name">
+              viswanath Gowtham
+            </h3>
+            <p class="m-auto local-admin-id">123456789101112</p>
+            <p class="m-auto local-admin-mail">vamshi@gmail.com</p>
+          </ng-template>
         </div>
       </div>
       <div class="navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto text-start">
           <li class="nav-item">
-            <img
-              src="../../../../assets/images/profile-icons/orders.png"
-              alt=""
-              class="icons"
-            />
+            <img src="../../../../assets/images/profile-icons/orders.png" alt="" class="icons" />
             <span class="nav-link ms-5" routerLinkActive="active">Orders</span>
             <b class="fw-bolder arrow"> ></b>
           </li>
@@ -49,9 +45,7 @@
           </li>
           <li class="nav-item">
             <img src="../../../../assets/images/profile-icons/Flow-of-local.png" alt="" />
-            <span class="nav-link ms-5" routerLinkActive="active"
-              >Flow of local</span
-            >
+            <span class="nav-link ms-5" routerLinkActive="active">Flow of local</span>
             <b class="fw-bolder arrow"> ></b>
           </li>
           <li class="nav-item">
@@ -66,18 +60,18 @@
           </li>
           <li class="nav-item">
             <img src="../../../../assets/images/profile-icons/Refer-a-store.png" alt="" />
-            <span class="nav-link ms-5" routerLinkActive="active"
-              >Refer a store</span
-            >
+            <span class="nav-link ms-5" routerLinkActive="active">Refer a store</span>
             <b class="fw-bolder arrow"> ></b>
           </li>
           <li class="nav-item">
             <img src="../../../../assets/images/profile-icons/Logout.png" alt="" />
-            <span class="nav-link ms-5" routerLinkActive="active" (click)="logout()"> Logout</span>
+            <span class="nav-link ms-5" routerLinkActive="active" (click)="logout()" *ngIf="isLoginUserFlag"> Logout</span>
+            <span class="nav-link ms-5" routerLinkActive="active" (click)="navigateLogin()" *ngIf="!isLoginUserFlag"> Login</span>
+            
             <b class="fw-bolder arrow"> ></b>
           </li>
         </ul>
       </div>
     </div>
-    </div>
   </div>
+</div>

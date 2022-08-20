@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from 'src/app/components/auth/auth.service';
 
 @Component({
   selector: 'app-top-search-nav-bar',
@@ -11,13 +12,14 @@ export class TopSearchNavBarComponent implements OnInit {
   public sidebarShow: boolean = false;
   isLoginUserFlag = false;
   @Input() store: boolean;
-  constructor(private cookieService: CookieService, private router: Router) {}
+  constructor(private cookieService: CookieService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.isLoginUser();
   }
 
   isLoginUser() {
+    this.authService.isloggedInUser.subscribe(value => this.isLoginUserFlag = value);
     if (
       this.cookieService.get('userToken') !== null &&
       this.cookieService.get('userToken') !== ''
@@ -38,9 +40,9 @@ export class TopSearchNavBarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  isLogout(event:boolean){
+  isLogout(event: boolean) {
 
-    if(event){
+    if (event) {
       this.isLoginUser();
     }
 

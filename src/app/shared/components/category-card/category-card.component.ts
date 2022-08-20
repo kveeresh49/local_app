@@ -145,15 +145,15 @@ export class CategoryCardComponent implements OnInit {
   if (n > slides.length) {this.slideIndex = 1}    
   if (n < 1) {this.slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
-      slides[i].classList.add('none'); 
-      slides[i].classList.remove('block'); 
+      slides[i]?.classList.add('none'); 
+      slides[i]?.classList.remove('block'); 
   }
   for (i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(' active', '');
   }
-  slides[this.slideIndex-1].classList.add('block');
+  slides[this.slideIndex-1]?.classList.add('block');
   dots[this.slideIndex-1].className += ' active';
-  slides[i].classList.remove('none');
+  slides[i]?.classList?.remove('none');
 }
 
 storeScroll(type:string) {

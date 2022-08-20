@@ -195,12 +195,12 @@ export class CreateAccountComponent implements OnInit {
 
   createAccount(): void {
     this.verifyOtpFormSubmit = true;
-    console.log(this.verifyOtpForm.valid, 'this.verifyOtpForm');
     if (this.verifyOtpForm.valid) {
       this.createAccountFormObj();
       this.authService.createUserAccount$(this.accountDetails).subscribe({
         next: (accountDetails) => {
           this.router.navigate(['dashboard']);
+          this.authService.isloggedInUser.next(true);
         },
         error: (e) => {
           this.alerts = [];

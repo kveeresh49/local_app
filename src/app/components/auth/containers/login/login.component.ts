@@ -62,16 +62,16 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.submitted = true;
+    this.setCreateFormValidators();
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value, 'this.loginForm.value');
       this.authService.userLogin$(this.loginForm.value).subscribe({
         next: (userToken: any) => {
-          console.log(JSON.stringify(userToken['token']), 'token');
           this.cookieService.set(
             'userToken',
             JSON.stringify(userToken['token'])
           );
           this.cookieService.get('userToken');
+          this.authService.isloggedInUser.next(true);
           this.router.navigate(['dashboard']);
         },
         error: (e) => {
@@ -82,12 +82,34 @@ export class LoginComponent implements OnInit {
             timeout: 5000,
           };
           this.alerts.push(error);
+          this.clearCreateFormValidators();
           console.error(e);
+          this.submitted = false;
         },
       });
     }
   }
+
   requestOTP() {
     this.router.navigate(['/otp']);
+  }
+
+  clearCreateFormValidators(): void {
+    this.loginForm.get('password')?.reset('');
+    this.loginForm.get('password')?.clearValidators();
+    this.loginForm.get('password')?.updateValueAndValidity();
+  }
+
+  
+  setCreateFormValidators(): void {
+    this.loginForm
+      .get('password')
+      ?.setValidators([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(40),
+      ]);
+    this.loginForm.get('password')?.updateValueAndValidity();
+    this.loginForm.updateValueAndValidity();
   }
 }
