@@ -86,24 +86,24 @@ select::-ms-expand {
 
 .fa-search {
   padding: 10px;
-    font-size: 15px;
-    color: #6a6868;
-    right: 0px;
-    top: 5px;
-    bottom: 0;
+  font-size: 15px;
+  color: #6a6868;
+  right: 0px;
+  top: 5px;
+  bottom: 0;
 }
 .form-control {
   // width: 90%;
   padding: 10px 30px;
   background-color: #e7e7e7;
-font-size: 12px !important;
+  font-size: 12px !important;
   // text-align: center;
 }
 
 .form-control:focus {
   box-shadow: none;
 }
-.form-control::placeholder{
+.form-control::placeholder {
   font-size: 12px !important;
 }
 
@@ -111,8 +111,6 @@ font-size: 12px !important;
   width: 20px;
   height: 20px;
 }
-
-
 
 .sidebar-slider {
   position: fixed;
@@ -136,4 +134,11 @@ font-size: 12px !important;
   color: #2d3648;
   cursor: pointer;
   padding: 16px;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 2;
 }

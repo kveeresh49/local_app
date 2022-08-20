@@ -1,4 +1,4 @@
-<div style="height: 70px;" class="d-flex align-items-center position-sticky top-0">
+<div [ngClass]="{ 'sticky': !store }" style="height: 70px;" class="d-flex align-items-center position-sticky top-0">
   <div class="d-flex col-4 align-items-center justify-content-around">
     <img src="../../../../assets/images/brand-logo.png" alt="" width="100px" />
     <div class="text-start" data-bs-toggle="offcanvas" data-bs-target="#deliverAddress" aria-controls="deliverAddress"
