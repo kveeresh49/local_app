@@ -105,7 +105,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
     console.log(this.otpForm.valid);
     if (this.otpForm.valid) {
       let otpObj = {
-        mobile: this.otpForm.get('mobile')?.value.number,
+        mobileNumber: this.otpForm.get('mobile')?.value.number,
         otp: this.otpForm.get('otp')?.value,
         email: this.otpForm.get('email')?.value,
         password: this.otpForm.get('password')?.value,
