@@ -63,10 +63,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.submitted = true;
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value, 'this.loginForm.value');
       this.authService.userLogin$(this.loginForm.value).subscribe({
         next: (userToken: any) => {
-          console.log(JSON.stringify(userToken['token']), 'token');
           this.cookieService.set(
             'userToken',
             JSON.stringify(userToken['token'])
