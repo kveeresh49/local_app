@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/components/auth/auth.service';
@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/components/auth/auth.service';
 export class TopSearchNavBarComponent implements OnInit {
   public sidebarShow: boolean = false;
   isLoginUserFlag = false;
+  @Input() store: boolean;
   constructor(private cookieService: CookieService, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
