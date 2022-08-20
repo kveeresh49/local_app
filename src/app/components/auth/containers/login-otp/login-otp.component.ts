@@ -9,7 +9,6 @@ import {
   PhoneNumberFormat,
 } from 'ngx-intl-tel-input';
 import { AuthService } from '../../auth.service';
-//import { NgOtpInputComponent } from 'ng-otp-input';
 @Component({
   selector: 'app-login-otp',
   templateUrl: './login-otp.component.html',

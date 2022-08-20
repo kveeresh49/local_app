@@ -70,8 +70,10 @@ export class LoginComponent implements OnInit {
             'userToken',
             JSON.stringify(userToken['token'])
           );
-          this.cookieService.get('userToken');
-          this.authService.isloggedInUser.next(true);
+          this.authService.loginUserDetailSub$.next(userToken);
+          this.authService.getLoginUserDetails$().subscribe((data) => {
+            console.log(data);
+          })
           this.router.navigate(['dashboard']);
         },
         error: (e) => {

@@ -55,6 +55,7 @@ export class SideNavComponent implements OnInit {
   logout() {
     this.cookieService.delete('userToken');
     this.authService.isloggedInUser.next(false);
+    this.authService.loginUserDetailSub$.next(null);
     this.sidebarShow = false;
     this.closeSidebar.emit(this.sidebarShow);
     this.clickEvent.emit(true);
