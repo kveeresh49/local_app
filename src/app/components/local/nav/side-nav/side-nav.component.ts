@@ -37,6 +37,7 @@ export class SideNavComponent implements OnInit {
   }
 
   isLoginUser() {
+    this.authService.isloggedInUser.subscribe(value => this.isLoginUserFlag = value);
     if (
       this.cookieService.get('userToken') !== null &&
       this.cookieService.get('userToken') !== ''
@@ -45,7 +46,6 @@ export class SideNavComponent implements OnInit {
     } else {
       this.isLoginUserFlag = false;
     }
-    this.authService.isloggedInUser.subscribe(value => this.isLoginUserFlag = value);
   }
 
   navigateLogin() {
