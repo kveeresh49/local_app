@@ -1,31 +1,30 @@
 <app-top-search-nav-bar></app-top-search-nav-bar>
-<div>
-  <div class="store_img_fixed">
-    <img
-      src="../../assets/images/store-images/bhabji-sabji-store.png"
-      alt="Bhabji-sabji-store-image"
-      class="store-1_img_resolution"
-    />
-    <div class="store_description_card">
-      <img
-        src="../../assets/images/store-images/back-arrow.png"
-        alt="Back"
-        class="back-arrow_alignment"
-      />
-      <div class="store_name">Bhabji Sabji</div>
-      <div class="store_address">
-        <div>
-          Vegetables, Fruits, Greens East Maredpally, Secunderabad, Hyderabad
-        </div>
-        <div>Open now - 9am - 9pm</div>
+
+<div #storeDetails class="d-flex position-sticky store-details">
+  <div
+    class="store-description"
+    style="
+      width: 35%;
+      background-color: rgba(91, 182, 0, 0.9);
+      backdrop-filter: blur(4px);
+    "
+  >
+    <img src="../../assets/images/store-images/back-arrow.png" alt="Back" />
+    <div class="store-content">
+      <h3 class="text-white">Bhabji Sabji</h3>
+      <div class="text-white mt-1">Vegetables, Fruits, Greens</div>
+      <div class="text-white mt-1">
+        East Maredpally, Secunderabad, Hyderabad
       </div>
-      <div class="store_rating">
-        <div class="ms-1">4.5</div>
-        <div style="font-size: 13px; margin: 2px 0 0 2px">
+      <div class="text-white mt-1">Open now - 9am - 9pm</div>
+      <div class="d-flex align-items-center mt-2 store-rating-container">
+        <div class="store-rating">4.5</div>
+        <div style="font-size: 10px" class="mx-1">
           <i class="fa-solid fa-star"></i>
         </div>
       </div>
     </div>
   </div>
-  <app-store-navbar></app-store-navbar>
 </div>
+
+<app-store-navbar></app-store-navbar>
