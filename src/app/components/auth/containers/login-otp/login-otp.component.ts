@@ -61,6 +61,8 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
     this.otpForm = this.fb.group({
       mobile: ['', [Validators.required, Validators.minLength(10)]],
       otp: ['', [Validators.required, Validators.minLength(6)]],
+      email: '',
+      password: '',
     });
   }
 
@@ -105,6 +107,8 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
       let otpObj = {
         mobile: this.otpForm.get('mobile')?.value.number,
         otp: this.otpForm.get('otp')?.value,
+        email: this.otpForm.get('email')?.value,
+        password: this.otpForm.get('password')?.value,
       };
       this.authService.otpLogin$(otpObj).subscribe({
         next: (userToken: any) => {
@@ -113,7 +117,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
             JSON.stringify(userToken['token'])
           );
           this.cookieService.get('userToken');
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['/dashboard']);
         },
         error: (e) => {
           this.alerts = [];
@@ -129,7 +133,6 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
           console.error(e);
         },
       });
-      this.router.navigate(['dashboard']);
     }
   }
 }
