@@ -8,6 +8,7 @@ import { LocalModule } from './components/local/local.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtInterceptor } from './shared/helpers/jwt-interceptor';
+//import { NgxSpinnerModule } from "ngx-bootstrap-spinner";
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,6 +18,7 @@ import { JwtInterceptor } from './shared/helpers/jwt-interceptor';
     HttpClientModule,
     AuthModule,
     LocalModule,
+    //NgxSpinnerModule
   ],
   providers: [CookieService,{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent],

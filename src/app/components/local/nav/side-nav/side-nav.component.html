@@ -6,13 +6,18 @@
       </div>
       <div class="profile">
         <span class="profile-logo">
-          v
+          <span *ngIf="!isLoginUserFlag else loggedInUser">
+            G
+          </span>
+          <ng-template #loggedInUser>
+            V
+          </ng-template>
         </span>
         <div>
-          <h3 class="local-admin-name" *ngIf="!isLoginUserFlag else loggedInUser">
+          <h3 class="local-admin-name mt-2" *ngIf="!isLoginUserFlag else loggedInUserDetail">
             Guest
           </h3>
-          <ng-template #loggedInUser>
+          <ng-template #loggedInUserDetail>
             <h3 class="local-admin-name">
               viswanath Gowtham
             </h3>
@@ -23,17 +28,17 @@
       </div>
       <div class="navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto text-start">
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isLoginUserFlag">
             <img src="../../../../assets/images/profile-icons/orders.png" alt="" class="icons" />
             <span class="nav-link ms-5" routerLinkActive="active">Orders</span>
             <b class="fw-bolder arrow"> ></b>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isLoginUserFlag">
             <img src="../../../../assets/images/profile-icons/Favorites.png" alt="" />
             <span class="nav-link ms-5" routerLinkActive="active">Favorites</span>
             <b class="fw-bolder arrow"> ></b>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isLoginUserFlag">
             <img src="../../../../assets/images/profile-icons/wallet.png" alt="" />
             <span class="nav-link ms-5" routerLinkActive="active">Wallet</span>
             <b class="fw-bolder arrow"> ></b>
@@ -48,12 +53,12 @@
             <span class="nav-link ms-5" routerLinkActive="active">Flow of local</span>
             <b class="fw-bolder arrow"> ></b>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isLoginUserFlag">
             <img src="../../../../assets/images/profile-icons/setteing.png" alt="" />
             <span class="nav-link ms-5" routerLinkActive="active">Setting</span>
             <b class="fw-bolder arrow"> ></b>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isLoginUserFlag">
             <img src="../../../../assets/images/profile-icons/Analytics.png" alt="" />
             <span class="nav-link ms-5" routerLinkActive="active">Analytics</span>
             <b class="fw-bolder arrow"> ></b>
