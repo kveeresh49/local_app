@@ -108,7 +108,7 @@ export class StoreDetailsComponent implements OnInit,AfterViewInit {
     },
   ];
 
-  offers = [
+  public offers = [
     {
       offerText: "40 % off upto ₹ 100/- on orders above ₹ 799/-",
       coupon: "MYLOCAL",
@@ -132,7 +132,7 @@ export class StoreDetailsComponent implements OnInit,AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.showSlides(this.slideIndex);
+    this.activeSlide(this.slideIndex);
   }
 
   public onSelectCategory(categoryId: number): void {
@@ -170,15 +170,15 @@ export class StoreDetailsComponent implements OnInit,AfterViewInit {
     }, 0);
   }
 
-  plusSlides(n:any) {
-    this.showSlides(this.slideIndex += n);
+  public slideChange(n:number): void {
+    this.activeSlide(this.slideIndex += n);
   }
   
-   currentSlide(n:any) {
-    this.showSlides(this.slideIndex = n);
+  public currentSlideIndicator(n:number): void {
+    this.activeSlide(this.slideIndex = n);
   }
   
-   showSlides(n:any) {
+  private activeSlide(n:number): void {
     let i;
     let slides = document.getElementsByClassName("myOffers");
     let dots = document.getElementsByClassName("dot");
