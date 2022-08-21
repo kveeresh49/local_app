@@ -24,7 +24,15 @@
 
 <div class="container-fluid" style="padding-left: 0">
   <div class="row">
-    <div style="width: 350px; margin-top: 3.5rem">
+    <div
+      style="
+        width: 270px;
+        margin-top: 3.5rem;
+        height: 310px;
+        position: sticky;
+        top: 220px;
+      "
+    >
       <div
         class="card text-end"
         style="
@@ -65,7 +73,16 @@
       </div>
     </div>
     <div class="col-6" style="height: 1000px">
-      <div class="row">
+      <div
+        class="row"
+        style="
+          height: 57px;
+          position: sticky;
+          top: 164px;
+          background: white;
+          z-index: 1;
+        "
+      >
         <div class="col-8">
           <div
             class="d-flex mt-4"
@@ -169,10 +186,47 @@
         </div>
       </div>
     </div>
-    <div class="col-3 mt-3">
+    <div
+      class="col-3 mt-4"
+      style="position: sticky; top: 190px; height: 300px; background: white"
+    >
       <div class="d-flex flex-column" style="gap: 20px">
-        <div class="card">
-          <div class="card-body">Offers goes here.</div>
+        <div class="card ms-3" style="border: 2px solid #5bb600">
+          <a class="prev" (click)="plusSlides(-1)"
+            ><img
+              src="../../../assets/images/left-vector.png"
+              alt="Previous"
+              style="width: 9px"
+          /></a>
+          <div class="card-body p-1" style="font-size: 11px">
+            <div *ngFor="let offer of offers" class="myOffers">
+              <div class="d-flex justify-content-around">
+                <img
+                  src="../../../assets/images/offer-green.png"
+                  alt=""
+                  width="30px"
+                  height="30px"
+                />
+                <div>
+                  <div>{{ offer.offerText }}</div>
+                  <div class="text-start">
+                    Use code <b>{{ offer.coupon }}</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="next" (click)="plusSlides(1)"
+            ><img
+              src="../../../assets/images/right-vector.png"
+              alt="Next"
+              style="width: 9px"
+          /></a>
+        </div>
+        <div class="dot-container">
+          <span *ngFor="let offer of offers; index as idx">
+            <span class="dot" (click)="currentSlide(idx + 1)"></span>
+          </span>
         </div>
         <div *ngIf="!cart.length; else elseTemplate">
           <img width="100%" src="assets/images/cart-empty.png" />

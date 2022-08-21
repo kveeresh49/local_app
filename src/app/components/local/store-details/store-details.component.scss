@@ -188,3 +188,66 @@
   text-align: center;
   color: white;
 }
+
+.myOffers {
+  display: none;
+  text-align: center;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  text-decoration: none;
+  top: 15%;
+}
+
+/* Position the "next button" to the right */
+.next {
+  position: absolute;
+  right: -15px;
+}
+.prev {
+  left: -15px;
+}
+
+// .prev:hover, .next:hover {
+//   background-color: rgba(0,0,0,0.8);
+//   color: white;
+// }
+
+/* The dot/bullet/indicator container */
+.dot-container {
+  text-align: center;
+  margin-top: -22px;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  margin: 0 2px;
+  width: 5px;
+  height: 5px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+/* Add a background color to the active dot/circle */
+.active,
+.dot:hover {
+  width: 8px;
+  height: 5px;
+  background: #949292;
+  border-radius: 4px;
+}
+
+.none {
+  display: none;
+}
+
+.block {
+  display: block;
+}
