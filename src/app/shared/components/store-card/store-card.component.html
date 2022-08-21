@@ -1,9 +1,9 @@
 <app-category-card></app-category-card>
 
-<section class="container-fluid mb-5 position-relative">
+<section class="container mb-4 position-relative">
+  <h2 class="text-start mb-5">Popular Stores</h2>
   <div class="flex" style="justify-content: center">
-    <h2 class="text-center mb-5">Popular Stores</h2>
-    <div style="position: absolute; right: 75px; top: 15px">
+    <div style="position: absolute; right: 75px; top: 15px;margin-bottom: 20px;">
       <span>Page {{ psCurrentPage }} of {{ pageSize("popularStore") }}</span>
       <span *ngIf="psCurrentPage != 1">
         <span
@@ -36,7 +36,7 @@
     (click)="scrollStores('popularStore', 'prev')"
   />
     <div class="container">
-      <div class="row justify-content-center"  style="gap: 40px;">
+      <div class="row justify-content-center"  style="gap: 38px;">
         <ng-container
         *ngFor="let popularCard of popularCards; let idx = index"
         >
@@ -126,16 +126,16 @@
     width="14px"
     height="25px"
     class="cursor-pointer"
-    style="position: absolute; top: 50%; right: 18px"
+    style="position: absolute; top: 50%; right: -20px"
     *ngIf="psEndIndex <= popularCards.length && popularCards.length > 4"
     (click)="scrollStores('popularStore', 'next')"
   />
 </section>
 
-<section class="container-fluid mb-5 position-relative">
-  <div class="flex" style="justify-content: center">
-    <h2 class="text-center mb-5">Nearby You</h2>
-    <div style="position: absolute; right: 75px; top: 15px">
+<section class="container mb-5 position-relative">
+  <h2 class="text-start mb-4">Nearby You</h2>
+  <div class="flex " style="justify-content: center">
+    <div style="position: absolute; right: 75px; top: 15px; margin-bottom: 20px;">
       <span>Page {{ nsCurrentPage }} of {{ pageSize("nearByStore") }}</span>
       <span *ngIf="nsCurrentPage != 1">
         <span
@@ -168,7 +168,7 @@
     (click)="scrollStores('nearByStore', 'prev')"
   />
     <div class="container">
-      <div class="row justify-content-center"  style="gap: 40px;">
+      <div class="row justify-content-center"  style="gap: 38px;">
         <ng-container
         *ngFor="let slide of slides; let idx = index"
         >
@@ -258,7 +258,7 @@
     width="14px"
     height="25px"
     class="cursor-pointer"
-    style="position: absolute; top: 50%; right: 18px"
+    style="position: absolute; top: 50%; right: -20px"
     *ngIf="nsEndIndex <= slides.length && slides.length > 4"
     (click)="scrollStores('nearByStore', 'next')"
   />
@@ -376,7 +376,7 @@
                 srcset=""
                 class="percentage-icon"
               />
-              <!-- <i class="fa-solid fa-star" style="color: #ff7a00"></i> 
+              <!-- <i class="fa-solid fa-star" style="color: #ff7a00"></i>
               <span class="discount-in-percentage">
                 {{ popularCard.discountText }}% Off</span
               >
@@ -518,7 +518,7 @@
                 srcset=""
                 class="percentage-icon"
               />
-              <!-- <i class="fa-solid fa-star" style="color: #ff7a00"></i> 
+              <!-- <i class="fa-solid fa-star" style="color: #ff7a00"></i>
               <span class="discount-in-percentage">
                 {{ slide.discountText }}% Off</span
               >
