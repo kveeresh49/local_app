@@ -5,8 +5,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from './components/auth/auth.module';
 import { LocalModule } from './components/local/local.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { JwtInterceptor } from './shared/helpers/jwt-interceptor';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,7 +18,7 @@ import { CookieService } from 'ngx-cookie-service';
     AuthModule,
     LocalModule,
   ],
-  providers: [CookieService],
+  providers: [CookieService,{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
