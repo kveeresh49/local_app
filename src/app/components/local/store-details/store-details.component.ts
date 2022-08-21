@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-store-details',
@@ -123,7 +124,7 @@ export class StoreDetailsComponent implements OnInit,AfterViewInit {
     },
   ];
 
-  constructor() {}
+  constructor(private router:Router) {}
 
   ngOnInit(): void {
     document.body.scrollTop = 0;
@@ -197,5 +198,9 @@ export class StoreDetailsComponent implements OnInit,AfterViewInit {
     slides[this.slideIndex-1]?.classList.add('block');
     dots[this.slideIndex-1].className += ' active';
     slides[i]?.classList?.remove('none');
+  }
+
+  navigateToDashBoard() {
+    this.router.navigate(['/dashboard']);
   }
 }

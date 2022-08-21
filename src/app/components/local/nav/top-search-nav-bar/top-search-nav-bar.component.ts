@@ -47,4 +47,8 @@ export class TopSearchNavBarComponent implements OnInit {
     }
 
   }
+
+  navigateDashBoard() {
+    this.router.navigate(['/dashboard'])
+  }
 }
