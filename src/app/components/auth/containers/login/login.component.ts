@@ -71,8 +71,9 @@ export class LoginComponent implements OnInit {
             JSON.stringify(userToken['token'])
           );
           this.authService.loginUserDetailSub$.next(userToken);
-          this.authService.getLoginUserDetails$().subscribe((data) => {
-            console.log(data);
+          console.log(userToken.token.id,'userToken.token.id')
+          this.authService.getLoginUserDetails$(userToken.token.id).subscribe(() => {
+            console.log(userToken);
           })
           this.router.navigate(['dashboard']);
         },

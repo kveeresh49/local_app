@@ -46,8 +46,8 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}User/Reset`, accountDetails);
   }
 
-  getLoginUserDetails$():Observable<any> {
-    return this.http.get(`${this.apiUrl}/api/UserProfile`);
+  getLoginUserDetails$(id:any):Observable<any> {
+    return this.http.get(`${this.apiUrl}UserProfile/${id}`);
   }
 
   setUserDetails() {
