@@ -126,9 +126,12 @@ export class StoreDetailsComponent implements OnInit,AfterViewInit {
   constructor() {}
 
   ngOnInit(): void {
+    document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
     window.addEventListener('scroll', () => {
       this.transformStoreDetails();
     });
+    
   }
 
   ngAfterViewInit(): void {

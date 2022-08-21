@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-store-card',
@@ -15,9 +16,11 @@ export class StoreCardComponent implements OnInit {
   nsEndIndex = 4;
   nsTotalPages = 0;
   nsCurrentPage = 1;
-  constructor() {}
+  constructor(private router:Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   getfavoriteStore(getfavoriteStoreFlag: boolean): void {
     this.getfavoriteStoreFlag = !getfavoriteStoreFlag;
@@ -35,7 +38,7 @@ export class StoreCardComponent implements OnInit {
   popularCards = [
     {
       percentageText: 15,
-      shopImage: '../../../assets/images/popular-stores/store-1.png',
+      shopImage: '../../../assets/images/popular-stores/stock-box-1.png',
       shopTitel: 'suresh store',
       storeCatogery: 'grocery store',
       kilometers: 4.5,
@@ -47,7 +50,7 @@ export class StoreCardComponent implements OnInit {
     },
     {
       percentageText: 15,
-      shopImage: '../../../assets/images/popular-stores/store-1.png',
+      shopImage: '../../../assets/images/popular-stores/stock-box-2.png',
       shopTitel: 'suresh store',
       storeCatogery: 'grocery store',
       kilometers: 4.5,
@@ -59,7 +62,7 @@ export class StoreCardComponent implements OnInit {
     },
     {
       percentageText: 15,
-      shopImage: '../../../assets/images/popular-stores/store-1.png',
+      shopImage: '../../../assets/images/popular-stores/stock-box-4.png',
       shopTitel: 'suresh store',
       storeCatogery: 'grocery store',
       kilometers: 4.5,
@@ -71,7 +74,7 @@ export class StoreCardComponent implements OnInit {
     },
     {
       percentageText: 15,
-      shopImage: '../../../assets/images/popular-stores/store-1.png',
+      shopImage: '../../../assets/images/popular-stores/stock-box-2.png',
       shopTitel: 'suresh store',
       storeCatogery: 'grocery store',
       kilometers: 4.5,
@@ -83,7 +86,7 @@ export class StoreCardComponent implements OnInit {
     },
     {
       percentageText: 15,
-      shopImage: '../../../assets/images/popular-stores/store-1.png',
+      shopImage: '../../../assets/images/popular-stores/stock-box-2.png',
       shopTitel: 'suresh store',
       storeCatogery: 'grocery store',
       kilometers: 4.5,
@@ -98,7 +101,7 @@ export class StoreCardComponent implements OnInit {
   slides = [
     {
       percentageText: 15,
-      shopImage: '../../../assets/images/popular-stores/Liquor-Stores.png',
+      shopImage: '../../../assets/images/popular-stores/stock-box-1.png',
       shopTitel: 'jagadamba english wine',
       storeCatogery: 'grocery store',
       kilometers: 4.5,
@@ -110,7 +113,7 @@ export class StoreCardComponent implements OnInit {
     },
     {
       percentageText: 15,
-      shopImage: '../../../assets/images/popular-stores/Liquor-Stores.png',
+      shopImage: '../../../assets/images/popular-stores/stock-box-1.png',
       shopTitel: 'jagadamba english wine',
       storeCatogery: 'grocery store',
       kilometers: 4.5,
@@ -122,7 +125,7 @@ export class StoreCardComponent implements OnInit {
     },
     {
       percentageText: 15,
-      shopImage: '../../../assets/images/popular-stores/Liquor-Stores.png',
+      shopImage: '../../../assets/images/popular-stores/stock-box-1.png',
       shopTitel: 'jagadamba english wine',
       storeCatogery: 'grocery store',
       kilometers: 4.5,
@@ -230,5 +233,9 @@ export class StoreCardComponent implements OnInit {
       this.nsStartIndex = 0;
       this.nsEndIndex = 4;
     }
+  }
+
+  navigateStore() {
+    this.router.navigate(['/store']);
   }
 }

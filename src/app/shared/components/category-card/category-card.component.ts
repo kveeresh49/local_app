@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-category-card',
@@ -11,7 +12,7 @@ export class CategoryCardComponent implements OnInit {
   endingIndex = 6;
   totalPages = 0;
   currentPage = 1;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
     this.showSlides(this.slideIndex);
@@ -178,6 +179,10 @@ StartingPage() {
   this.currentPage = 1;
   this.startingIndex = 0;
   this.endingIndex = 6;
+}
+
+navigateStore() {
+  this.router.navigate(['/store']);
 }
 
 }

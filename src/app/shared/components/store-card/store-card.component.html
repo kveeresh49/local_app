@@ -43,12 +43,12 @@
     <div class="row justify-content-center" style="gap: 3rem">
       <ng-container *ngFor="let popularCard of popularCards; let idx = index">
         <div
-          class="store-card-max-width p-0 m-0"
+          class="store-card-max-width p-0 m-0 cursor-pointer" (click)="navigateStore()"
           *ngIf="idx >= psStartIndex && idx < psEndIndex"
         >
           <div class="offer-tag">
             <div class="offer-text">
-              <div class="ms-3">
+              <div style="margin-left: 2.2rem !important;">
                 <div>{{ popularCard.percentageText }}%</div>
                 <div>OFF</div>
               </div>
@@ -58,7 +58,7 @@
             class="store-img"
             
             style="
-              background: url({{ 'https://img.freepik.com/free-vector/shop-with-sign-we-are-open_23-2148547718.jpg?w=740&t=st=1661070581~exp=1661071181~hmac=5048dacc54eac242b3d88748e84a4642924a5fa548c3d0a42000943f6aa7017c' }});
+              background: url({{ popularCard.shopImage }});
               background-size: cover;
             "
           ></div>
@@ -182,14 +182,15 @@
   />
   <div class="container">
     <div class="row justify-content-center" style="gap: 3rem">
-      <ng-container *ngFor="let slide of slides; let idx = index">
+      <ng-container *ngFor="let slide of slides; let idx = index" >
         <div
-          class="store-card-max-width p-0 m-0"
+          class="store-card-max-width p-0 m-0 cursor-pointer"
+          (click)="navigateStore()"
           *ngIf="idx >= nsStartIndex && idx < nsEndIndex"
         >
           <div class="offer-tag">
             <div class="offer-text">
-              <div class="ms-3">
+              <div  style="margin-left: 2.2rem !important">
                 <div>{{ slide.percentageText }}%</div>
                 <div>OFF</div>
               </div>

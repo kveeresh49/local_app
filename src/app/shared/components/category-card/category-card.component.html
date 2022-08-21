@@ -63,7 +63,7 @@
       <div class="flex store-details">
         <div class="store-name">From Suresh Stores</div>
         <div class="order-now-btn">
-          <span class="order-now-text">ORDER NOW</span>
+          <span class="order-now-text cursor-pointer" style="z-index: 1px;" (click)="navigateStore()">ORDER NOW</span>
         </div>
       </div>
       <div>
@@ -97,13 +97,34 @@
     </div>
 
     <div class="mySlides">
-      <img
-        src="../../../assets/images/coming-soon.png"
-        alt="coming soon..."
-        class="mt-1"
-        width="500px"
-        height="290px"
-      />
+      <div class="header-heading">TODAY'S SPECIAL OFFER</div>
+      <div class="header-heading-description">
+        Get upto 25% on orders above 599*
+      </div>
+      <div class="flex store-details">
+        <div class="store-name">From Suresh Stores</div>
+        <div class="order-now-btn">
+          <span class="order-now-text cursor-pointer" style="z-index: 1px;" (click)="navigateStore()">ORDER NOW</span>
+        </div>
+      </div>
+      <div>
+        <img
+          src="../../../assets/images/bottom-gradient.png"
+          alt=""
+          class="bottom-gradient-vector"
+        />
+        <img
+          src="../../../assets/images/top-gradient.png"
+          alt=""
+          class="top-gradient-vector"
+        />
+        <img
+          src="../../../assets/images/header-items.png"
+          alt=""
+          class="header-products"
+        />
+        <div class="tc-applied">*T&C Applied</div>
+      </div>
     </div>
 
     <a class="prev" (click)="plusSlides(-1)"

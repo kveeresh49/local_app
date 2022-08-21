@@ -2,8 +2,9 @@
 .store-card-max-width {
   width: 20%;
     border: 1px solid #c4c4c4;
-    border-radius: 10px 10px 10px 10px;
-    height: 18rem;
+    border-radius: 13px 13px 13px;
+    height: 20rem;
+    margin: 2px !important;
 }
 
 .store-card-img-height {
@@ -60,13 +61,17 @@
 
 .offer-text:before {
   position: absolute;
-  font-family: "FontAwesome";
-  top: -24px;
-  left: 5px;
-  content: "\f02e";
-  font-size: 75px;
-  color: $orange;
-  z-index: -1;
+    font-family: "FontAwesome";
+    /* top: -24px; */
+    top: -1rem !important;
+    left: 1.5rem !important;
+    content: "\f02e";
+    font-size: 62px;
+    color: #ff7a00;
+    z-index: -1;
+    margin: 0px !important;
+    padding: 0px !important;
+    display: flex !important;
 }
 .bookmark {
   position: absolute;
@@ -99,8 +104,7 @@
 }
 
 .offer-text {
-  font-size: 14px;
-  margin-top: 5px;
+  font-size: 12px;
   color: #ffffff;
   font-weight: bold;
 }
