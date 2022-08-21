@@ -1,16 +1,17 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-store-details',
   templateUrl: './store-details.component.html',
   styleUrls: ['./store-details.component.scss'],
 })
-export class StoreDetailsComponent implements OnInit {
+export class StoreDetailsComponent implements OnInit,AfterViewInit {
   @ViewChild('storeDetails', { static: true }) storeDetailsRef: ElementRef;
   selectedCategoryId = 1;
   selectedStoreNavId = 1;
   cart: any[] = [];
   cartTotal = 0;
+  slideIndex = 1;
 
   public categories = [
     {
@@ -107,12 +108,31 @@ export class StoreDetailsComponent implements OnInit {
     },
   ];
 
+  public offers = [
+    {
+      offerText: "40 % off upto ₹ 100/- on orders above ₹ 799/-",
+      coupon: "MYLOCAL",
+    },
+    {
+      offerText: "30 % off upto ₹ 100/- on orders above ₹ 599/-",
+      coupon: "LOCAL40",
+    },
+    {
+      offerText: "20 % off upto ₹ 100/- on orders above ₹ 499/-",
+      coupon: "OURLOCAL",
+    },
+  ];
+
   constructor() {}
 
   ngOnInit(): void {
     window.addEventListener('scroll', () => {
       this.transformStoreDetails();
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.activeSlide(this.slideIndex);
   }
 
   public onSelectCategory(categoryId: number): void {
@@ -137,6 +157,7 @@ export class StoreDetailsComponent implements OnInit {
       document.documentElement.scrollTop > 50
     ) {
       this.storeDetailsRef.nativeElement.style.transform = 'scaleY(.55)';
+      this.storeDetailsRef.nativeElement.style.transformOrigin = 'top';
     } else {
       this.storeDetailsRef.nativeElement.style.transform = 'scaleY(1)';
     }
@@ -147,5 +168,31 @@ export class StoreDetailsComponent implements OnInit {
     this.cartTotal = this.cart.reduce((a, b) => {
       return a + b.price;
     }, 0);
+  }
+
+  public slideChange(n:number): void {
+    this.activeSlide(this.slideIndex += n);
+  }
+  
+  public currentSlideIndicator(n:number): void {
+    this.activeSlide(this.slideIndex = n);
+  }
+  
+  private activeSlide(n:number): void {
+    let i;
+    let slides = document.getElementsByClassName("myOffers");
+    let dots = document.getElementsByClassName("dot");
+    if (n > slides.length) {this.slideIndex = 1}    
+    if (n < 1) {this.slideIndex = slides.length}
+    for (i = 0; i < slides.length; i++) {
+        slides[i]?.classList.add('none'); 
+        slides[i]?.classList.remove('block'); 
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(' active', '');
+    }
+    slides[this.slideIndex-1]?.classList.add('block');
+    dots[this.slideIndex-1].className += ' active';
+    slides[i]?.classList?.remove('none');
   }
 }
