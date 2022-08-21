@@ -1,18 +1,24 @@
 @import "../../../../variable";
 .store-card-max-width {
-  width: 250px;
-  position: relative;
-  height: 300px;
-  border: 1px solid #c4c4c4;
-  border-radius: 0px 0px 10px 10px;
-  // margin-right: .5   rem;
-  // &:last-child{
-  //   margin-left: .5rem !important;
-  // }
+  width: 20%;
+    border: 1px solid #c4c4c4;
+    border-radius: 10px 10px 10px 10px;
+    height: 18rem;
 }
 
 .store-card-img-height {
   max-height: 35vh;
+}
+.shop-rating-card {
+  background: #5bb600;
+  border-radius: 5px;
+  width: 100%;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  margin-top: 8px;
+
 }
 
 .card-img-top {
@@ -20,6 +26,7 @@
   border-top-left-radius: 2px;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
+
 }
 .reticle-box {
   width: 74px;
@@ -37,6 +44,12 @@
   //   linear-gradient(229deg, rgba(255, 122, 0) 52%, rgba(254, 255, 255, 0) 50%);
   position: absolute;
   z-index: 1;
+}
+
+.store-img {
+  height: 55%;
+  width: 100%;
+  border-radius: 10px 10px 0px 0px;
 }
 
 .offer-text {
@@ -181,7 +194,7 @@
   font-size: 10px;
 }
 .star-calss {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .pipe-class {

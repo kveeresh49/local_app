@@ -170,7 +170,7 @@ storeScroll(type:string) {
 }
 
 pageSize() {
-  this.totalPages = Math.ceil(this.cards.length / 6);
+  this.totalPages = Math.ceil(this.cards.length / 5);
   return this.totalPages;
 }
 
