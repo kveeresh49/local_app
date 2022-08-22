@@ -1,17 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-category-card',
   templateUrl: './category-card.component.html',
   styleUrls: ['./category-card.component.scss']
 })
-export class CategoryCardComponent implements OnInit {
+export class CategoryCardComponent implements OnInit,OnChanges{
 
   card  = {storeType: "medical" , productImg : "../../../assets/images/shop-categories/medical.png", title:"Medical store"}
   card1  = {storeType: "liquor" , productImg : "../../../assets/images/shop-categories/liquor.png", title:"Liquor Stores"}
+  @Input() categoryCard:any;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.categoryCard = changes['categoryCard'].currentValue;
+    console.log(this.categoryCard,'this.categoryCard');
   }
 
 }
