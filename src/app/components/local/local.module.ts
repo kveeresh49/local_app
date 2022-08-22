@@ -13,6 +13,8 @@ import { SideNavComponent } from './nav/side-nav/side-nav.component';
 import { TopMenuNavBarComponent } from './nav/top-menu-nav-bar/top-menu-nav-bar.component';
 import { TopSearchNavBarComponent } from './nav/top-search-nav-bar/top-search-nav-bar.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { DashBoardComponent } from './dash-board/dash-board/dash-board.component';
+import { ShopByCategoriesComponent } from './dash-board/shop-by-categories/shop-by-categories.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SideNavComponent,
     TopMenuNavBarComponent,
     TopSearchNavBarComponent,
+    DashBoardComponent,
+    ShopByCategoriesComponent,
   ],
   imports: [LocalRoutingModule, NgbModule, CommonModule, SharedModule],
 })

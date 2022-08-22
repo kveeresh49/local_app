@@ -1,0 +1,304 @@
+<!-- <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+     <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="background">
+      <img src="../../../assets/images/offers/carousel-top-left.png" alt="" class="top-left">
+      <div class="carousel-item active">
+        <div class="container">
+           <div class=" text-start">
+              <h1>Example headline.</h1>
+              <p>Some representative placeholder content for the first slide of the carousel.</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+           </div>
+        </div>
+     </div>
+     <img src="../../../assets/images/offers/carousel-bottom-right.png" alt="" class="bottom-right">
+    </div>
+
+     <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+           <rect width="100%" height="100%" fill="#777"></rect>
+        </svg>
+        <div class="container">
+           <div class="carousel-caption">
+              <h1>Another example headline.</h1>
+              <p>Some representative placeholder content for the second slide of the carousel.</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+           </div>
+        </div>
+     </div>
+     <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+           <rect width="100%" height="100%" fill="#777"></rect>
+        </svg>
+        <div class="container">
+           <div class="carousel-caption text-end">
+              <h1>One more for good measure.</h1>
+              <p>Some representative placeholder content for the third slide of this carousel.</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+           </div>
+        </div>
+     </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Next</span>
+  </button>
+</div> -->
+<div style="padding: 50px 30px">
+  <div class="slideshow-container container">
+    <div class="mySlides">
+      <div class="header-heading">TODAY'S SPECIAL OFFER</div>
+      <div class="header-heading-description">
+        Get upto 25% on orders above 599*
+      </div>
+      <div class="flex store-details">
+        <div class="store-name">From Suresh Stores</div>
+        <div class="order-now-btn">
+          <span class="order-now-text cursor-pointer" style="z-index: 1px;" (click)="navigateStore()">ORDER NOW</span>
+        </div>
+      </div>
+      <div>
+        <img
+          src="../../../assets/images/bottom-gradient.png"
+          alt=""
+          class="bottom-gradient-vector"
+        />
+        <img
+          src="../../../assets/images/top-gradient.png"
+          alt=""
+          class="top-gradient-vector"
+        />
+        <img
+          src="../../../assets/images/header-items.png"
+          alt=""
+          class="header-products"
+        />
+        <div class="tc-applied">*T&C Applied</div>
+      </div>
+    </div>
+
+    <div class="mySlides">
+      <img
+        src="../../../assets/images/coming-soon.png"
+        alt="coming soon..."
+        class="mt-1"
+        width="500px"
+        height="290px"
+      />
+    </div>
+
+    <div class="mySlides">
+      <div class="header-heading">TODAY'S SPECIAL OFFER</div>
+      <div class="header-heading-description">
+        Get upto 25% on orders above 599*
+      </div>
+      <div class="flex store-details">
+        <div class="store-name">From Suresh Stores</div>
+        <div class="order-now-btn">
+          <span class="order-now-text cursor-pointer" style="z-index: 1px;" (click)="navigateStore()">ORDER NOW</span>
+        </div>
+      </div>
+      <div>
+        <img
+          src="../../../assets/images/bottom-gradient.png"
+          alt=""
+          class="bottom-gradient-vector"
+        />
+        <img
+          src="../../../assets/images/top-gradient.png"
+          alt=""
+          class="top-gradient-vector"
+        />
+        <img
+          src="../../../assets/images/header-items.png"
+          alt=""
+          class="header-products"
+        />
+        <div class="tc-applied">*T&C Applied</div>
+      </div>
+    </div>
+
+    <a class="prev" (click)="plusSlides(-1)"
+      ><img
+        src="../../../assets/images/previous.png"
+        alt="Previous"
+        style="width: 13px; height: 26px"
+    /></a>
+    <a class="next" (click)="plusSlides(1)"
+      ><img
+        src="../../../assets/images/next.png"
+        alt="Next"
+        style="width: 13px; height: 26px"
+    /></a>
+  </div>
+
+  <div class="dot-container">
+    <span class="dot" (click)="currentSlide(1)"></span>
+    <span class="dot" (click)="currentSlide(2)"></span>
+    <span class="dot" (click)="currentSlide(3)"></span>
+  </div>
+</div>
+
+<section class="container mb-5">
+  <div class="shop-by-categoires">
+    <div class="mb-3 flex" style="justify-content: center">
+      <h2 class="text-center shop-by-categoires-heading">Shop by Categories</h2>
+      <div style="position: absolute; right: 75px; top: 15px;">
+        <span>Page {{currentPage}} of {{pageSize()}}</span>
+        <span *ngIf="currentPage != 1">
+        <span
+          style="
+            display: inline-block;
+            margin: -2px 0.67375em 0;
+            width: 1px;
+            background-color: #ddd;
+            line-height: 0;
+            height: 14px;
+            vertical-align: middle;
+          "
+        ></span>
+        <span class="start-over cursor-pointer" (click)="StartingPage()">Start over</span>
+        </span>
+      </div>
+    </div>
+    <img
+      src="../../../assets/images/left-vector.png"
+      alt="prev"
+      width="14px"
+      height="25px"
+      class="cursor-pointer"
+      style="position: absolute; top: 60%; left: 10px"
+      *ngIf="startingIndex != 0"
+      (click)="storeScroll('prev')"
+    />
+    <div class="container text-center">
+      <div class="row" style="justify-content: center">
+        <div
+          class="categoires-card-max-width"
+          *ngFor="let card of cards; let idx = index"
+        >
+          <div
+            class="col-sm col-lg col-md"
+            *ngIf="idx >= startingIndex && idx < endingIndex"
+          >
+            <a
+              href="local-dashboard"
+              [ngClass]="{
+                'medical-card-bg-clr': card.storeType === 'medical',
+                'grocery-card-bg-clr': card.storeType === 'grocery',
+                'liquor-card-bg-clr': card.storeType === 'liquor',
+                'vegetables-card-bg-clr': card.storeType === 'vegetables',
+                'farm-card-bg-clr': card.storeType === 'farms',
+                'garden-card-bg-clr': card.storeType === 'garden'
+              }"
+              class="stores text-decoration-none"
+            >
+              <img
+                src="{{ card.productImg }}"
+                alt=""
+                class="shops-by-category-logos"
+              />
+              <span
+                [ngClass]="{
+                  'medical-title-card': card.storeType === 'medical',
+                  'grocery-title-card': card.storeType === 'grocery',
+                  'liquor-title-card': card.storeType === 'liquor',
+                  'vegetables-title-card': card.storeType === 'vegetables',
+                  'farm-title-card': card.storeType === 'farms',
+                  'garden-title-card': card.storeType === 'garden'
+                }"
+                class="shop-title-card"
+              >
+                <span class="title" title="{{ card.title }}">{{
+                  card.title
+                }}</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <img
+        src="../../../assets/images/right-vector.png"
+        alt="next"
+        width="14px"
+        height="25px"
+        class="cursor-pointer"
+        style="position: absolute; top: 60%; right: 0px"
+        *ngIf="endingIndex <= cards.length && cards.length > 6"
+        (click)="storeScroll('next')"
+      />
+    </div>
+  </div>
+</section>
+
+
+<section class=" container mb-5">
+  <h2 class="todays-highlights-titel text-start mb-4">Today's Highlights</h2>
+  <div class="row d-flex justify-content-center">
+    <!-- highlight card1-->
+
+    <div class="highlight">
+      <div class="row align-items-center highlights-content">
+        <div class="col-sm col-lg col-md p-0">
+          <div class="highlight-titel mb-4">Abhijeeth Wines</div>
+          <div class="varieties-in-shops-titel">Wide Variety of Wines</div>
+          <div class="varieties-in-shops-titel mb-4">Rum, Whiskey, Vodka</div>
+          <span class="discount-upto">Up to 30 % off</span>
+        </div>
+        <div class="col-sm col-lg col-md p-0">
+          <img
+            src="../../assets/images/highlights/highlights-image-1.png"
+            alt=""
+            class="varieties-in-shops-img varietey-shops"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- highlight card2-->
+    <div class="highlight">
+      <div class="row align-items-center highlights-content">
+        <div class="col-sm col-lg col-md p-0">
+          <div class="highlight-titel mb-4">Abhijeeth Wines</div>
+          <div class="varieties-in-shops-titel">Wide Variety of Wines</div>
+          <div class="varieties-in-shops-titel mb-4">Rum, Whiskey, Vodka</div>
+          <span class="discount-upto">Up to 30 % off</span>
+        </div>
+        <div class="col-sm col-lg col-md p-0">
+          <img
+            src="../../assets/images/highlights/highlights-image-1.png"
+            alt=""
+            class="varieties-in-shops-img varietey-shops"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- highlight card3 -->
+    <div class="highlight">
+      <div class="row align-items-center highlights-content">
+        <div class="col-sm col-lg col-md p-0">
+          <div class="highlight-titel mb-4">Abhijeeth Wines</div>
+          <div class="varieties-in-shops-titel">Wide Variety of Wines</div>
+          <div class="varieties-in-shops-titel mb-4">Rum, Whiskey, Vodka</div>
+          <span class="discount-upto">Up to 30 % off</span>
+        </div>
+        <div class="col-sm col-lg col-md p-0">
+          <img
+            src="../../assets/images/highlights/highlights-image-1.png"
+            alt=""
+            class="varieties-in-shops-img varietey-shops"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

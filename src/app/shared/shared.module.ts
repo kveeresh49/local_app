@@ -12,13 +12,15 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { AlertComponent } from './components/alert/alert.component';
+import { CategoryCardComponentCopy } from './components/category-card-copy/category-card-copy.component';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 @NgModule({
   declarations: [
     StoreCardComponent,
     LandinglogoComponent,
-    CategoryCardComponent,
+    CategoryCardComponentCopy,
     AlertComponent,
+    CategoryCardComponent,
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { CategoryCardComponent } from './components/category-card/category-card.
     MatInputModule,
     NgxIntlTelInputModule,
     AlertModule,
-    AlertComponent
+    AlertComponent,
+    CategoryCardComponent
   ],
 })
 export class SharedModule {}

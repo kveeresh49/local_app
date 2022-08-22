@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  @Input() CategoryCardComponent: any;
+  @Input() CategoryCardComponentCopy: any;
 
   constructor() { }
 
