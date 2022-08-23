@@ -53,43 +53,46 @@
 }
 
 .shops-by-category-logos {
-    margin-bottom: 0px;
-    text-align: center !important;
-    width: 65%;
+  margin-bottom: 0px;
+  text-align: center !important;
+  width: 65%;
+  height: 17vh !important;
 }
 
 .shop-title-card {
-    border-radius: 0px 0px 10px 10px;
-    display: block;
-    padding: 15px 0px;
-    text-align: center;
-    margin-top: -1.5rem;
-    position: sticky;
+  border-radius: 0px 0px 10px 10px;
+  display: block;
+  padding: 15px 0px;
+  text-align: center;
+  margin-top: -1.5rem;
+  position: sticky;
 }
 
 .categoires-card-max-width {
   width: 12%;
-  
 }
 
 .border-radius-10 {
-    border-radius: 10%;
+  border-radius: 10%;
 }
 
 .pt-0 {
-    padding: 0px !important;
+  padding: 0px !important;
+}
+
+
+.category-a {
+  text-align: center;
+  margin: auto !important;
+  padding: auto !important;
+  display: block;
 }
 
 
 .category-col-md-2 {
-    flex: 0 0 auto !important;
-    width: 11.666667% !important;
+  flex: 0 0 auto !important;
+  width: 11.666667% !important;
+  padding-left: 0px;
+    padding-right: 0px;
+    height: 29vh !important;;
 }
-
-.category-a {
-    text-align: center;
-    margin: auto !important;
-    padding: auto !important;
-    display: block;
-}
-

@@ -1,38 +1,32 @@
-
-  <div
-    class=" me-4 pt-0 border-radius-10 "
-    [ngClass]="{
+<div class=" me-4 pt-0 border-radius-10 " [ngClass]="{
       'medical-card-bg-clr': categoryCard?.storeType === 'medical',
       'grocery-card-bg-clr': categoryCard.storeType === 'grocery',
       'liquor-card-bg-clr': categoryCard.storeType === 'liquor',
       'vegetables-card-bg-clr': categoryCard.storeType === 'vegetables',
       'farm-card-bg-clr': categoryCard.storeType === 'farms',
       'garden-card-bg-clr': categoryCard.storeType === 'garden'
-    }"
-  >
-    <ng-container>
-        <a class="category-a">
-            <img
-            src="{{ categoryCard.productImg }}"
-            alt=""
-            class="shops-by-category-logos"
-          />
-        </a>
+    }">
+  <ng-container>
+    <a class="category-a">
+      <img src="{{ categoryCard?.productImg }}" alt="" class="shops-by-category-logos mt-4" />
+    </a>
 
-    </ng-container>
-    <span
-      class="title"
-      [ngClass]="{
+  </ng-container>
+  <span class="title" [ngClass]="{
         'medical-title-card': categoryCard.storeType === 'medical',
         'grocery-title-card': categoryCard.storeType === 'grocery',
         'liquor-title-card': categoryCard.storeType === 'liquor',
         'vegetables-title-card': categoryCard.storeType === 'vegetables',
         'farm-title-card': categoryCard.storeType === 'farms',
         'garden-title-card': categoryCard.storeType === 'garden'
-      }"
-      class="shop-title-card"
-      title="{{ categoryCard.title }}"
-      >{{ categoryCard.title }}</span
-    >
-  </div>
+      }" class="shop-title-card" title="{{ categoryCard.title }}">
+      <span *ngIf=" categoryCard.title.length > 16">
+        {{ categoryCard.title }}
+      </span>
+    
 
+      <span *ngIf=" categoryCard.title.length < 16" style="color:red">
+        {{ categoryCard.title }}
+      </span>
+    </span>
+</div>

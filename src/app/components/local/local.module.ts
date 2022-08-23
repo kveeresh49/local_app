@@ -15,6 +15,7 @@ import { TopSearchNavBarComponent } from './nav/top-search-nav-bar/top-search-na
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DashBoardComponent } from './dash-board/dash-board/dash-board.component';
 import { ShopByCategoriesComponent } from './dash-board/shop-by-categories/shop-by-categories.component';
+import { NearByStoresComponent } from './dash-board/near-by-stores/near-by-stores.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ShopByCategoriesComponent } from './dash-board/shop-by-categories/shop-
     TopSearchNavBarComponent,
     DashBoardComponent,
     ShopByCategoriesComponent,
+    NearByStoresComponent,
   ],
   imports: [LocalRoutingModule, NgbModule, CommonModule, SharedModule],
 })

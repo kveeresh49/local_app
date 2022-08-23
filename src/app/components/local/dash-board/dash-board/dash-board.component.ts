@@ -6,43 +6,50 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dash-board.component.scss'],
 })
 export class DashBoardComponent implements OnInit {
-  card = [
+ card = [
     {
-      storeType: 'medical',
-      productImg: '../../../assets/images/shop-categories/medical.png',
-      title: 'Medical store',
+      title: "Medical store",
+      productImg: "../../../assets/images/shop-categories/medical.png",
+      storeType: 'medical'
     },
     {
-      storeType: 'medical',
-      productImg: '../../../assets/images/shop-categories/medical.png',
-      title: 'Medical store',
+      title: "Grocery Stores",
+      productImg: "../../../assets/images/shop-categories/grocery.png",
+      storeType: 'grocery'
     },
     {
-      storeType: 'medical',
-      productImg: '../../../assets/images/shop-categories/medical.png',
-      title: 'Medical store',
+      title: "Liquor Stores",
+      productImg: "../../../assets/images/shop-categories/liquor.png",
+      storeType: 'liquor'
     },
     {
-      storeType: 'medical',
-      productImg: '../../../assets/images/shop-categories/medical.png',
-      title: 'Medical store',
+      title: "Fruits & Vegetables",
+      productImg: "../../../assets/images/shop-categories/fruits-vegetables.png",
+      storeType: 'vegetables'
     },
     {
-      storeType: 'medical',
-      productImg: '../../../assets/images/shop-categories/medical.png',
-      title: 'Medical store',
+      title: "From the Farms (FPO’s)",
+      productImg: "../../../assets/images/shop-categories/farms.png",
+      storeType: 'farms'
     },
     {
-      storeType: 'medical',
-      productImg: '../../../assets/images/shop-categories/medical.png',
-      title: 'Medical store',
+      title: "Terrace Gardens",
+      productImg: "../../../assets/images/shop-categories/terrace-garden.png",
+      storeType: 'garden'
     },
     {
-      storeType: 'medical',
-      productImg: '../../../assets/images/shop-categories/medical.png',
-      title: 'Medical store',
+      title: "Terrace Gardens",
+      productImg: "../../../assets/images/shop-categories/terrace-garden.png",
+      storeType: 'garden'
     },
-  ];
+    {
+      title: "Fruits & Vegetables",
+      productImg: "../../../assets/images/shop-categories/fruits-vegetables.png",
+      storeType: 'vegetables'
+    },
+  ]
+
+  nearByStoreData = [];
   constructor() {}
 
   ngOnInit(): void {}
