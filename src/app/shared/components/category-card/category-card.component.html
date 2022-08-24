@@ -1,10 +1,10 @@
-<div class=" me-4 pt-0 border-radius-10 " [ngClass]="{
+<!-- <div class=" me-4 pt-0 border-radius-10 " [ngClass]="{
       'medical-card-bg-clr': categoryCard?.storeType === 'medical',
-      'grocery-card-bg-clr': categoryCard.storeType === 'grocery',
-      'liquor-card-bg-clr': categoryCard.storeType === 'liquor',
-      'vegetables-card-bg-clr': categoryCard.storeType === 'vegetables',
-      'farm-card-bg-clr': categoryCard.storeType === 'farms',
-      'garden-card-bg-clr': categoryCard.storeType === 'garden'
+      'grocery-card-bg-clr': categorycategoryCard.storeType === 'grocery',
+      'liquor-card-bg-clr': categorycategoryCard.storeType === 'liquor',
+      'vegetables-card-bg-clr': categorycategoryCard.storeType === 'vegetables',
+      'farm-card-bg-clr': categorycategoryCard.storeType === 'farms',
+      'garden-card-bg-clr': categorycategoryCard.storeType === 'garden'
     }">
   <ng-container>
     <a class="category-a">
@@ -13,20 +13,65 @@
 
   </ng-container>
   <span class="title" [ngClass]="{
-        'medical-title-card': categoryCard.storeType === 'medical',
-        'grocery-title-card': categoryCard.storeType === 'grocery',
-        'liquor-title-card': categoryCard.storeType === 'liquor',
-        'vegetables-title-card': categoryCard.storeType === 'vegetables',
-        'farm-title-card': categoryCard.storeType === 'farms',
-        'garden-title-card': categoryCard.storeType === 'garden'
-      }" class="shop-title-card" title="{{ categoryCard.title }}">
-      <span *ngIf=" categoryCard.title.length > 16">
-        {{ categoryCard.title }}
+        'medical-title-card': categorycategoryCard.storeType === 'medical',
+        'grocery-title-card': categorycategoryCard.storeType === 'grocery',
+        'liquor-title-card': categorycategoryCard.storeType === 'liquor',
+        'vegetables-title-card': categorycategoryCard.storeType === 'vegetables',
+        'farm-title-card': categorycategoryCard.storeType === 'farms',
+        'garden-title-card': categorycategoryCard.storeType === 'garden'
+      }" class="shop-title-card" title="{{ categorycategoryCard.title }}">
+      <span *ngIf=" categorycategoryCard.title.length > 16">
+        {{ categorycategoryCard.title }}
       </span>
     
 
-      <span *ngIf=" categoryCard.title.length < 16" style="color:red">
-        {{ categoryCard.title }}
+      <span *ngIf=" categorycategoryCard.title.length < 16" style="color:red">
+        {{ categorycategoryCard.title }}
       </span>
     </span>
+</div> -->
+
+<div>
+  <div
+    class="categoires-card-max-width"
+  >
+    <div
+      class="col-sm col-lg col-md"
+    >
+      <a
+        href="local-dashboard"
+        [ngClass]="{
+          'medical-card-bg-clr': categoryCard.storeType === 'medical',
+          'grocery-card-bg-clr': categoryCard.storeType === 'grocery',
+          'liquor-card-bg-clr': categoryCard.storeType === 'liquor',
+          'vegetables-card-bg-clr': categoryCard.storeType === 'vegetables',
+          'farm-card-bg-clr': categoryCard.storeType === 'farms',
+          'garden-card-bg-clr': categoryCard.storeType === 'garden'
+        }"
+        class="stores text-decoration-none"
+      >
+        <img
+          src="{{ categoryCard.productImg }}"
+          alt=""
+          class="shops-by-category-logos"
+        />
+        <span style=" margin-top: -1.5rem;
+        position: sticky;"
+          [ngClass]="{
+            'medical-title-card': categoryCard.storeType === 'medical',
+            'grocery-title-card': categoryCard.storeType === 'grocery',
+            'liquor-title-card': categoryCard.storeType === 'liquor',
+            'vegetables-title-card': categoryCard.storeType === 'vegetables',
+            'farm-title-card': categoryCard.storeType === 'farms',
+            'garden-title-card': categoryCard.storeType === 'garden'
+          }"
+          class="shop-title-card"
+        >
+          <span class="title" title="{{ categoryCard.title }}">{{
+            categoryCard.title
+          }}</span>
+        </span>
+      </a>
+    </div>
+  </div>
 </div>
