@@ -1,5 +1,11 @@
-<app-shop-by-categories [categoryCardData]="card"></app-shop-by-categories>
+<app-categories [categoryCardData]="card"></app-categories>
 
-<!-- <app-popular-stores></app-popular-stores> -->
+<app-store-by-categories
+  [nearByStoreData]="nearByStoreData"
+  [CategoriesType]="'Popular Stores'"
+></app-store-by-categories>
 
-<app-near-by-stores [nearByStoreData]="nearByStoreData"></app-near-by-stores>
+<app-store-by-categories
+  [nearByStoreData]="nearByStoreData"
+  [CategoriesType]="'Nearby You'"
+></app-store-by-categories>

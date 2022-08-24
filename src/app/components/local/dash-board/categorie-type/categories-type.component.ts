@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-shop-by-categories',
-  templateUrl: './shop-by-categories.component.html',
-  styleUrls: ['./shop-by-categories.component.scss']
+  selector: 'app-categories',
+  templateUrl: './categories-type.component.html',
+  styleUrls: ['./categories-type.component.scss']
 })
-export class ShopByCategoriesComponent implements OnInit {
+export class CategoriesTypeComponent implements OnInit {
   startingIndex = 0;
   endingIndex = 6;
   totalPages = 0;

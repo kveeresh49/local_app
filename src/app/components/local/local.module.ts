@@ -5,7 +5,6 @@ import { FooterComponent } from './nav/footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { OffersShopCategoriesComponent } from './offers-shop-categories/offers-shop-categories.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { PopularStoresComponent } from './popular-stores/popular-stores.component';
 import { StoreDetailsComponent } from './store-details/store-details.component';
 import { StoreNavbarComponent } from './store-navbar/store-navbar.component';
 import { DeliverAddressComponent } from './deliver-address/deliver-address.component';
@@ -14,15 +13,14 @@ import { TopMenuNavBarComponent } from './nav/top-menu-nav-bar/top-menu-nav-bar.
 import { TopSearchNavBarComponent } from './nav/top-search-nav-bar/top-search-nav-bar.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { DashBoardComponent } from './dash-board/dash-board/dash-board.component';
-import { ShopByCategoriesComponent } from './dash-board/shop-by-categories/shop-by-categories.component';
-import { NearByStoresComponent } from './dash-board/near-by-stores/near-by-stores.component';
+import { StoreByCategoriesComponent } from './dash-board/store-by-categories/store-by-categories.component';
+import { CategoriesTypeComponent } from './dash-board/categorie-type/categories-type.component';
 
 @NgModule({
   declarations: [
     FooterComponent,
     HomeComponent,
     OffersShopCategoriesComponent,
-    PopularStoresComponent,
     StoreDetailsComponent,
     StoreNavbarComponent,
     DeliverAddressComponent,
@@ -30,8 +28,8 @@ import { NearByStoresComponent } from './dash-board/near-by-stores/near-by-store
     TopMenuNavBarComponent,
     TopSearchNavBarComponent,
     DashBoardComponent,
-    ShopByCategoriesComponent,
-    NearByStoresComponent,
+    StoreByCategoriesComponent,
+    CategoriesTypeComponent,
   ],
   imports: [LocalRoutingModule, NgbModule, CommonModule, SharedModule],
 })

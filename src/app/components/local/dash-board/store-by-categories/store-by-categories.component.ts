@@ -1,17 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-near-by-stores',
-  templateUrl: './near-by-stores.component.html',
-  styleUrls: ['./near-by-stores.component.scss']
+  selector: 'app-store-by-categories',
+  templateUrl: './store-by-categories.component.html',
+  styleUrls: ['./store-by-categories.component.scss']
 })
-export class NearByStoresComponent implements OnInit {
+export class StoreByCategoriesComponent implements OnInit {
   startingIndex = 0;
   endingIndex = 4;
   totalPages = 0;
   currentPage = 1;
 
   @Input() nearByStoreData :any;
+  @Input() CategoriesType:string;
   constructor() { }
 
   ngOnInit(): void {
