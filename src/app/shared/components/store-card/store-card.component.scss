@@ -19,6 +19,8 @@
   width: 100%;
   background-size: cover;
   margin-top: -1px;
+  border-top-right-radius: 8px !important;
+  border-top-left-radius: 8px !important;
 }
 
 .store-card-img-height {
@@ -117,8 +119,8 @@
 }
 .percentage-icon {
   margin-top: -3px;
-  width: 12.5px;
-  height: 12.5px;
+  width: 3.5vh;
+  height: 3vh !important;
 }
 .card-footer {
   padding: 5px;
@@ -229,7 +231,7 @@
 .store-title {
   text-transform: capitalize;
   font-size: 15px;
-  width: 170px;
+  width: 26vh;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
