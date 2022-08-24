@@ -296,3 +296,16 @@ app-login-otp {
   font-size: 15px;
 }
 
+.horizontal-divider {
+  display: inline-block;
+  margin: -2px 0.67375em 0;
+  width: 1px;
+  background-color: #ddd;
+  line-height: 0;
+  height: 14px;
+  vertical-align: middle;
+}
+
+.white_color {
+  color:$whiteFontColor
+}

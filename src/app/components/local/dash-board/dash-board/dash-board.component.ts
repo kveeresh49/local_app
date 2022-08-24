@@ -49,7 +49,68 @@ export class DashBoardComponent implements OnInit {
     },
   ]
 
-  nearByStoreData = [];
+  nearByStoreData = [
+    {
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/stock-box-1.png',
+      shopTitel: 'jagadamba english wine',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
+    },
+    {
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/stock-box-1.png',
+      shopTitel: 'jagadamba english wine',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
+    },
+    {
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/stock-box-1.png',
+      shopTitel: 'jagadamba english wine',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
+    },
+    {
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/Liquor-Stores.png',
+      shopTitel: 'jagadamba english wine',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
+    },
+    {
+      percentageText: 15,
+      shopImage: '../../../assets/images/popular-stores/Liquor-Stores.png',
+      shopTitel: 'jagadamba english wine',
+      storeCatogery: 'grocery store',
+      kilometers: 4.5,
+      rating: 3.5,
+      percentageImage:
+        '../../../assets/images/popular-stores/percentage-icon.png',
+      discountText: 15,
+      newStore: 'newstore',
+    },
+  ];
   constructor() {}
 
   ngOnInit(): void {}
