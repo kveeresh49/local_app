@@ -49,7 +49,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.ngOtpInput.otpForm.disable();
+    this.ngOtpInput?.otpForm?.disable();
   }
 
   changePreferredCountries(): void {
@@ -67,7 +67,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
 
   onOtpChange(otp: any) {
     this.otp = otp;
-    this.otpForm.get('otp')?.setValue(otp);
+    this.otpForm?.get('otp')?.setValue(otp);
   }
 
   get f(): any {

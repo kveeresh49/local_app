@@ -90,7 +90,7 @@
               </div>
               <div class="mb-2">
                 <div class="d-flex flex-row ms-2 mt-4 mb-2">
-                  <ng-otp-input
+                  <!-- <ng-otp-input
                     [config]="{ length: 6, inputClass: 'otpClass' }"
                     name="otp"
                     [config]="{
@@ -101,11 +101,26 @@
                     }"
                     (onInputChange)="onOtpChange($event)"
                     [formCtrl]="otp"
-                  ></ng-otp-input>
+                  ></ng-otp-input> -->
+                  <ng-otp-input
+                    [config]="{
+                      length: 6,
+                      inputClass: 'otpClass',
+                      allowNumbersOnly: true,
+                      disableAutoFocus: true
+                    }"
+                    [formCtrl]="otp"
+                    name="otp"
+                    [ngClass]="{
+                      'is-invalid': submitted && f?.otp?.errors
+                    }"
+                    (onInputChange)="onOtpChange($event)"
+                  >
+                  </ng-otp-input>
                 </div>
                 <div *ngIf="submitted && f?.otp?.errors" class="isInvalid">
-                  <div *ngIf="f.otp?.errors?.required">OTP is required</div>
-                  <div *ngIf="f.otp?.errors?.minlength">
+                  <div *ngIf="f?.otp?.errors?.required">OTP is required</div>
+                  <div *ngIf="f?.otp?.errors?.minlength">
                     OTP must be 6 characters
                   </div>
                 </div>
