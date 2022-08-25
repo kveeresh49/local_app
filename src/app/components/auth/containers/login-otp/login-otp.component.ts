@@ -32,7 +32,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   isOtpDisabled = false;
   newOtpFlag = false;
   otpForm: FormGroup;
-  otp: any;
+  otp: any = '';
   submitted = false;
   alerts: any[];
 

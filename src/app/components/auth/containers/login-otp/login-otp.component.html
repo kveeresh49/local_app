@@ -10,7 +10,7 @@
       class="col-sm col-lg col-md col-md col-lg justify-content-center mt-4 z-index-local d-flex height-fit-content"
       style="justify-content: space-around"
     >
-      <div class="card mw-10 w-65">
+      <div class="card mw-10 w-55 p-3">
         <div class="card-body">
           <ng-container>
             <div class="text-start">
@@ -59,18 +59,18 @@
                       (click)="sendOTP()"
                       [disabled]="
                         isOtpDisabled ||
-                        f.phone?.errors?.validatePhoneNumber ||
-                        f.phone?.errors?.required
+                        f.mobile?.errors?.validatePhoneNumber ||
+                        f.mobile?.errors?.required
                       "
                     >
                       {{ otpHeader }}
                     </button>
                   </div>
                   <div class="isInvalid" *ngIf="submitted && f?.mobile?.errors">
-                    <div *ngIf="f.mobile?.errors?.required">
+                    <div *ngIf="f?.mobile?.errors?.required">
                       Phone Number is required
                     </div>
-                    <div *ngIf="f.mobile?.errors?.validatePhoneNumber">
+                    <div *ngIf="f?.mobile?.errors?.validatePhoneNumber">
                       Phone Number must be 10 characters
                     </div>
                   </div>

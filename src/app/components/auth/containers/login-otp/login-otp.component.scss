@@ -70,6 +70,7 @@
   width: 7vh !important;
   height: 5vh !important;
   font-size: 12px !important;
+  margin-right: 5px !important;
 }
 
 .login-vector-img {
@@ -81,4 +82,26 @@
 .isInvalid{
   font-size: 0.875em;
   color: #dc3545
+}
+
+
+::ng-deep ngx-intl-tel-input .country-dropdown,
+::ng-deep .iti-arrow {
+  display: none !important;
+}
+
+// ::ng-deep .otp-input {
+//   width: 7vh !important;
+//   height: 5vh !important;
+//   font-size: 12px !important;
+// }
+
+::ng-deep .iti--allow-dropdown {
+  width: 100% !important;
+  padding-right: 0px !important;
+}
+
+.isInvalid {
+  font-size: 0.875em;
+  color: #dc3545;
 }
