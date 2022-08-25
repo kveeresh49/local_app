@@ -1,0 +1,25 @@
+<div style="padding: 50px 30px">
+    <div class="slideshow-container position-relative container">
+        <!-- <a class="prev" (click)="slideChange(-1)"
+        ><img
+          src="../../../assets/images/previous.png"
+          alt="Previous"
+          style="width: 13px; height: 26px"
+      /></a> -->
+      <div *ngFor="let image of CarouselImages" class="mySlides">
+        <img src={{image.storeImage}} alt={{image.storeName}} class="img-resolution" />
+        </div>
+
+      <!-- <a class="next" (click)="slideChange(1)"
+        ><img
+          src="../../../assets/images/next.png"
+          alt="Next"
+          style="width: 13px; height: 26px"
+      /></a> -->
+  
+    <div class="dot-container">
+        <span *ngFor="let image of CarouselImages; index as idx">
+          <span class="dot" (click)="currentSlideIndicator(idx + 1)"></span>
+        </span>
+      </div>
+  </div>

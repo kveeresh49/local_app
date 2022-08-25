@@ -1,0 +1,30 @@
+.highlightCard-width {
+    width: 345px;
+    height: 185px;
+    padding: 0;
+}
+.minWidth {
+  min-width: 1117px;
+}
+
+.start-over {
+    color: #007185;
+  }
+  
+  .start-over:hover {
+    text-decoration: underline;
+    color: #ff7a00;
+  }
+
+  .gap-between-cards {
+    gap: 2.4596rem;
+  }
+  
+  .right-scroll {
+    top: 55%;
+    right: -25px;
+  }
+  .left-scroll {
+    top: 55%;
+    left: -20px;
+  }

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dash-board.component.scss'],
 })
 export class DashBoardComponent implements OnInit {
- card = [
+ public card = [
     {
       title: "Medical store",
       productImg: "../../../assets/images/shop-categories/medical.png",
@@ -49,7 +49,7 @@ export class DashBoardComponent implements OnInit {
     },
   ]
 
-  nearByStoreData = [
+ public nearByStoreData = [
     {
       percentageText: 15,
       shopImage: '../../../assets/images/popular-stores/stock-box-1.png',
@@ -111,6 +111,41 @@ export class DashBoardComponent implements OnInit {
       newStore: 'newstore',
     },
   ];
+
+ public TodayHighlights = [
+  {
+    id: 1,
+    highlightImage: '../../../assets/images/highlights/highlight-1.png',
+    storeName: "Abhijeeth Wines"
+  },
+  {
+    id: 2,
+    highlightImage: '../../../assets/images/highlights/highlight-2.png',
+    storeName: "Bhabji Sabji"
+  },
+  {
+    id: 3,
+    highlightImage: '../../../assets/images/highlights/highlight-3.png',
+    storeName: "Meera Medical"
+  },
+  {
+    id: 4,
+    highlightImage: '../../../assets/images/highlights/highlight-2.png',
+    storeName: "Bhabji Sabji"
+  },
+ ];
+
+ public CarouselImages = [
+  {
+    storeImage: '../../../assets/images/offers/carousel-1.png',
+    storeName: "suresh Stores"
+  },
+  {
+    storeImage: '../../../assets/images/offers/carousel-1.png',
+    storeName: "suresh Stores"
+  },
+ ];
+
   constructor() {}
 
   ngOnInit(): void {}

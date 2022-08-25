@@ -15,6 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { DashBoardComponent } from './dash-board/dash-board/dash-board.component';
 import { StoreByCategoriesComponent } from './dash-board/store-by-categories/store-by-categories.component';
 import { CategoriesTypeComponent } from './dash-board/categorie-type/categories-type.component';
+import { TodayHighlightsComponent } from './dash-board/today-highlights/today-highlights.component';
+import { CarouselBannerComponent } from './dash-board/carousel-banner/carousel-banner.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { CategoriesTypeComponent } from './dash-board/categorie-type/categories-
     DashBoardComponent,
     StoreByCategoriesComponent,
     CategoriesTypeComponent,
+    TodayHighlightsComponent,
+    CarouselBannerComponent
   ],
   imports: [LocalRoutingModule, NgbModule, CommonModule, SharedModule],
 })
