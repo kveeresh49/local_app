@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
@@ -8,23 +8,28 @@ import { AccountDetails } from './models/account-details';
   providedIn: 'root',
 })
 export class AuthService {
-  loginUserDetailSub$:BehaviorSubject<any>;
+  loginUserDetailSub$: BehaviorSubject<any>;
 
   public currentUser: Observable<any>;
   isloggedInUser = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
-    this.loginUserDetailSub$ = new BehaviorSubject<any>(cookieService.get('userToken'));
+    this.loginUserDetailSub$ = new BehaviorSubject<any>(
+      cookieService.get('userToken')
+    );
     this.currentUser = this.loginUserDetailSub$.asObservable();
   }
-  
 
   public get currentUserValue() {
     return this.loginUserDetailSub$.value;
-}
+  }
 
   get apiUrl(): string {
-    return `${environment.devApi}`;
+    return `${environment.API_ENDPOINTS.Api_url}`;
+  }
+
+  get sms_ApiUrl(): string {
+    return `${environment.API_ENDPOINTS.SMS_API}`;
   }
 
   createUserAccount$(userAccountDetails: AccountDetails) {
@@ -46,16 +51,21 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}User/Reset`, accountDetails);
   }
 
-  getLoginUserDetails$(id:any):Observable<any> {
+  getLoginUserDetails$(id: any): Observable<any> {
     return this.http.get(`${this.apiUrl}UserProfile/${id}`);
   }
 
   setUserDetails() {
-   // return of({name:"veeresh"});
+    // return of({name:"veeresh"});
     //this.loginUserDetailSub$.next({name:'veeresh'})
   }
 
-
-
-
+  sentOtp(mobileNumber: string) {
+    const headers= new HttpHeaders()
+  .set('content-type', 'application/json')
+  
+    return this.http.get(
+      `${this.sms_ApiUrl}?template_id=${environment.API_Key.Sms_Template_key}&mobile=${mobileNumber}&authkey=${environment.API_Key.Sms_Template_key}&otp_length=${environment.Sms_Otp_length}&otp_expiry=${environment.Sms_Otp_expiry}`,{ 'headers': headers }
+    );
+  }
 }

@@ -105,18 +105,21 @@ export class CreateAccountComponent implements OnInit {
   }
 
   sendOTP(): void {
-    this.ngOtpInput.otpForm.enable();
-    this.newOtpFlag = false;
-    this.otpHeader = 'Resend OTP';
-    this.timeLeft = 30;
-    this.isOtpDisabled = true;
-    this.interval = setInterval(() => {
-      if (this.timeLeft > 0) {
-        this.timeLeft--;
-      } else {
-        this.pauseTimer();
-      }
-    }, 1000);
+    this.authService.sentOtp("919390815134").subscribe((data) => {
+      this.ngOtpInput.otpForm.enable();
+      this.newOtpFlag = false;
+      this.otpHeader = 'Resend OTP';
+      this.timeLeft = 30;
+      this.isOtpDisabled = true;
+      this.interval = setInterval(() => {
+        if (this.timeLeft > 0) {
+          this.timeLeft--;
+        } else {
+          this.pauseTimer();
+        }
+      }, 1000);
+    });
+   
   }
 
   changeMobileNumber() {
