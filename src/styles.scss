@@ -166,17 +166,17 @@ body {
   }
 }
 
-app-login-otp {
-  .otp-input-data {
-    width: 30px;
-    height: 30px;
-    border: solid 1px #c5c5c5;
-    border: none;
-    border-bottom: 1px solid;
-    text-align: center;
-    font-size: 14px;
-  }
-}
+// app-login-otp {
+//   .otp-input-data {
+//     width: 30px;
+//     height: 30px;
+//     border: solid 1px #c5c5c5;
+//     border: none;
+//     border-bottom: 1px solid;
+//     text-align: center;
+//     font-size: 14px;
+//   }
+// }
 
 // Sub heading Styles
 
@@ -310,3 +310,14 @@ app-login-otp {
   color:$whiteFontColor
 }
 
+
+.w-55 {
+  width: 55% !important;
+}
+
+::ng-deep .otp-input {
+  width: 7vh !important;
+  height: 5vh !important;
+  font-size: 12px !important;
+  margin-right: 5px !important;
+}

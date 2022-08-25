@@ -14,6 +14,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { AlertComponent } from './components/alert/alert.component';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { StoreCardComponent } from './components/store-card/store-card.component';
+import { HighlightCardComponent } from './components/highlight-card/highlight-card.component';
 @NgModule({
   declarations: [
     StoreCardComponentCopy,
@@ -21,6 +22,7 @@ import { StoreCardComponent } from './components/store-card/store-card.component
     AlertComponent,
     CategoryCardComponent,
     StoreCardComponent,
+    HighlightCardComponent,
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { StoreCardComponent } from './components/store-card/store-card.component
     AlertModule,
     AlertComponent,
     CategoryCardComponent,
-    StoreCardComponent
+    StoreCardComponent,
+    HighlightCardComponent
   ],
 })
 export class SharedModule {}
