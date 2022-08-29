@@ -1,0 +1,31 @@
+.offer-tag {
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .offer-percentage {
+    margin-left: 2.2rem;
+  }
+  
+
+  .offer-text:before {
+    position: absolute;
+    font-family: "FontAwesome";
+    top: -1rem !important;
+    left: 1.5rem !important;
+    content: "\f02e";
+    font-size: 62px;
+    color: #ff7a00;
+    z-index: -1;
+    margin: 0px !important;
+    padding: 0px !important;
+    display: flex !important;
+}
+
+.offer-text{
+    font-size: 12px;
+    color: #ffffff;
+    font-weight: bold;
+    position: relative;
+    z-index: 2;
+}
