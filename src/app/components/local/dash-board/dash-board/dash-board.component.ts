@@ -141,6 +141,10 @@ export class DashBoardComponent implements OnInit {
     storeName: "suresh Stores"
   },
   {
+    storeImage: '../../../assets/images/offers/highlight-2.png',
+    storeName: "suresh Stores"
+  },
+  {
     storeImage: '../../../assets/images/offers/carousel-1.png',
     storeName: "suresh Stores"
   },
