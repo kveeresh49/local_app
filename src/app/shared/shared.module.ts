@@ -15,6 +15,7 @@ import { AlertComponent } from './components/alert/alert.component';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
 import { StoreCardComponent } from './components/store-card/store-card.component';
 import { HighlightCardComponent } from './components/highlight-card/highlight-card.component';
+import { OfferTagComponent } from './components/offer-tag/offer-tag.component';
 @NgModule({
   declarations: [
     StoreCardComponentCopy,
@@ -23,6 +24,7 @@ import { HighlightCardComponent } from './components/highlight-card/highlight-ca
     CategoryCardComponent,
     StoreCardComponent,
     HighlightCardComponent,
+    OfferTagComponent,
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { HighlightCardComponent } from './components/highlight-card/highlight-ca
     AlertComponent,
     CategoryCardComponent,
     StoreCardComponent,
-    HighlightCardComponent
+    HighlightCardComponent,
+    OfferTagComponent
   ],
 })
 export class SharedModule {}
