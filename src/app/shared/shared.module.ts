@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LandinglogoComponent } from './components/landinglogo/landinglogo.component';
-import { StoreCardComponentCopy } from './components/store-card-copy/store-card-copy.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,7 +17,6 @@ import { HighlightCardComponent } from './components/highlight-card/highlight-ca
 import { OfferTagComponent } from './components/offer-tag/offer-tag.component';
 @NgModule({
   declarations: [
-    StoreCardComponentCopy,
     LandinglogoComponent,
     AlertComponent,
     CategoryCardComponent,
@@ -38,7 +36,6 @@ import { OfferTagComponent } from './components/offer-tag/offer-tag.component';
   ],
   exports: [
     CommonModule,
-    StoreCardComponentCopy,
     FontAwesomeModule,
     LandinglogoComponent,
     NgOtpInputModule,
