@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LocalRoutingModule } from './local-routing.module';
 import { FooterComponent } from './nav/footer/footer.component';
-import { HomeComponent } from './home/home.component';
 import { OffersShopCategoriesComponent } from './offers-shop-categories/offers-shop-categories.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreDetailsComponent } from './store-details/store-details.component';
@@ -21,7 +20,6 @@ import { CarouselBannerComponent } from './dash-board/carousel-banner/carousel-b
 @NgModule({
   declarations: [
     FooterComponent,
-    HomeComponent,
     OffersShopCategoriesComponent,
     StoreDetailsComponent,
     StoreNavbarComponent,
