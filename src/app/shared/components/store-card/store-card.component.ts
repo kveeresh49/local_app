@@ -8,9 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 export class StoreCardComponent implements OnInit {
 
   @Input() nearByStoreData :any;
+  favoriteIconColor = false;
+  
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  favoriteIconClick() {
+this.favoriteIconColor = !this.favoriteIconColor;
+  }
 }

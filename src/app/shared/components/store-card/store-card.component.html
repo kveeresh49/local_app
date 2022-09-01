@@ -34,7 +34,7 @@
     </div>
   </div>
 </div>
-<div style="padding: 10px">
+<div style="padding: 6px">
   <div style="border-bottom: 1px solid #c4c4c4"></div>
   <div  class="mt-2 fs-14">
     <span
@@ -46,7 +46,9 @@
     <span style="color: #ff7a00"> {{ nearByStoreData.discountText }} % off </span>
     <span class="coupon-divider"></span>
     <span style="color: #ff7a00">Use NEWSTORE</span>
-    <span style="float: right;font-size: 20px;margin-top: -2px;"><i class="fa-regular fa-heart"></i>
+    <span style="float: right;font-size: 20px;margin-top: -2px;"
+    ><i class="fa-regular fa-heart" *ngIf="!favoriteIconColor" (click)="favoriteIconClick()"></i>
+    <i class="fa-solid fa-heart" *ngIf="favoriteIconColor"  [ngClass]="{'favColor':favoriteIconColor}" (click)="favoriteIconClick()"></i>
         </span>
    
   </div>
