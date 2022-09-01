@@ -6,7 +6,7 @@ export const environment = {
   production: false,
 
   API_ENDPOINTS: {
-    Api_url: `http://www.localdistributor.in:88/api/`,
+    Api_url: `http://dev.acintyo.co.in/api/`,
     SMS_API: 'https://api.msg91.com/api/v5/otp',
   },
   API_Key: {

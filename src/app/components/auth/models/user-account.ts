@@ -1,17 +1,17 @@
 export class UserAccount {
-  firstName: string;
+  name: string;
   email: string;
   mobileNumber: number;
   otp: string;
   password: string;
   constructor(
-    firstName: string,
+    name: string,
     email: string,
     mobileNumber: number,
     otp: string,
-    password: string,
+    password: string,  
   ) {
-    this.firstName = firstName;
+    this.name = name;
     (this.email = email), 
     (this.mobileNumber = mobileNumber);
     this.otp = otp;
