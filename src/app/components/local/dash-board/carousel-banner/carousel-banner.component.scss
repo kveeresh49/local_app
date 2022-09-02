@@ -4,13 +4,13 @@
 //     // background: linear-gradient(87.93deg, #f2daff 43.24%, #ebcafc 99.39%);
 //     border-radius: 15px;
 //   }
-  
+
 //   /* Slides */
 //   .mySlides {
 //     display: none;
 //     text-align: center;
 //   }
-  
+
 //   /* Next & previous buttons */
 //   .prev,
 //   .next {
@@ -27,24 +27,24 @@
 //     border-radius: 0 3px 3px 0;
 //     user-select: none;
 //   }
-  
+
 //   /* Position the "next button" to the right */
 //   .next {
 //     position: absolute;
 //     right: 10px;
 //     border-radius: 3px 0 0 3px;
 //   }
-  
+
 //   .prev:hover, .next:hover {
 //     background-color: rgba(0,0,0,0.8);
 //     color: white;
 //   }
-  
+
 //   /* The dot/bullet/indicator container */
 //   .dot-container {
 //     text-align: center;
 //   }
-  
+
 //   /* The dots/bullets/indicators */
 //   .dot {
 //     cursor: pointer;
@@ -56,7 +56,7 @@
 //     display: inline-block;
 //     transition: background-color 0.6s ease;
 //   }
-  
+
 //   /* Add a background color to the active dot/circle */
 //   .active,
 //   .dot:hover {
@@ -65,15 +65,15 @@
 //     background: #949292;
 //     border-radius: 5px;
 //   }
-  
+
 //   .none {
 //     display: none;
 //   }
-  
+
 //   .block {
 //     display: block;
 //   }
-  
+
 //   .img-resolution {
 //     width: 1200px;
 //     height: 300px;
@@ -81,16 +81,21 @@
 
 .carousel-indicators [data-bs-target] {
   cursor: pointer;
-    margin: 0 2px;
-    width: 10px;
-    height: 5px;
-    border-top: 0;
-    background: #d9d9d9;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+  margin: 0 2px;
+  width: 10px;
+  height: 5px;
+  border-top: 0;
+  background: #d9d9d9;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
 }
 
-.carousel-indicators .active,.carousel-indicators [data-bs-target]:hover {
+.carousel-indicators .active,
+.carousel-indicators [data-bs-target]:hover {
   background: #949292;
+}
+
+:host .carousel-indicators {
+  z-index: 1;
 }
