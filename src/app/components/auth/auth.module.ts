@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LocalHomeComponent } from './containers/local-home/local-home.component';
 import { LoginComponent } from './containers/login/login.component';
 import { SignOutComponent } from './containers/sign-out/sign-out.component';
 import { LoginImgComponent } from './containers/login-img/login-img.component';
@@ -12,7 +11,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
-    LocalHomeComponent,
     LoginComponent,
     SignOutComponent,
     LoginImgComponent,
@@ -22,7 +20,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   imports: [SharedModule, AuthRoutingModule],
   exports: [
-    LocalHomeComponent,
+    CommonModule,
     SharedModule,
     LoginComponent,
     SignOutComponent,

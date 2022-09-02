@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  devApi : `http://202.65.145.186:88/api/`
+  API_ENDPOINTS: {
+    Api_url: `http://qa.acintyo.co.in/api/`,
+  }
 };
 
 /*

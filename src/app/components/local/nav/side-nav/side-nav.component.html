@@ -19,10 +19,10 @@
           </h3>
           <ng-template #loggedInUserDetail>
             <h3 class="local-admin-name">
-              viswanath Gowtham
+              {{userProfile?.firstName}}
             </h3>
-            <p class="m-auto local-admin-id">123456789101112</p>
-            <p class="m-auto local-admin-mail">vamshi@gmail.com</p>
+            <p class="m-auto local-admin-id">{{userProfile?.mobileNumber?.toString().substring(2)}}</p>
+            <p class="m-auto local-admin-mail">{{userProfile?.email}}</p>
           </ng-template>
         </div>
       </div>

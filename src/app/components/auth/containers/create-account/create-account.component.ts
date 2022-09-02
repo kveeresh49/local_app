@@ -12,6 +12,8 @@ import { UserAccount } from '../../models/user-account';
 import { AuthService } from '../../auth.service';
 import { AlertComponent } from 'ngx-bootstrap/alert/alert.component';
 import Validation from 'src/app/shared/utils/validation';
+import { CookieService } from 'ngx-cookie-service';
+import { EmailLoginModel } from '../../models/user-deatils';
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -42,11 +44,13 @@ export class CreateAccountComponent implements OnInit {
   loggedOut = false;
   accountDetails: UserAccount;
   alerts: any[] = [];
+  id: any;
 
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private cookieService: CookieService
   ) {}
 
   ngOnInit(): void {
@@ -105,18 +109,24 @@ export class CreateAccountComponent implements OnInit {
   }
 
   sendOTP(): void {
-    this.ngOtpInput.otpForm.enable();
-    this.newOtpFlag = false;
-    this.otpHeader = 'Resend OTP';
-    this.timeLeft = 30;
-    this.isOtpDisabled = true;
-    this.interval = setInterval(() => {
-      if (this.timeLeft > 0) {
-        this.timeLeft--;
-      } else {
-        this.pauseTimer();
-      }
-    }, 1000);
+    this.authService
+      .sendOtp(
+        this.createAccountForm.get('phone')?.value['e164Number'].substring(1)
+      )
+      .subscribe((data) => {
+        this.ngOtpInput.otpForm.enable();
+        this.newOtpFlag = false;
+        this.otpHeader = 'Resend OTP';
+        this.timeLeft = 30;
+        this.isOtpDisabled = true;
+        this.interval = setInterval(() => {
+          if (this.timeLeft > 0) {
+            this.timeLeft--;
+          } else {
+            this.pauseTimer();
+          }
+        }, 1000);
+      });
   }
 
   changeMobileNumber() {
@@ -187,7 +197,7 @@ export class CreateAccountComponent implements OnInit {
     this.accountDetails = new UserAccount(
       this.createAccountForm.get('name')?.value,
       this.createAccountForm.get('email')?.value,
-      this.createAccountForm.get('mobileNumber')?.value.number,
+      this.createAccountForm.get('phone')?.value['e164Number'].substring(1),
       this.verifyOtpForm.get('otp')?.value,
       this.createAccountForm.get('password')?.value
     );
@@ -199,8 +209,7 @@ export class CreateAccountComponent implements OnInit {
       this.createAccountFormObj();
       this.authService.createUserAccount$(this.accountDetails).subscribe({
         next: (accountDetails) => {
-          this.router.navigate(['dashboard']);
-          this.authService.isloggedInUser.next(true);
+          this.emailLoginVerification();
         },
         error: (e) => {
           this.alerts = [];
@@ -217,6 +226,50 @@ export class CreateAccountComponent implements OnInit {
         },
       });
     }
+  }
+
+  emailLoginVerification() {
+    let emailLogin: EmailLoginModel = {
+      email: this.createAccountForm.get('email')?.value,
+      password: this.createAccountForm.get('password')?.value,
+    };
+    this.authService.emailLogin$(emailLogin).subscribe({
+      next: (userToken: any) => {
+        this.cookieService.set('userToken', JSON.stringify(userToken['token']));
+        this.id = userToken['id'];
+        this.authService.loginUserDetailSub$.next(userToken);
+        this.userProfileVerification();
+      },
+      error: (e) => {
+        this.alerts = [];
+        let error = {
+          type: 'danger',
+          msg: `${e.error}`,
+          timeout: 5000,
+        };
+        this.router.navigate(['login']);
+      },
+    });
+  }
+
+  userProfileVerification() {
+    let id: string = JSON.parse(this.cookieService.get('userToken'))['id'];
+    this.authService.userProfile$(id).subscribe({
+      next: (userProfile: any) => {
+        this.cookieService.set('userProfile', JSON.stringify(userProfile));
+        this.authService.isUserProfileSub$.next(userProfile);
+        this.router.navigate(['dashboard']);
+      },
+      error: (e) => {
+        this.alerts = [];
+        let error = {
+          type: 'danger',
+          msg: `${e.error}`,
+          timeout: 5000,
+        };
+        this.router.navigate(['login']);
+      },
+    });
   }
 
   onClosed(dismissedAlert: AlertComponent): void {

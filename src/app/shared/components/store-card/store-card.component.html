@@ -1,284 +1,55 @@
-<app-category-card></app-category-card>
-
-
-
-<section class="container mb-5 position-relative">
-  <h2 class="text-start mb-4">Popular Stores</h2>
-  <div class="flex" style="justify-content: center">
-    <div
-      style="position: absolute; right: 75px; top: 15px; margin-bottom: 20px"
-    >
-      <span>Page {{ psCurrentPage }} of {{ pageSize("popularStore") }}</span>
-      <span *ngIf="psCurrentPage != 1">
-        <span
-          style="
-            display: inline-block;
-            margin: -2px 0.67375em 0;
-            width: 1px;
-            background-color: #ddd;
-            line-height: 0;
-            height: 14px;
-            vertical-align: middle;
-          "
-        ></span>
-        <span
-          class="start-over cursor-pointer"
-          (click)="StartingPage('popularStore')"
-          >Start over</span
-        >
-      </span>
+<!-- <div class="offer-tag">
+  <div class="offer-text">
+    <div class="offer-percentage">
+      <div>{{ nearByStoreData.percentageText }}%</div>
+      <div>OFF</div>
     </div>
   </div>
-  <img
-    src="../../../assets/images/left-vector.png"
-    alt="prev"
-    width="14px"
-    height="25px"
-    class="cursor-pointer"
-    style="position: absolute; top: 50%"
-    *ngIf="psStartIndex != 0"
-    (click)="scrollStores('popularStore', 'prev')"
-  />
-  <div class="container">
-    <div class="row justify-content-center" style="gap: 3rem">
-      <ng-container *ngFor="let popularCard of popularCards; let idx = index">
-        <div
-          class="store-card-max-width p-0 m-0 cursor-pointer" (click)="navigateStore()"
-          *ngIf="idx >= psStartIndex && idx < psEndIndex"
-        >
-          <div class="offer-tag">
-            <div class="offer-text">
-              <div style="margin-left: 2.2rem !important;">
-                <div>{{ popularCard.percentageText }}%</div>
-                <div>OFF</div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="store-img"
-            
-            style="
-              background: url({{ popularCard.shopImage }});
-              background-size: cover;
-            "
-          ></div>
-          <div class="flex justify-content-between p-2">
-            <div>
-              <div class="fw-semibold store-title mt-2">{{ popularCard.shopTitel }}</div>
-              <div class="popular-store-category text-capitalize mt-2">
-                {{ popularCard.storeCatogery }}
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-content-evenly shop-rating-card">
-                <div class=" d-flex"
-                  style="
-                    color: #ffffff;
-                    border-radius: 0.5px;
-                  "
-                >
-                  <i
-                    class="fa-solid fa-star star-calss"
-                    style="font-size: 10px; padding-right: 4px;"
-                  ></i>
-                </div>
-                <div
-                  style="
-                    color: #ffffff;
-                    border-radius: 0.5px;
-                    line-height: 8px;
-                    padding-right: 4px;
-                  "
-                >
-                  {{ popularCard.rating }}
-                </div>
-              </div>
-              <div class="popular-store-category mt-2" style="justify-content: start;
-              display: flex;">
-                {{ popularCard.kilometers }}km
-              </div>
-            </div>
-          </div>
-          <div style="padding: 10px;">
-            <div
-              style="border-bottom: 1px solid #c4c4c4"
-            ></div>
-            <div style="font-size: 14px; color: #ff7a00" class="mt-3">
-              <span
-                ><img
-                  src="../../../assets/images/popular-stores/percentage-icon.png"
-                  alt=""
-                  class="percentage-icon"
-              /></span>
-              <span> {{ popularCard.discountText }} % off </span>
-              <span
-                style="
-                  display: inline-block;
-                  margin: -2px 0.67375em 0;
-                  width: 1.5px;
-                  background-color: #949292;
-                  line-height: 0;
-                  height: 14px;
-                  vertical-align: middle;
-                "
-              ></span>
-              <span>Use NEWSTORE</span>
-            </div>
-          </div>
-        </div>
-      </ng-container>
+</div> -->
+<app-offer-tag></app-offer-tag>
+<div
+  class="store-img"
+  [style.background-image]="'url(' + nearByStoreData.shopImage + ')'"
+></div>
+<div class="flex justify-content-between p-2">
+  <div>
+    <div class="fw-semibold store-title mt-1">
+      {{ nearByStoreData.shopTitel }}
+    </div>
+    <div class="popular-store-category text-capitalize mt-2">
+      {{ nearByStoreData.storeCatogery }}
     </div>
   </div>
-  <img
-    src="../../../assets/images/right-vector.png"
-    alt="next"
-    width="14px"
-    height="25px"
-    class="cursor-pointer"
-    style="position: absolute; top: 50%; right: -20px"
-    *ngIf="psEndIndex <= popularCards.length && popularCards.length > 4"
-    (click)="scrollStores('popularStore', 'next')"
-  />
-</section>
-
-
-
-<section class="container mb-5 position-relative">
-  <h2 class="text-start mb-4">Nearby You</h2>
-  <div class="flex" style="justify-content: center">
-    <div
-      style="position: absolute; right: 75px; top: 15px; margin-bottom: 20px"
-    >
-      <span>Page {{ nsCurrentPage }} of {{ pageSize("nearByStore") }}</span>
-      <span *ngIf="nsCurrentPage != 1">
-        <span
-          style="
-            display: inline-block;
-            margin: -2px 0.67375em 0;
-            width: 1px;
-            background-color: #ddd;
-            line-height: 0;
-            height: 14px;
-            vertical-align: middle;
-          "
-        ></span>
-        <span
-          class="start-over cursor-pointer"
-          (click)="StartingPage('nearByStore')"
-          >Start over</span
-        >
-      </span>
+  <div>
+    <div class="flex justify-content-evenly shop-rating-card">
+      <div class="d-flex white_color">
+        <i class="fa-solid fa-star star-calss" style="padding-right: 4px"></i>
+      </div>
+      <div class="rating">
+        {{ nearByStoreData.rating }}
+      </div>
+    </div>
+    <div class="d-flex popular-store-category mt-1 justify-content-end">
+      {{ nearByStoreData.kilometers }}km
     </div>
   </div>
-  <img
-    src="../../../assets/images/left-vector.png"
-    alt="prev"
-    width="14px"
-    height="25px"
-    class="cursor-pointer"
-    style="position: absolute; top: 50%"
-    *ngIf="nsStartIndex != 0"
-    (click)="scrollStores('nearByStore', 'prev')"
-  />
-  <div class="container">
-    <div class="row justify-content-center" style="gap: 3rem">
-      <ng-container *ngFor="let slide of slides; let idx = index" >
-        <div
-          class="store-card-max-width p-0 m-0 cursor-pointer"
-          (click)="navigateStore()"
-          *ngIf="idx >= nsStartIndex && idx < nsEndIndex"
-        >
-          <div class="offer-tag">
-            <div class="offer-text">
-              <div  style="margin-left: 2.2rem !important">
-                <div>{{ slide.percentageText }}%</div>
-                <div>OFF</div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="store-img"
-            style="
-              background: url({{ slide.shopImage }});
-              background-size: cover;
-            "
-          ></div>
-          <div class="flex justify-content-between p-2">
-            <div>
-              <div class="fw-semibold store-title mt-2">{{ slide.shopTitel }}</div>
-              <div class="popular-store-category text-capitalize mt-2">
-                {{ slide.storeCatogery }}
-              </div>
-            </div>
-            <div>
-              <div class="flex justify-content-evenly shop-rating-card">
-                <div class=" d-flex"
-                  style="
-                    color: #ffffff;
-                    border-radius: 0.5px;
-                  "
-                >
-                  <i
-                    class="fa-solid fa-star star-calss"
-                    style="font-size: 10px; padding-right: 4px;"
-                  ></i>
-                </div>
-                <div
-                  style="
-                    color: #ffffff;
-                    border-radius: 0.5px;
-                    line-height: 8px;
-                    padding-right: 4px;
-                  "
-                >
-                  {{ slide.rating }}
-                </div>
-              </div>
-              <div class="popular-store-category mt-2" style="justify-content: start;
-              display: flex;">
-                {{ slide.kilometers }}km
-              </div>
-            </div>
-          </div>
-          <div style="padding: 10px;">
-            <div
-              style="border-bottom: 1px solid #c4c4c4"
-            ></div>
-            <div style="font-size: 14px; color: #ff7a00" class="mt-3">
-              <span
-                ><img
-                  src="../../../assets/images/popular-stores/percentage-icon.png"
-                  alt=""
-                  class="percentage-icon"
-              /></span>
-              <span> {{ slide.discountText }} % off </span>
-              <span
-                style="
-                  display: inline-block;
-                  margin: -2px 0.67375em 0;
-                  width: 1.5px;
-                  background-color: #949292;
-                  line-height: 0;
-                  height: 14px;
-                  vertical-align: middle;
-                "
-              ></span>
-              <span>Use NEWSTORE</span>
-            </div>
-          </div>
-        </div>
-      </ng-container>
-    </div>
+</div>
+<div style="padding: 6px">
+  <div style="border-bottom: 1px solid #c4c4c4"></div>
+  <div  class="mt-2 fs-14">
+    <span
+      ><img
+        src="../../../assets/images/popular-stores/percentage-icon.png"
+        alt=""
+        class="percentage-icon"
+    /></span>
+    <span style="color: #ff7a00"> {{ nearByStoreData.discountText }} % off </span>
+    <span class="coupon-divider"></span>
+    <span style="color: #ff7a00">Use NEWSTORE</span>
+    <span style="float: right;font-size: 20px;margin-top: -2px;"
+    ><i class="fa-regular fa-heart" *ngIf="!favoriteIconColor" (click)="favoriteIconClick()"></i>
+    <i class="fa-solid fa-heart" *ngIf="favoriteIconColor"  [ngClass]="{'favColor':favoriteIconColor}" (click)="favoriteIconClick()"></i>
+        </span>
+   
   </div>
-  <img
-    src="../../../assets/images/right-vector.png"
-    alt="next"
-    width="14px"
-    height="25px"
-    class="cursor-pointer"
-    style="position: absolute; top: 50%; right: -20px"
-    *ngIf="nsEndIndex <= slides.length && slides.length > 4"
-    (click)="scrollStores('nearByStore', 'next')"
-  />
-</section>
-
+</div>

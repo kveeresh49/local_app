@@ -12,11 +12,16 @@ export class TopSearchNavBarComponent implements OnInit {
   public sidebarShow: boolean = false;
   isLoginUserFlag = false;
   @Input() store: boolean;
+  setProduct:string;
   constructor(private cookieService: CookieService, private router: Router, private authService: AuthService) { }
 
+  searchProducts = [{name:'Search for Stores'},{name:'Search for Products'}]
   ngOnInit(): void {
+    this.setProduct = this.searchProducts[0].name;
     this.isLoginUser();
   }
+
+  
 
   isLoginUser() {
     this.authService.isloggedInUser.subscribe(value => this.isLoginUserFlag = value);
@@ -28,6 +33,10 @@ export class TopSearchNavBarComponent implements OnInit {
     } else {
       this.isLoginUserFlag = false;
     }
+  }
+
+  setProductValue(value:any) {
+    this.setProduct = value.name;
   }
 
   closeSideNav(sidebarShow: boolean) {

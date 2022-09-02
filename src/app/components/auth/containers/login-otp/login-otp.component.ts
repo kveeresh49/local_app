@@ -9,6 +9,7 @@ import {
   PhoneNumberFormat,
 } from 'ngx-intl-tel-input';
 import { AuthService } from '../../auth.service';
+import { OtpLoginModel } from '../../models/user-deatils';
 @Component({
   selector: 'app-login-otp',
   templateUrl: './login-otp.component.html',
@@ -32,7 +33,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   isOtpDisabled = false;
   newOtpFlag = false;
   otpForm: FormGroup;
-  otp: any;
+  otp: any = '';
   submitted = false;
   alerts: any[];
 
@@ -49,7 +50,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.ngOtpInput.otpForm.disable();
+    this.ngOtpInput?.otpForm?.disable();
   }
 
   changePreferredCountries(): void {
@@ -67,7 +68,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
 
   onOtpChange(otp: any) {
     this.otp = otp;
-    this.otpForm.get('otp')?.setValue(otp);
+    this.otpForm?.get('otp')?.setValue(otp);
   }
 
   get f(): any {
@@ -76,17 +77,24 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
 
   sendOTP(): void {
     this.ngOtpInput.otpForm.enable();
-    this.newOtpFlag = false;
-    this.otpHeader = 'Resend OTP';
-    this.timeLeft = 30;
-    this.isOtpDisabled = true;
-    this.interval = setInterval(() => {
-      if (this.timeLeft > 0) {
-        this.timeLeft--;
-      } else {
-        this.pauseTimer();
-      }
-    }, 1000);
+    this.authService
+      .sendOtp(
+        this.otpForm.get('mobile')?.value['e164Number'].substring(1)
+      )
+      .subscribe((data) => {
+        this.ngOtpInput.otpForm.enable();
+        this.newOtpFlag = false;
+        this.otpHeader = 'Resend OTP';
+        this.timeLeft = 30;
+        this.isOtpDisabled = true;
+        this.interval = setInterval(() => {
+          if (this.timeLeft > 0) {
+            this.timeLeft--;
+          } else {
+            this.pauseTimer();
+          }
+        }, 1000);
+      });
   }
 
   pauseTimer(): void {
@@ -103,13 +111,12 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
     this.submitted = true;
     console.log(this.otpForm.valid);
     if (this.otpForm.valid) {
-      let otpObj = {
-        mobileNumber: this.otpForm.get('mobile')?.value.number,
-        otp: this.otpForm.get('otp')?.value,
-        email: this.otpForm.get('email')?.value,
-        password: this.otpForm.get('password')?.value,
+      let OtpLogin:OtpLoginModel = {
+        mobileNumber: +(this.otpForm.get('mobile')?.value['e164Number'].substring(1)),
+        otp: +(this.otpForm.get('otp')?.value),
       };
-      this.authService.otpLogin$(otpObj).subscribe({
+     
+      this.authService.otpLogin$(OtpLogin).subscribe({
         next: (userToken: any) => {
           this.cookieService.set(
             'userToken',
@@ -117,22 +124,45 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
           );
           this.cookieService.get('userToken');
           this.authService.isloggedInUser.next(true);
-          this.router.navigate(['/dashboard']);
+          this.authService.loginUserDetailSub$.next(userToken);
+          this.userProfileVerification();
         },
         error: (e) => {
           this.alerts = [];
           let error = {
             type: 'danger',
-            msg: `${e.error}`,
+            msg: `OTP is Invalid`,
             timeout: 5000,
           };
-          // this.isLoggedIn = true;
-          // this.verifyOtpFormSubmit = false;
-          // this.clearCreateFormValidators();
+          this.ngOtpInput.setValue('');
           this.alerts.push(error);
           console.error(e);
+          this.submitted = false;
         },
       });
     }
   }
+
+
+  userProfileVerification() {
+    let id: string = JSON.parse(this.cookieService.get('userToken'))['id'];
+    this.authService.userProfile$(id).subscribe({
+      next: (userProfile: any) => {
+        this.cookieService.set('userProfile', JSON.stringify(userProfile));
+        this.authService.isUserProfileSub$.next(userProfile);
+        this.router.navigate(['dashboard']);
+      },
+      error: (e) => {
+        this.alerts = [];
+        let error = {
+          type: 'danger',
+          msg: `${e.error}`,
+          timeout: 5000,
+        };
+       
+      },
+    });
+  }
 }
+
+

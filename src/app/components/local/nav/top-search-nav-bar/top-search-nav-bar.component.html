@@ -1,32 +1,84 @@
-<div [ngClass]="{ 'sticky': !store }" style="height: 70px;" class="d-flex align-items-center position-sticky top-0">
+<div
+  [ngClass]="{ sticky: !store }"
+  style="height: 70px"
+  class="d-flex align-items-center position-sticky top-0"
+>
   <div class="d-flex col-4 align-items-center justify-content-around">
-    <img src="../../../../assets/images/brand-logo.png" alt="" width="100px" class="cursor-pointer" (click)="navigateDashBoard()" />
-    <div class="text-start" data-bs-toggle="offcanvas" data-bs-target="#deliverAddress" aria-controls="deliverAddress"
-      (click)="sidebarShow = !sidebarShow">
+    <img
+      src="../../../../assets/images/brand-logo.png"
+      alt=""
+      width="100px"
+      class="cursor-pointer"
+      (click)="navigateDashBoard()"
+      style="height: 7vh;
+      width: 18vh;"
+    />
+    <div
+      class="text-start"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#deliverAddress"
+      aria-controls="deliverAddress"
+      (click)="sidebarShow = !sidebarShow"
+    >
       <label for="" class="address-label">
         <i class="fa fa-map-marker" aria-hidden="true"></i>
         Deliver to
       </label>
-      <select name="" id="" class="border-0 address-heading cursor-pointer" disabled>
+      <select
+        name=""
+        id=""
+        class="border-0 address-heading cursor-pointer"
+        disabled
+      >
         <option value="">R K Nagar, Secunderabad</option>
       </select>
     </div>
   </div>
-  <div class="d-flex col-4 align-items-center">
-    <input type="text" class="form-control" id="search" placeholder="Search for Products">
-    <i class="fa fa-search top-0 position-relative" style="left: -40px;"></i>
+
+
+
+<div class="input-group">
+  <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown" container="body">
+    <button type="button" class="btn btn-outline-primary" id="dropdownManual" style="border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;"
+     ngbDropdownAnchor (focus)="myDrop.open()">{{setProduct}}</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+      <ng-container *ngFor="let dropDownValue of searchProducts">
+        <button ngbDropdownItem (click)="setProductValue(dropDownValue)">{{dropDownValue?.name}}</button>
+      </ng-container>
+    </div>
   </div>
+  <input type="text" class="form-control" aria-label="Text input with dropdown button" style="border-radius: 0px !important;">
+  <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search top-0 position-relative"></i></button>
+</div>
+
   <div class="d-flex col-3 align-items-center justify-content-end gap-5">
     <div class="light-grey text-decoration-none">Offers</div>
-    <div class="light-grey text-decoration-none cursor-pointer" *ngIf="isLoginUserFlag" (click)="navigateProfile()">
-      Profile</div>
-    <a class="text-decoration-none light-grey cursor-pointer" *ngIf="!isLoginUserFlag"
-      (click)="navigateLogin()">Login</a>
+    <div
+      class="light-grey text-decoration-none cursor-pointer"
+      *ngIf="isLoginUserFlag"
+      (click)="navigateProfile()"
+    >
+      Profile
+    </div>
+    <a
+      class="text-decoration-none light-grey cursor-pointer"
+      *ngIf="!isLoginUserFlag"
+      (click)="navigateLogin()"
+      >Login</a
+    >
     <span class="cart-btn">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2 me-2"
-        viewBox="0 0 16 16">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-cart2 me-2"
+        viewBox="0 0 16 16"
+      >
         <path
-          d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z" />
+          d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+        />
       </svg>
       My Cart
     </span>

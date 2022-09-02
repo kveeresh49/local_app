@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DeliverAddressComponent } from './components/local/deliver-address/deliver-address.component';
 import { StoreDetailsComponent } from './components/local/store-details/store-details.component';
-import { CategoryCardComponent } from './shared/components/category-card/category-card.component';
 
 const routes: Routes = [
   {
@@ -16,11 +15,6 @@ const routes: Routes = [
     path: 'store',
     component: StoreDetailsComponent,
     children: [{ path: ':id', component: StoreDetailsComponent }],
-  },
-  {
-    path: 'shops-by-categoires',
-    component: CategoryCardComponent,
-    children: [{ path: ':id', component: CategoryCardComponent }],
   },
 ];
 

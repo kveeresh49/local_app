@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LandinglogoComponent } from './components/landinglogo/landinglogo.component';
-import { StoreCardComponent } from './components/store-card/store-card.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,12 +12,17 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { AlertComponent } from './components/alert/alert.component';
 import { CategoryCardComponent } from './components/category-card/category-card.component';
+import { StoreCardComponent } from './components/store-card/store-card.component';
+import { HighlightCardComponent } from './components/highlight-card/highlight-card.component';
+import { OfferTagComponent } from './components/offer-tag/offer-tag.component';
 @NgModule({
   declarations: [
-    StoreCardComponent,
     LandinglogoComponent,
-    CategoryCardComponent,
     AlertComponent,
+    CategoryCardComponent,
+    StoreCardComponent,
+    HighlightCardComponent,
+    OfferTagComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +36,6 @@ import { CategoryCardComponent } from './components/category-card/category-card.
   ],
   exports: [
     CommonModule,
-    StoreCardComponent,
     FontAwesomeModule,
     LandinglogoComponent,
     NgOtpInputModule,
@@ -43,7 +46,11 @@ import { CategoryCardComponent } from './components/category-card/category-card.
     MatInputModule,
     NgxIntlTelInputModule,
     AlertModule,
-    AlertComponent
+    AlertComponent,
+    CategoryCardComponent,
+    StoreCardComponent,
+    HighlightCardComponent,
+    OfferTagComponent
   ],
 })
 export class SharedModule {}

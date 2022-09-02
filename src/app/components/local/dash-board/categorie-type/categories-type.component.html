@@ -1,0 +1,39 @@
+<div class="container-sm container-md mb-5 container-lg container-xl position-relative">
+    <div class="flex justify-content-between mb-3">
+        <h3>Shop by Categories</h3>
+        <div>
+          <span>Page {{currentPage}} of {{pageSize()}}</span>
+          <span *ngIf="currentPage != 1">
+          <span class="horizontal-divider"></span>
+          <span class="start-over cursor-pointer" (click)="StartingPage()">Start over</span>
+          </span>
+        </div>
+      </div>
+      <img
+        src="../../../assets/images/left-vector.png"
+        alt="prev"
+        width="14px"
+        height="25px"
+        class="cursor-pointer position-absolute left-scroll"
+        *ngIf="startingIndex != 0"
+        (click)="storeScroll('prev')"
+      />
+  <div class="container p-0">
+    <div class="row justify-content-center">
+      <ng-container *ngFor="let categoryData of categoryCardData; index as idx">
+        <div class="category-col-md-2" *ngIf="idx >= startingIndex && idx < endingIndex">
+          <app-category-card [categoryCard]="categoryData"></app-category-card>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  <img
+        src="../../../assets/images/right-vector.png"
+        alt="next"
+        width="14px"
+        height="25px"
+        class="cursor-pointer position-absolute right-scroll"
+        *ngIf="endingIndex <= categoryCardData.length && categoryCardData.length > 6"
+        (click)="storeScroll('next')"
+      />
+</div>

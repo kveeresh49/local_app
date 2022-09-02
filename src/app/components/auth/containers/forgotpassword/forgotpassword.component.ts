@@ -11,6 +11,7 @@ import Validation from 'src/app/shared/utils/validation';
 
 import { AuthService } from '../../auth.service';
 import { AccountDetails } from '../../models/account-details';
+import { OtpLoginModel, PasswordResetModel } from '../../models/user-deatils';
 
 @Component({
   selector: 'app-forgotpassword',
@@ -62,7 +63,7 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
           '',
           [
             Validators.required,
-            Validators.minLength(6),
+            Validators.minLength(8),
             Validators.maxLength(40),
           ],
         ],
@@ -94,18 +95,59 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
 
   sendOTP(): void {
     this.ngOtpInput.otpForm.enable();
-    this.newOtpFlag = false;
-    this.otpHeader = 'Resend OTP';
-    this.timeLeft = 30;
-    this.isOtpDisabled = true;
-    this.interval = setInterval(() => {
-      if (this.timeLeft > 0) {
-        this.timeLeft--;
-      } else {
-        this.pauseTimer();
-      }
-    }, 1000);
+    this.authService
+    .sendOtp(
+      this.forgotPasswordForm.get('mobileNumber')?.value['e164Number'].substring(1)
+    )
+    .subscribe((data) => {
+      this.ngOtpInput.otpForm.enable();
+      this.newOtpFlag = false;
+      this.otpHeader = 'Resend OTP';
+      this.timeLeft = 30;
+      this.isOtpDisabled = true;
+      this.interval = setInterval(() => {
+        if (this.timeLeft > 0) {
+          this.timeLeft--;
+        } else {
+          this.pauseTimer();
+        }
+      }, 1000);
+    });
   }
+
+  clearCreateFormValidators(): void {
+    this.forgotPasswordForm.get('confirmPassword')?.reset('');
+    this.forgotPasswordForm.get('password')?.reset();
+    this.forgotPasswordForm.clearValidators();
+    this.forgotPasswordForm.get('password')?.clearValidators();
+    this.forgotPasswordForm.get('confirmPassword')?.clearValidators();
+    this.forgotPasswordForm.get('confirmPassword')?.updateValueAndValidity();
+    this.forgotPasswordForm.get('password')?.updateValueAndValidity();
+  }
+
+  setCreateFormValidators(): void {
+    this.forgotPasswordForm
+      .get('password')
+      ?.setValidators([
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(40),
+      ]);
+    this.forgotPasswordForm
+      .get('confirmPassword')
+      ?.setValidators([
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(40),
+      ]);
+    this.forgotPasswordForm.setValidators(
+      Validation.match('password', 'confirmPassword')
+    );
+    this.forgotPasswordForm.get('password')?.updateValueAndValidity();
+    this.forgotPasswordForm.get('confirmPassword')?.updateValueAndValidity();
+    this.forgotPasswordForm.updateValueAndValidity();
+  }
+
 
   pauseTimer(): void {
     clearInterval(this.interval);
@@ -123,14 +165,15 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
 
   reSetPassword() {
     this.submitted = true;
+    this.setCreateFormValidators();
     if (this.forgotPasswordForm.valid) {
-      let accountDetails: AccountDetails = {
-        email: this.forgotPasswordForm.get('email')?.value,
-        mobileNumber: this.forgotPasswordForm.get('mobileNumber')?.value.number,
+      
+      let passwordRestObj: PasswordResetModel = {
+        mobileNumber: +(this.forgotPasswordForm.get('mobileNumber')?.value['e164Number'].substring(1)),
         password: this.forgotPasswordForm.get('password')?.value,
-        otp: this.forgotPasswordForm.get('otp')?.value,
+        otp: +(this.forgotPasswordForm.get('otp')?.value),
       };
-      this.authService.resetPassword$(accountDetails).subscribe({
+      this.authService.resetPassword$(passwordRestObj).subscribe({
         next: (accountDetails: any) => {
           this.router.navigate(['/login']);
         },
@@ -143,6 +186,7 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
           };
           this.alerts.push(error);
           console.error(e);
+          this.clearCreateFormValidators();
         },
       });
       //this.router.navigate(['/login']);
