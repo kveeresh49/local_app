@@ -2,7 +2,12 @@
 
 <div #storeDetails class="d-flex position-sticky store-details">
   <div class="store-description">
-    <img src="../../assets/images/store-images/back-arrow.png" class="cursor-pointer" (click)="navigateToDashBoard()" alt="Back" />
+    <img
+      src="../../assets/images/store-images/back-arrow.png"
+      class="cursor-pointer"
+      (click)="navigateToDashBoard()"
+      alt="Back"
+    />
     <div class="store-content">
       <h3 class="text-white">Bhabji Sabji</h3>
       <div class="text-white mt-1">Vegetables, Fruits, Greens</div>
@@ -25,14 +30,12 @@
 <div class="container-fluid ps-0">
   <div class="row">
     <div class="left-nav">
-      <div
-        class="card text-end today-deal-container">
+      <div class="card text-end today-deal-container">
         <div class="card-body">
           <span style="font-weight: 700">Today's Deals</span>
         </div>
       </div>
-      <div
-        class="card text-end categories-container">
+      <div class="card text-end categories-container">
         <div class="card-body pe-0">
           <div style="font-weight: 700; padding-right: 20px">Categories</div>
           <div
@@ -51,14 +54,11 @@
       </div>
     </div>
     <div class="col-6" style="height: 1000px">
-      <div
-        class="row content-header">
+      <div class="row content-header">
         <div class="col-8">
           <div
             class="d-flex mt-4 justify-content-around"
-            style="
-              padding-bottom: 8px;
-            "
+            style="padding-bottom: 8px"
           >
             <span
               *ngFor="let item of storeNavItems"
@@ -79,10 +79,7 @@
       </div>
       <div class="products-container">
         <div *ngFor="let product of products" class="products">
-          <div
-            class="flex justify-content-between"
-            style="height: 77px"
-          >
+          <div class="flex justify-content-between" style="height: 77px">
             <div>
               <div *ngIf="product?.discount" class="offer-tag">
                 <div class="offer-text">
@@ -126,10 +123,7 @@
                 (click)="updateCount(product.id, false)"
                 >-</span
               >
-              <span
-                class="product-count"
-                >{{ product.count }}</span
-              >
+              <span class="product-count">{{ product.count }}</span>
               <span
                 class="increment-decrement cursor-pointer"
                 (click)="updateCount(product.id, true)"
@@ -140,9 +134,7 @@
         </div>
       </div>
     </div>
-    <div
-      class="col-3 mt-4 right-container"
-    >
+    <div class="col-3 mt-2 right-container">
       <div class="d-flex flex-column" style="gap: 20px">
         <div class="card ms-3 offer-border-color">
           <a class="prev" (click)="slideChange(-1)"
@@ -151,14 +143,15 @@
               alt="Previous"
               width="9px"
           /></a>
-          <div class="card-body p-1 fs-11">
+          <div class="card-body p-1 fs-11" style="height: 60px">
             <div *ngFor="let offer of offers" class="myOffers">
-              <div class="d-flex justify-content-around">
+              <div class="d-flex align-items-center gap-3">
                 <img
                   src="../../../assets/images/offer-green.png"
                   alt=""
                   width="30px"
                   height="30px"
+                  style="margin-left: 10px"
                 />
                 <div>
                   <div>{{ offer.offerText }}</div>
@@ -196,10 +189,8 @@
 </div>
 
 <ng-template #cartTemplate let-product>
-  <div class="card text-center">
-    <h6 class="card-header cart-header">
-      Items from Bhabji Sabji
-    </h6>
+  <div class="card text-center ms-3">
+    <h6 class="card-header cart-header">Items from Bhabji Sabji</h6>
     <div class="card-body">
       <div *ngFor="let item of cart">
         <div class="flex mt-3">
@@ -217,9 +208,7 @@
               class="increment-decrement cursor-pointer"
               >-</span
             >
-            <span class="cart-item-count">{{
-              item.count
-            }}</span>
+            <span class="cart-item-count">{{ item.count }}</span>
             <span
               (click)="updateCount(item.id, true)"
               class="increment-decrement cursor-pointer"
@@ -227,13 +216,8 @@
             >
           </div>
           <div class="w-25">
-            <div class="item-price fs-14">
-              ${{ item.price }}
-            </div>
-            <div
-              *ngIf="item.oldPrice"
-              class="item-old-price fs-12"
-            >
+            <div class="item-price fs-14">${{ item.price }}</div>
+            <div *ngIf="item.oldPrice" class="item-old-price fs-12">
               <del>${{ item.oldPrice }}</del>
             </div>
           </div>
@@ -242,17 +226,13 @@
       </div>
       <div class="flex">
         <div class="w-50">
-          <div class="item-name text-start fs-14">
-            Subtotal
-          </div>
+          <div class="item-name text-start fs-14">Subtotal</div>
           <div class="item-weight text-start fs-10">
             Extra Charges may apply
           </div>
         </div>
         <div class="w-25"></div>
-        <div class="item-price w-25 fs-14">
-          ₹{{ cartTotal }}
-        </div>
+        <div class="item-price w-25 fs-14">₹{{ cartTotal }}</div>
       </div>
       <div class="w-100 checkout-box cursor-pointer mt-3" style="height: 35px">
         <div style="font-size: larger">Checkout</div>

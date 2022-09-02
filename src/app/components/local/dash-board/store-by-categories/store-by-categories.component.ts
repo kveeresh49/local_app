@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-store-by-categories',
@@ -13,7 +14,7 @@ export class StoreByCategoriesComponent implements OnInit {
 
   @Input() nearByStoreData: any;
   @Input() CategoriesType: string;
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -39,5 +40,9 @@ export class StoreByCategoriesComponent implements OnInit {
     this.currentPage = 1;
     this.startingIndex = 0;
     this.endingIndex = 4;
+  }
+
+  onCardClick(): void {
+    this.router.navigate(['/store']);
   }
 }
