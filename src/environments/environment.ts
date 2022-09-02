@@ -4,17 +4,9 @@
 
 export const environment = {
   production: false,
-
   API_ENDPOINTS: {
-    Api_url: `http://dev.acintyo.co.in/api/`,
-    SMS_API: 'https://api.msg91.com/api/v5/otp',
-  },
-  API_Key: {
-    Sms_AuthKey: '374579AeR6hq3x6231b4a2P1',
-    Sms_Template_key: '62471d2d12bc210b8700e153',
-  },
-  Sms_Otp_length : 6,
-  Sms_Otp_expiry : 10
+    Api_url: `http://qa.acintyo.co.in/api/`,
+  }
 };
 
 /*

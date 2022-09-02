@@ -4,7 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountDetails } from './models/account-details';
-import { EmailLoginModel } from './models/user-deatils';
+import { EmailLoginModel, OtpLoginModel, PasswordResetModel } from './models/user-deatils';
 @Injectable({
   providedIn: 'root',
 })
@@ -40,9 +40,6 @@ export class AuthService {
     return `${environment.API_ENDPOINTS.Api_url}`;
   }
 
-  get sms_ApiUrl(): string {
-    return `${environment.API_ENDPOINTS.SMS_API}`;
-  }
 
   createUserAccount$(userAccountDetails: AccountDetails) {
     return this.http.post(`${this.apiUrl}User`, userAccountDetails);
@@ -55,12 +52,9 @@ export class AuthService {
     );
   }
 
-  otpLogin$(otpLogin: AccountDetails) {
-    return this.http.post(`${this.apiUrl}User/OTPLogin`, otpLogin);
-  }
 
-  resetPassword$(accountDetails: AccountDetails) {
-    return this.http.post(`${this.apiUrl}User/Reset`, accountDetails);
+  resetPassword$(passwordResetObj: PasswordResetModel) {
+    return this.http.post(`${this.apiUrl}User/Reset`, passwordResetObj);
   }
 
   getLoginUserDetails$(id: any): Observable<any> {
@@ -80,6 +74,11 @@ export class AuthService {
   emailLogin$(emailLogin: EmailLoginModel) {
     return this.http.post(`${this.apiUrl}User/EmailLogin`, emailLogin);
   }
+
+  otpLogin$(OtpLogin: OtpLoginModel) {
+    return this.http.post(`${this.apiUrl}User/OTPLogin`, OtpLogin);
+  }
+
 
   userProfile$(id: string) {
     return this.http.get(`${this.apiUrl}UserProfile/${id}`);

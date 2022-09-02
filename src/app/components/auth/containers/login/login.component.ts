@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { EmailLoginModel } from '../../models/user-deatils';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   submitted = false;
   alerts: any[];
+  id: any;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -44,8 +46,6 @@ export class LoginComponent implements OnInit {
           Validators.maxLength(20),
         ],
       ],
-      mobileNumber: '1111111111',
-      otp: '111111',
     });
   }
 
@@ -64,18 +64,16 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.setCreateFormValidators();
     if (this.loginForm.valid) {
-      this.authService.userLogin$(this.loginForm.value).subscribe({
+      let emailModel:EmailLoginModel = {
+        "email": this.loginForm.get('email')?.value,
+         "password": this.loginForm.get('password')?.value,
+      }
+      this.authService.emailLogin$(emailModel).subscribe({
         next: (userToken: any) => {
-          this.cookieService.set(
-            'userToken',
-            JSON.stringify(userToken['token'])
-          );
+          this.cookieService.set('userToken', JSON.stringify(userToken['token']));
+          this.id = userToken['id'];
           this.authService.loginUserDetailSub$.next(userToken);
-          console.log(userToken.token.id,'userToken.token.id')
-          this.authService.getLoginUserDetails$(userToken.token.id).subscribe(() => {
-            console.log(userToken);
-          })
-          this.router.navigate(['dashboard']);
+          this.userProfileVerification();
         },
         error: (e) => {
           this.alerts = [];
@@ -91,6 +89,27 @@ export class LoginComponent implements OnInit {
         },
       });
     }
+  }
+
+  
+  userProfileVerification() {
+    let id: string = JSON.parse(this.cookieService.get('userToken'))['id'];
+    this.authService.userProfile$(id).subscribe({
+      next: (userProfile: any) => {
+        this.cookieService.set('userProfile', JSON.stringify(userProfile));
+        this.authService.isUserProfileSub$.next(userProfile);
+        this.router.navigate(['dashboard']);
+      },
+      error: (e) => {
+        this.alerts = [];
+        let error = {
+          type: 'danger',
+          msg: `${e.error}`,
+          timeout: 5000,
+        };
+        this.router.navigate(['login']);
+      },
+    });
   }
 
   requestOTP() {
