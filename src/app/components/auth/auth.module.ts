@@ -8,6 +8,7 @@ import { ForgotpasswordComponent } from './containers/forgotpassword/forgotpassw
 import { AuthRoutingModule } from './auth-routing.module';
 import { CreateAccountComponent } from './containers/create-account/create-account.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ProfileComponent } from './containers/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     LoginOtpComponent,
     ForgotpasswordComponent,
     CreateAccountComponent,
+    ProfileComponent,
   ],
   imports: [SharedModule, AuthRoutingModule],
   exports: [

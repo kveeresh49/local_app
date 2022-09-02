@@ -5,10 +5,11 @@ import { CreateAccountComponent } from './containers/create-account/create-accou
 import { ForgotpasswordComponent } from './containers/forgotpassword/forgotpassword.component';
 import { LoginOtpComponent } from './containers/login-otp/login-otp.component';
 import { LoginComponent } from './containers/login/login.component';
+import { ProfileComponent } from './containers/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent ,canActivate:[AuthGuard]},
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
   {
     path: 'create-account',
     component: CreateAccountComponent,
@@ -19,6 +20,10 @@ const routes: Routes = [
     path: 'forgotpassword',
     component: ForgotpasswordComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
 ];
 
