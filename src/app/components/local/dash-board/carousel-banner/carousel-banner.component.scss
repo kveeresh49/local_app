@@ -94,3 +94,7 @@
 .carousel-indicators .active,.carousel-indicators [data-bs-target]:hover {
   background: #949292;
 }
+
+.carousel-indicators {
+  z-index: 0;
+}

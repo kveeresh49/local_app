@@ -1,6 +1,11 @@
 <div class="card local-card-adress">
   <div style="text-align: right">
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
   </div>
   <mat-stepper #stepper>
     <mat-step [stepControl]="firstFormGroup" errorMessage="Name is required.">
@@ -23,73 +28,80 @@
               </svg>
               Deliver to
             </label>
-            <p class="address-heading">R K Nagar, Secunderabad</p>
+            <p class="address-heading">{{ deliverAddress?.city }}</p>
           </div>
           <div class="mb-2">
             <button id="showMe" class="btn current-location-btn text-start">
-              <i class="fa fa-crosshairs" aria-hidden="true"></i>
+              <!-- <i class="fa fa-crosshairs" aria-hidden="true"></i> -->
+              <img
+                src="../../../../assets/images/location.png"
+                height="30px"
+                width="30px"
+              />
               Use My Location
             </button>
           </div>
           <div class="mb-2">
             <p class="saved-address-subtitel">Saved Addresses:</p>
           </div>
-          <div class="row flex-column mb-1">
-            <div class="col-sm saved-address mb-1">
-              <div class="row align-items-center">
-                <div class="col-sm">
-                  <i class="fa fa-home" aria-hidden="true"></i>
-                  <p class="address-category">Home</p>
-                </div>
-                <div class="col-sm">
-                  <h5 class="address-heading">R K Nagar, Secunderabad</h5>
-                  <p class="address-in-area-category">
-                    R K Nagar west maredpally, secunderbad , Telangana, 500026,
-                    india
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm saved-address mb-1 mt-2">
-              <div class="row align-items-center">
-                <div class="col-sm">
-                  <i class="fa fa-suitcase" aria-hidden="true"></i>
-                  <p class="address-category">Work</p>
-                </div>
-                <div class="col-sm">
-                  <h5 class="address-heading">R K Nagar, Secunderabad</h5>
-                  <p class="address-in-area-category">
-                    R K Nagar west maredpally, secunderbad , Telangana, 500026,
-                    india
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm saved-address mb-1 mt-1">
-              <div class="row align-items-center">
-                <div class="col-sm">
-                  <div class="other-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+          <div class="row mb-1 address-container">
+            <ng-container *ngFor="let address of savedAddresses">
+              <div class="d-flex">
+                <div
+                  class="col-sm saved-address cursor-pointer mb-1 mt-2"
+                  (click)="getSelectedAddress(address)"
+                  data-bs-dismiss="offcanvas"
+                >
+                  <div class="row align-items-center address-section">
+                    <div class="col-sm" *ngIf="address.type === 'home'">
+                      <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
+                      <img
+                        src="../../../../assets/images/home.png"
+                        height="35px"
+                        width="35px"
+                      />
+                      <p class="address-category">Home</p>
+                    </div>
+                    <div class="col-sm" *ngIf="address.type === 'work'">
+                      <!-- <i class="fa fa-suitcase" aria-hidden="true"></i> -->
+                      <img
+                        src="../../../../assets/images/work.png"
+                        height="35px"
+                        width="35px"
+                      />
+                      <p class="address-category">Work</p>
+                    </div>
+                    <div class="col-sm" *ngIf="address.type === 'other'">
+                      <div class="other-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                      </div>
+                      <p class="address-category">Other</p>
+                    </div>
+                    <div class="col-sm">
+                      <h5 class="address-heading">{{ address.city }}</h5>
+                      <p class="address-in-area-category">
+                        {{ address.area }}
+                      </p>
+                    </div>
                   </div>
-                  <p class="address-category">Other</p>
                 </div>
-                <div class="col-sm">
-                  <h5 class="address-heading">R K Nagar, Secunderabad</h5>
-                  <p class="address-in-area-category">
-                    R K Nagar west maredpally, secunderbad , Telangana, 500026,
-                    india
-                  </p>
+                <div
+                  class="col-sm address-edit-section d-flex justify-content-around"
+                >
+                  <span> <i class="fa-solid fa-pen"></i> </span>
+                  <span> <i class="fa-solid fa-trash"></i> </span>
                 </div>
               </div>
-            </div>
+            </ng-container>
           </div>
           <div class="mt-2">
             <button
               type="submit"
               matStepperNext
               mat-buttonclass="btn add-new-address-btn"
+              class="add-new-address"
             >
               Add New address
             </button>
@@ -171,17 +183,27 @@
             </div>
           </div>
           <div class="col-sm">
-            <p class="saved-address-subtitel mb-3">Saved as:</p>
+            <p class="saved-address-subtitel mb-3">Save as:</p>
             <div class="row saved-address mb-5">
               <div class="col-sm">
                 <div class="col-sm">
-                  <i class="fa fa-home" aria-hidden="true"></i>
+                  <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
+                  <img
+                    src="../../../../assets/images/home.png"
+                    height="35px"
+                    width="35px"
+                  />
                   <p class="address-category">Home</p>
                 </div>
               </div>
               <div class="col-sm">
                 <div class="col-sm">
-                  <i class="fa fa-suitcase" aria-hidden="true"></i>
+                  <!-- <i class="fa fa-suitcase" aria-hidden="true"></i> -->
+                  <img
+                    src="../../../../assets/images/work.png"
+                    height="35px"
+                    width="35px"
+                  />
                   <p class="address-category">Work</p>
                 </div>
               </div>
@@ -212,4 +234,3 @@
     </mat-step>
   </mat-stepper>
 </div>
-

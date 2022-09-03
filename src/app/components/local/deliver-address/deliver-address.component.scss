@@ -56,7 +56,7 @@
 .saved-address {
   i {
     font-weight: 400;
-    font-size: 30px !important;
+    font-size: 30px;
     // line-height: 30px;
     color: #898686;
   }
@@ -165,9 +165,37 @@ input:focus-visible {
 }
 
 .mat-stepper-horizontal {
-  margin-top: 8px;
+  margin-top: -5px;
 }
 
 .mat-form-field {
   margin-top: 16px;
+}
+
+.address-container {
+  height: 255px;
+  overflow: overlay;
+}
+
+.add-new-address {
+  font-weight: 500;
+  border: 1.5px solid #2d3648;
+}
+
+.fa-pen,
+.fa-trash {
+  color: #898686;
+  font-size: 20px !important;
+}
+
+.address-section {
+  flex-flow: nowrap;
+}
+
+.address-edit-section {
+  margin: 25px 0 0 25px;
+}
+
+:host ::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
 }

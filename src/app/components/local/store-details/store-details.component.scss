@@ -128,20 +128,18 @@
 }
 
 .add-item {
-  height: 35px;
+  height: 24px;
   width: 90px;
   background: white;
   border: 1px solid #5bb600;
   border-radius: 3px;
-  margin-top: 15px;
-  margin-right: 5px;
+  margin: 30px 8px 5px 0;
 }
 .add-item-text {
   font-weight: 400;
   font-size: 14px;
   text-align: center;
   color: #5bb600;
-  margin-top: 6px;
 }
 .increment-decrement {
   width: 26px;
@@ -328,4 +326,5 @@
 .updated-count {
   height: 18px;
   font-size: 12px;
+  margin-top: 15px;
 }
