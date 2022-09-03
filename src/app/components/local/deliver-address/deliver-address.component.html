@@ -1,4 +1,4 @@
-<div class="card local-card-adress">
+<div class="card local-card-adress" style="border: none">
   <div style="text-align: right">
     <button
       type="button"
@@ -48,12 +48,12 @@
             <ng-container *ngFor="let address of savedAddresses">
               <div class="d-flex">
                 <div
-                  class="col-sm saved-address cursor-pointer mb-1 mt-2"
+                  class="col-sm-10 saved-address cursor-pointer mb-1 mt-2"
                   (click)="getSelectedAddress(address)"
                   data-bs-dismiss="offcanvas"
                 >
                   <div class="row align-items-center address-section">
-                    <div class="col-sm" *ngIf="address.type === 'home'">
+                    <div class="w-25" *ngIf="address.type === 'home'">
                       <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
                       <img
                         src="../../../../assets/images/home.png"
@@ -62,7 +62,7 @@
                       />
                       <p class="address-category">Home</p>
                     </div>
-                    <div class="col-sm" *ngIf="address.type === 'work'">
+                    <div class="w-25" *ngIf="address.type === 'work'">
                       <!-- <i class="fa fa-suitcase" aria-hidden="true"></i> -->
                       <img
                         src="../../../../assets/images/work.png"
@@ -71,7 +71,7 @@
                       />
                       <p class="address-category">Work</p>
                     </div>
-                    <div class="col-sm" *ngIf="address.type === 'other'">
+                    <div class="w-25" *ngIf="address.type === 'other'">
                       <div class="other-icon">
                         <span></span>
                         <span></span>
@@ -79,7 +79,7 @@
                       </div>
                       <p class="address-category">Other</p>
                     </div>
-                    <div class="col-sm">
+                    <div class="w-75">
                       <h5 class="address-heading">{{ address.city }}</h5>
                       <p class="address-in-area-category">
                         {{ address.area }}
@@ -88,15 +88,14 @@
                   </div>
                 </div>
                 <div
-                  class="col-sm address-edit-section d-flex justify-content-around"
+                  class="col-sm address-edit-section d-flex justify-content-end"
                 >
                   <span> <i class="fa-solid fa-pen"></i> </span>
-                  <span> <i class="fa-solid fa-trash"></i> </span>
                 </div>
               </div>
             </ng-container>
           </div>
-          <div class="mt-2">
+          <div class="mt-4">
             <button
               type="submit"
               matStepperNext
@@ -125,7 +124,7 @@
                         <i class="bi bi-arrow-left-short"></i>
                       </button> -->
                 <button
-                  class="btn me-3"
+                  class="btn me-3 mx-2"
                   type="button"
                   mat-button
                   matStepperPrevious
@@ -160,7 +159,7 @@
             <div class="mb-2 mt-1">
               <input
                 type="text"
-                class="address-control"
+                class="address-control mt-3"
                 id="name"
                 placeholder="House/Flat/Block no."
               />
@@ -168,7 +167,7 @@
             <div class="mb-2 mt-1">
               <input
                 type="text"
-                class="address-control"
+                class="address-control mt-3"
                 id="name"
                 placeholder="Apartment / Road / Area(Optional)"
               />
@@ -176,34 +175,26 @@
             <div class="mb-2 mt-1">
               <input
                 type="text"
-                class="address-control"
+                class="address-control mt-3"
                 id="name"
                 placeholder="Landmark"
               />
             </div>
           </div>
-          <div class="col-sm">
-            <p class="saved-address-subtitel mb-3">Save as:</p>
-            <div class="row saved-address mb-5">
+          <div class="col-sm mt-3">
+            <p class="saved-address-subtitel mb-4">Save as:</p>
+            <div class="row saved-address mb-5" style="margin-left: 35px">
               <div class="col-sm">
                 <div class="col-sm">
                   <!-- <i class="fa fa-home" aria-hidden="true"></i> -->
-                  <img
-                    src="../../../../assets/images/home.png"
-                    height="35px"
-                    width="35px"
-                  />
+                  <img src="../../../../assets/images/home.png" height="35px" />
                   <p class="address-category">Home</p>
                 </div>
               </div>
               <div class="col-sm">
                 <div class="col-sm">
                   <!-- <i class="fa fa-suitcase" aria-hidden="true"></i> -->
-                  <img
-                    src="../../../../assets/images/work.png"
-                    height="35px"
-                    width="35px"
-                  />
+                  <img src="../../../../assets/images/work.png" height="35px" />
                   <p class="address-category">Work</p>
                 </div>
               </div>
@@ -217,7 +208,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm">
+          <div class="col-sm mt-5">
             <div class="mt-2">
               <button
                 type="submit"
