@@ -1,3 +1,4 @@
+import { TopMenuNavBarComponent } from './../local/nav/top-menu-nav-bar/top-menu-nav-bar.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './containers/login/login.component';
@@ -9,6 +10,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { CreateAccountComponent } from './containers/create-account/create-account.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfileComponent } from './containers/profile/profile.component';
+import { LocalModule } from '../local/local.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,7 @@ import { ProfileComponent } from './containers/profile/profile.component';
     CreateAccountComponent,
     ProfileComponent,
   ],
-  imports: [SharedModule, AuthRoutingModule],
+  imports: [SharedModule, AuthRoutingModule, LocalModule],
   exports: [
     CommonModule,
     SharedModule,

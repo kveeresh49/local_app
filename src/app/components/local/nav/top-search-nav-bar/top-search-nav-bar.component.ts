@@ -12,20 +12,31 @@ export class TopSearchNavBarComponent implements OnInit {
   public sidebarShow: boolean = false;
   isLoginUserFlag = false;
   @Input() store: boolean;
-  deliverAddress = {type: 'home', city: 'R K Nagar, Secunderabad', area: 'R K Nagar west maredpally, secunderbad , Telangana, 500026, india'};
-  setProduct:string;
-  constructor(private cookieService: CookieService, private router: Router, private authService: AuthService) { }
+  deliverAddress = {
+    type: 'home',
+    city: 'R K Nagar, Secunderabad',
+    area: 'R K Nagar west maredpally, secunderbad , Telangana, 500026, india',
+  };
+  setProduct: string;
+  constructor(
+    private cookieService: CookieService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
-  searchProducts = [{name:'Search for Stores'},{name:'Search for Products'}]
+  searchProducts = [
+    { name: 'Search for Stores' },
+    { name: 'Search for Products' },
+  ];
   ngOnInit(): void {
     this.setProduct = this.searchProducts[0].name;
     this.isLoginUser();
   }
 
-  
-
   isLoginUser() {
-    this.authService.isloggedInUser.subscribe(value => this.isLoginUserFlag = value);
+    this.authService.isloggedInUser.subscribe(
+      (value) => (this.isLoginUserFlag = value)
+    );
     if (
       this.cookieService.get('userToken') !== null &&
       this.cookieService.get('userToken') !== ''
@@ -36,33 +47,34 @@ export class TopSearchNavBarComponent implements OnInit {
     }
   }
 
-  setProductValue(value:any) {
+  setProductValue(value: any) {
     this.setProduct = value.name;
   }
 
   closeSideNav(sidebarShow: boolean) {
     this.sidebarShow = sidebarShow;
   }
+
   navigateProfile() {
     this.sidebarShow = !this.sidebarShow;
+    this.router.navigate(['/profile']);
   }
+
   navigateLogin() {
     this.router.navigate(['/login']);
   }
 
   isLogout(event: boolean) {
-
     if (event) {
       this.isLoginUser();
     }
-
   }
 
   navigateDashBoard() {
-    this.router.navigate(['/dashboard'])
+    this.router.navigate(['/dashboard']);
   }
 
-  selectedAddress(address:any) {
+  selectedAddress(address: any) {
     this.deliverAddress = address;
   }
 }

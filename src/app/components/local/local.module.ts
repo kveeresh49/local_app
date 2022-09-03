@@ -31,8 +31,9 @@ import { CarouselBannerComponent } from './dash-board/carousel-banner/carousel-b
     StoreByCategoriesComponent,
     CategoriesTypeComponent,
     TodayHighlightsComponent,
-    CarouselBannerComponent
+    CarouselBannerComponent,
   ],
   imports: [LocalRoutingModule, NgbModule, CommonModule, SharedModule],
+  exports: [TopMenuNavBarComponent, TopSearchNavBarComponent],
 })
 export class LocalModule {}
