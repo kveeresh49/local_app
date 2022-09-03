@@ -190,6 +190,8 @@
 .myOffers {
   display: none;
   text-align: center;
+  position: relative;
+  top: 10px;
 }
 
 /* Next & previous buttons */
@@ -198,16 +200,16 @@
   cursor: pointer;
   position: absolute;
   text-decoration: none;
-  top: 15%;
+  top: 25%;
 }
 
 /* Position the "next button" to the right */
 .next {
   position: absolute;
-  right: -15px;
+  right: -20px;
 }
 .prev {
-  left: -15px;
+  left: -20px;
 }
 
 /* The dot/bullet/indicator container */

@@ -1,9 +1,8 @@
-
 <app-top-search-nav-bar></app-top-search-nav-bar>
 <app-top-menu-nav-bar></app-top-menu-nav-bar>
 <app-carousel-banner [CarouselImages]="CarouselImages"></app-carousel-banner>
 
-<app-categories [categoryCardData]="card"></app-categories>
+<app-categories [categories]="categories"></app-categories>
 
 <app-today-highlights [highlightCards]="TodayHighlights"></app-today-highlights>
 
@@ -18,6 +17,5 @@
   [nearByStoreData]="nearByStoreData"
   [CategoriesType]="'Nearby You'"
 ></app-store-by-categories>
-
 
 <app-footer></app-footer>
