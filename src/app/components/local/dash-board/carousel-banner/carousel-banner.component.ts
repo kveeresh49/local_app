@@ -40,7 +40,8 @@ export class CarouselBannerComponent implements OnInit,AfterViewInit {
         dots[i].className = dots[i]?.className.replace(' active', '');
     }
     slides[this.slideIndex-1]?.classList.add('block');
-    dots[this.slideIndex-1].className += ' active';
+   let x =  dots[this.slideIndex-1]?.className 
+   x+= ' active';
     slides[i]?.classList?.remove('none');
   }
 

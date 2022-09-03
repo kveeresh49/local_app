@@ -13,11 +13,16 @@ export class TopSearchNavBarComponent implements OnInit {
   isLoginUserFlag = false;
   @Input() store: boolean;
   deliverAddress = {type: 'home', city: 'R K Nagar, Secunderabad', area: 'R K Nagar west maredpally, secunderbad , Telangana, 500026, india'};
+  setProduct:string;
   constructor(private cookieService: CookieService, private router: Router, private authService: AuthService) { }
 
+  searchProducts = [{name:'Search for Stores'},{name:'Search for Products'}]
   ngOnInit(): void {
+    this.setProduct = this.searchProducts[0].name;
     this.isLoginUser();
   }
+
+  
 
   isLoginUser() {
     this.authService.isloggedInUser.subscribe(value => this.isLoginUserFlag = value);
@@ -29,6 +34,10 @@ export class TopSearchNavBarComponent implements OnInit {
     } else {
       this.isLoginUserFlag = false;
     }
+  }
+
+  setProductValue(value:any) {
+    this.setProduct = value.name;
   }
 
   closeSideNav(sidebarShow: boolean) {

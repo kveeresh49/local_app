@@ -20,15 +20,21 @@ export class SideNavComponent implements OnInit {
   @Output() closeSidebar = new EventEmitter<boolean>();
   @Output() clickEvent = new EventEmitter<boolean>();
   isLoginUserFlag: boolean = false;
+  userProfile: any;
   constructor(private cookieService: CookieService, private router: Router, private authService : AuthService) {}
 
   ngOnInit(): void {
     this.isLoginUser();
+   console.log(this.cookieService.get('userProfile'),'dsdsdsd');
+    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes['sidebarShow'].currentValue);
     this.sidebarShow = changes['sidebarShow'].currentValue;
+    if(this.cookieService.get('userProfile') !== '' && this.cookieService.get('userProfile') !== null){
+      this.userProfile = JSON.parse(this.cookieService.get('userProfile'));
+    }
   }
 
   closeSideNav() {
@@ -47,6 +53,11 @@ export class SideNavComponent implements OnInit {
       this.isLoginUserFlag = false;
     }
   }
+
+
+
+
+
 
   navigateLogin() {
     this.router.navigate(['/login']);

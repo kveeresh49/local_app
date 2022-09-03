@@ -10,6 +10,8 @@
       width="100px"
       class="cursor-pointer"
       (click)="navigateDashBoard()"
+      style="height: 7vh;
+      width: 18vh;"
     />
     <div
       class="text-start"
@@ -44,73 +46,23 @@
       </select>
     </div>
   </div>
-  <!-- <div class="d-flex col-4 align-items-center">
-    <select class="form-select" style="border:3px solid #f3f3f3;background: #f3f3f3;">
-      <option selected="">All</option>
-      <option value="prod">Search by products</option>
-      <option value="store">Search by store</option>
-      </select>
-    <input
-      type="text"
-      class="form-control"
-      id="search"
-      placeholder="Search for Products"
-    />
-    <i class="fa fa-search top-0 position-relative" style="left: -40px"></i>
-  </div> -->
 
-  <!-- <div class="container">
-    <div class="row">    
-        <div class="col-xs-8 col-xs-offset-2">
-		    <div class="input-group">
-                <div class="input-group-btn search-panel">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                      <span id="search_concept"><span class="glyphicon glyphicon-align-justify"></span> All</span>  <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="#contains"> <span class="glyphicon glyphicon-envelope text-danger"></span> Email</a></li>
-                      <li><a href="#its_equal"> <span class="glyphicon glyphicon-music text-warning"></span> Music</a></li>
-                      <li><a href="#greather_than"> <span class="glyphicon glyphicon-user text-success"></span> Users</a></li>
-                      <li><a href="#less_than"><span class="glyphicon glyphicon-book text-primary"></span> Books </a></li>
-                      <li class="divider"></li>
-                      <li><a href="#all"> <span class="glyphicon glyphicon-picture text-info"></span> Pictures</a></li>
-                    </ul>
-                </div>
-                <input type="hidden" name="search_param" value="all" id="search_param">         
-                <input type="text" class="form-control" name="x" placeholder="Search term...">
-                <span class="input-group-btn">
-                  <i class="fa fa-search top-0 position-relative"></i>
-                </span>
-            </div>
-        </div>
-	</div>
-</div> -->
 
-  <div class="input-group">
-    <button
-      class="btn btn-outline-secondary dropdown-toggle"
-      type="button"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      All
-    </button>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="#">Action</a></li>
-      <li><a class="dropdown-item" href="#">Another action</a></li>
-      <li><a class="dropdown-item" href="#">Something else here</a></li>
-      <li><hr class="dropdown-divider" /></li>
-      <li><a class="dropdown-item" href="#">Separated link</a></li>
-    </ul>
-    <input
-      type="text"
-      class="form-control"
-      aria-label="Text input with dropdown button"
-    />
-    <button class="btn btn-outline-secondary" type="button">
-      <i class="fa fa-search top-0 position-relative"></i>
-    </button>
+
+<div class="input-group">
+  <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown" container="body">
+    <button type="button" class="btn btn-outline-primary" id="dropdownManual" style="border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;"
+     ngbDropdownAnchor (focus)="myDrop.open()">{{setProduct}}</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+      <ng-container *ngFor="let dropDownValue of searchProducts">
+        <button ngbDropdownItem (click)="setProductValue(dropDownValue)">{{dropDownValue?.name}}</button>
+      </ng-container>
+    </div>
   </div>
+  <input type="text" class="form-control" aria-label="Text input with dropdown button" style="border-radius: 0px !important;">
+  <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search top-0 position-relative"></i></button>
+</div>
 
   <div class="d-flex col-3 align-items-center justify-content-end gap-5">
     <div class="light-grey text-decoration-none">Offers</div>

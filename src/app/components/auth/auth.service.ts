@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountDetails } from './models/account-details';
+import { EmailLoginModel, OtpLoginModel, PasswordResetModel } from './models/user-deatils';
 @Injectable({
   providedIn: 'root',
 })
@@ -11,26 +12,34 @@ export class AuthService {
   loginUserDetailSub$: BehaviorSubject<any>;
 
   public currentUser: Observable<any>;
+  public userProfile: Observable<any>;
   isloggedInUser = new BehaviorSubject<boolean>(false);
+  isUserProfileSub$ = new BehaviorSubject<any>({});
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
     this.loginUserDetailSub$ = new BehaviorSubject<any>(
       cookieService.get('userToken')
     );
     this.currentUser = this.loginUserDetailSub$.asObservable();
+
+    this.isUserProfileSub$ = new BehaviorSubject<any>(
+      cookieService.get('userProfile')
+    );
+    this.userProfile = this.isUserProfileSub$.asObservable();
   }
 
   public get currentUserValue() {
     return this.loginUserDetailSub$.value;
   }
 
+  public get isUserProfileValue() {
+    return this.isUserProfileSub$.value;
+  }
+
   get apiUrl(): string {
     return `${environment.API_ENDPOINTS.Api_url}`;
   }
 
-  get sms_ApiUrl(): string {
-    return `${environment.API_ENDPOINTS.SMS_API}`;
-  }
 
   createUserAccount$(userAccountDetails: AccountDetails) {
     return this.http.post(`${this.apiUrl}User`, userAccountDetails);
@@ -43,12 +52,9 @@ export class AuthService {
     );
   }
 
-  otpLogin$(otpLogin: AccountDetails) {
-    return this.http.post(`${this.apiUrl}User/OTPLogin`, otpLogin);
-  }
 
-  resetPassword$(accountDetails: AccountDetails) {
-    return this.http.post(`${this.apiUrl}User/Reset`, accountDetails);
+  resetPassword$(passwordResetObj: PasswordResetModel) {
+    return this.http.post(`${this.apiUrl}User/Reset`, passwordResetObj);
   }
 
   getLoginUserDetails$(id: any): Observable<any> {
@@ -60,12 +66,21 @@ export class AuthService {
     //this.loginUserDetailSub$.next({name:'veeresh'})
   }
 
-  sentOtp(mobileNumber: string) {
-    const headers= new HttpHeaders()
-  .set('content-type', 'application/json')
-  
-    return this.http.get(
-      `${this.sms_ApiUrl}?template_id=${environment.API_Key.Sms_Template_key}&mobile=${mobileNumber}&authkey=${environment.API_Key.Sms_Template_key}&otp_length=${environment.Sms_Otp_length}&otp_expiry=${environment.Sms_Otp_expiry}`,{ 'headers': headers }
-    );
+  sendOtp(mobileNumber: string) {
+    let number = { mobileNumber: mobileNumber };
+    return this.http.post(`${this.apiUrl}User/SendOTP`, number);
+  }
+
+  emailLogin$(emailLogin: EmailLoginModel) {
+    return this.http.post(`${this.apiUrl}User/EmailLogin`, emailLogin);
+  }
+
+  otpLogin$(OtpLogin: OtpLoginModel) {
+    return this.http.post(`${this.apiUrl}User/OTPLogin`, OtpLogin);
+  }
+
+
+  userProfile$(id: string) {
+    return this.http.get(`${this.apiUrl}UserProfile/${id}`);
   }
 }
