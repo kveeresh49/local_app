@@ -12,6 +12,7 @@ export class TopSearchNavBarComponent implements OnInit {
   public sidebarShow: boolean = false;
   isLoginUserFlag = false;
   @Input() store: boolean;
+  deliverAddress = {type: 'home', city: 'R K Nagar, Secunderabad', area: 'R K Nagar west maredpally, secunderbad , Telangana, 500026, india'};
   setProduct:string;
   constructor(private cookieService: CookieService, private router: Router, private authService: AuthService) { }
 
@@ -59,5 +60,9 @@ export class TopSearchNavBarComponent implements OnInit {
 
   navigateDashBoard() {
     this.router.navigate(['/dashboard'])
+  }
+
+  selectedAddress(address:any) {
+    this.deliverAddress = address;
   }
 }

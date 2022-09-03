@@ -21,7 +21,19 @@
       (click)="sidebarShow = !sidebarShow"
     >
       <label for="" class="address-label">
-        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-geo-alt-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+          />
+        </svg>
         Deliver to
       </label>
       <select
@@ -30,7 +42,7 @@
         class="border-0 address-heading cursor-pointer"
         disabled
       >
-        <option value="">R K Nagar, Secunderabad</option>
+        <option value="">{{ deliverAddress.city }}</option>
       </select>
     </div>
   </div>
@@ -49,7 +61,7 @@
     </div>
   </div>
   <input type="text" class="form-control" aria-label="Text input with dropdown button" style="border-radius: 0px !important;">
-  <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search top-0 position-relative"></i></button>
+  <button class="btn btn-outline-primary" type="button"><i class="fa fa-search top-0 position-relative"></i></button>
 </div>
 
   <div class="d-flex col-3 align-items-center justify-content-end gap-5">
@@ -83,4 +95,16 @@
       My Cart
     </span>
   </div>
+</div>
+
+<div
+  id="deliverAddress"
+  class="offcanvas offcanvas-start"
+  data-bs-backdrop="static"
+  tabindex="-1"
+>
+  <app-deliver-address
+    (selectedAddress)="selectedAddress($event)"
+    [deliverAddress]="deliverAddress"
+  ></app-deliver-address>
 </div>
