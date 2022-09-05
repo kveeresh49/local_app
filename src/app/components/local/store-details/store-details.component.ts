@@ -172,6 +172,7 @@ export class StoreDetailsComponent implements OnInit,AfterViewInit {
     this.cartTotal = this.cart.reduce((a, b) => {
       return a + b.price;
     }, 0);
+    console.log(this.cart,'this.cart')
   }
 
   public slideChange(n:number): void {
