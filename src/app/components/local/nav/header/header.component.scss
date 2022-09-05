@@ -1,9 +1,8 @@
 #navbar * {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-  }
-
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
 .nav-opt-sprite #nav-logo.nav-paladin-ww {
     padding-top: 14px;
     padding-left: 8px;
@@ -2616,8 +2615,147 @@ a.nav-a:visited {
   overflow: hidden;
   background: #eee;
 }
-
-
+.nav-tpl-notificationsList {
+  font-family: inherit;
+  line-height: 1.5;
+}
+.nav-tpl-notificationsList .nav-title {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0;
+}
+.nav-tpl-notificationsList .nav-item + .nav-item {
+  border-top: 1px solid #eee;
+  margin-top: 14px;
+  min-height: 65px;
+  padding-top: 14px;
+  position: relative;
+}
+.nav-tpl-notificationsList .nav-item.nav-noti-list-HardPaymentDeclined {
+  color: #b12704;
+}
+.nav-tpl-notificationsList .nav-noti-list-image {
+  float: left;
+  height: 65px;
+  width: 65px;
+}
+.nav-tpl-notificationsList .nav-noti-list-image .nav-noti-list-image-tag {
+  display: block;
+  height: auto;
+  margin: 4px auto 0 auto;
+  max-height: 100%;
+  max-width: 100%;
+  outline: 0;
+  width: auto;
+}
+.nav-tpl-notificationsList .nav-noti-list-heading {
+  font-weight: 700;
+}
+.nav-tpl-notificationsList .nav-noti-list-with-image .nav-noti-list-content,
+.nav-tpl-notificationsList .nav-noti-list-with-image .nav-noti-list-heading {
+  margin-left: 79px;
+}
+.nav-tpl-notificationsList .nav-noti-list-subtext {
+  color: #888;
+  font-size: 11px;
+}
+.nav-tpl-notificationsList .nav-noti-list-x {
+  color: #aaa;
+  cursor: pointer;
+  display: none;
+  font-size: 20px;
+  line-height: 20px;
+  position: absolute;
+  right: 0;
+  top: 14px;
+}
+.nav-tpl-notificationsList .nav-noti-list-x:focus,
+.nav-tpl-notificationsList .nav-noti-list-x:hover {
+  color: #6f6f6f;
+}
+.nav-tpl-notificationsList .nav-item:hover .nav-noti-list-x {
+  display: block;
+}
+#nav-flyout-anchor .nav-tpl-notificationsList .nav-content .nav-a {
+  color: #004b91;
+}
+.nav-tpl-discoveryPanelList,
+.nav-tpl-discoveryPanelSummary {
+  width: auto;
+}
+.nav-tpl-discoveryPanelList .nav-item,
+.nav-tpl-discoveryPanelSummary .nav-item {
+  padding: 0;
+  width: 215px;
+}
+.nav-tpl-discoveryPanelList .nav-dp-title,
+.nav-tpl-discoveryPanelSummary .nav-dp-title {
+  font-size: 17px;
+  font-weight: 700;
+  font-family: inherit;
+}
+.nav-tpl-discoveryPanelList .nav-dp-left-column,
+.nav-tpl-discoveryPanelSummary .nav-dp-left-column {
+  width: 80px;
+  height: 65px;
+  display: table-cell;
+  vertical-align: middle;
+  padding-right: 15px;
+}
+.nav-tpl-discoveryPanelList .nav-dp-right-column,
+.nav-tpl-discoveryPanelSummary .nav-dp-right-column {
+  display: table-cell;
+  vertical-align: middle;
+  width: 135px;
+}
+.nav-tpl-discoveryPanelList .nav-dp-link,
+.nav-tpl-discoveryPanelSummary .nav-dp-link {
+  text-decoration: none;
+  font-family: inherit;
+}
+.nav-tpl-discoveryPanelList .nav-dp-link .nav-dp-text,
+.nav-tpl-discoveryPanelSummary .nav-dp-link .nav-dp-text {
+  color: #090;
+  font-weight: 700;
+}
+.nav-tpl-discoveryPanelList .nav-dp-link .nav-dp-text-secondary,
+.nav-tpl-discoveryPanelSummary .nav-dp-link .nav-dp-text-secondary {
+  color: #090;
+}
+.nav-tpl-discoveryPanelList .nav-dp-link .delivered,
+.nav-tpl-discoveryPanelSummary .nav-dp-link .delivered {
+  color: #111;
+}
+.nav-tpl-discoveryPanelList .nav-dp-link:hover .nav-dp-text,
+.nav-tpl-discoveryPanelList .nav-dp-link:hover .nav-dp-text-secondary,
+.nav-tpl-discoveryPanelSummary .nav-dp-link:hover .nav-dp-text,
+.nav-tpl-discoveryPanelSummary .nav-dp-link:hover .nav-dp-text-secondary {
+  color: #e47911;
+}
+.nav-tpl-discoveryPanelList .nav-dp-secondary-row,
+.nav-tpl-discoveryPanelSummary .nav-dp-secondary-row {
+  margin-top: 8px;
+}
+.nav-tpl-discoveryPanelList .nav-dp-link-emphasis,
+.nav-tpl-discoveryPanelSummary .nav-dp-link-emphasis {
+  color: #0066c0;
+  font-family: inherit;
+  text-decoration: none;
+}
+.nav-tpl-discoveryPanelList .nav-dp-link-emphasis:hover,
+.nav-tpl-discoveryPanelSummary .nav-dp-link-emphasis:hover {
+  text-decoration: underline;
+  color: #e47911;
+}
+.nav-tpl-discoveryPanelList .nav-divider,
+.nav-tpl-discoveryPanelSummary .nav-divider {
+  margin: 7px 0;
+}
+.nav-tpl-discoveryPanelList .nav-divider-container,
+.nav-tpl-discoveryPanelSummary .nav-divider-container {
+  height: 7px;
+}
 .nav-tpl-flyoutError {
   padding: 12px 14px 7px;
 }
