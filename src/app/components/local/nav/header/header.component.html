@@ -13,7 +13,6 @@
   >
     <div id="nav-belt">
       <div class="nav-left">
- 
         <div id="nav-logo" class="nav-prime-1 nav-progressive-attribute">
           <a
             href="/ref=nav_logo"
@@ -208,64 +207,55 @@
           </a>
         </div>
       </div>
-      
     </div>
 
- 
-
     <div id="nav-main" class="nav-sprite">
-        <div class="nav-left">
-          <a
-            id="nav-hamburger-menu"
-            role="button"
-            aria-label="Open Menu"
-            data-csa-c-type="widget"
-            data-csa-c-slot-id="HamburgerMenuDesktop"
-            data-csa-c-interaction-events="click"
-            data-csa-c-id="8e1d73-p8f5f-9yc70g-jijtn1"
+      <div class="nav-left">
+        <a
+          id="nav-hamburger-menu"
+          role="button"
+          aria-label="Open Menu"
+          data-csa-c-type="widget"
+          data-csa-c-slot-id="HamburgerMenuDesktop"
+          data-csa-c-interaction-events="click"
+          data-csa-c-id="8e1d73-p8f5f-9yc70g-jijtn1"
+        >
+          <i class="fa-solid fa-bars"></i>
+        </a>
+        <div id="nav-shop"></div>
+      </div>
+      <div class="nav-fill">
+        <div id="nav-xshop-container">
+          <div
+            id="nav-xshop"
+            class="nav-progressive-content"
+            style="justify-content: space-around"
           >
-            <i class="fa-solid fa-bars"></i>
-          </a>
-          <div id="nav-shop"></div>
-        </div>
-        <div class="nav-fill">
-          <div id="nav-xshop-container">
-            <div
-              id="nav-xshop"
-              class="nav-progressive-content"
-              style="justify-content: space-around"
+            <a
+              *ngFor="let menuItem of menuList"
+              class="nav-a"
+              tabindex="0"
+              data-csa-c-type="link"
+              data-csa-c-slot-id="nav_cs_0"
+              data-csa-c-content-id="nav_cs_fresh"
+              data-csa-c-id="4s49i0-d0u7t8-c0a47s-5zeodb"
+              >{{ menuItem?.menuItemName }}</a
             >
-              <a
-                *ngFor="let menuItem of menuList"
-                class="nav-a"
-                tabindex="0"
-                data-csa-c-type="link"
-                data-csa-c-slot-id="nav_cs_0"
-                data-csa-c-content-id="nav_cs_fresh"
-                data-csa-c-id="4s49i0-d0u7t8-c0a47s-5zeodb"
-                >{{ menuItem?.menuItemName }}</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="nav-right">
-          <div id="nav-swmslot">
-            <div
-              style="
-                height: 39px;
-                width: 400px;
-                overflow: hidden;
-                position: relative;
-              "
-            
-            ></div>
           </div>
         </div>
       </div>
-  
-     
-  
-
-
+      <div class="nav-right">
+        <div id="nav-swmslot">
+          <div
+            style="
+              height: 39px;
+              width: 400px;
+              overflow: hidden;
+              position: relative;
+            "
+          ></div>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
