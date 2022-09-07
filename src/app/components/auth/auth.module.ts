@@ -31,6 +31,7 @@ import { LocalModule } from '../local/local.module';
     LoginImgComponent,
     LoginOtpComponent,
     ForgotpasswordComponent,
+    AuthRoutingModule
   ],
 })
 export class AuthModule {}
