@@ -11,28 +11,35 @@
   class="store-img"
   [style.background-image]="'url(' + nearByStoreData.shopImage + ')'"
 ></div>
-<div class="flex justify-content-between p-2">
-  <div>
-    <div class="fw-semibold store-title mt-1">
-      {{ nearByStoreData.shopTitel }}
+<div class="p-1">
+  <div class="d-flex row m-0">
+    <div class="col fw-semibold store-title mt-1">
+     <span>{{ nearByStoreData.shopTitel }}</span> 
     </div>
-    <div class="popular-store-category text-capitalize mt-2">
-      {{ nearByStoreData.storeCatogery }}
+    <div class="rating shop-rating-card" style="flex: 0.25 0%;">
+      <i class="fa-solid fa-star star-calss">
+       <span class="ps-2">{{ nearByStoreData.rating }}</span> </i>
+     
     </div>
   </div>
-  <div>
+  <div class="d-flex row">
+     <div class="d-flex white_color">
+       
+      </div>
+      <div class="d-flex popular-store-category mt-1 justify-content-end">
+        {{ nearByStoreData.kilometers }}km
+      </div>
+  </div>
+  <!-- <div>
     <div class="flex justify-content-evenly shop-rating-card">
-      <div class="d-flex white_color">
-        <i class="fa-solid fa-star star-calss" style="padding-right: 4px"></i>
-      </div>
-      <div class="rating">
-        {{ nearByStoreData.rating }}
-      </div>
+     
+      
     </div>
     <div class="d-flex popular-store-category mt-1 justify-content-end">
       {{ nearByStoreData.kilometers }}km
     </div>
-  </div>
+  </div> -->
+
 </div>
 <div style="padding: 6px">
   <div style="border-bottom: 1px solid #c4c4c4"></div>

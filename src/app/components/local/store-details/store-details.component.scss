@@ -7,6 +7,24 @@
   backdrop-filter: blur(4px);
 }
 
+
+.column {
+  float: left;
+  width: 30%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .store-details {
   height: 300px;
   background-image: url(../../../../assets/images/store-images/bhabji-sabji-store.png);

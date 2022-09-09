@@ -177,7 +177,6 @@ export class DashBoardComponent implements OnInit {
     private cookieService: CookieService
   ) {}
   ngOnInit(): void {
-    // console.log(JSON.parse(this.cookieService.get('userToken'))['id']);
     this.authService.loginUserDetailSub$.subscribe((value) =>
       console.log(value, 'myvalue')
     );

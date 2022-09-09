@@ -21,10 +21,8 @@ export class AlertComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.alerts = changes['alerts'].currentValue;
-    console.log(this.alerts);
   }
 
   onClosed(a: any) {
-    console.log(a);
   }
 }

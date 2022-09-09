@@ -10,6 +10,11 @@
 // Variables
 @import "../src/variable";
 
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0; // 1
   font-family: var(--#{$prefix}body-font-family) !important;

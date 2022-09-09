@@ -25,12 +25,10 @@ export class SideNavComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoginUser();
-   console.log(this.cookieService.get('userProfile'),'dsdsdsd');
     
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes['sidebarShow'].currentValue);
     this.sidebarShow = changes['sidebarShow'].currentValue;
     if(this.cookieService.get('userProfile') !== '' && this.cookieService.get('userProfile') !== null){
       this.userProfile = JSON.parse(this.cookieService.get('userProfile'));

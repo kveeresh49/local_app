@@ -14,8 +14,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.profile = JSON.parse(this.cookieService.get('userProfile'));
-    console.log(this.profile, 'profile');
-
     // TODO: This is for temporary purpose.
     this.profileForm = this.fb.group({
       email: [''],

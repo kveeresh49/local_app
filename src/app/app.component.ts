@@ -14,10 +14,8 @@ export class AppComponent implements OnInit {
   constructor(private router:  Router, private activateRoute: ActivatedRoute) {}
 
   ngOnInit() {
-    console.log(this.router);
     this.router.events.subscribe((res) => {
       if (res instanceof ActivationStart) {
-        console.log(res.snapshot.data['isAuthComonent']);
         this.isAuthComonent = res.snapshot.data['isAuthComonent'];
       }
     });
