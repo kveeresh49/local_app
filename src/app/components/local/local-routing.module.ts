@@ -8,6 +8,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashBoardComponent,
+    data: {isAuthComonent: false}   
   },
   { path: 'offers', component: OffersShopCategoriesComponent },
   { path: 'deliver-address', component: DeliverAddressComponent },

@@ -36,6 +36,6 @@ import { HeaderComponent } from './nav/header/header.component';
     HeaderComponent,
   ],
   imports: [LocalRoutingModule, NgbModule, CommonModule, SharedModule],
-  exports: [TopMenuNavBarComponent, TopSearchNavBarComponent],
+  exports: [TopMenuNavBarComponent, TopSearchNavBarComponent,HeaderComponent, FooterComponent],
 })
 export class LocalModule {}

@@ -96,9 +96,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    width: 100px;
+    width: 100%;
     margin: auto;
     display: block;
+    padding-left: 9%;
+    padding-right: 9%;
   }
 }
 .shop-title-card {

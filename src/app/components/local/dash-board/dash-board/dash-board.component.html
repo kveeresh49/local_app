@@ -1,8 +1,17 @@
-<app-header></app-header>
+<app-carousel-banner [CarouselImages]="CarouselImages"></app-carousel-banner>
 
 <app-categories [categories]="categories"></app-categories>
-<app-categories [categories]="categories"></app-categories>
-<app-categories [categories]="categories"></app-categories>
-<app-categories [categories]="categories"></app-categories>
-<app-categories [categories]="categories"></app-categories>
-<app-categories [categories]="categories"></app-categories>
+
+<app-today-highlights [highlightCards]="TodayHighlights"></app-today-highlights>
+
+<app-highlight-card></app-highlight-card>
+
+<app-store-by-categories
+  [nearByStoreData]="nearByStoreData"
+  [CategoriesType]="'Popular Stores'"
+></app-store-by-categories>
+
+<app-store-by-categories
+  [nearByStoreData]="nearByStoreData"
+  [CategoriesType]="'Nearby You'"
+></app-store-by-categories>

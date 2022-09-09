@@ -8,6 +8,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./components/auth/auth.module').then((m) => m.AuthModule),
+      data: {isAuthComonent: true}  
   },
 
   { path: 'dash-address', component: DeliverAddressComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
     path: 'store',
     component: StoreDetailsComponent,
     children: [{ path: ':id', component: StoreDetailsComponent }],
+    data: {isAuthComonent: true}  
   },
 ];
 

@@ -10,6 +10,11 @@
 // Variables
 @import "../src/variable";
 
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0; // 1
   font-family: var(--#{$prefix}body-font-family) !important;
@@ -340,4 +345,23 @@ app-carousel-banner {
     opacity: 0.5;
     transition: opacity 0.15s ease;
 }
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 5px !important;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 3px;
+  
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #fd7e14;;
+  border-radius: 3px;
 }

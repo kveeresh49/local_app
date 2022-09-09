@@ -1,39 +1,49 @@
 <div class="container mb-5 position-relative">
-    <div class="flex justify-content-between mb-3">
-        <h3>Today's Highlights</h3>
-        <div>
-          <span>Page {{currentPage}} of {{pageSize()}}</span>
-          <span *ngIf="currentPage != 1">
-          <span class="horizontal-divider"></span>
-          <span class="start-over cursor-pointer" (click)="StartingPage()">Start over</span>
-          </span>
-        </div>
-      </div>
-      <img
-        src="../../../assets/images/left-vector.png"
-        alt="prev"
-        width="14px"
-        height="25px"
-        class="cursor-pointer position-absolute left-scroll"
-        *ngIf="startingIndex != 0"
-        (click)="storeScroll('prev')"
-      />
-  <div class="container minWidth p-0">
-    <div class="row justify-content-center gap-between-cards">
-      <ng-container *ngFor="let highlight of highlightCards; index as idx">
-        <div class="highlightCard-width" *ngIf="idx >= startingIndex && idx < endingIndex">
-          <img src={{highlight.highlightImage}} alt={{highlight.storeName}} class="highlightCard-width" />
-        </div>
-      </ng-container>
+  <div class="flex justify-content-between mb-3">
+    <h3>Today's Highlights</h3>
+    <div>
+      <span>Page {{ currentPage }} of {{ pageSize() }}</span>
+      <span *ngIf="currentPage != 1">
+        <span class="horizontal-divider"></span>
+        <span class="start-over cursor-pointer" (click)="StartingPage()"
+          >Start over</span
+        >
+      </span>
     </div>
   </div>
   <img
+    src="../../../assets/images/left-vector.png"
+    alt="prev"
+    width="14px"
+    height="25px"
+    class="cursor-pointer position-absolute left-scroll"
+    *ngIf="startingIndex != 0"
+    (click)="storeScroll('prev')"
+  />
+  <div class="container mb-5 position-relative">
+    <div class="container">
+      <div
+        class="row justify-content-md-evenly justify-content-lg-evenly justify-content-sm-evenly"
+      >
+        <ng-container *ngFor="let highlight of highlightCards; index as idx">
+          <div class="column me-2 ps-1" *ngIf="idx >= startingIndex && idx < endingIndex">
+            <img
+              src="{{ highlight.highlightImage }}"
+              alt="{{ highlight.storeName }}"
+              style="width: 100%"
+            />
+          </div>
+        </ng-container>
+      </div>
+      <img
         src="../../../assets/images/right-vector.png"
         alt="next"
-        width="14px"
-        height="25px"
-        class="cursor-pointer position-absolute right-scroll"
-        *ngIf="endingIndex <= highlightCards.length && highlightCards.length > 3"
+        class="cursor-pointer width-today-highlights-card position-absolute right-scroll"
+        *ngIf="
+          endingIndex <= highlightCards.length && highlightCards.length > 3
+        "
         (click)="storeScroll('next')"
       />
+    </div>
+  </div>
 </div>

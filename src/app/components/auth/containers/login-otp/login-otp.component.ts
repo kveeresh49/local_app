@@ -109,7 +109,6 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
 
   verify() {
     this.submitted = true;
-    console.log(this.otpForm.valid);
     if (this.otpForm.valid) {
       let OtpLogin:OtpLoginModel = {
         mobileNumber: +(this.otpForm.get('mobile')?.value['e164Number'].substring(1)),

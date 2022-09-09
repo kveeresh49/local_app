@@ -1,46 +1,52 @@
-<section class="container mb-5 position-relative">
-  <div class="flex justify-content-between mb-3">
-    <h3>{{ CategoriesType }}</h3>
-    <div>
-      <span>Page {{ currentPage }} of {{ pageSize() }}</span>
-      <span *ngIf="currentPage != 1">
-        <span class="horizontal-divider"></span>
-        <span class="start-over cursor-pointer" (click)="StartingPage()"
-          >Start over</span
-        >
-      </span>
+<div>
+  <section class="container mb-5 position-relative">
+    <div class="flex justify-content-between mb-3">
+      <h3>{{ CategoriesType }}</h3>
+      <div>
+        <span>Page {{ currentPage }} of {{ pageSize() }}</span>
+        <span *ngIf="currentPage != 1">
+          <span class="horizontal-divider"></span>
+          <span class="start-over cursor-pointer" (click)="StartingPage()"
+            >Start over</span
+          >
+        </span>
+      </div>
     </div>
-  </div>
-  <img
-    src="../../../assets/images/left-vector.png"
-    alt="prev"
-    width="14px"
-    height="25px"
-    class="cursor-pointer position-absolute left-scroll"
-    *ngIf="startingIndex != 0"
-    (click)="storeScroll('prev')"
-  />
-  <div class="container store-card-min-width">
-    <div class="row justify-content-center">
-      <ng-container
-        *ngFor="let nearByStore of nearByStoreData; let idx = index"
-      >
-        <div
-          class="store-card-max-width p-0 m-0 cursor-pointer"
-          *ngIf="idx >= startingIndex && idx < endingIndex"
+    <img
+      src="../../../assets/images/left-vector.png"
+      alt="prev"
+      width="14px"
+      height="25px"
+      class="cursor-pointer position-absolute left-scroll"
+      *ngIf="startingIndex != 0"
+      (click)="storeScroll('prev')"
+    />
+    <div class="container m-0 p-0">
+      <div class="d-flex gap-5">
+        <ng-container
+          *ngFor="let nearByStore of nearByStoreData; let idx = index"
         >
-          <app-store-card (click)="onCardClick()" [nearByStoreData]="nearByStore"></app-store-card>
-        </div>
-      </ng-container>
+          <div
+            class="store-card-max-width p-0 m-0 cursor-pointer"
+            *ngIf="idx >= startingIndex && idx < endingIndex"
+          >
+            <app-store-card (click)="onCardClick()" [nearByStoreData]="nearByStore"></app-store-card>
+          </div>
+          <img
+          src="../../../assets/images/right-vector.png"
+          alt="next"
+          width="14px"
+          height="25px"
+          class="cursor-pointer position-absolute right-scroll"
+          *ngIf="endingIndex <= nearByStoreData.length && nearByStoreData.length > 4"
+          (click)="storeScroll('next')"
+        />
+        </ng-container>
+       
+      </div>
+     
     </div>
-  </div>
-  <img
-    src="../../../assets/images/right-vector.png"
-    alt="next"
-    width="14px"
-    height="25px"
-    class="cursor-pointer position-absolute right-scroll"
-    *ngIf="endingIndex <= nearByStoreData.length && nearByStoreData.length > 4"
-    (click)="storeScroll('next')"
-  />
-</section>
+  
+  </section>
+</div>
+

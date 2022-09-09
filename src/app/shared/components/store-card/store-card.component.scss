@@ -28,13 +28,10 @@
 }
 .shop-rating-card {
   background: #5bb600;
-  border-radius: 3px;
-  width: 100%;
-  padding-left: 8px !important;
-  padding-right: 8px !important;
+  border-radius: 4px !important;
+  width: 24%;
   padding-top: 5px !important;
-  padding-bottom: 5px !important;
-  margin-top: 8px;
+  margin-top: 5px;
 }
 
 .card-img-top {
@@ -230,7 +227,7 @@
 .store-title {
   text-transform: capitalize;
   font-size: 15px;
-  width: 160px;
+  width: 10%;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -240,7 +237,8 @@
   color: $whiteFontColor;
   border-radius: 0.5px;
   line-height: 8px;
-  padding-right: 4px;
+  padding-right: 4px !important;
+  padding-left: 4px !important;
 }
 
 .coupon-divider {

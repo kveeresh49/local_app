@@ -21,11 +21,9 @@ export class CategoryCardComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.category = changes['category'].currentValue;
-    console.log(this.category, 'this.categoryCard');
   }
 
   onCategoryClick(): void {
     this.selectedCategory = this.category.id;
-    console.log(this.selectedCategory);
   }
 }

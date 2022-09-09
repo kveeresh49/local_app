@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-highlight-card',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./highlight-card.component.scss']
 })
 export class HighlightCardComponent implements OnInit {
-
+@Input() highlightCards :any;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,17 +1,20 @@
 <div
+  class="row"
   [ngClass]="{ sticky: !store }"
-  style="height: 70px"
+  style="height: 70px;z-index: 5;"
+  
   class="d-flex align-items-center position-sticky top-0"
 >
-  <div class="d-flex col-4 align-items-center justify-content-around">
+  <div
+    class="d-flex col-md-4 col-lg-4 col-sm-4 align-items-center justify-content-around"
+  >
     <img
       src="../../../../assets/images/brand-logo.png"
       alt=""
       width="100px"
       class="cursor-pointer"
       (click)="navigateDashBoard()"
-      style="height: 7vh;
-      width: 18vh;"
+      style="height: 7vh; width: 18vh"
     />
     <div
       class="text-start"
@@ -21,7 +24,6 @@
       (click)="sidebarShow = !sidebarShow"
     >
       <label for="" class="address-label">
-        <!-- <i class="fa fa-map-marker" aria-hidden="true"></i> -->
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -47,24 +49,50 @@
     </div>
   </div>
 
-
-
-<div class="input-group">
-  <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown" container="body">
-    <button type="button" class="btn btn-outline-primary" id="dropdownManual" style="border-top-right-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;"
-     ngbDropdownAnchor (focus)="myDrop.open()">{{setProduct}}</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownManual">
-      <ng-container *ngFor="let dropDownValue of searchProducts">
-        <button ngbDropdownItem (click)="setProductValue(dropDownValue)">{{dropDownValue?.name}}</button>
-      </ng-container>
+  <div class="col-md-4 col-lg-5 col-sm-4 d-flex">
+    <div
+      class="d-inline-block"
+      ngbDropdown
+      #myDrop="ngbDropdown"
+      container="body"
+    >
+      <button
+        type="button"
+        class="btn btn-outline-primary"
+        id="dropdownManual"
+        style="
+          border-top-right-radius: 0px !important;
+          border-bottom-right-radius: 0px !important;
+        "
+        ngbDropdownAnchor
+        (focus)="myDrop.open()"
+      >
+        {{ setProduct }}
+      </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <ng-container *ngFor="let dropDownValue of searchProducts">
+          <button ngbDropdownItem (click)="setProductValue(dropDownValue)">
+            {{ dropDownValue?.name }}
+          </button>
+        </ng-container>
+      </div>
     </div>
+    <input
+      type="text"
+      class="form-control"
+      aria-label="Text input with dropdown button"
+      style="border-radius: 0px !important"
+    />
+    <button
+      class="btn btn-outline-primary"
+      style="border-radius: 0px"
+      type="button"
+    >
+      <i class="fa fa-search top-0 position-relative"></i>
+    </button>
   </div>
-  <input type="text" class="form-control" aria-label="Text input with dropdown button" style="border-radius: 0px !important;">
-  <button class="btn btn-outline-primary" type="button"><i class="fa fa-search top-0 position-relative"></i></button>
-</div>
 
-  <div class="d-flex col-3 align-items-center justify-content-end gap-5">
+  <div class="col-lg-3 col-md-4 col-sm-4 d-flex gap-4 justify-content-end">
     <div class="light-grey text-decoration-none">Offers</div>
     <div
       class="light-grey text-decoration-none cursor-pointer"
@@ -79,7 +107,7 @@
       (click)="navigateLogin()"
       >Login</a
     >
-    <span class="cart-btn">
+    <span class="cart-btn mx-3">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
