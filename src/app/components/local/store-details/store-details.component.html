@@ -1,13 +1,9 @@
 <app-top-search-nav-bar></app-top-search-nav-bar>
 
-<div #storeDetails class="d-flex position-sticky store-details">
+<div *ngIf="!hideBanner" #storeDetails class="d-flex store-details">
   <div class="store-description">
-    <img
-      src="../../assets/images/store-images/back-arrow.png"
-      class="cursor-pointer"
-      (click)="navigateToDashBoard()"
-      alt="Back"
-    />
+    <img src="../../assets/images/store-images/back-arrow.png" class="cursor-pointer" (click)="navigateToDashBoard()"
+      alt="Back" />
     <div class="store-content">
       <h3 class="text-white">Bhabji Sabji</h3>
       <div class="text-white mt-1">Vegetables, Fruits, Greens</div>
@@ -38,54 +34,36 @@
       <div class="card text-end categories-container">
         <div class="card-body pe-0">
           <div style="font-weight: 700; padding-right: 20px">Categories</div>
-          <div
-            *ngFor="let item of categories"
-            style="padding-right: 20px"
-            class="mt-2 cursor-pointer"
-            [class.selected-category]="selectedCategoryId === item.id"
-            [ngStyle]="{
+          <div *ngFor="let item of categories" style="padding-right: 20px" class="mt-2 cursor-pointer"
+            [class.selected-category]="selectedCategoryId === item.id" [ngStyle]="{
               color: selectedCategoryId === item.id ? '#5BB600' : '#929292'
-            }"
-            (click)="onSelectCategory(item.id)"
-          >
+            }" (click)="onSelectCategory(item.id)">
             {{ item.name }}
           </div>
         </div>
       </div>
     </div>
-    <div class="col-6" style="height: 1000px">
-      <div class="row content-header">
-        <div class="col-8">
-          <div
-            class="d-flex mt-4 justify-content-around"
-            style="padding-bottom: 8px"
-          >
-            <span
-              *ngFor="let item of storeNavItems"
-              class="cursor-pointer"
-              [class.selected-nav-item]="selectedStoreNavId === item.id"
-              [ngStyle]="{
+    <div class="col-6">
+      <div class="row content-header" style="z-index: 10;">
+        <div class="col-8" style="background: white;">
+          <div class="d-flex mt-4 justify-content-around" style="padding-bottom: 8px">
+            <span *ngFor="let item of storeNavItems" class="cursor-pointer"
+              [class.selected-nav-item]="selectedStoreNavId === item.id" [ngStyle]="{
                 color: selectedStoreNavId === item.id ? '#5BB600' : '#929292'
-              }"
-              (click)="onSelectNavItem(item.id)"
-              >{{ item.name }}</span
-            >
+              }" (click)="onSelectNavItem(item.id)">{{ item.name }}</span>
           </div>
         </div>
-        <div class="col-4">
+        <div class="col-4" style="background: white;">
           <input class="form-control mt-2" placeholder="Search for Products" />
         </div>
         <span class="divider"></span>
       </div>
-      <div class="products-container">
+      <div class="gap-5 products-container">
         <div *ngFor="let product of products" class="products">
-          <div class="flex justify-content-between" style="height: 77px">
+          <div class="flex justify-content-between">
             <div>
-              <div *ngIf="product?.discount" class="offer-tag">
-                <div class="offer-text">
-                  <div>{{ product.discount }} %</div>
-                  <div class="me-2">Off</div>
-                </div>
+              <div *ngIf="product?.discount">
+                <app-offer-tag></app-offer-tag>
               </div>
             </div>
             <div style="margin: 10px 10px 0 0">
@@ -93,12 +71,7 @@
             </div>
           </div>
           <div class="product-image">
-            <img
-              [src]="product.image"
-              width="80px"
-              height="80px"
-              alt="Coriander"
-            />
+            <img [src]="product.image" class="product-card" alt="Coriander" />
           </div>
           <div class="item-name">{{ product.name }}</div>
           <div class="item-weight">{{ product.quantity }}</div>
@@ -110,25 +83,14 @@
               </div>
             </div>
             <div *ngIf="product.count === 0" class="add-item cursor-pointer">
-              <div
-                class="add-item-text"
-                (click)="updateCount(product.id, true)"
-              >
+              <div class="add-item-text" (click)="updateCount(product.id, true)">
                 Add +
               </div>
             </div>
             <div *ngIf="product.count !== 0" class="added-to-cart">
-              <span
-                class="increment-decrement cursor-pointer"
-                (click)="updateCount(product.id, false)"
-                >-</span
-              >
+              <span class="increment-decrement cursor-pointer" (click)="updateCount(product.id, false)">-</span>
               <span class="product-count">{{ product.count }}</span>
-              <span
-                class="increment-decrement cursor-pointer"
-                (click)="updateCount(product.id, true)"
-                >+</span
-              >
+              <span class="increment-decrement cursor-pointer" (click)="updateCount(product.id, true)">+</span>
             </div>
           </div>
         </div>
@@ -137,22 +99,13 @@
     <div class="col-3 mt-2 right-container">
       <div class="d-flex flex-column" style="gap: 20px">
         <div class="card ms-3 offer-border-color">
-          <a class="prev" (click)="slideChange(-1)"
-            ><img
-              src="../../../assets/images/left-vector.png"
-              alt="Previous"
-              width="9px"
-          /></a>
+          <a class="prev" (click)="slideChange(-1)"><img src="../../../assets/images/left-vector.png" alt="Previous"
+              width="9px" /></a>
           <div class="card-body p-1 fs-11" style="height: 60px">
             <div *ngFor="let offer of offers" class="myOffers">
               <div class="d-flex align-items-center gap-3">
-                <img
-                  src="../../../assets/images/offer-green.png"
-                  alt=""
-                  width="30px"
-                  height="30px"
-                  style="margin-left: 10px"
-                />
+                <img src="../../../assets/images/offer-green.png" alt="" width="30px" height="30px"
+                  style="margin-left: 10px" />
                 <div>
                   <div>{{ offer.offerText }}</div>
                   <div class="text-start">
@@ -162,12 +115,8 @@
               </div>
             </div>
           </div>
-          <a class="next" (click)="slideChange(1)"
-            ><img
-              src="../../../assets/images/right-vector.png"
-              alt="Next"
-              width="9px"
-          /></a>
+          <a class="next" (click)="slideChange(1)"><img src="../../../assets/images/right-vector.png" alt="Next"
+              width="9px" /></a>
         </div>
         <div class="dot-container">
           <span *ngFor="let offer of offers; index as idx">
@@ -178,9 +127,7 @@
           <img width="100%" src="assets/images/cart-empty.png" />
         </div>
         <ng-template #elseTemplate>
-          <ng-container
-            *ngTemplateOutlet="cartTemplate; context: { $implicit: cart }"
-          ></ng-container>
+          <ng-container *ngTemplateOutlet="cartTemplate; context: { $implicit: cart }"></ng-container>
         </ng-template>
       </div>
     </div>
@@ -203,17 +150,9 @@
             </div>
           </div>
           <div class="flex w-25 updated-count">
-            <span
-              (click)="updateCount(item.id, false)"
-              class="increment-decrement cursor-pointer"
-              >-</span
-            >
+            <span (click)="updateCount(item.id, false)" class="increment-decrement cursor-pointer">-</span>
             <span class="cart-item-count">{{ item.count }}</span>
-            <span
-              (click)="updateCount(item.id, true)"
-              class="increment-decrement cursor-pointer"
-              >+</span
-            >
+            <span (click)="updateCount(item.id, true)" class="increment-decrement cursor-pointer">+</span>
           </div>
           <div class="w-25">
             <div class="item-price fs-14">${{ item.price }}</div>

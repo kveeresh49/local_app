@@ -26,7 +26,7 @@
 }
 
 .store-details {
-  height: 300px;
+  height: 34vh;
   background-image: url(../../../../assets/images/store-images/bhabji-sabji-store.png);
   background-size: cover;
   top: 0px;
@@ -44,7 +44,7 @@
 
 .store-rating-container {
   background-color: white;
-  width: 60px;
+  width: 12%;
   justify-content: center;
   border-radius: 5px;
   color: #5bb600;
@@ -79,11 +79,11 @@
 }
 
 .products {
-  width: 190px;
-  height: 260px;
+  width: 28.3%;
   background: white;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 5px rgb(0 0 0 / 25%);
   border-radius: 10px;
+  height: 40vh !important;
 }
 
 .heart-color {
@@ -266,11 +266,11 @@
 }
 
 .left-nav {
-  width: 270px;
+  width: 18%;
   margin-top: 3.5rem;
-  height: 310px;
+  height: fit-content !important;
   position: sticky;
-  top: 220px;
+  top: 17%;
 }
 
 .today-deal-container {
@@ -288,11 +288,12 @@
 }
 
 .content-header {
-  height: 57px;
-  position: sticky;
-  top: 164px;
-  background: white;
-  z-index: 1;
+  height: 7vh;
+    position: sticky;
+    top: 9% !important;
+    top: 0;
+    background: white;
+    z-index: 1;
 }
 
 .divider {
@@ -302,15 +303,21 @@
 .products-container {
   margin: 30px 0 0 30px;
   display: flex;
-  width: 700px;
-  gap: 50px;
   flex-wrap: wrap;
 }
 
 .product-image {
-  width: 80px;
-  height: 80px;
-  margin: auto;
+  display: flex;
+  width: 82% !important;
+  margin: 16px;
+  height: 38%;
+}
+
+.product-card {
+  display: flex;
+  width: 80% !important;
+  margin: 14px;
+  height: 100%;
 }
 
 .product-count {
@@ -323,9 +330,8 @@
 
 .right-container {
   position: sticky;
-  top: 190px;
-  height: 300px;
-  background: white;
+    top: 17%;
+    background: white;
 }
 
 .offer-border-color {
