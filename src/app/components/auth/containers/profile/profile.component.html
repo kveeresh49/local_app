@@ -3,7 +3,7 @@
 
 <div class="d-flex gap-5 justify-content-center mt-3">
   <div
-    [class.active-tab]="activeTab === 'profile'"
+    [class.active-tab]="activeTab === profileActiveTab.profileSettings"
     class="cursor-pointer"
     style="font-size: 18px; font-weight: 600"
     (click)="onProfileSettingsClick()"
@@ -11,7 +11,7 @@
     Profile Settings
   </div>
   <div
-    [class.active-tab]="activeTab === 'addresses'"
+    [class.active-tab]="activeTab === profileActiveTab.manageAddresses"
     class="cursor-pointer"
     style="font-size: 18px; font-weight: 600"
     (click)="onManageAddressClick()"
@@ -21,10 +21,7 @@
 </div>
 
 <form [formGroup]="profileForm" *ngIf="isProfileSection">
-  <div
-    class="card mt-4"
-    style="width: 450px; margin-right: auto; margin-left: auto"
-  >
+  <div class="w-50 card my-4" style="margin-right: auto; margin-left: auto">
     <div style="padding-right: 0" class="card-body">
       <div class="row">
         <img
@@ -34,8 +31,8 @@
           height="120px"
         />
         <div style="text-align: center; cursor: pointer">Edit your picture</div>
-        <div class="d-flex">
-          <div class="col-sm-9">
+        <div class="row">
+          <div class="offset-sm-1 col-sm-8">
             <label for="name">Name</label>
             <input
               id="name"
@@ -45,16 +42,26 @@
               placeholder="Enter Your Name"
             />
           </div>
-          <div class="col-sm-3 align-self-end">
-            <span
-              class="mx-3 cursor-pointer"
-              style="color: #ff7a00; font-weight: 700; font-size: 14px"
-              >CHANGE</span
-            >
+          <div class="col-sm-3 px-0 align-self-end">
+            <ng-container
+              *ngIf="profileForm.get('name')?.disabled"
+              [ngTemplateOutlet]="changeTemplate"
+              [ngTemplateOutletContext]="{ item: 'name' }"
+            ></ng-container>
+            <ng-container
+              *ngIf="!profileForm.get('name')?.disabled"
+              [ngTemplateOutlet]="updateTemplate"
+              [ngTemplateOutletContext]="{ item: 'name' }"
+            ></ng-container>
+            <ng-container
+              *ngIf="!profileForm.get('name')?.disabled"
+              [ngTemplateOutlet]="cancelTemplate"
+              [ngTemplateOutletContext]="{ item: 'name' }"
+            ></ng-container>
           </div>
         </div>
-        <div class="d-flex mt-2">
-          <div class="col-sm-9">
+        <div class="row mt-2">
+          <div class="offset-sm-1 col-sm-8">
             <label for="email">Email</label>
             <input
               id="email"
@@ -64,35 +71,26 @@
               placeholder="Enter Email"
             />
           </div>
-          <div class="col-sm-3 align-self-end">
-            <span
-              class="mx-3 cursor-pointer"
-              style="color: #ff7a00; font-weight: 700; font-size: 14px"
-              >CHANGE</span
-            >
+          <div class="col-sm-3 px-0 align-self-end">
+            <ng-container
+              *ngIf="profileForm.get('email')?.disabled"
+              [ngTemplateOutlet]="changeTemplate"
+              [ngTemplateOutletContext]="{ item: 'email' }"
+            ></ng-container>
+            <ng-container
+              *ngIf="!profileForm.get('email')?.disabled"
+              [ngTemplateOutlet]="updateTemplate"
+              [ngTemplateOutletContext]="{ item: 'email' }"
+            ></ng-container>
+            <ng-container
+              *ngIf="!profileForm.get('email')?.disabled"
+              [ngTemplateOutlet]="cancelTemplate"
+              [ngTemplateOutletContext]="{ item: 'email' }"
+            ></ng-container>
           </div>
         </div>
-        <div class="d-flex mt-2">
-          <div class="col-sm-9">
-            <label for="password">Password</label>
-            <input
-              id="password"
-              type="password"
-              class="form-control"
-              formControlName="password"
-              placeholder="Change Password"
-            />
-          </div>
-          <div class="col-sm-3 align-self-end">
-            <span
-              class="mx-3 cursor-pointer"
-              style="color: #ff7a00; font-weight: 700; font-size: 14px"
-              >CHANGE</span
-            >
-          </div>
-        </div>
-        <div class="d-flex mt-2">
-          <div class="col-sm-8">
+        <div class="row mt-2">
+          <div class="offset-sm-1 col-sm-8">
             <label for="mNumber">Mobile Number</label>
             <input
               id="mNumber"
@@ -102,17 +100,35 @@
               placeholder="Enter Number"
             />
           </div>
-          <div class="col-sm-4 align-self-end">
-            <button
-              style="background: #ff7a00; text-align: center; color: #ffffff"
-              class="btn mx-3"
-            >
-              Send OTP
-            </button>
+          <div class="col-sm-3 px-0 align-self-end">
+            <ng-container
+              *ngIf="
+                profileForm.get('mobileNumber')?.disabled &&
+                !hideMobileNumberActions
+              "
+              [ngTemplateOutlet]="changeTemplate"
+              [ngTemplateOutletContext]="{ item: 'mobileNumber' }"
+            ></ng-container>
+            <ng-container
+              *ngIf="
+                !profileForm.get('mobileNumber')?.disabled &&
+                !hideMobileNumberActions
+              "
+              [ngTemplateOutlet]="verifyTemplate"
+              [ngTemplateOutletContext]="{ item: 'mobileNumber' }"
+            ></ng-container>
+            <ng-container
+              *ngIf="
+                !profileForm.get('mobileNumber')?.disabled &&
+                !hideMobileNumberActions
+              "
+              [ngTemplateOutlet]="cancelTemplate"
+              [ngTemplateOutletContext]="{ item: 'mobileNumber' }"
+            ></ng-container>
           </div>
         </div>
-        <div class="d-flex mt-2">
-          <div class="col-sm-9">
+        <div *ngIf="!hideOtpSection" class="row mt-2">
+          <div class="offset-sm-1 col-sm-8">
             <label for="otp">Enter OTP</label>
             <input
               id="otp"
@@ -122,14 +138,85 @@
               placeholder="Enter OTP"
             />
           </div>
-          <div class="col-sm-3 align-self-end">
+          <div class="col-sm-3 px-0 align-self-end">
             <span
+              (click)="onConfirmOtp()"
               class="mx-3 cursor-pointer"
               style="color: #ff7a00; font-weight: 700; font-size: 14px"
-              >VERIFY</span
+              >CONFIRM</span
             >
+            <ng-container
+              [ngTemplateOutlet]="cancelTemplate"
+              [ngTemplateOutletContext]="{ item: 'otp' }"
+            ></ng-container>
           </div>
         </div>
+        <div *ngIf="!isPasswordChange; else passwordChange" class="row mt-2">
+          <div class="offset-sm-1 col-sm-8">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              type="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Change Password"
+            />
+          </div>
+          <div class="col-sm-3 px-0 align-self-end">
+            <ng-container
+              *ngIf="profileForm.get('password')?.disabled"
+              [ngTemplateOutlet]="changeTemplate"
+              [ngTemplateOutletContext]="{ item: 'password' }"
+            ></ng-container>
+            <ng-container
+              *ngIf="!profileForm.get('password')?.disabled"
+              [ngTemplateOutlet]="updateTemplate"
+              [ngTemplateOutletContext]="{ item: 'password' }"
+            ></ng-container>
+            <ng-container
+              *ngIf="!profileForm.get('password')?.disabled"
+              [ngTemplateOutlet]="cancelTemplate"
+              [ngTemplateOutletContext]="{ item: 'password' }"
+            ></ng-container>
+          </div>
+        </div>
+        <ng-template #passwordChange>
+          <div class="row mt-2">
+            <div class="offset-sm-1 col-sm-8">
+              <label for="newPassword">New Password</label>
+              <input
+                id="password"
+                type="password"
+                class="form-control"
+                formControlName="newPassword"
+                placeholder="New Password"
+              />
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="offset-sm-1 col-sm-8">
+              <label for="cPassword">Confirm Password</label>
+              <input
+                id="cPassword"
+                type="password"
+                class="form-control"
+                formControlName="confirmPassword"
+                placeholder="Confirm Password"
+              />
+            </div>
+            <div class="col-sm-3 px-0 align-self-end">
+              <ng-container
+                *ngIf="!profileForm.get('confirmPassword')?.disabled"
+                [ngTemplateOutlet]="updateTemplate"
+              ></ng-container>
+              <ng-container
+                *ngIf="!profileForm.get('confirmPassword')?.disabled"
+                [ngTemplateOutlet]="cancelTemplate"
+                [ngTemplateOutletContext]="{ item: 'confirmPassword' }"
+              ></ng-container>
+            </div>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
@@ -204,3 +291,39 @@
     </div>
   </div>
 </div>
+
+<ng-template #changeTemplate let-item="item">
+  <span
+    (click)="onChange(item)"
+    class="mx-3 cursor-pointer"
+    style="color: #ff7a00; font-weight: 700; font-size: 14px"
+    >CHANGE</span
+  >
+</ng-template>
+
+<ng-template #verifyTemplate let-item="item">
+  <span
+    (click)="onVerify(item)"
+    class="mx-3 cursor-pointer"
+    style="color: #ff7a00; font-weight: 700; font-size: 14px"
+    >VERIFY</span
+  >
+</ng-template>
+
+<ng-template #updateTemplate let-item="item">
+  <span
+    (click)="onUpdate(item)"
+    class="mx-3 cursor-pointer"
+    style="color: #ff7a00; font-weight: 700; font-size: 14px"
+    >UPDATE</span
+  >
+</ng-template>
+
+<ng-template #cancelTemplate let-item="item">
+  <span
+    (click)="onCancel(item)"
+    class="mx-3 cursor-pointer"
+    style="color: #ff7a00; font-weight: 700; font-size: 14px"
+    >CANCEL</span
+  >
+</ng-template>
