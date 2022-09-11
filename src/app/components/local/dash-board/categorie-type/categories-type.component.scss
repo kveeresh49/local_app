@@ -1,13 +1,14 @@
+@import "../../../../../variable";
 .category-col-md-2 {
   flex: 0 0 auto !important;
   width: 16.655% !important;
 }
 .start-over {
-  color: #007185;
+  color: $start-over-txt-clr;
 }
 .start-over:hover {
   text-decoration: underline;
-  color: #ff7a00;
+  color: $orange;
 }
 .right-scroll {
   top: 55%;

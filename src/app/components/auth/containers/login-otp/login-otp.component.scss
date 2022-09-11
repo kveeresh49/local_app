@@ -5,8 +5,8 @@
 }
 
 .otp-btn {
-  background-color: #ff7a00;
-  color: #fff;
+  background-color: $orange;
+  color: $whiteFontColor;
   border: none;
   border-radius: 5px;
   font-size: 12px;
@@ -17,13 +17,13 @@
 .login-submit-btn {
   width: 100%;
   padding: 5px 0;
-  background: #ff7a00;
+  background: $orange;
   border-radius: 5px;
  // font-family: "Poppins";
   font-style: normal;
   font-weight: 500;
   text-align: center;
-  color: #ffffff;
+  color: $whiteFontColor;
 }
 
 .agree-text {
@@ -32,15 +32,15 @@
   font-weight: 300;
   font-size: 12px;
   // line-height: 18px;
-  color: #000000;
+  color: $blackColor;
   margin-bottom: 10px;
 }
 
 .verify-btn {
-  background-color: #ff7a00;
+  background-color: $orange;
   width: 100%;
   border: none;
-  color: #fff;
+  color: $whiteFontColor;
   font-family: "Poppins";
   // line-height: 27px;
   padding: 5px;
@@ -59,7 +59,7 @@
     color: #838383;
 
     .create-account {
-      color: #ff7a00;
+      color: $orange;
     }
   }
 }
@@ -81,7 +81,7 @@
 
 .isInvalid{
   font-size: 0.875em;
-  color: #dc3545
+  color: $errorColor;
 }
 
 
@@ -103,5 +103,5 @@
 
 .isInvalid {
   font-size: 0.875em;
-  color: #dc3545;
+  color: $errorColor;
 }

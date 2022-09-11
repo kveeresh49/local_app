@@ -19,7 +19,6 @@
           class="shops-by-category-logos"
         />
         <span
-          style="margin-top: -1.5rem; position: sticky"
           [ngClass]="{
             'medical-title-card': category.storeType === 'medical',
             'grocery-title-card': category.storeType === 'grocery',
@@ -28,7 +27,7 @@
             'farm-title-card': category.storeType === 'farms',
             'garden-title-card': category.storeType === 'garden'
           }"
-          class="shop-title-card"
+          class="shop-title-card position-sticky"
         >
           <span class="title" title="{{ category.title }}">{{
             category.title

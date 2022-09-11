@@ -1,9 +1,67 @@
+@import "../../../../../variable";
+
 .camera-background {
   padding: 40px;
-  border: 1px solid #c4c4c4;
+  border: 1px solid $border-color;
   font-size: 30px;
   border-radius: 60px;
-  background: #c4c4c4;
+  background: $border-color;
+}
+
+.profile-card {
+  margin-right: auto;
+  margin-left: auto;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.settings {
+  font-size: 18px;
+  font-weight: $font-weight-600;
+}
+
+.profile-icon {
+  margin-left: 30%;
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+}
+
+.profile-text {
+  font-weight: 700;
+  color: $orange;
+}
+
+.cancel-text {
+  background: $whiteFontColor;
+  color: $nav-text-color;
+  border-color: $border-color;
+}
+
+.select-address {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.add-address {
+  background: $orange;
+  color: $whiteFontColor;
+}
+
+.save-btn-text {
+  background: $orange;
+  color: $whiteFontColor;
+}
+
+.confirm-btn-txt {
+  color: $orange;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.m-auto {
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .other-icon {

@@ -14,21 +14,19 @@
 <div class="p-1">
   <div class="d-flex row m-0">
     <div class="col fw-semibold store-title mt-1">
-     <span>{{ nearByStoreData.shopTitel }}</span> 
+      <span>{{ nearByStoreData.shopTitel }}</span>
     </div>
-    <div class="rating shop-rating-card" style="flex: 0.25 0%;">
+    <div class="rating shop-rating-card">
       <i class="fa-solid fa-star star-calss">
-       <span class="ps-2">{{ nearByStoreData.rating }}</span> </i>
-     
+        <span class="ps-2">{{ nearByStoreData.rating }}</span>
+      </i>
     </div>
   </div>
   <div class="d-flex row">
-     <div class="d-flex white_color">
-       
-      </div>
-      <div class="d-flex popular-store-category mt-1 justify-content-end">
-        {{ nearByStoreData.kilometers }}km
-      </div>
+    <div class="d-flex white_color"></div>
+    <div class="d-flex popular-store-category mt-1 justify-content-end">
+      {{ nearByStoreData.kilometers }}km
+    </div>
   </div>
   <!-- <div>
     <div class="flex justify-content-evenly shop-rating-card">
@@ -39,24 +37,31 @@
       {{ nearByStoreData.kilometers }}km
     </div>
   </div> -->
-
 </div>
-<div style="padding: 6px">
-  <div style="border-bottom: 1px solid #c4c4c4"></div>
-  <div  class="mt-2 fs-14">
+<div class="card-padding">
+  <div class="bdr-btm"></div>
+  <div class="mt-2 fs-14">
     <span
       ><img
         src="../../../assets/images/popular-stores/percentage-icon.png"
         alt=""
         class="percentage-icon"
     /></span>
-    <span style="color: #ff7a00"> {{ nearByStoreData.discountText }} % off </span>
+    <span class="orange-clr"> {{ nearByStoreData.discountText }} % off </span>
     <span class="coupon-divider"></span>
-    <span style="color: #ff7a00">Use NEWSTORE</span>
-    <span style="float: right;font-size: 20px;margin-top: -2px;"
-    ><i class="fa-regular fa-heart" *ngIf="!favoriteIconColor" (click)="favoriteIconClick()"></i>
-    <i class="fa-solid fa-heart" *ngIf="favoriteIconColor"  [ngClass]="{'favColor':favoriteIconColor}" (click)="favoriteIconClick()"></i>
-        </span>
-   
+    <span class="orange-clr">Use NEWSTORE</span>
+    <span class="heart-container"
+      ><i
+        class="fa-regular fa-heart"
+        *ngIf="!favoriteIconColor"
+        (click)="favoriteIconClick()"
+      ></i>
+      <i
+        class="fa-solid fa-heart"
+        *ngIf="favoriteIconColor"
+        [ngClass]="{ favColor: favoriteIconColor }"
+        (click)="favoriteIconClick()"
+      ></i>
+    </span>
   </div>
 </div>

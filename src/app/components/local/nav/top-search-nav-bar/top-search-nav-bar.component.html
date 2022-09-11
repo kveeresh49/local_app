@@ -1,9 +1,6 @@
 <div
-  class="row"
   [ngClass]="{ sticky: !store }"
-  style="height: 70px;z-index: 5;"
-  
-  class="d-flex align-items-center position-sticky top-0"
+  class="row d-flex align-items-center position-sticky top-0 top-nav-bar"
 >
   <div
     class="d-flex col-md-4 col-lg-4 col-sm-4 align-items-center justify-content-around"
@@ -12,9 +9,8 @@
       src="../../../../assets/images/brand-logo.png"
       alt=""
       width="100px"
-      class="cursor-pointer"
+      class="cursor-pointer brand-logo"
       (click)="navigateDashBoard()"
-      style="height: 7vh; width: 18vh"
     />
     <div
       class="text-start"
@@ -58,12 +54,8 @@
     >
       <button
         type="button"
-        class="btn btn-outline-primary"
+        class="btn btn-outline-primary products-dropdown"
         id="dropdownManual"
-        style="
-          border-top-right-radius: 0px !important;
-          border-bottom-right-radius: 0px !important;
-        "
         ngbDropdownAnchor
         (focus)="myDrop.open()"
       >
@@ -79,15 +71,10 @@
     </div>
     <input
       type="text"
-      class="form-control"
+      class="form-control border-radius-0"
       aria-label="Text input with dropdown button"
-      style="border-radius: 0px !important"
     />
-    <button
-      class="btn btn-outline-primary"
-      style="border-radius: 0px"
-      type="button"
-    >
+    <button class="btn btn-outline-primary border-radius-0" type="button">
       <i class="fa fa-search top-0 position-relative"></i>
     </button>
   </div>

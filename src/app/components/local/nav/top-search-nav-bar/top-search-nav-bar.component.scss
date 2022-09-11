@@ -19,8 +19,8 @@ select::-ms-expand {
   }
 }
 .brand-logo {
-  width: 100%;
-  height: 8vh;
+  height: 7vh;
+  width: 18vh;
 }
 .cart-btn {
   border: 2px solid $orange;
@@ -141,4 +141,18 @@ select::-ms-expand {
   top: 0;
   background: white;
   z-index: 2;
+}
+
+.top-nav-bar {
+  height: 70px;
+  z-index: 5;
+}
+
+.products-dropdown {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+.border-radius-0 {
+  border-radius: 0 !important;
 }

@@ -4,16 +4,14 @@
 <div class="d-flex gap-5 justify-content-center mt-3">
   <div
     [class.active-tab]="activeTab === profileActiveTab.profileSettings"
-    class="cursor-pointer"
-    style="font-size: 18px; font-weight: 600"
+    class="cursor-pointer settings"
     (click)="onProfileSettingsClick()"
   >
     Profile Settings
   </div>
   <div
     [class.active-tab]="activeTab === profileActiveTab.manageAddresses"
-    class="cursor-pointer"
-    style="font-size: 18px; font-weight: 600"
+    class="cursor-pointer settings"
     (click)="onManageAddressClick()"
   >
     Manage Addresses
@@ -21,16 +19,16 @@
 </div>
 
 <form [formGroup]="profileForm" *ngIf="isProfileSection">
-  <div class="w-50 card my-4" style="margin-right: auto; margin-left: auto">
-    <div style="padding-right: 0" class="card-body">
+  <div class="w-50 card my-4 m-auto">
+    <div class="card-body pe-0">
       <div class="row">
         <img
-          class="m-auto"
-          style="cursor: pointer; width: auto"
+          class="m-auto cursor-pointer"
           src="../../../../../assets/images/profile-icons/user-avatar.jpg"
           height="120px"
+          width="auto"
         />
-        <div style="text-align: center; cursor: pointer">Edit your picture</div>
+        <div class="cursor-pointer text-center">Edit your picture</div>
         <div class="row">
           <div class="offset-sm-1 col-sm-8">
             <label for="name">Name</label>
@@ -141,8 +139,7 @@
           <div class="col-sm-3 px-0 align-self-end">
             <span
               (click)="onConfirmOtp()"
-              class="mx-3 cursor-pointer"
-              style="color: #ff7a00; font-weight: 700; font-size: 14px"
+              class="mx-3 cursor-pointer confirm-btn-txt"
               >CONFIRM</span
             >
             <ng-container
@@ -222,19 +219,10 @@
   </div>
 </form>
 
-<div
-  *ngIf="!isProfileSection"
-  class="card mt-4 w-50 p-4"
-  style="
-    margin-right: auto;
-    margin-left: auto;
-    max-height: 500px;
-    overflow: auto;
-  "
->
+<div *ngIf="!isProfileSection" class="card mt-4 w-50 p-4 profile-card">
   <div class="row offset-1">
     <div>
-      <p style="font-size: 14px; font-weight: 700">Select Address:</p>
+      <p class="select-address">Select Address:</p>
     </div>
     <div
       class="d-flex align-items-center"
@@ -283,8 +271,7 @@
     </div>
     <div class="d-flex mt-3">
       <button
-        style="background: #ff7a00; text-align: center; color: #ffffff"
-        class="btn col-sm-7 offset-2"
+        class="btn col-sm-7 offset-2 add-address text-center"
       >
         + Add Address
       </button>
@@ -295,8 +282,7 @@
 <ng-template #changeTemplate let-item="item">
   <span
     (click)="onChange(item)"
-    class="mx-3 cursor-pointer"
-    style="color: #ff7a00; font-weight: 700; font-size: 14px"
+    class="mx-3 cursor-pointer confirm-btn-txt"
     >CHANGE</span
   >
 </ng-template>
@@ -304,8 +290,7 @@
 <ng-template #verifyTemplate let-item="item">
   <span
     (click)="onVerify(item)"
-    class="mx-3 cursor-pointer"
-    style="color: #ff7a00; font-weight: 700; font-size: 14px"
+    class="mx-3 cursor-pointer confirm-btn-txt"
     >VERIFY</span
   >
 </ng-template>
@@ -313,8 +298,7 @@
 <ng-template #updateTemplate let-item="item">
   <span
     (click)="onUpdate(item)"
-    class="mx-3 cursor-pointer"
-    style="color: #ff7a00; font-weight: 700; font-size: 14px"
+    class="mx-3 cursor-pointer confirm-btn-txt"
     >UPDATE</span
   >
 </ng-template>
@@ -322,8 +306,7 @@
 <ng-template #cancelTemplate let-item="item">
   <span
     (click)="onCancel(item)"
-    class="mx-3 cursor-pointer"
-    style="color: #ff7a00; font-weight: 700; font-size: 14px"
+    class="mx-3 cursor-pointer confirm-btn-txt"
     >CANCEL</span
   >
 </ng-template>
