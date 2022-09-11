@@ -39,8 +39,11 @@
                 <div *ngIf="f.email.errors.email">Email is invalid</div>
               </div>
             </div>
-            <div class="">
+            <div class="show_hide_password">
               <label for="password" class="local-form-label">Password</label>
+              <div class="input-group-addon">
+                <a ><i class="fa fa-eye-slash" id="eyeicon" (click)="myFunction()" aria-hidden="true"></i></a>
+              </div>
               <input
                 type="password"
                 class="form-control"
@@ -48,6 +51,7 @@
                 formControlName="password"
                 placeholder="Enter Password"
                 name="password"
+                [type]="hide ? 'password' : 'text'"
                 [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
               />
               <div *ngIf="f?.password?.errors" class="invalid-feedback">

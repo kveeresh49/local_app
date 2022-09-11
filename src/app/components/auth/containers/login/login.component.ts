@@ -17,6 +17,10 @@ export class LoginComponent implements OnInit {
   submitted = false;
   alerts: any[];
   id: any;
+  // passwordicons:any;
+hide: boolean = true;
+  icon: any;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -27,6 +31,31 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
+  }
+  // myFunction() {
+  //   this.hide = !this.hide;
+  //   if( ('#password').attr("type") == "text"){
+  //               ('#password').attr('type', 'password');
+  //               ('#password i').addClass( "fa-eye-slash" );
+  //               ('#show_hide_password i').removeClass( "fa-eye" );
+  //           }else if(('#show_hide_password input').attr("type") == "password"){
+  //               // ('#show_hide_password input').attr('type', 'text');
+  //               ('#show_hide_password i').removeClass( "fa-eye-slash" );
+  //               ('#show_hide_password i').addClass( "fa-eye" );
+  //           }
+  // }
+
+  myFunction(){
+    this.hide = !this.hide;
+    this.icon = document.getElementById("eyeicon");
+    if (this.icon.className = "fa-eye-slash"){
+      this.icon.className = "fa-eye-slash"
+    }else {
+      this.icon.className = "fa-eye"
+      // this.icon.removeClass("fa-eye-slash");
+      // this.icon.addClass("fa-eye")
+    }
+
   }
 
   createForm(): void {
@@ -96,7 +125,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  
+
   userProfileVerification() {
     let id: string = JSON.parse(this.cookieService.get('userToken'))['id'];
     this.authService.userProfile$(id).subscribe({
@@ -127,7 +156,7 @@ export class LoginComponent implements OnInit {
     this.loginForm.get('password')?.updateValueAndValidity();
   }
 
-  
+
   setCreateFormValidators(): void {
     this.loginForm
       .get('password')
@@ -140,3 +169,31 @@ export class LoginComponent implements OnInit {
     this.loginForm.updateValueAndValidity();
   }
 }
+
+// $(document).ready(function() {
+//   $("#show_hide_password a").on('click', function(event) {
+//       event.preventDefault();
+//       if($('#show_hide_password input').attr("type") == "text"){
+//           $('#show_hide_password input').attr('type', 'password');
+//           $('#show_hide_password i').addClass( "fa-eye-slash" );
+//           $('#show_hide_password i').removeClass( "fa-eye" );
+//       }else if($('#show_hide_password input').attr("type") == "password"){
+//           $('#show_hide_password input').attr('type', 'text');
+//           $('#show_hide_password i').removeClass( "fa-eye-slash" );
+//           $('#show_hide_password i').addClass( "fa-eye" );
+//       }
+//   });
+// });
+
+
+// let passwordicons = document.querySelector(".eyeicon")
+
+// passwordicons?.addEventListener('click', function(event){
+//   event.preventDefault();
+//   if('.show_hide_password  input').attr("type") == ("text"){
+//     ('.show_hide_password  input').attr('type', 'password');
+//   }
+// })
+
+
+

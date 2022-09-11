@@ -11,7 +11,7 @@ import { CreateAccountComponent } from './containers/create-account/create-accou
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProfileComponent } from './containers/profile/profile.component';
 import { LocalModule } from '../local/local.module';
-
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     LoginComponent,
@@ -22,7 +22,7 @@ import { LocalModule } from '../local/local.module';
     CreateAccountComponent,
     ProfileComponent,
   ],
-  imports: [SharedModule, AuthRoutingModule, LocalModule],
+  imports: [SharedModule, AuthRoutingModule, LocalModule,MatIconModule],
   exports: [
     CommonModule,
     SharedModule,

@@ -52,3 +52,55 @@
 //     }
 //   }
 // }
+.show_hide_password{
+  position: relative;
+}
+.input-group-addon{
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  z-index: 10;
+  a{
+    color: #8b8888;
+    i{
+      font-size: 14px;
+    }
+  }
+}
+
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.placeholder{
+    position: absolute;
+    top: 18px;
+    bottom: 0;
+    height: 24px;
+    font-size: 25px;
+    left: -28px;
+    margin: auto;
+}
+
+.input-placeholder {
+  position: relative;
+}
