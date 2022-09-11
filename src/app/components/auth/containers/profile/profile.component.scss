@@ -9,10 +9,15 @@
 }
 
 .profile-card {
-  height: 400px;
-  width: 300px;
   margin-right: auto;
   margin-left: auto;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.settings {
+  font-size: 18px;
+  font-weight: $font-weight-600;
 }
 
 .profile-icon {
@@ -33,9 +38,30 @@
   border-color: $border-color;
 }
 
+.select-address {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.add-address {
+  background: $orange;
+  color: $whiteFontColor;
+}
+
 .save-btn-text {
   background: $orange;
   color: $whiteFontColor;
+}
+
+.confirm-btn-txt {
+  color: $orange;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.m-auto {
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .other-icon {
