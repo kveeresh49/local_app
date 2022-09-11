@@ -1,7 +1,39 @@
+@import "../../../../../variable";
+
 .camera-background {
   padding: 40px;
-  border: 1px solid #c4c4c4;
+  border: 1px solid $border-color;
   font-size: 30px;
   border-radius: 60px;
-  background: #c4c4c4;
+  background: $border-color;
+}
+
+.profile-card {
+  height: 400px;
+  width: 300px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.profile-icon {
+  margin-left: 30%;
+  cursor: pointer;
+  width: 120px;
+  height: 120px;
+}
+
+.profile-text {
+  font-weight: 700;
+  color: $orange;
+}
+
+.cancel-text {
+  background: $whiteFontColor;
+  color: $nav-text-color;
+  border-color: $border-color;
+}
+
+.save-btn-text {
+  background: $orange;
+  color: $whiteFontColor;
 }

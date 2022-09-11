@@ -1,7 +1,8 @@
+@import "../../../../../variable";
 .store-card-max-width {
   padding-left: 0px !important;
   width: 21%;
-  border: 1px solid #c4c4c4;
+  border: 1px solid $border-color;
   border-radius: 0px 0px 10px 10px;
   height: 20rem;
   border-radius: 8px 8px 10px 10px;
@@ -12,12 +13,12 @@
 }
 
 .start-over {
-  color: #007185;
+  color: $start-over-txt-clr;
 }
 
 .start-over:hover {
   text-decoration: underline;
-  color: #ff7a00;
+  color: $orange;
 }
 
 .gap-between-cards {

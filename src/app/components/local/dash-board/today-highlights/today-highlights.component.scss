@@ -1,12 +1,12 @@
-
+@import "../../../../../variable";
 
 .start-over {
-    color: #007185;
+    color: $start-over-txt-clr;
   }
   
   .start-over:hover {
     text-decoration: underline;
-    color: #ff7a00;
+    color: $orange;
   }
 
   .gap-between-cards {

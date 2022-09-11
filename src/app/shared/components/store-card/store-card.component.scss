@@ -32,6 +32,7 @@
   width: 24%;
   padding-top: 5px !important;
   margin-top: 5px;
+  flex: 0.25 0%;
 }
 
 .card-img-top {
@@ -253,4 +254,22 @@
 
 .favColor {
   color: red;
+}
+
+.card-padding {
+  padding: 6px;
+}
+
+.bdr-btm {
+  border-bottom: 1px solid $border-color;
+}
+
+.orange-clr {
+  color: $orange;
+}
+
+.heart-container {
+  float: right;
+  font-size: 20px;
+  margin-top: -2px;
 }

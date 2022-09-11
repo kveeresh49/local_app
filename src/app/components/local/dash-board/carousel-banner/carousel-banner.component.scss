@@ -1,3 +1,4 @@
+@import "../../../../../variable";
 // .slideshow-container {
 //     height: 300px;
 //     min-width: 1200px;
@@ -93,9 +94,13 @@
 
 .carousel-indicators .active,
 .carousel-indicators [data-bs-target]:hover {
-  background: #949292;
+  background: $nav-text-color;
 }
 
 :host .carousel-indicators {
   z-index: 1;
+}
+
+.carousel-padding {
+  padding: 50px 30px;
 }
