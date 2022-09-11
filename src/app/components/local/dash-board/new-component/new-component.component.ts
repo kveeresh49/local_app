@@ -30,18 +30,20 @@ export class NewComponentComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.mapsAPILoader.load()
-      .then(() => {
-        this.initAutocomplete({
-          fields: ["formatted_address", "geometry", "name"],
-          componentRestrictions: { country: 'ind' },
-          strictBounds: false,
-          types: ["establishment"],
-        });
-      })
-      .catch((mapsError: any) => {
-        console.warn('mapAPILoader failed to load', { error: mapsError });
-      });
+    this.initAutocomplete({
+      fields: ["address_components","formatted_address", "geometry", "name"],
+      componentRestrictions: { country: 'ind' },
+      strictBounds: false,
+      types: ["establishment"],
+    });
+
+    // this.mapsAPILoader.load()
+    //   .then(() => {
+      
+    //   })
+    //   .catch((mapsError: any) => {
+    //     console.warn('mapAPILoader failed to load', { error: mapsError });
+    //   });
   }
 
   initAutocomplete(options: any) {

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +11,6 @@ import { JwtInterceptor } from './shared/helpers/jwt-interceptor';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AgmCoreModule } from '@agm/core';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -23,15 +22,16 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     LocalModule,
     BsDropdownModule.forRoot(),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBF0ojaCL0D4P3Na8c17Hs15JM6CEvE9Jc'
+      apiKey: 'AIzaSyBF0ojaCL0D4P3Na8c17Hs15JM6CEvE9Jc',
     }),
-    //NgxSpinnerModule
+
     GooglePlaceModule,
   ],
   providers: [
-  
-    CookieService,{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    ],
+    CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
