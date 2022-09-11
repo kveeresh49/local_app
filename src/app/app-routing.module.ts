@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NewComponentComponent } from './components/local/dash-board/new-component/new-component.component';
 import { DeliverAddressComponent } from './components/local/deliver-address/deliver-address.component';
 import { StoreDetailsComponent } from './components/local/store-details/store-details.component';
 
@@ -12,6 +13,7 @@ const routes: Routes = [
   },
 
   { path: 'dash-address', component: DeliverAddressComponent },
+  { path: 'new-address', component: NewComponentComponent },
   {
     path: 'store',
     component: StoreDetailsComponent,

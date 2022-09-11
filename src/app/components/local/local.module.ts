@@ -17,6 +17,7 @@ import { CategoriesTypeComponent } from './dash-board/categorie-type/categories-
 import { TodayHighlightsComponent } from './dash-board/today-highlights/today-highlights.component';
 import { CarouselBannerComponent } from './dash-board/carousel-banner/carousel-banner.component';
 import { HeaderComponent } from './nav/header/header.component';
+import { NewComponentComponent } from './dash-board/new-component/new-component.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { HeaderComponent } from './nav/header/header.component';
     TodayHighlightsComponent,
     CarouselBannerComponent,
     HeaderComponent,
+    NewComponentComponent
   ],
   imports: [LocalRoutingModule, NgbModule, CommonModule, SharedModule],
   exports: [TopMenuNavBarComponent, TopSearchNavBarComponent,HeaderComponent, FooterComponent],
