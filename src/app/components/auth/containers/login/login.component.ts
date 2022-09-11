@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   submitted = false;
   alerts: any[];
   id: any;
+  hidePassword = true;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -139,4 +141,10 @@ export class LoginComponent implements OnInit {
     this.loginForm.get('password')?.updateValueAndValidity();
     this.loginForm.updateValueAndValidity();
   }
+
+  showPassword() {
+    this.hidePassword = !this.hidePassword;
+    }
+    
+  
 }

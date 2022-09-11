@@ -1,5 +1,4 @@
-<ngx-spinner type="ball-scale-multiple"></ngx-spinner>
-
+<ngx-spinner type="ball-scale-multiple"><p style="color: white" > Loading... </p></ngx-spinner>
 <div>
   <app-alert [alerts]="alerts"></app-alert>
   <app-landinglogo></app-landinglogo>
@@ -40,14 +39,19 @@
               </div>
             </div>
             <div class="">
+              <div class="show_hide_password">
+              <div class="input-group-addon">
+                <a ><i *ngIf="(!f?.password?.errors || !submitted) &&loginForm?.get('password')?.value?.length >0" [ngClass]="hidePassword? 'fa fa-eye-slash' : 'fa fa-eye'" id="eyeicon" (click)="showPassword()" aria-hidden="true"></i></a>
+              </div>
+
               <label for="password" class="local-form-label">Password</label>
               <input
-                type="password"
                 class="form-control"
                 id="password"
                 formControlName="password"
                 placeholder="Enter Password"
                 name="password"
+                [type]="hidePassword ? 'password' : 'text'"
                 [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
               />
               <div *ngIf="f?.password?.errors" class="invalid-feedback">
@@ -62,6 +66,8 @@
                 </div>
               </div>
             </div>
+            </div>
+
             <div class="text-end forgot-password mb-1">
               <a
                 class="text-decoration-none local-form-label orange cursor-pointer"
