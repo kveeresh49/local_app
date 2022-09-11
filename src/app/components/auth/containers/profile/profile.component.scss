@@ -37,3 +37,30 @@
   background: $orange;
   color: $whiteFontColor;
 }
+
+.other-icon {
+  border: 1px solid #6a6868;
+  border-radius: 50%;
+  width: 40px;
+  height: 35px;
+  text-align: center;
+  span {
+    width: 5px;
+    height: 5px;
+    background-color: #6a6868;
+    display: inline-block;
+    margin: 1px 1px;
+    border-radius: 50%;
+    margin-top: 15px;
+  }
+}
+
+.active-tab {
+  padding-bottom: 4px;
+  color: #ff7a00;
+  border-bottom: 4px solid #ff7a00;
+}
+
+// .form-control:disabled {
+//   background-color: inherit;
+// }

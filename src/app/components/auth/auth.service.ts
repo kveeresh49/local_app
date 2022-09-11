@@ -83,4 +83,8 @@ export class AuthService {
   userProfile$(id: string) {
     return this.http.get(`${this.apiUrl}UserProfile/${id}`);
   }
+
+  getGooglePlaces(API_KEY_Google:string) {
+    return this.http.get(`https://maps.googleapis.com/maps/api/js?key=${API_KEY_Google}&libraries=places&callback=initMap`)
+  }
 }

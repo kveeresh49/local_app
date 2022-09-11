@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { EmailLoginModel } from '../../models/user-deatils';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
@@ -68,12 +70,14 @@ export class LoginComponent implements OnInit {
         "email": this.loginForm.get('email')?.value,
          "password": this.loginForm.get('password')?.value,
       }
+      this.spinner.show();
       this.authService.emailLogin$(emailModel).subscribe({
         next: (userToken: any) => {
           this.cookieService.set('userToken', JSON.stringify(userToken['token']));
           this.id = userToken['id'];
           this.authService.loginUserDetailSub$.next(userToken);
           this.userProfileVerification();
+          this.spinner.hide();
         },
         error: (e) => {
           this.alerts = [];
@@ -82,6 +86,7 @@ export class LoginComponent implements OnInit {
             msg: `${e.error}`,
             timeout: 5000,
           };
+          this.spinner.hide();
           this.alerts.push(error);
           this.clearCreateFormValidators();
           console.error(e);

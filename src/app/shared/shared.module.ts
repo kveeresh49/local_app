@@ -15,9 +15,10 @@ import { CategoryCardComponent } from './components/category-card/category-card.
 import { StoreCardComponent } from './components/store-card/store-card.component';
 import { HighlightCardComponent } from './components/highlight-card/highlight-card.component';
 import { OfferTagComponent } from './components/offer-tag/offer-tag.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
-    LandinglogoComponent,
+  LandinglogoComponent,
     AlertComponent,
     CategoryCardComponent,
     StoreCardComponent,
@@ -32,7 +33,8 @@ import { OfferTagComponent } from './components/offer-tag/offer-tag.component';
     NgOtpInputModule,
     NgxIntlTelInputModule,
     SlickCarouselModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    NgxSpinnerModule.forRoot(),
   ],
   exports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { OfferTagComponent } from './components/offer-tag/offer-tag.component';
     CategoryCardComponent,
     StoreCardComponent,
     HighlightCardComponent,
-    OfferTagComponent
+    OfferTagComponent,
+    NgxSpinnerModule
   ],
 })
 export class SharedModule {}

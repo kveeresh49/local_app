@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,10 +8,9 @@ import { LocalModule } from './components/local/local.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { JwtInterceptor } from './shared/helpers/jwt-interceptor';
-// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-//import { NgxSpinnerModule } from "ngx-bootstrap-spinner";
+import { AgmCoreModule } from '@agm/core';
+import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -21,10 +20,18 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     HttpClientModule,
     AuthModule,
     LocalModule,
-    BsDropdownModule.forRoot()
-    //NgxSpinnerModule
+    BsDropdownModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBF0ojaCL0D4P3Na8c17Hs15JM6CEvE9Jc',
+    }),
+
+    GooglePlaceModule,
   ],
-  providers: [CookieService,{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
+  providers: [
+    CookieService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
