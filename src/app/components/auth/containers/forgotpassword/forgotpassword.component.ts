@@ -220,4 +220,8 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
   showPassword() {
     this.hidePassword  = !this.hidePassword;
   }
+  confirmPasswordShow$() {
+this.confirmPasswordShow = !this.confirmPasswordShow
+  }
+  
 }
