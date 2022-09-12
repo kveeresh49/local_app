@@ -188,6 +188,19 @@
                 >, <br />Terms and Conditions applied.
               </p>
             </div>
+            <div class="new-account text-center">
+              
+              <p>
+                Already have an account ?
+                <a
+                  class="text-decoration-none create-account cursor-pointer"
+                  (click)="navigateLogin()"
+                  >Login</a
+                >
+              </p>
+            </div>
+
+           
           </ng-container>
 
           <ng-template #loggedOut>
@@ -204,10 +217,11 @@
                     <div class="row">
                       <div class="col-8">
                         <label for="mobile-number" class="local-form-label"
-                          >Mobile Number ?
-                          <span class="orange" (click)="changeMobileNumber()"
+                          >Mobile Number 
+                          <!-- <span class="orange" (click)="changeMobileNumber()"
                             >Change</span
-                          ></label
+                          > -->
+                          </label
                         >
                         <div class="row col-md-12">
                           <ngx-intl-tel-input
@@ -331,6 +345,19 @@
                     >, <br />Terms and Conditions applied.
                   </p>
                 </div>
+
+                <div class="new-account text-center">
+                  <p>
+                    Already have an account ?
+                    <a
+                      class="text-decoration-none create-account cursor-pointer"
+                      (click)="navigateLogin()"
+                      >Login</a
+                    >
+                  </p>
+                </div>
+                
+                
               </div>
             </div>
           </ng-template>

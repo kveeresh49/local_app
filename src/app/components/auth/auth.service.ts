@@ -4,7 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountDetails } from './models/account-details';
-import { EmailLoginModel, OtpLoginModel, PasswordResetModel } from './models/user-deatils';
+import { EmailLoginModel, EmailPhoneModel, MobileNumber, OtpLoginModel, PasswordResetModel } from './models/user-deatils';
 @Injectable({
   providedIn: 'root',
 })
@@ -44,6 +44,18 @@ export class AuthService {
   createUserAccount$(userAccountDetails: AccountDetails) {
     return this.http.post(`${this.apiUrl}User`, userAccountDetails);
   }
+
+
+  verifyEmailOrMobileExist$(emailPhoneModel: EmailPhoneModel) {
+    return this.http.post(`${this.apiUrl}User/VerifyEmailOrMobileExist`, emailPhoneModel);
+  }
+
+  
+  verifyMobileExist$(mobileNumber: MobileNumber) {
+    return this.http.post(`${this.apiUrl}User/VerifyMobileExist`, mobileNumber);
+  }
+
+
 
   userLogin$(userLoginDetails: AccountDetails) {
     return this.http.post(

@@ -95,24 +95,45 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
 
   sendOTP(): void {
     this.ngOtpInput.otpForm.enable();
-    this.authService
-    .sendOtp(
-      this.forgotPasswordForm.get('mobileNumber')?.value['e164Number'].substring(1)
-    )
-    .subscribe((data) => {
-      this.ngOtpInput.otpForm.enable();
-      this.newOtpFlag = false;
-      this.otpHeader = 'Resend OTP';
-      this.timeLeft = 30;
-      this.isOtpDisabled = true;
-      this.interval = setInterval(() => {
-        if (this.timeLeft > 0) {
-          this.timeLeft--;
-        } else {
-          this.pauseTimer();
-        }
-      }, 1000);
+
+
+    let mobileNumber = {
+      mobileNumber :this.forgotPasswordForm.get('mobileNumber')?.value['e164Number'].substring(1)
+    }
+
+    this.authService.verifyMobileExist$(mobileNumber).subscribe({
+      next: (mobileNumber: any) => {
+        this.authService
+        .sendOtp(
+          this.forgotPasswordForm.get('mobileNumber')?.value['e164Number'].substring(1)
+        )
+        .subscribe((data) => {
+          this.ngOtpInput.otpForm.enable();
+          this.newOtpFlag = false;
+          this.otpHeader = 'Resend OTP';
+          this.timeLeft = 30;
+          this.isOtpDisabled = true;
+          this.interval = setInterval(() => {
+            if (this.timeLeft > 0) {
+              this.timeLeft--;
+            } else {
+              this.pauseTimer();
+            }
+          }, 1000);
+        });
+      },
+      error: (e) => { 
+        this.alerts = [];
+        let error = {
+          type: 'danger',
+          msg: `${e.error}`,
+          timeout: 5000,
+        };
+        this.alerts.push(error);
+      }
     });
+
+    
   }
 
   clearCreateFormValidators(): void {

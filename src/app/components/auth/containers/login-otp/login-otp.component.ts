@@ -77,7 +77,13 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
 
   sendOTP(): void {
     this.ngOtpInput.otpForm.enable();
-    this.authService
+    let mobileNumber = {
+      mobileNumber :this.otpForm.get('mobile')?.value['e164Number'].substring(1)
+    }
+
+    this.authService.verifyMobileExist$(mobileNumber).subscribe({
+      next: (mobileNumber: any) => {
+        this.authService
       .sendOtp(
         this.otpForm.get('mobile')?.value['e164Number'].substring(1)
       )
@@ -95,6 +101,20 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
           }
         }, 1000);
       });
+      },
+      error: (e) => {
+        this.alerts = [];
+        let error = {
+          type: 'danger',
+          msg: `${e.error}`,
+          timeout: 5000,
+        };
+        this.alerts.push(error);
+      }
+
+    })
+
+   
   }
 
   pauseTimer(): void {
@@ -130,7 +150,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
           this.alerts = [];
           let error = {
             type: 'danger',
-            msg: `OTP is Invalid`,
+            msg: `${e.error}`,
             timeout: 5000,
           };
           this.ngOtpInput.setValue('');
@@ -161,6 +181,10 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
        
       },
     });
+  }
+
+  navigateToAccount(): void {
+    this.router.navigate(['/create-account']);
   }
 }
 

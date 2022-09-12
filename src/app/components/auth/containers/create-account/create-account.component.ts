@@ -13,7 +13,7 @@ import { AuthService } from '../../auth.service';
 import { AlertComponent } from 'ngx-bootstrap/alert/alert.component';
 import Validation from 'src/app/shared/utils/validation';
 import { CookieService } from 'ngx-cookie-service';
-import { EmailLoginModel } from '../../models/user-deatils';
+import { EmailLoginModel, EmailPhoneModel } from '../../models/user-deatils';
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -109,24 +109,50 @@ export class CreateAccountComponent implements OnInit {
   }
 
   sendOTP(): void {
-    this.authService
-      .sendOtp(
-        this.createAccountForm.get('phone')?.value['e164Number'].substring(1)
-      )
-      .subscribe((data) => {
-        this.ngOtpInput.otpForm.enable();
-        this.newOtpFlag = false;
-        this.otpHeader = 'Resend OTP';
-        this.timeLeft = 30;
-        this.isOtpDisabled = true;
-        this.interval = setInterval(() => {
-          if (this.timeLeft > 0) {
-            this.timeLeft--;
-          } else {
-            this.pauseTimer();
-          }
-        }, 1000);
-      });
+
+    let emailPhoneModel :EmailPhoneModel = {
+      email:this.createAccountForm.get('email')?.value,
+      mobileNumber:  this.createAccountForm.get('phone')?.value['e164Number'].substring(1)
+  }
+
+    
+    this.authService.verifyEmailOrMobileExist$(emailPhoneModel).subscribe({
+      next: (accountDetails) => {
+        this.authService
+        .sendOtp(
+          this.createAccountForm.get('phone')?.value['e164Number'].substring(1)
+        )
+        .subscribe((data) => {
+          this.ngOtpInput.otpForm.enable();
+          this.newOtpFlag = false;
+          this.otpHeader = 'Resend OTP';
+          this.timeLeft = 30;
+          this.isOtpDisabled = true;
+          this.interval = setInterval(() => {
+            if (this.timeLeft > 0) {
+              this.timeLeft--;
+            } else {
+              this.pauseTimer();
+            }
+          }, 1000);
+        });
+    },
+     error: (e) => {
+      this.alerts = [];
+      let error = {
+        type: 'danger',
+        msg: `${e.error}`,
+        timeout: 5000,
+      };
+      this.isLoggedIn = true;
+      this.verifyOtpFormSubmit = false;
+      this.clearCreateFormValidators();
+      this.alerts = [error];
+      console.error(e);
+    },
+});
+
+    
   }
 
   changeMobileNumber() {
@@ -207,9 +233,13 @@ export class CreateAccountComponent implements OnInit {
     this.verifyOtpFormSubmit = true;
     if (this.verifyOtpForm.valid) {
       this.createAccountFormObj();
+
       this.authService.createUserAccount$(this.accountDetails).subscribe({
-        next: (accountDetails) => {
-          this.emailLoginVerification();
+        next: (userToken:any) => {
+          this.cookieService.set('userToken', JSON.stringify(userToken['token']));
+          this.id = userToken['id'];
+          this.authService.loginUserDetailSub$.next(userToken);
+          this.userProfileVerification();
         },
         error: (e) => {
           this.alerts = [];
@@ -218,9 +248,9 @@ export class CreateAccountComponent implements OnInit {
             msg: `${e.error}`,
             timeout: 5000,
           };
-          this.isLoggedIn = true;
+          this.isLoggedIn = false;
           this.verifyOtpFormSubmit = false;
-          this.clearCreateFormValidators();
+         // this.clearCreateFormValidators();
           this.alerts = [error];
           console.error(e);
         },
@@ -228,28 +258,32 @@ export class CreateAccountComponent implements OnInit {
     }
   }
 
-  emailLoginVerification() {
-    let emailLogin: EmailLoginModel = {
-      email: this.createAccountForm.get('email')?.value,
-      password: this.createAccountForm.get('password')?.value,
-    };
-    this.authService.emailLogin$(emailLogin).subscribe({
-      next: (userToken: any) => {
-        this.cookieService.set('userToken', JSON.stringify(userToken['token']));
-        this.id = userToken['id'];
-        this.authService.loginUserDetailSub$.next(userToken);
-        this.userProfileVerification();
-      },
-      error: (e) => {
-        this.alerts = [];
-        let error = {
-          type: 'danger',
-          msg: `${e.error}`,
-          timeout: 5000,
-        };
-        this.router.navigate(['login']);
-      },
-    });
+  // emailLoginVerification() {
+  //   let emailLogin: EmailLoginModel = {
+  //     email: this.createAccountForm.get('email')?.value,
+  //     password: this.createAccountForm.get('password')?.value,
+  //   };
+  //   this.authService.emailLogin$(emailLogin).subscribe({
+  //     next: (userToken: any) => {
+  //       this.cookieService.set('userToken', JSON.stringify(userToken['token']));
+  //       this.id = userToken['id'];
+  //       this.authService.loginUserDetailSub$.next(userToken);
+  //       this.userProfileVerification();
+  //     },
+  //     error: (e) => {
+  //       this.alerts = [];
+  //       let error = {
+  //         type: 'danger',
+  //         msg: `${e.error}`,
+  //         timeout: 5000,
+  //       };
+  //       this.router.navigate(['login']);
+  //     },
+  //   });
+  // }
+
+  navigateLogin(): void {
+    this.router.navigate(['/login']);
   }
 
   userProfileVerification() {
