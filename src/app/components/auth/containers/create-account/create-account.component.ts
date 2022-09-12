@@ -253,6 +253,7 @@ export class CreateAccountComponent implements OnInit {
           };
           this.isLoggedIn = false;
           this.verifyOtpFormSubmit = false;
+          this.ngOtpInput.setValue('');
          // this.clearCreateFormValidators();
           this.alerts = [error];
           console.error(e);

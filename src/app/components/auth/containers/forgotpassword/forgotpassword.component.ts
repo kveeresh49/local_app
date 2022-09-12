@@ -210,6 +210,7 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
           };
           this.alerts.push(error);
           console.error(e);
+          this.ngOtpInput.setValue('');
           this.clearCreateFormValidators();
         },
       });
