@@ -253,7 +253,8 @@ export class CreateAccountComponent implements OnInit {
           };
           this.isLoggedIn = false;
           this.verifyOtpFormSubmit = false;
-          // this.clearCreateFormValidators();
+          this.ngOtpInput.setValue('');
+         // this.clearCreateFormValidators();
           this.alerts = [error];
           console.error(e);
         },
@@ -263,6 +264,10 @@ export class CreateAccountComponent implements OnInit {
 
   showPassword() {
     this.hidePassword = !this.hidePassword;
+  }
+
+  showConfirmPassword() {
+    this.hideconfirmPassword = !this.hideconfirmPassword;
   }
   // emailLoginVerification() {
   //   let emailLogin: EmailLoginModel = {
