@@ -112,10 +112,25 @@
                   <div *ngIf="f.email.errors.email">Email is invalid</div>
                 </div>
               </div>
-              <div class="mb-2">
+              <div class="input-group-addon">
+                <a
+                  ><i
+                    *ngIf="
+                      (!f?.password?.errors || !isSubmitClick) &&
+                      createAccountForm?.get('password')?.value?.length > 0
+                    "
+                    [ngClass]="hidePassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                    id="eyeicon"
+                    (click)="showPassword()"
+                    aria-hidden="true"
+                  ></i
+                ></a>
+              </div>
+              <div class="mb-2">  
                 <label for="password" class="local-form-label">Password</label>
                 <input
                   type="password"
+                  [type]="hidePassword ? 'password' : 'text'"
                   class="form-control"
                   id="password"
                   name="password"
@@ -146,6 +161,7 @@
                 >
                 <input
                   type="password"
+                  [type]="hideconfirmPassword ? 'password' : 'text'"
                   class="form-control"
                   id="confirm-password"
                   placeholder=" Confirm Password"

@@ -61,3 +61,17 @@
   font-size: 0.875em;
   color: $errorColor;
 }
+
+
+.input-group-addon{
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  z-index: 10;
+  a{
+    color: #8b8888;
+    i{
+      font-size: 14px;
+    }
+  }
+}

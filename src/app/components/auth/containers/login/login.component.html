@@ -1,4 +1,6 @@
-<ngx-spinner type="ball-scale-multiple"><p style="color: white" > Loading... </p></ngx-spinner>
+<ngx-spinner type="ball-scale-multiple"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
 <div>
   <app-alert [alerts]="alerts"></app-alert>
   <app-landinglogo></app-landinglogo>
@@ -40,32 +42,45 @@
             </div>
             <div class="">
               <div class="show_hide_password">
-              <div class="input-group-addon">
-                <a ><i *ngIf="(!f?.password?.errors || !submitted) &&loginForm?.get('password')?.value?.length >0" [ngClass]="hidePassword? 'fa fa-eye-slash' : 'fa fa-eye'" id="eyeicon" (click)="showPassword()" aria-hidden="true"></i></a>
-              </div>
+                <div class="input-group-addon">
+                  <a
+                    ><i
+                      *ngIf="
+                        (!f?.password?.errors || !submitted) &&
+                        loginForm?.get('password')?.value?.length > 0
+                      "
+                      [ngClass]="hidePassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                      id="eyeicon"
+                      (click)="showPassword()"
+                      aria-hidden="true"
+                    ></i
+                  ></a>
+                </div>
 
-              <label for="password" class="local-form-label">Password</label>
-              <input
-                class="form-control"
-                id="password"
-                formControlName="password"
-                placeholder="Enter Password"
-                name="password"
-                [type]="hidePassword ? 'password' : 'text'"
-                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
-              />
-              <div *ngIf="f?.password?.errors" class="invalid-feedback">
-                <div *ngIf="f.password?.errors?.required">
-                  Password is required
-                </div>
-                <div *ngIf="f.password?.errors?.minlength">
-                  Password must be at least 5 characters
-                </div>
-                <div *ngIf="f.password.errors.maxlength">
-                  Username must not exceed 20 characters
+                <label for="password" class="local-form-label">Password</label>
+                <input
+                  class="form-control"
+                  id="password"
+                  formControlName="password"
+                  placeholder="Enter Password"
+                  name="password"
+                  [type]="hidePassword ? 'password' : 'text'"
+                  [ngClass]="{
+                    'is-invalid': submitted && f['password'].errors
+                  }"
+                />
+                <div *ngIf="f?.password?.errors" class="invalid-feedback">
+                  <div *ngIf="f.password?.errors?.required">
+                    Password is required
+                  </div>
+                  <div *ngIf="f.password?.errors?.minlength">
+                    Password must be at least 5 characters
+                  </div>
+                  <div *ngIf="f.password.errors.maxlength">
+                    Username must not exceed 20 characters
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
 
             <div class="text-end forgot-password mb-1">

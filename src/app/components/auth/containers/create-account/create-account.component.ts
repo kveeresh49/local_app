@@ -46,6 +46,9 @@ export class CreateAccountComponent implements OnInit {
   alerts: any[] = [];
   id: any;
 
+  hidePassword = true;
+  hideconfirmPassword = true;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -258,6 +261,9 @@ export class CreateAccountComponent implements OnInit {
     }
   }
 
+  showPassword() {
+    this.hidePassword = !this.hidePassword;
+  }
   // emailLoginVerification() {
   //   let emailLogin: EmailLoginModel = {
   //     email: this.createAccountForm.get('email')?.value,
