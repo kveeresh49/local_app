@@ -4,7 +4,13 @@ import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountDetails } from './models/account-details';
-import { EmailLoginModel, EmailPhoneModel, MobileNumber, OtpLoginModel, PasswordResetModel } from './models/user-deatils';
+import {
+  EmailLoginModel,
+  EmailPhoneModel,
+  MobileNumber,
+  OtpLoginModel,
+  PasswordResetModel,
+} from './models/user-deatils';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,9 +23,7 @@ export class AuthService {
   isUserProfileSub$ = new BehaviorSubject<any>({});
 
   constructor(private http: HttpClient, private cookieService: CookieService) {
-    this.loginUserDetailSub$ = new BehaviorSubject<any>(
-      cookieService.get('userToken')
-    );
+    this.loginUserDetailSub$ = new BehaviorSubject<any>('');
     this.currentUser = this.loginUserDetailSub$.asObservable();
 
     this.isUserProfileSub$ = new BehaviorSubject<any>(
@@ -40,22 +44,20 @@ export class AuthService {
     return `${environment.API_ENDPOINTS.Api_url}`;
   }
 
-
   createUserAccount$(userAccountDetails: AccountDetails) {
     return this.http.post(`${this.apiUrl}User`, userAccountDetails);
   }
 
-
   verifyEmailOrMobileExist$(emailPhoneModel: EmailPhoneModel) {
-    return this.http.post(`${this.apiUrl}User/VerifyEmailOrMobileExist`, emailPhoneModel);
+    return this.http.post(
+      `${this.apiUrl}User/VerifyEmailOrMobileExist`,
+      emailPhoneModel
+    );
   }
 
-  
   verifyMobileExist$(mobileNumber: MobileNumber) {
     return this.http.post(`${this.apiUrl}User/VerifyMobileExist`, mobileNumber);
   }
-
-
 
   userLogin$(userLoginDetails: AccountDetails) {
     return this.http.post(
@@ -63,7 +65,6 @@ export class AuthService {
       userLoginDetails
     );
   }
-
 
   resetPassword$(passwordResetObj: PasswordResetModel) {
     return this.http.post(`${this.apiUrl}User/Reset`, passwordResetObj);
@@ -91,12 +92,13 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}User/OTPLogin`, OtpLogin);
   }
 
-
   userProfile$(id: string) {
     return this.http.get(`${this.apiUrl}UserProfile/${id}`);
   }
 
-  getGooglePlaces(API_KEY_Google:string) {
-    return this.http.get(`https://maps.googleapis.com/maps/api/js?key=${API_KEY_Google}&libraries=places&callback=initMap`)
+  getGooglePlaces(API_KEY_Google: string) {
+    return this.http.get(
+      `https://maps.googleapis.com/maps/api/js?key=${API_KEY_Google}&libraries=places&callback=initMap`
+    );
   }
 }

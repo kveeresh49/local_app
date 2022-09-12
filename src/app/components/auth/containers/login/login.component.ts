@@ -68,14 +68,14 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.setCreateFormValidators();
     if (this.loginForm.valid) {
-      let emailModel:EmailLoginModel = {
-        "email": this.loginForm.get('email')?.value,
-         "password": this.loginForm.get('password')?.value,
-      }
+      let emailModel: EmailLoginModel = {
+        email: this.loginForm.get('email')?.value,
+        password: this.loginForm.get('password')?.value,
+      };
       this.spinner.show();
       this.authService.emailLogin$(emailModel).subscribe({
         next: (userToken: any) => {
-          this.cookieService.set('userToken', JSON.stringify(userToken['token']));
+          this.cookieService.set('userToken', JSON.stringify(userToken));
           this.id = userToken['id'];
           this.authService.loginUserDetailSub$.next(userToken);
           this.userProfileVerification();
@@ -98,9 +98,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  
   userProfileVerification() {
-    let id: string = JSON.parse(this.cookieService.get('userToken'))['id'];
+    let id: string = JSON.parse(this.cookieService.get('userToken')).token.id;
     this.authService.userProfile$(id).subscribe({
       next: (userProfile: any) => {
         this.cookieService.set('userProfile', JSON.stringify(userProfile));
@@ -129,7 +128,6 @@ export class LoginComponent implements OnInit {
     this.loginForm.get('password')?.updateValueAndValidity();
   }
 
-  
   setCreateFormValidators(): void {
     this.loginForm
       .get('password')
@@ -144,7 +142,5 @@ export class LoginComponent implements OnInit {
 
   showPassword() {
     this.hidePassword = !this.hidePassword;
-    }
-    
-  
+  }
 }

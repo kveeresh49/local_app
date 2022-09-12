@@ -33,10 +33,18 @@
             <span class="glyphicon glyphicon-camera"></span>
             <span>Change Image</span>
           </label>
-          <input  clas="input-image" id="file" type="file" (change)="uploadImage($event)"/>
-          <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg" id="output" width="200" />
+          <input
+            clas="input-image"
+            id="file"
+            type="file"
+            (change)="uploadImage($event)"
+          />
+          <img
+            src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
+            id="output"
+            width="200"
+          />
         </div>
-
 
         <div class="cursor-pointer text-center">Edit your picture</div>
         <div class="row">
@@ -48,7 +56,14 @@
               class="form-control"
               formControlName="name"
               placeholder="Enter Your Name"
+              [ngClass]="{ 'is-invalid': f?.name?.errors }"
             />
+            <div *ngIf="f?.name?.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">Name is required</div>
+              <div *ngIf="f.name.errors.minlength">
+                Password must be at least 6 characters
+              </div>
+            </div>
           </div>
           <div class="col-sm-3 px-0 align-self-end">
             <ng-container

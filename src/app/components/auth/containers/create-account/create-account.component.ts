@@ -112,50 +112,50 @@ export class CreateAccountComponent implements OnInit {
   }
 
   sendOTP(): void {
+    let emailPhoneModel: EmailPhoneModel = {
+      email: this.createAccountForm.get('email')?.value,
+      mobileNumber: this.createAccountForm
+        .get('phone')
+        ?.value['e164Number'].substring(1),
+    };
 
-    let emailPhoneModel :EmailPhoneModel = {
-      email:this.createAccountForm.get('email')?.value,
-      mobileNumber:  this.createAccountForm.get('phone')?.value['e164Number'].substring(1)
-  }
-
-    
     this.authService.verifyEmailOrMobileExist$(emailPhoneModel).subscribe({
       next: (accountDetails) => {
         this.authService
-        .sendOtp(
-          this.createAccountForm.get('phone')?.value['e164Number'].substring(1)
-        )
-        .subscribe((data) => {
-          this.ngOtpInput.otpForm.enable();
-          this.newOtpFlag = false;
-          this.otpHeader = 'Resend OTP';
-          this.timeLeft = 30;
-          this.isOtpDisabled = true;
-          this.interval = setInterval(() => {
-            if (this.timeLeft > 0) {
-              this.timeLeft--;
-            } else {
-              this.pauseTimer();
-            }
-          }, 1000);
-        });
-    },
-     error: (e) => {
-      this.alerts = [];
-      let error = {
-        type: 'danger',
-        msg: `${e.error}`,
-        timeout: 5000,
-      };
-      this.isLoggedIn = true;
-      this.verifyOtpFormSubmit = false;
-      this.clearCreateFormValidators();
-      this.alerts = [error];
-      console.error(e);
-    },
-});
-
-    
+          .sendOtp(
+            this.createAccountForm
+              .get('phone')
+              ?.value['e164Number'].substring(1)
+          )
+          .subscribe((data) => {
+            this.ngOtpInput.otpForm.enable();
+            this.newOtpFlag = false;
+            this.otpHeader = 'Resend OTP';
+            this.timeLeft = 30;
+            this.isOtpDisabled = true;
+            this.interval = setInterval(() => {
+              if (this.timeLeft > 0) {
+                this.timeLeft--;
+              } else {
+                this.pauseTimer();
+              }
+            }, 1000);
+          });
+      },
+      error: (e) => {
+        this.alerts = [];
+        let error = {
+          type: 'danger',
+          msg: `${e.error}`,
+          timeout: 5000,
+        };
+        this.isLoggedIn = true;
+        this.verifyOtpFormSubmit = false;
+        this.clearCreateFormValidators();
+        this.alerts = [error];
+        console.error(e);
+      },
+    });
   }
 
   changeMobileNumber() {
@@ -238,8 +238,8 @@ export class CreateAccountComponent implements OnInit {
       this.createAccountFormObj();
 
       this.authService.createUserAccount$(this.accountDetails).subscribe({
-        next: (userToken:any) => {
-          this.cookieService.set('userToken', JSON.stringify(userToken['token']));
+        next: (userToken: any) => {
+          this.cookieService.set('userToken', JSON.stringify(userToken));
           this.id = userToken['id'];
           this.authService.loginUserDetailSub$.next(userToken);
           this.userProfileVerification();
@@ -253,7 +253,7 @@ export class CreateAccountComponent implements OnInit {
           };
           this.isLoggedIn = false;
           this.verifyOtpFormSubmit = false;
-         // this.clearCreateFormValidators();
+          // this.clearCreateFormValidators();
           this.alerts = [error];
           console.error(e);
         },

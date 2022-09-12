@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import Validation from 'src/app/shared/utils/validation';
 import {
   ProfileActiveTab,
   ProfileControls,
 } from '../../models/profile-controls';
-import { ProfileService } from '../../profile.service';
+import { ProfileUpdateRequest } from '../../models/profile-update';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -41,38 +47,65 @@ export class ProfileComponent implements OnInit {
       area: 'Pragathi nagar, kukatpally, Jntu, Telangana, 500026, india',
     },
   ];
-  alerts :any = [];
+  alerts: any = [];
+  private loginId: string;
 
-  constructor(private cookieService: CookieService, private fb: FormBuilder, private profileService:ProfileService) {}
+  profilePathMapping: any = {
+    name: 'firstname',
+    email: 'email',
+    mobileNumber: 'mobilenumber',
+    password: 'password',
+  };
+
+  constructor(
+    private cookieService: CookieService,
+    private fb: FormBuilder,
+    private profileService: ProfileService
+  ) {}
 
   ngOnInit(): void {
     this.profile = JSON.parse(this.cookieService.get('userProfile'));
-    this.profileForm = this.fb.group({
-      name: [{ value: '', disabled: true }],
-      email: [{ value: '', disabled: true }, [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(30),
-        Validators.email,
-      ],],
-      mobileNumber: [{ value: '', disabled: true }],
-      otp: [{ value: '', disabled: true }],
-      password: [{ value: '', disabled: true }],
-      newPassword: [{ value: '', disabled: true },[
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(40),
-      ],],
-      confirmPassword: [{ value: '', disabled: true },[
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(40),
-      ]],
-    },
-    {
-      validators: [Validation.match('newPassword', 'confirmPassword')],
-    }
-    )
+    this.loginId = this.profile.loginID;
+
+    this.profileForm = this.fb.group(
+      {
+        name: [
+          { value: '', disabled: true },
+          [Validators.required, Validators.minLength(6)],
+        ],
+        email: [
+          { value: '', disabled: true },
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.maxLength(30),
+            Validators.email,
+          ],
+        ],
+        mobileNumber: [{ value: '', disabled: true }],
+        otp: [{ value: '', disabled: true }],
+        password: [{ value: '', disabled: true }],
+        newPassword: [
+          { value: '', disabled: true },
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.maxLength(40),
+          ],
+        ],
+        confirmPassword: [
+          { value: '', disabled: true },
+          [
+            Validators.required,
+            Validators.minLength(6),
+            Validators.maxLength(40),
+          ],
+        ],
+      },
+      {
+        validators: [Validation.match('newPassword', 'confirmPassword')],
+      }
+    );
 
     this.profileForm.setValue({
       email: this.profile.email,
@@ -87,7 +120,7 @@ export class ProfileComponent implements OnInit {
     this.profileForm.setValidators(
       Validation.match('newPassword', 'confirmPassword')
     );
-    console.log(this.profile,'this.profile')
+    console.log(this.profile, 'this.profile');
   }
 
   get f(): any {
@@ -114,8 +147,8 @@ export class ProfileComponent implements OnInit {
         //this.profileForm?.get(key)?.setValue(this.profile[key]);
         this.profileForm?.get(key)?.disable();
       });
-      this.onCancel(field);
-      this.profileForm?.get(field)?.enable();
+    this.onCancel(field);
+    this.profileForm?.get(field)?.enable();
 
     if (field === ProfileControls.password) {
       this.isPasswordChange = true;
@@ -131,29 +164,39 @@ export class ProfileComponent implements OnInit {
 
   onUpdate(field: string): void {
     this.alerts = [];
-    if(this.profileForm.get(field)?.errors) {
-      console.log(field);
-          const error = {
-            type: 'danger',
-            msg: ``,
-            timeout: 5000,
-          };
+    if (this.profileForm.get(field)?.errors) {
+      const error = {
+        type: 'danger',
+        msg: ``,
+        timeout: 5000,
+      };
 
-          switch(field) {
-            case 'email' :{
-              error['msg'] ='Email is Invalid';
-              this.alerts = [{...error}];
-              break;
-            }
-            default : {
-
-            }
-             
-          }
+      switch (field) {
+        case ProfileControls.name:
+          error['msg'] = 'Name is Invalid';
+          this.alerts = [{ ...error }];
+          break;
+        case ProfileControls.email: {
+          error['msg'] = 'Email is Invalid';
+          this.alerts = [{ ...error }];
+          break;
+        }
+      }
+    } else {
+      let newValue = this.profileForm.get(field)?.value;
+      let field1: string = field?.toString();
+      this.profileService
+        .updateProfile$(this.loginId, [
+          new ProfileUpdateRequest(
+            this.profilePathMapping[field],
+            'replace',
+            newValue
+          ),
+        ])
+        .subscribe((resp) => {
+          console.log(resp);
+        });
     }
-   
-    // API Call
-   // this.profileForm.get(field)?.disable();
   }
 
   onVerify(field: string): void {
@@ -204,13 +247,14 @@ export class ProfileComponent implements OnInit {
     this.hideOtpSection = true;
     this.hideMobileNumberActions = false;
   }
+
   uploadImage(data: any) {
-    console.log(data,'data')
+    console.log(data, 'data');
     const formData = new FormData();
-    formData.append('files',data.target.files[0]);
-    let id:string = JSON.parse(this.cookieService.get('userProfile'))['id'];
-    this.profileService.uploadProfilePic$(formData,id).subscribe((data) =>  {
-      console.log(data)
-    })
+    formData.append('files', data.target.files[0]);
+    let id: string = JSON.parse(this.cookieService.get('userProfile'))['id'];
+    this.profileService.uploadProfilePic$(formData, id).subscribe((data) => {
+      console.log(data);
+    });
   }
 }

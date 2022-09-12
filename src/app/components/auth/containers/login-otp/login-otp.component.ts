@@ -78,29 +78,29 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   sendOTP(): void {
     this.ngOtpInput.otpForm.enable();
     let mobileNumber = {
-      mobileNumber :this.otpForm.get('mobile')?.value['e164Number'].substring(1)
-    }
+      mobileNumber: this.otpForm
+        .get('mobile')
+        ?.value['e164Number'].substring(1),
+    };
 
     this.authService.verifyMobileExist$(mobileNumber).subscribe({
       next: (mobileNumber: any) => {
         this.authService
-      .sendOtp(
-        this.otpForm.get('mobile')?.value['e164Number'].substring(1)
-      )
-      .subscribe((data) => {
-        this.ngOtpInput.otpForm.enable();
-        this.newOtpFlag = false;
-        this.otpHeader = 'Resend OTP';
-        this.timeLeft = 30;
-        this.isOtpDisabled = true;
-        this.interval = setInterval(() => {
-          if (this.timeLeft > 0) {
-            this.timeLeft--;
-          } else {
-            this.pauseTimer();
-          }
-        }, 1000);
-      });
+          .sendOtp(this.otpForm.get('mobile')?.value['e164Number'].substring(1))
+          .subscribe((data) => {
+            this.ngOtpInput.otpForm.enable();
+            this.newOtpFlag = false;
+            this.otpHeader = 'Resend OTP';
+            this.timeLeft = 30;
+            this.isOtpDisabled = true;
+            this.interval = setInterval(() => {
+              if (this.timeLeft > 0) {
+                this.timeLeft--;
+              } else {
+                this.pauseTimer();
+              }
+            }, 1000);
+          });
       },
       error: (e) => {
         this.alerts = [];
@@ -110,11 +110,8 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
           timeout: 5000,
         };
         this.alerts.push(error);
-      }
-
-    })
-
-   
+      },
+    });
   }
 
   pauseTimer(): void {
@@ -130,17 +127,16 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   verify() {
     this.submitted = true;
     if (this.otpForm.valid) {
-      let OtpLogin:OtpLoginModel = {
-        mobileNumber: +(this.otpForm.get('mobile')?.value['e164Number'].substring(1)),
-        otp: +(this.otpForm.get('otp')?.value),
+      let OtpLogin: OtpLoginModel = {
+        mobileNumber: +this.otpForm
+          .get('mobile')
+          ?.value['e164Number'].substring(1),
+        otp: +this.otpForm.get('otp')?.value,
       };
-     
+
       this.authService.otpLogin$(OtpLogin).subscribe({
         next: (userToken: any) => {
-          this.cookieService.set(
-            'userToken',
-            JSON.stringify(userToken['token'])
-          );
+          this.cookieService.set('userToken', JSON.stringify(userToken));
           this.cookieService.get('userToken');
           this.authService.isloggedInUser.next(true);
           this.authService.loginUserDetailSub$.next(userToken);
@@ -162,7 +158,6 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
     }
   }
 
-
   userProfileVerification() {
     let id: string = JSON.parse(this.cookieService.get('userToken'))['id'];
     this.authService.userProfile$(id).subscribe({
@@ -178,7 +173,6 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
           msg: `${e.error}`,
           timeout: 5000,
         };
-       
       },
     });
   }
@@ -187,5 +181,3 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/create-account']);
   }
 }
-
-
