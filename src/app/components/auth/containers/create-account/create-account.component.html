@@ -112,83 +112,104 @@
                   <div *ngIf="f.email.errors.email">Email is invalid</div>
                 </div>
               </div>
-              <div class="input-group-addon">
-                <a
-                  ><i
-                    *ngIf="
-                      (!f?.password?.errors || !isSubmitClick) &&
-                      createAccountForm?.get('password')?.value?.length > 0
-                    "
-                    [ngClass]="hidePassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
-                    id="eyeicon"
-                    (click)="showPassword()"
-                    aria-hidden="true"
-                  ></i
-                ></a>
-              </div>
-              <div class="mb-2">  
-                <label for="password" class="local-form-label">Password</label>
-                <input
-                  type="password"
-                  [type]="hidePassword ? 'password' : 'text'"
-                  class="form-control"
-                  id="password"
-                  name="password"
-                  placeholder="Set Password"
-                  formControlName="password"
-                  [ngClass]="{
-                    'is-invalid': isSubmitClick && f.password.errors
-                  }"
-                />
-                <div
-                  *ngIf="isSubmitClick && f.password.errors"
-                  class="invalid-feedback"
-                >
-                  <div *ngIf="f.password.errors.required">
-                    Password is required
-                  </div>
-                  <div *ngIf="f.password.errors.minlength">
-                    Password must be at least 6 characters
-                  </div>
-                  <div *ngIf="f.password.errors.maxlength">
-                    Username must not exceed 40 characters
+              <div class="show_hide_password">
+                <div class="input-group-addon">
+                  <a
+                    ><i
+                      *ngIf="
+                        (!f?.password?.errors || !isSubmitClick) &&
+                        createAccountForm?.get('password')?.value?.length > 0
+                      "
+                      [ngClass]="hidePassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                      id="eyeicon"
+                      (click)="showPassword()"
+                      aria-hidden="true"
+                    ></i
+                  ></a>
+                </div>
+                <div class="mb-2"> 
+                
+                  <label for="password" class="local-form-label">Password</label>
+                  <input
+                    type="password"
+                    [type]="hidePassword ? 'password' : 'text'"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Set Password"
+                    formControlName="password"
+                    [ngClass]="{
+                      'is-invalid': isSubmitClick && f.password.errors
+                    }"
+                  />
+                  <div
+                    *ngIf="isSubmitClick && f.password.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.password.errors.required">
+                      Password is required
+                    </div>
+                    <div *ngIf="f.password.errors.minlength">
+                      Password must be at least 6 characters
+                    </div>
+                    <div *ngIf="f.password.errors.maxlength">
+                      Username must not exceed 40 characters
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="mb-1">
-                <label for="confirm-password" class="local-form-label"
-                  >Confirm Password</label
-                >
-                <input
-                  type="password"
-                  [type]="hideconfirmPassword ? 'password' : 'text'"
-                  class="form-control"
-                  id="confirm-password"
-                  placeholder=" Confirm Password"
-                  name="password"
-                  formControlName="confirmPassword"
-                  [ngClass]="{
-                    'is-invalid': isSubmitClick && f.confirmPassword.errors
-                  }"
-                />
-                <div
-                  *ngIf="isSubmitClick && f.confirmPassword.errors"
-                  class="invalid-feedback"
-                >
-                  <div *ngIf="f.confirmPassword.errors.required">
-                    Confirm Password is required
-                  </div>
-                  <div *ngIf="f.confirmPassword.errors.matching">
-                    Confirm Password does not match
-                  </div>
-                  <div *ngIf="f.confirmPassword.errors.minlength">
-                    Password must be at least 6 characters
-                  </div>
-                  <div *ngIf="f.confirmPassword.errors.maxlength">
-                    Username must not exceed 40 characters
+                </div> 
+              
+
+              <div class="show_hide_password">
+                <div class="input-group-addon">
+                  <a
+                    ><i
+                      *ngIf="
+                        (!f?.confirmPassword?.errors || !isSubmitClick) &&
+                        createAccountForm?.get('confirmPassword')?.value?.length > 0
+                      "
+                      [ngClass]="hideconfirmPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
+                      id="eyeicon"
+                      (click)="showConfirmPassword()"
+                      aria-hidden="true"
+                    ></i
+                  ></a>
+                </div>
+                <div class="mb-1">
+                  <label for="confirm-password" class="local-form-label"
+                    >Confirm Password</label
+                  >
+                  <input
+                    [type]="hideconfirmPassword ? 'password' : 'text'"
+                    class="form-control"
+                    id="confirm-password"
+                    placeholder=" Confirm Password"
+                    name="password"
+                    formControlName="confirmPassword"
+                    [ngClass]="{
+                      'is-invalid': isSubmitClick && f.confirmPassword.errors
+                    }"
+                  />
+                  <div
+                    *ngIf="isSubmitClick && f.confirmPassword.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f.confirmPassword.errors.required">
+                      Confirm Password is required
+                    </div>
+                    <div *ngIf="f.confirmPassword.errors.matching">
+                      Confirm Password does not match
+                    </div>
+                    <div *ngIf="f.confirmPassword.errors.minlength">
+                      Password must be at least 6 characters
+                    </div>
+                    <div *ngIf="f.confirmPassword.errors.maxlength">
+                      Username must not exceed 40 characters
+                    </div>
                   </div>
                 </div>
-              </div>
+                </div> 
+             
               <button
                 class="login-submit-btn btn mt-3"
                 (click)="clickToContinue()"

@@ -264,6 +264,10 @@ export class CreateAccountComponent implements OnInit {
   showPassword() {
     this.hidePassword = !this.hidePassword;
   }
+
+  showConfirmPassword() {
+    this.hideconfirmPassword = !this.hideconfirmPassword;
+  }
   // emailLoginVerification() {
   //   let emailLogin: EmailLoginModel = {
   //     email: this.createAccountForm.get('email')?.value,

@@ -39,6 +39,9 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
   submitted = false;
   otp: any;
   alerts: any[];
+
+  hidePassword = true;
+  confirmPasswordShow = true;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -212,5 +215,9 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
       });
       //this.router.navigate(['/login']);
     }
+  }
+
+  showPassword() {
+    this.hidePassword  = !this.hidePassword;
   }
 }
