@@ -375,9 +375,12 @@ export class ProfileComponent implements OnInit {
   }
 
   uploadImage(data: any) {
-    console.log(data, 'data');
     const formData = new FormData();
     let file = data.target.files[0] as File;
+    if (!file) {
+      return;
+    }
+
     if (file.size / 1024 > 500) {
       const error = {
         type: 'danger',
