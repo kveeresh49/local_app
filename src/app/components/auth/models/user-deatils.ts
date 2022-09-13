@@ -25,5 +25,5 @@ export interface EmailPhoneModel {
 }
 
 export interface MobileNumber {
-  mobileNumber: 'string';
+  mobileNumber: string;
 }

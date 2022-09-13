@@ -55,7 +55,7 @@ export class AuthService {
     );
   }
 
-  verifyMobileExist$(mobileNumber: MobileNumber) {
+  verifyMobileExist$(mobileNumber: MobileNumber): Observable<any> {
     return this.http.post(`${this.apiUrl}User/VerifyMobileExist`, mobileNumber);
   }
 

@@ -25,16 +25,16 @@
   <div class="w-50 card my-4 m-auto">
     <div class="card-body pe-0">
       <div class="row">
-        <!-- <img
-          class="m-auto cursor-pointer"
-          src="../../../../../assets/images/profile-icons/user-avatar.jpg"
-          style="width: 23%; height: 18%"
-        /> -->
-
         <div class="profile-pic">
           <label class="-label" for="file">
             <span class="glyphicon glyphicon-camera"></span>
-            <span>Change Image</span>
+            <span
+              ><i
+                class="fa-solid fa-camera"
+                style="margin-top: 9px; margin-left: 0px; padding-left: 1px"
+              ></i>
+              <span class="ms-2">Change Image</span></span
+            >
           </label>
           <input
             clas="input-image"
@@ -43,13 +43,13 @@
             (change)="uploadImage($event)"
           />
           <img
-            src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
+            [src]="profile?.userImage"
+            alt="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
             id="output"
             width="200"
           />
         </div>
 
-        <div class="cursor-pointer text-center">Edit your picture</div>
         <div class="row">
           <div class="offset-sm-1 col-sm-8">
             <label for="name">Name</label>
@@ -64,7 +64,7 @@
             <div *ngIf="f?.name?.errors" class="invalid-feedback">
               <div *ngIf="f.name.errors.required">Name is required</div>
               <div *ngIf="f.name.errors.minlength">
-                Password must be at least 6 characters
+                Name must be at least 6 characters
               </div>
             </div>
           </div>
@@ -130,7 +130,18 @@
               class="form-control"
               formControlName="mobileNumber"
               placeholder="Enter Number"
+              [ngClass]="{ 'is-invalid': f?.mobileNumber?.errors }"
             />
+            <div *ngIf="f?.mobileNumber?.errors" class="invalid-feedback">
+              <div
+                *ngIf="
+                  f.mobileNumber.errors.minlength ||
+                  f.mobileNumber.errors.maxlength
+                "
+              >
+                Please enter a valid mobile number
+              </div>
+            </div>
           </div>
           <div class="col-sm-3 px-0 align-self-end">
             <ng-container
@@ -214,56 +225,68 @@
         <ng-template #passwordChange>
           <div class="row mt-2">
             <div class="offset-sm-1 col-sm-8">
-              <label for="newPassword">New Password</label>
-              <input
-                id="password"
-                type="password"
-                class="form-control"
-                formControlName="newPassword"
-                placeholder="New Password"
-                [ngClass]="{
-                  'is-invalid': f.newPassword.errors
-                }"
-              />
-              <div *ngIf="f.newPassword.errors" class="invalid-feedback">
-                <div *ngIf="f.newPassword.errors.required">
-                  Confirm Password is required
-                </div>
-                <div *ngIf="f.newPassword.errors.minlength">
-                  Password must be at least 6 characters
-                </div>
-                <div *ngIf="f.newPassword.errors.maxlength">
-                  Username must not exceed 40 characters
+              <div class="password-container">
+                <ng-container
+                  [ngTemplateOutlet]="showHidePassword"
+                  [ngTemplateOutletContext]="{ item: 'newPassword' }"
+                ></ng-container>
+                <label for="newPassword">New Password</label>
+                <input
+                  id="password"
+                  [type]="hidePassword ? 'password' : 'text'"
+                  class="form-control"
+                  formControlName="newPassword"
+                  placeholder="New Password"
+                  [ngClass]="{
+                    'is-invalid': f.newPassword.errors
+                  }"
+                />
+                <div *ngIf="f.newPassword.errors" class="invalid-feedback">
+                  <div *ngIf="f.newPassword.errors.required">
+                    Password is required
+                  </div>
+                  <div *ngIf="f.newPassword.errors.minlength">
+                    Password must be at least 8 characters
+                  </div>
+                  <div *ngIf="f.newPassword.errors.maxlength">
+                    Password must not exceed 40 characters
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="row mt-2">
             <div class="offset-sm-1 col-sm-8">
-              <label for="cPassword">Confirm Password</label>
-              <input
-                id="cPassword"
-                type="password"
-                class="form-control"
-                formControlName="confirmPassword"
-                placeholder="Confirm Password"
-                [ngClass]="{
-                  'is-invalid': f.confirmPassword.errors
-                }"
-              />
-              <div *ngIf="f.confirmPassword.errors" class="invalid-feedback">
-                <div *ngIf="f.confirmPassword.errors.required">
-                  Confirm Password is required
-                </div>
-                <div *ngIf="f.confirmPassword.errors.matching">
-                  Confirm Password does not match
-                </div>
+              <div class="password-container">
+                <ng-container
+                  [ngTemplateOutlet]="showHidePassword"
+                  [ngTemplateOutletContext]="{ item: 'confirmPassword' }"
+                ></ng-container>
+                <label for="cPassword">Confirm Password</label>
+                <input
+                  id="cPassword"
+                  [type]="hideConfirmPassword ? 'password' : 'text'"
+                  class="form-control"
+                  formControlName="confirmPassword"
+                  placeholder="Confirm Password"
+                  [ngClass]="{
+                    'is-invalid': f.confirmPassword.errors
+                  }"
+                />
+                <div *ngIf="f.confirmPassword.errors" class="invalid-feedback">
+                  <div *ngIf="f.confirmPassword.errors.required">
+                    Confirm Password is required
+                  </div>
+                  <div *ngIf="f.confirmPassword.errors.matching">
+                    Confirm Password does not match
+                  </div>
 
-                <div *ngIf="f.confirmPassword.errors.minlength">
-                  Password must be at least 6 characters
-                </div>
-                <div *ngIf="f.confirmPassword.errors.maxlength">
-                  Username must not exceed 40 characters
+                  <div *ngIf="f.confirmPassword.errors.minlength">
+                    Password must be at least 8 characters
+                  </div>
+                  <div *ngIf="f.confirmPassword.errors.maxlength">
+                    Username must not exceed 40 characters
+                  </div>
                 </div>
               </div>
             </div>
@@ -271,6 +294,7 @@
               <ng-container
                 *ngIf="!profileForm.get('confirmPassword')?.disabled"
                 [ngTemplateOutlet]="updateTemplate"
+                [ngTemplateOutletContext]="{ item: 'confirmPassword' }"
               ></ng-container>
               <ng-container
                 *ngIf="!profileForm.get('confirmPassword')?.disabled"
@@ -365,4 +389,37 @@
   <span (click)="onCancel(item)" class="mx-3 cursor-pointer confirm-btn-txt"
     >CANCEL</span
   >
+</ng-template>
+
+<ng-template #showHidePassword let-item="item">
+  <div class="input-group-addon">
+    <div *ngIf="item === profileControls.newPassword; else confirmPassword">
+      <a
+        ><i
+          *ngIf="
+            !f?.newPassword?.errors &&
+            profileForm?.get('newPassword')?.value?.length > 0
+          "
+          [ngClass]="hidePassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
+          id="eyeicon"
+          (click)="showPassword(item)"
+          aria-hidden="true"
+        ></i
+      ></a>
+    </div>
+  </div>
+  <ng-template #confirmPassword>
+    <a
+      ><i
+        *ngIf="
+          !f?.confirmPassword?.errors &&
+          profileForm?.get('confirmPassword')?.value?.length > 0
+        "
+        [ngClass]="hideConfirmPassword ? 'fa fa-eye-slash' : 'fa fa-eye'"
+        id="eyeicon"
+        (click)="showPassword(item)"
+        aria-hidden="true"
+      ></i
+    ></a>
+  </ng-template>
 </ng-template>

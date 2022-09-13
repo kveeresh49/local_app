@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProfileUpdateRequest } from '../models/profile-update';
+import { OtpLoginModel } from '../models/user-deatils';
 
 @Injectable({
   providedIn: 'root',
@@ -18,19 +19,15 @@ export class ProfileService {
     return `${environment.API_ENDPOINTS.Api_url}`;
   }
 
-  uploadProfilePic$(file: any, id: any) {
-    //let headers = new HttpHeaders()
+  uploadProfilePic$(formData: FormData) {
+    const headers = new HttpHeaders({
+      Accept: '*',
+    });
 
-   // headers.append('content-type','multipart/form-data');
-
-    const headers=  new HttpHeaders({
-      'Content-Type': 'multipart/form-data', 'Accept': 'multipart/form-data',
-    })
-
-    return this.http.post(
+    return this.http.put(
       `${environment.API_ENDPOINTS.Api_url}UserProfile/UpdateProfileImage`,
-      { ProfileImageFile: file, LoginID: id },
-      { 'headers': headers }
+      formData,
+      { headers: headers }
     );
   }
 
@@ -38,10 +35,16 @@ export class ProfileService {
     loginId: string,
     request: Array<ProfileUpdateRequest>
   ): Observable<any> {
-
     return this.http.patch(
       `${environment.API_ENDPOINTS.Api_url}UserProfile/${loginId}`,
       request
+    );
+  }
+
+  verifyOtp$(otpRequest: OtpLoginModel): Observable<any> {
+    return this.http.post(
+      `${environment.API_ENDPOINTS.Api_url}User/VerifyOTP`,
+      otpRequest
     );
   }
 }
