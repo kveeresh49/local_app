@@ -19,9 +19,18 @@ export class ProfileService {
   }
 
   uploadProfilePic$(file: any, id: any) {
+    //let headers = new HttpHeaders()
+
+   // headers.append('content-type','multipart/form-data');
+
+    const headers=  new HttpHeaders({
+      'Content-Type': 'multipart/form-data', 'Accept': 'multipart/form-data',
+    })
+
     return this.http.post(
       `${environment.API_ENDPOINTS.Api_url}UserProfile/UpdateProfileImage`,
-      { ProfileImageFile: file, LoginID: id }
+      { ProfileImageFile: file, LoginID: id },
+      { 'headers': headers }
     );
   }
 
@@ -29,6 +38,7 @@ export class ProfileService {
     loginId: string,
     request: Array<ProfileUpdateRequest>
   ): Observable<any> {
+
     return this.http.patch(
       `${environment.API_ENDPOINTS.Api_url}UserProfile/${loginId}`,
       request

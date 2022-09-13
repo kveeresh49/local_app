@@ -6,7 +6,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import Validation from 'src/app/shared/utils/validation';
+import { AuthService } from '../../auth.service';
 import {
   ProfileActiveTab,
   ProfileControls,
@@ -60,13 +62,13 @@ export class ProfileComponent implements OnInit {
   constructor(
     private cookieService: CookieService,
     private fb: FormBuilder,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private authService: AuthService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit(): void {
-    this.profile = JSON.parse(this.cookieService.get('userProfile'));
-    this.loginId = this.profile.loginID;
-
+    
     this.profileForm = this.fb.group(
       {
         name: [
@@ -106,21 +108,43 @@ export class ProfileComponent implements OnInit {
         validators: [Validation.match('newPassword', 'confirmPassword')],
       }
     );
+this.userProfileVerification();
+  }
 
-    this.profileForm.setValue({
-      email: this.profile.email,
-      mobileNumber: this.profile.mobileNumber.toString().slice(2),
-      name: `${this.profile.firstName} ${this.profile.lastName}`,
-      password: '***************',
-      otp: '',
-      newPassword: '',
-      confirmPassword: '',
+
+updateProfile() {
+  this.profile = JSON.parse(this.cookieService.get('userProfile'));
+  this.loginId = this.profile.loginID;
+  this.profileForm.setValue({
+    email: this.profile.email,
+    mobileNumber: this.profile.mobileNumber.toString().slice(2),
+    name: `${this.profile.firstName} ${this.profile.lastName}`,
+    password: '***************',
+    otp: '',
+    newPassword: '',
+    confirmPassword: '',
+  });
+}
+
+  userProfileVerification() {
+    let id: string = JSON.parse(this.cookieService.get('userToken')).token.id;
+    this.spinner.show();
+    this.authService.userProfile$(id).subscribe({
+      next: (userProfile: any) => {
+        this.cookieService.set('userProfile', JSON.stringify(userProfile));
+        this.updateProfile();
+        this.spinner.hide();
+      },
+      error: (e) => {
+        this.spinner.hide();
+        this.alerts = [];
+        let error = {
+          type: 'danger',
+          msg: `${e.error}`,
+          timeout: 5000,
+        };
+      },
     });
-
-    this.profileForm.setValidators(
-      Validation.match('newPassword', 'confirmPassword')
-    );
-    console.log(this.profile, 'this.profile');
   }
 
   get f(): any {
@@ -185,6 +209,7 @@ export class ProfileComponent implements OnInit {
     } else {
       let newValue = this.profileForm.get(field)?.value;
       let field1: string = field?.toString();
+      this.spinner.show();
       this.profileService
         .updateProfile$(this.loginId, [
           new ProfileUpdateRequest(
@@ -194,7 +219,10 @@ export class ProfileComponent implements OnInit {
           ),
         ])
         .subscribe((resp) => {
+          this.userProfileVerification();
+          this.spinner.hide();
           console.log(resp);
+          this.profileForm.get(field)?.disable();
         });
     }
   }
