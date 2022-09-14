@@ -27,10 +27,10 @@
           *ngFor="let nearByStore of nearByStoreData; let idx = index"
         >
           <div
-            class="store-card-max-width p-0 m-0 cursor-pointer"
+            class="store-card-max-width p-0 m-0"
             *ngIf="idx >= startingIndex && idx < endingIndex"
           >
-            <app-store-card (click)="onCardClick()" [nearByStoreData]="nearByStore"></app-store-card>
+            <app-store-card  [nearByStoreData]="nearByStore"></app-store-card>
           </div>
           <img
           src="../../../assets/images/right-vector.png"
