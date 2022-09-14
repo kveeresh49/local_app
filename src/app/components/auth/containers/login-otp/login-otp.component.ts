@@ -154,7 +154,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
 
   userProfileVerification() {
     let id: string = JSON.parse(this.cookieService.get('userToken'))['id'];
-    this.authService.userProfile$(id).subscribe({
+    this.authService.getUserProfile$(id).subscribe({
       next: (userProfile: any) => {
         this.cookieService.set('userProfile', JSON.stringify(userProfile));
         this.authService.isUserProfileSub$.next(userProfile);

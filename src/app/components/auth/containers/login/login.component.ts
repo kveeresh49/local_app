@@ -92,7 +92,7 @@ export class LoginComponent implements OnInit {
         },
         error: (e) => {
           let errorMessage = e.error;
-          console.log(errorMessage,'errorMessage')
+          console.log(errorMessage, 'errorMessage');
           let alert: AlertModelObj = new AlertModelObj('danger', errorMessage);
           this.commonService.alertMessageSub$.next(alert);
           this.spinner.hide();
@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit {
 
   userProfileVerification(): void {
     let id: string = JSON.parse(this.cookieService.get('userToken')).token.id;
-    this.authService.userProfile$(id).subscribe({
+    this.authService.getUserProfile$(id).subscribe({
       next: (userProfile: any) => {
         this.cookieService.set('userProfile', JSON.stringify(userProfile));
         this.authService.isUserProfileSub$.next(userProfile);

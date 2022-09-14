@@ -16,6 +16,7 @@ import {
   ProfileActiveTab,
   ProfileControls,
 } from '../../models/profile-controls';
+import { ProfilePathMapping } from '../../models/profile-path-mappings';
 import { ProfileUpdateRequest } from '../../models/profile-update';
 import { MobileNumber } from '../../models/user-deatils';
 import { ProfileService } from '../../services/profile.service';
@@ -28,13 +29,17 @@ import { ProfileService } from '../../services/profile.service';
 export class ProfileComponent implements OnInit {
   profile: any;
   profileForm: FormGroup;
-  isProfileSection = true;
-  activeTab = ProfileActiveTab.profileSettings;
-  hideOtpSection = true;
-  isPasswordChange = false;
-  hideMobileNumberActions = false;
+
   profileControls = ProfileControls;
   profileActiveTab = ProfileActiveTab;
+  activeTab = ProfileActiveTab.profileSettings;
+
+  hidePassword = true;
+  hideOtpSection = true;
+  isProfileSection = true;
+  isPasswordChange = false;
+  hideConfirmPassword = true;
+  hideMobileNumberActions = false;
 
   savedAddresses: any[] = [
     {
@@ -54,27 +59,292 @@ export class ProfileComponent implements OnInit {
     },
   ];
   alerts: any = [];
-  private loginId: string;
 
-  profilePathMapping: any = {
+  private profilePathMapping: ProfilePathMapping = {
     name: 'firstname',
     email: 'email',
     mobileNumber: 'mobilenumber',
     confirmPassword: 'password',
   };
-  hidePassword = true;
-  hideConfirmPassword = true;
+  private loginId: string;
 
   constructor(
-    private cookieService: CookieService,
     private fb: FormBuilder,
-    private profileService: ProfileService,
     private authService: AuthService,
     private spinner: NgxSpinnerService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private cookieService: CookieService,
+    private profileService: ProfileService
   ) {}
 
+  //#region Life-cycle Hooks
   ngOnInit(): void {
+    this.createProfileForm();
+    this.userProfileVerification();
+  }
+  //#endregion
+
+  //#region Getter's
+  get f(): any {
+    return this.profileForm.controls;
+  }
+  //#endregion
+
+  //#region Public Methods
+  public onProfileSettingsClick(): void {
+    this.isProfileSection = true;
+    this.activeTab = ProfileActiveTab.profileSettings;
+  }
+
+  public onManageAddressClick(): void {
+    this.isProfileSection = false;
+    this.activeTab = ProfileActiveTab.manageAddresses;
+  }
+
+  public onChange(field: string): void {
+    let formControlKeys = Object.keys(this.profileForm.controls);
+
+    formControlKeys
+      .filter((key) => key !== field)
+      .forEach((key) => {
+        this.onCancel(key);
+        this.profileForm?.get(key)?.disable();
+      });
+    this.onCancel(field);
+    this.profileForm?.get(field)?.enable();
+
+    if (field === ProfileControls.password) {
+      this.isPasswordChange = true;
+      this.profileForm?.get(ProfileControls.newPassword)?.enable();
+      this.profileForm?.get(ProfileControls.confirmPassword)?.enable();
+    } else {
+      this.isPasswordChange = false;
+      this.hideOtpSection = true;
+      this.hideMobileNumberActions = false;
+      this.profileForm.get(field)?.enable();
+    }
+  }
+
+  public onUpdate(field: string): void {
+    this.alerts = [];
+    if (this.profileForm.get(field)?.errors) {
+      switch (field) {
+        case ProfileControls.name:
+          let alert: AlertModelObj = new AlertModelObj(
+            'danger',
+            `${field?.toUpperCase()} is Invalid !`
+          );
+          this.commonService.alertMessageSub$.next(alert);
+          break;
+        case ProfileControls.email: {
+          let alert: AlertModelObj = new AlertModelObj(
+            'danger',
+            `${field} Invalid !`
+          );
+          this.commonService.alertMessageSub$.next(alert);
+          break;
+        }
+      }
+    } else {
+      let newValue = this.profileForm.get(field)?.value;
+      this.spinner.show();
+      this.profileService
+        .updateProfile$(this.loginId, [
+          new ProfileUpdateRequest(
+            this.profilePathMapping[field as keyof ProfilePathMapping],
+            'replace',
+            newValue
+          ),
+        ])
+        .subscribe({
+          next: (resp) => {
+            this.userProfileVerification();
+            this.spinner.hide();
+            this.updateFieldsOnUpdate(field);
+            let alert: AlertModelObj = new AlertModelObj(
+              'success',
+              `${field.toUpperCase()} Updated Successfully !`
+            );
+            this.commonService.alertMessageSub$.next(alert);
+          },
+          error: (error) => {
+            this.spinner.hide();
+            let alert: AlertModelObj = new AlertModelObj('danger', error.error);
+            this.commonService.alertMessageSub$.next(alert);
+          },
+        });
+    }
+  }
+
+  public onVerify(field: string): void {
+    switch (field) {
+      case ProfileControls.mobileNumber:
+        let number = this.profileForm.get(ProfileControls.mobileNumber)?.value;
+        number = `91${number}`;
+
+        let mobileNumber: MobileNumber = {
+          mobileNumber: number,
+        };
+
+        this.authService.verifyMobileExist$(mobileNumber).subscribe({
+          next: () => {
+            let errorMessage = 'Please try a different mobile number';
+            let alert: AlertModelObj = new AlertModelObj(
+              'danger',
+              errorMessage
+            );
+            this.commonService.alertMessageSub$.next(alert);
+          },
+          error: (err: HttpErrorResponse) => {
+            if (err.status === 404) {
+              this.authService.sendOtp(number).subscribe({
+                next: () => {
+                  this.hideOtpSection = false;
+                  this.profileForm.get(ProfileControls.otp)?.enable();
+                  this.profileForm.get(ProfileControls.mobileNumber)?.disable();
+                  this.hideMobileNumberActions = true;
+                },
+                error: () => {
+                  let errorMessage = 'Otp Miss Match, Please try Again';
+                  let alert: AlertModelObj = new AlertModelObj(
+                    'danger',
+                    errorMessage
+                  );
+                  this.commonService.alertMessageSub$.next(alert);
+                },
+              });
+            }
+          },
+        });
+        break;
+      default:
+        this.profileForm.get(field)?.disable();
+        break;
+    }
+  }
+
+  public onCancel(field: string): void {
+    switch (field) {
+      case ProfileControls.name:
+        this.profileForm
+          .get(field)
+          ?.patchValue(`${this.profile.firstName} ${this.profile.lastName}`);
+        break;
+      case ProfileControls.password:
+        this.profileForm.get(field)?.patchValue('***************');
+        break;
+      case ProfileControls.mobileNumber:
+        this.profileForm
+          .get(field)
+          ?.patchValue(this.profile.mobileNumber.toString().slice(2));
+        break;
+      case ProfileControls.confirmPassword:
+        this.profileForm.get(ProfileControls.password)?.disable();
+        this.isPasswordChange = false;
+        break;
+      case ProfileControls.otp:
+        this.hideOtpSection = true;
+        this.hideMobileNumberActions = false;
+        break;
+      default:
+        this.profileForm.get(field)?.patchValue(this.profile[field]);
+        break;
+    }
+    this.profileForm.get(field)?.disable();
+  }
+
+  public onConfirmOtp(): void {
+    let otp = this.profileForm.get(ProfileControls.otp)?.value;
+    let mobileNumber = this.profileForm.get(
+      ProfileControls.mobileNumber
+    )?.value;
+    let mobileWithCountryCode = +`91${mobileNumber}`;
+
+    this.profileService
+      .verifyOtp$({
+        mobileNumber: mobileWithCountryCode,
+        otp,
+      })
+      .subscribe({
+        next: () => {
+          this.profileService
+            .updateProfile$(this.loginId, [
+              new ProfileUpdateRequest(
+                ProfileControls.mobileNumber,
+                'replace',
+                mobileWithCountryCode.toString()
+              ),
+            ])
+            .subscribe({
+              next: () => {
+                this.userProfileVerification();
+                this.hideOtpSection = true;
+                this.hideMobileNumberActions = false;
+                this.updateFieldsOnUpdate(ProfileControls.mobileNumber);
+                let alert: AlertModelObj = new AlertModelObj(
+                  'success',
+                  `Mobile Number is Updated Successfully !`
+                );
+                this.commonService.alertMessageSub$.next(alert);
+              },
+              error: (e) => {
+                let alert: AlertModelObj = new AlertModelObj('danger', e.error);
+                this.commonService.alertMessageSub$.next(alert);
+              },
+            });
+        },
+        error: () => {
+          let errorMessage = 'Please enter a valid OTP';
+          let alert: AlertModelObj = new AlertModelObj('danger', errorMessage);
+          this.commonService.alertMessageSub$.next(alert);
+          this.profileForm.get(ProfileControls.otp)?.patchValue('');
+        },
+      });
+  }
+
+  public uploadImage(data: any): void {
+    const formData = new FormData();
+    let file = data.target.files[0] as File;
+    if (!file) {
+      return;
+    }
+
+    if (file.size / 1024 > 2048) {
+      let errorMessage = 'Image size should be less than 2Mb';
+      let alert: AlertModelObj = new AlertModelObj('danger', errorMessage);
+      this.commonService.alertMessageSub$.next(alert);
+      return;
+    }
+
+    formData.append('profileImageFile', data.target.files[0]);
+    formData.append('loginID', this.loginId);
+    let id: string = JSON.parse(this.cookieService.get('userProfile'))['id'];
+    this.spinner.show();
+    this.profileService.uploadProfilePic$(formData).subscribe({
+      next: (data: any) => {
+        this.profile.userImage = data['userImage'];
+        this.spinner.hide();
+      },
+      error: (error) => {
+        let errorMessage = 'Failed to upload image';
+        let alert: AlertModelObj = new AlertModelObj('danger', errorMessage);
+        this.commonService.alertMessageSub$.next(alert);
+        this.spinner.hide();
+      },
+    });
+  }
+
+  public showPassword(field: string): void {
+    if (field === this.profileControls.newPassword) {
+      this.hidePassword = !this.hidePassword;
+    } else {
+      this.hideConfirmPassword = !this.hideConfirmPassword;
+    }
+  }
+  //#endregion
+
+  //#region Private Methods
+  private createProfileForm(): void {
     this.profileForm = this.fb.group(
       {
         name: [
@@ -114,13 +384,17 @@ export class ProfileComponent implements OnInit {
         ],
       },
       {
-        validators: [Validation.match('newPassword', 'confirmPassword')],
+        validators: [
+          Validation.match(
+            ProfileControls.newPassword,
+            ProfileControls.confirmPassword
+          ),
+        ],
       }
     );
-    this.userProfileVerification();
   }
 
-  setProfileDetails() {
+  private setProfileDetails(): void {
     this.profile = JSON.parse(this.cookieService.get('userProfile'));
     this.loginId = this.profile.loginID;
     this.profileForm.setValue({
@@ -134,122 +408,25 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  userProfileVerification() {
+  private userProfileVerification(): void {
     let id: string = JSON.parse(this.cookieService.get('userToken')).token.id;
     this.spinner.show();
-    this.authService.userProfile$(id).subscribe({
+    this.authService.getUserProfile$(id).subscribe({
       next: (userProfile: any) => {
         this.cookieService.set('userProfile', JSON.stringify(userProfile));
         this.setProfileDetails();
         this.spinner.hide();
       },
-      error: (e) => {
+      error: (error) => {
         this.spinner.hide();
-        this.alerts = [];
-        let error = {
-          type: 'danger',
-          msg: `${e.error}`,
-          timeout: 5000,
-        };
+        let errorMessage = 'Failed to load profile details';
+        let alert: AlertModelObj = new AlertModelObj('danger', errorMessage);
+        this.commonService.alertMessageSub$.next(alert);
       },
     });
   }
 
-  get f(): any {
-    return this.profileForm.controls;
-  }
-
-  onProfileSettingsClick(): void {
-    this.isProfileSection = true;
-    this.activeTab = ProfileActiveTab.profileSettings;
-  }
-
-  onManageAddressClick(): void {
-    this.isProfileSection = false;
-    this.activeTab = ProfileActiveTab.manageAddresses;
-  }
-
-  onChange(field: string): void {
-    let formControlKeys = Object.keys(this.profileForm.controls);
-
-    formControlKeys
-      .filter((key) => key !== field)
-      .forEach((key) => {
-        this.onCancel(key);
-        this.profileForm?.get(key)?.disable();
-      });
-    this.onCancel(field);
-    this.profileForm?.get(field)?.enable();
-
-    if (field === ProfileControls.password) {
-      this.isPasswordChange = true;
-      this.profileForm?.get(ProfileControls.newPassword)?.enable();
-      this.profileForm?.get(ProfileControls.confirmPassword)?.enable();
-    } else {
-      this.isPasswordChange = false;
-      this.hideOtpSection = true;
-      this.hideMobileNumberActions = false;
-      this.profileForm.get(field)?.enable();
-    }
-  }
-
-  onUpdate(field: string): void {
-    this.alerts = [];
-    if (this.profileForm.get(field)?.errors) {
-      const error = {
-        type: 'danger',
-        msg: ``,
-        timeout: 5000,
-      };
-
-      switch (field) {
-        case ProfileControls.name:
-          // error['msg'] = 'Name is Invalid';
-          // this.alerts = [{ ...error }];
-          let alert: AlertModelObj = new AlertModelObj('success',
-          `${field?.toUpperCase()} is Invalid !`);
-      this.commonService.alertMessageSub$.next(alert);
-          break;
-        case ProfileControls.email: {
-          // error['msg'] = 'Email is Invalid';
-          // this.alerts = [{ ...error }];
-          let alert: AlertModelObj = new AlertModelObj('success',
-          `${field} Invalid !`);
-      this.commonService.alertMessageSub$.next(alert);
-          break;
-        }
-      }
-    } else {
-      let newValue = this.profileForm.get(field)?.value;
-      this.spinner.show();
-      this.profileService
-        .updateProfile$(this.loginId, [
-          new ProfileUpdateRequest(
-            this.profilePathMapping[field],
-            'replace',
-            newValue
-          ),
-        ])
-        .subscribe({
-          next: (resp) => {
-            this.userProfileVerification();
-            this.spinner.hide();
-            this.updateFieldsOnUpdate(field);
-            let alert: AlertModelObj = new AlertModelObj('success',
-                `${field.toUpperCase()} Updated Successfully !`);
-            this.commonService.alertMessageSub$.next(alert);
-          },
-          error: (error) => {
-            this.spinner.hide();
-            let alert: AlertModelObj = new AlertModelObj('danger',
-            error.error);
-            this.commonService.alertMessageSub$.next(alert);
-          },
-        });
-    }
-  }
-
-  updateFieldsOnUpdate(field: string) {
+  private updateFieldsOnUpdate(field: string): void {
     switch (field) {
       case ProfileControls.confirmPassword:
         this.isPasswordChange = false;
@@ -270,177 +447,5 @@ export class ProfileComponent implements OnInit {
         break;
     }
   }
-
-  onVerify(field: string): void {
-    switch (field) {
-      case ProfileControls.mobileNumber:
-        let number = this.profileForm.get(ProfileControls.mobileNumber)?.value;
-        number = `91${number}`;
-
-        let mobileNumber: MobileNumber = {
-          mobileNumber: number,
-        };
-
-        this.authService.verifyMobileExist$(mobileNumber).subscribe({
-          next: () => {
-            // const error = {
-            //   type: 'danger',
-            //   msg: ``,
-            //   timeout: 5000,
-            // };
-             // this.alerts = [{ ...error }];
-           let errorMessage= 'Please try a different mobile number';
-            let alert: AlertModelObj = new AlertModelObj('danger',
-            errorMessage);
-        this.commonService.alertMessageSub$.next(alert);
-          },
-          error: (err: HttpErrorResponse) => {
-            if (err.status === 404) {
-              this.authService.sendOtp(number).subscribe({
-                next: () => {
-                  this.hideOtpSection = false;
-                  this.profileForm.get(ProfileControls.otp)?.enable();
-                  this.profileForm.get(ProfileControls.mobileNumber)?.disable();
-                  this.hideMobileNumberActions = true;
-                },
-                error: () => {
-                  let errorMessage= 'Otp Miss Match, Please try Again';
-                  let alert: AlertModelObj = new AlertModelObj('danger',
-                  errorMessage);
-                  this.commonService.alertMessageSub$.next(alert);
-                  console.log('failed - sendOtp');
-                },
-              });
-            }
-          },
-        });
-        break;
-      default:
-        this.profileForm.get(field)?.disable();
-        break;
-    }
-  }
-
-  onCancel(field: string): void {
-    switch (field) {
-      case ProfileControls.name:
-        this.profileForm
-          .get(field)
-          ?.patchValue(`${this.profile.firstName} ${this.profile.lastName}`);
-        break;
-      case ProfileControls.password:
-        this.profileForm.get(field)?.patchValue('***************');
-        break;
-      case ProfileControls.mobileNumber:
-        this.profileForm
-          .get(field)
-          ?.patchValue(this.profile.mobileNumber.toString().slice(2));
-        break;
-      case ProfileControls.confirmPassword:
-        this.profileForm.get(ProfileControls.password)?.disable();
-        this.isPasswordChange = false;
-        break;
-      case ProfileControls.otp:
-        this.hideOtpSection = true;
-        this.hideMobileNumberActions = false;
-        break;
-      default:
-        this.profileForm.get(field)?.patchValue(this.profile[field]);
-        break;
-    }
-    this.profileForm.get(field)?.disable();
-  }
-
-  onConfirmOtp(): void {
-    let otp = this.profileForm.get(ProfileControls.otp)?.value;
-    let mobileNumber = this.profileForm.get(
-      ProfileControls.mobileNumber
-    )?.value;
-    let mobileWithCountryCode = +`91${mobileNumber}`;
-
-    this.profileService
-      .verifyOtp$({
-        mobileNumber: mobileWithCountryCode,
-        otp,
-      })
-      .subscribe({
-        next: () => {
-          this.profileService
-            .updateProfile$(this.loginId, [
-              new ProfileUpdateRequest(
-                ProfileControls.mobileNumber,
-                'replace',
-                mobileWithCountryCode.toString()
-              ),
-            ])
-            .subscribe({
-              next: () => {
-                this.userProfileVerification();
-                this.hideOtpSection = true;
-                this.hideMobileNumberActions = false;
-                this.updateFieldsOnUpdate(ProfileControls.mobileNumber);
-                let alert: AlertModelObj = new AlertModelObj('success',
-                `Mobile Number is Updated Successfully !`);
-                this.commonService.alertMessageSub$.next(alert);
-              },
-              error: (e) => {
-                let alert: AlertModelObj = new AlertModelObj('danger',
-                e.error);
-                this.commonService.alertMessageSub$.next(alert);
-              },
-            });
-        },
-        error: () => {
-          // const error = {
-          //   type: 'danger',
-          //   msg: ``,
-          //   timeout: 5000,
-          // };
-          // this.alerts = [{ ...error }];
-          let errorMessage = 'Please enter a valid OTP';
-          let alert: AlertModelObj = new AlertModelObj('danger',
-          errorMessage);
-          this.commonService.alertMessageSub$.next(alert);
-          this.profileForm.get(ProfileControls.otp)?.patchValue('');
-        },
-      });
-  }
-
-  uploadImage(data: any) {
-    const formData = new FormData();
-    let file = data.target.files[0] as File;
-    if (!file) {
-      return;
-    }
-
-    if (file.size / 1024 > 500) {
-      // const error = {
-      //   type: 'danger',
-      //   msg: ``,
-      //   timeout: 5000,
-      // };
-      // error['msg'] = 'Image size should be less than 2Mb';
-      // this.alerts = [{ ...error }];
-
-      let errorMessage = 'Image size should be less than 2Mb';
-          let alert: AlertModelObj = new AlertModelObj('danger',
-          errorMessage);
-      return;
-    }
-
-    formData.append('profileImageFile', data.target.files[0]);
-    formData.append('loginID', this.loginId);
-    let id: string = JSON.parse(this.cookieService.get('userProfile'))['id'];
-    this.profileService.uploadProfilePic$(formData).subscribe((data: any) => {
-      this.profile.userImage = data['userImage'];
-    });
-  }
-
-  showPassword(field: string) {
-    if (field === this.profileControls.newPassword) {
-      this.hidePassword = !this.hidePassword;
-    } else {
-      this.hideConfirmPassword = !this.hideConfirmPassword;
-    }
-  }
+  //#endregion
 }

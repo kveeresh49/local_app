@@ -128,18 +128,23 @@ $fontColor: rgb(250, 250, 250);
     height: $circleSize;
     width: $circleSize;
     @include object-center;
-    z-index: 10000;
+    z-index: 1;
     color: $fontColor;
     transition: background-color 0.2s ease-in-out;
     border-radius: $radius;
     margin-bottom: 0;
-    background-color: rgb(91 77 77 / 80%);
-  }
+    background-color: rgba(120, 120, 120, 0.1);
+    position: relative;
 
-  span {
-    display: inline-flex;
-    padding: 0.2em;
-    height: 2em;
+    > span {
+      background: white;
+      position: absolute;
+      top: 120px;
+      left: 120px;
+      padding: 10px;
+      border: 1px;
+      border-radius: 30px;
+    }
   }
 }
 

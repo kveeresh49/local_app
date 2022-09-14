@@ -238,7 +238,7 @@ export class CreateAccountComponent implements OnInit {
         },
         error: (e) => {
           let alert: AlertModelObj = new AlertModelObj('danger', e.error);
-         this.commonService.alertMessageSub$.next(alert);
+          this.commonService.alertMessageSub$.next(alert);
           this.isLoggedIn = false;
           this.verifyOtpFormSubmit = false;
           this.ngOtpInput.setValue('');
@@ -262,13 +262,15 @@ export class CreateAccountComponent implements OnInit {
 
   userProfileVerification() {
     let id: string = JSON.parse(this.cookieService.get('userToken'))['id'];
-    this.authService.userProfile$(id).subscribe({
+    this.authService.getUserProfile$(id).subscribe({
       next: (userProfile: any) => {
         this.cookieService.set('userProfile', JSON.stringify(userProfile));
-        let alert: AlertModelObj = new AlertModelObj('success',
-        `Login Successful!`);
+        let alert: AlertModelObj = new AlertModelObj(
+          'success',
+          `Login Successful!`
+        );
         this.commonService.alertMessageSub$.next(alert);
-        
+
         this.authService.isUserProfileSub$.next(userProfile);
         this.router.navigate(['dashboard']);
       },

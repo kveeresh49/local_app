@@ -92,7 +92,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}User/OTPLogin`, OtpLogin);
   }
 
-  userProfile$(id: string) {
+  getUserProfile$(id: string): Observable<any> {
     return this.http.get(`${this.apiUrl}UserProfile/${id}`);
   }
 
