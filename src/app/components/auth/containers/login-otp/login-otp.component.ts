@@ -1,5 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgOtpInputComponent } from 'ng-otp-input';
 import { CookieService } from 'ngx-cookie-service';
@@ -8,8 +14,15 @@ import {
   CountryISO,
   PhoneNumberFormat,
 } from 'ngx-intl-tel-input';
+import { CommonService } from 'src/app/shared/common-service';
+import { AlertModelObj } from 'src/app/shared/models/alert.model';
+import {
+  MobileNumberObj,
+  OtpLoginModelObj,
+} from 'src/app/shared/models/common.model';
 import { AuthService } from '../../auth.service';
-import { OtpLoginModel } from '../../models/user-deatils';
+import { MobileNumber, OtpLoginModel } from '../../models/user-deatils';
+
 @Component({
   selector: 'app-login-otp',
   templateUrl: './login-otp.component.html',
@@ -19,7 +32,6 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   @ViewChild('phoneField') phoneField: any;
   @ViewChild(NgOtpInputComponent, { static: false })
   ngOtpInput: NgOtpInputComponent;
-  separateDialCode = false;
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
@@ -35,13 +47,13 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   otpForm: FormGroup;
   otp: any = '';
   submitted = false;
-  alerts: any[];
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
@@ -54,15 +66,13 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   }
 
   changePreferredCountries(): void {
-    this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+    this.preferredCountries = [CountryISO.India];
   }
 
-  createForm() {
+  createForm(): void {
     this.otpForm = this.fb.group({
       mobile: ['', [Validators.required, Validators.minLength(10)]],
       otp: ['', [Validators.required, Validators.minLength(6)]],
-      email: '',
-      password: '',
     });
   }
 
@@ -75,41 +85,35 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
     return this.otpForm.controls;
   }
 
+  getMobileNumber(): string {
+    return this.otpForm.get('mobile')?.value['e164Number'].substring(1);
+  }
+
   sendOTP(): void {
     this.ngOtpInput.otpForm.enable();
-    let mobileNumber = {
-      mobileNumber: this.otpForm
-        .get('mobile')
-        ?.value['e164Number'].substring(1),
-    };
-
+    let mobileNumber: MobileNumber = new MobileNumberObj(
+      this.getMobileNumber()
+    );
     this.authService.verifyMobileExist$(mobileNumber).subscribe({
       next: (mobileNumber: any) => {
-        this.authService
-          .sendOtp(this.otpForm.get('mobile')?.value['e164Number'].substring(1))
-          .subscribe((data) => {
-            this.ngOtpInput.otpForm.enable();
-            this.newOtpFlag = false;
-            this.otpHeader = 'Resend OTP';
-            this.timeLeft = 30;
-            this.isOtpDisabled = true;
-            this.interval = setInterval(() => {
-              if (this.timeLeft > 0) {
-                this.timeLeft--;
-              } else {
-                this.pauseTimer();
-              }
-            }, 1000);
-          });
+        this.authService.sendOtp(mobileNumber).subscribe((data) => {
+          this.ngOtpInput.otpForm.enable();
+          this.newOtpFlag = false;
+          this.otpHeader = 'Resend OTP';
+          this.timeLeft = 30;
+          this.isOtpDisabled = true;
+          this.interval = setInterval(() => {
+            if (this.timeLeft > 0) {
+              this.timeLeft--;
+            } else {
+              this.pauseTimer();
+            }
+          }, 1000);
+        });
       },
       error: (e) => {
-        this.alerts = [];
-        let error = {
-          type: 'danger',
-          msg: `${e.error}`,
-          timeout: 5000,
-        };
-        this.alerts.push(error);
+        let alert: AlertModelObj = new AlertModelObj('danger', `${e.error}`);
+        this.commonService.alertMessageSub.next(alert);
       },
     });
   }
@@ -124,35 +128,25 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
     }, 1);
   }
 
-  verify() {
+  verify(): void {
     this.submitted = true;
     if (this.otpForm.valid) {
-      let OtpLogin: OtpLoginModel = {
-        mobileNumber: +this.otpForm
-          .get('mobile')
-          ?.value['e164Number'].substring(1),
-        otp: +this.otpForm.get('otp')?.value,
-      };
-
+      let OtpLogin: OtpLoginModel = new OtpLoginModelObj(
+        +this.getMobileNumber(),
+        +this.otpForm.get('otp')?.value
+      );
       this.authService.otpLogin$(OtpLogin).subscribe({
         next: (userToken: any) => {
           this.cookieService.set('userToken', JSON.stringify(userToken));
-          this.cookieService.get('userToken');
           this.authService.isloggedInUser.next(true);
           this.authService.loginUserDetailSub$.next(userToken);
           this.userProfileVerification();
         },
         error: (e) => {
-          this.alerts = [];
-          let error = {
-            type: 'danger',
-            msg: `${e.error}`,
-            timeout: 5000,
-          };
-          this.ngOtpInput.setValue('');
-          this.alerts.push(error);
-          console.error(e);
           this.submitted = false;
+          let alert: AlertModelObj = new AlertModelObj('danger', `${e.error}`);
+          this.commonService.alertMessageSub.next(alert);
+          this.ngOtpInput.setValue('');
         },
       });
     }
@@ -167,12 +161,8 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
         this.router.navigate(['dashboard']);
       },
       error: (e) => {
-        this.alerts = [];
-        let error = {
-          type: 'danger',
-          msg: `${e.error}`,
-          timeout: 5000,
-        };
+        let alert: AlertModelObj = new AlertModelObj('danger', `${e.error}`);
+        this.commonService.alertMessageSub.next(alert);
       },
     });
   }

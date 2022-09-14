@@ -34,7 +34,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NgxIntlTelInputModule,
     SlickCarouselModule,
     AlertModule.forRoot(),
-    NgxSpinnerModule.forRoot(),
+    NgxSpinnerModule.forRoot()
   ],
   exports: [
     CommonModule,

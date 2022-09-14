@@ -27,3 +27,10 @@ export interface EmailPhoneModel {
 export interface MobileNumber {
   mobileNumber: string;
 }
+
+
+export interface AlertModel {
+  type:string,
+  msg:string,
+  timeout:number
+}

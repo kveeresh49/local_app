@@ -3,8 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
 import { CookieService } from 'ngx-cookie-service';
-import { EmailLoginModel } from '../../models/user-deatils';
+import { AlertModel, EmailLoginModel } from '../../models/user-deatils';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { CommonService } from 'src/app/shared/common-service';
+import { AlertModelObj } from 'src/app/shared/models/alert.model';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +17,14 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   form: FormGroup;
   submitted = false;
-  alerts: any[];
   id: any;
+
+  //Alert Model
+  error: AlertModel = {
+    type: '',
+    msg: `Login Successful! `,
+    timeout: 5000,
+  };
   hidePassword = true;
 
   constructor(
@@ -24,7 +32,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private cookieService: CookieService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
@@ -64,7 +73,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/forgotpassword']);
   }
 
-  login() {
+  login(): void {
     this.submitted = true;
     this.setCreateFormValidators();
     if (this.loginForm.valid) {
@@ -82,14 +91,9 @@ export class LoginComponent implements OnInit {
           this.spinner.hide();
         },
         error: (e) => {
-          this.alerts = [];
-          let error: any = {
-            type: 'danger',
-            msg: `${e.error}`,
-            timeout: 5000,
-          };
+          let alert: AlertModelObj = new AlertModelObj('danger', `${e.error}`);
+          this.commonService.alertMessageSub.next(alert);
           this.spinner.hide();
-          this.alerts.push(error);
           this.clearCreateFormValidators();
           console.error(e);
           this.submitted = false;
@@ -98,27 +102,29 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  userProfileVerification() {
+  userProfileVerification(): void {
     let id: string = JSON.parse(this.cookieService.get('userToken')).token.id;
     this.authService.userProfile$(id).subscribe({
       next: (userProfile: any) => {
         this.cookieService.set('userProfile', JSON.stringify(userProfile));
         this.authService.isUserProfileSub$.next(userProfile);
         this.router.navigate(['dashboard']);
+        let alert: AlertModelObj = new AlertModelObj(
+          'success',
+          `Login Successful!`
+        );
+        this.commonService.alertMessageSub.next(alert);
       },
+
       error: (e) => {
-        this.alerts = [];
-        let error = {
-          type: 'danger',
-          msg: `${e.error}`,
-          timeout: 5000,
-        };
         this.router.navigate(['login']);
+        let alert: AlertModelObj = new AlertModelObj('danger', `${e.error}`);
+        this.commonService.alertMessageSub.next(alert);
       },
     });
   }
 
-  requestOTP() {
+  requestOTP(): void {
     this.router.navigate(['/otp']);
   }
 
@@ -140,7 +146,7 @@ export class LoginComponent implements OnInit {
     this.loginForm.updateValueAndValidity();
   }
 
-  showPassword() {
+  showPassword(): void {
     this.hidePassword = !this.hidePassword;
   }
 }

@@ -11,6 +11,7 @@ import { JwtInterceptor } from './shared/helpers/jwt-interceptor';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AgmCoreModule } from '@agm/core';
 import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
+import { AlertModule } from 'ngx-bootstrap/alert';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,6 +25,7 @@ import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBF0ojaCL0D4P3Na8c17Hs15JM6CEvE9Jc',
     }),
+    AlertModule.forRoot(),
 
     GooglePlaceModule,
   ],
