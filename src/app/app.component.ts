@@ -2,6 +2,8 @@ import { ActivatedRoute, ActivationStart, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription, take, takeUntil } from 'rxjs';
 import { AuthService } from './components/auth/auth.service';
+import { CommonService } from './shared/common-service';
+import { AlertModelObj } from './shared/models/alert.model';
 
 @Component({
   selector: 'app-root',
@@ -11,20 +13,17 @@ import { AuthService } from './components/auth/auth.service';
 export class AppComponent implements OnInit,OnDestroy {
   title = 'local_app';
   isAuthComonent = true;
-  alerts: any = [];
-  //data: {some_data: 'some value'}
+  public alert: Array<AlertModelObj> = [];
   constructor(
     private router: Router,
-    private activateRoute: ActivatedRoute,
-    private authService: AuthService
+    private commonService:CommonService
   ) {}
   alertSubscription$: Subscription;
   ngOnInit() {
-    this.alerts = [];
-    this.alertSubscription$ = this.authService.isAlertMessage.subscribe(
+    this.alertSubscription$ = this.commonService.alertMessageSub$.subscribe(
       (data) => {
-        this.alerts = [];
-        this.alerts.push(data);
+        this.alert = [];
+        this.alert.push(data);
       }
     );
     this.router.events.subscribe((res) => {

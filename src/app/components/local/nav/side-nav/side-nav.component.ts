@@ -21,27 +21,37 @@ export class SideNavComponent implements OnInit {
   @Output() clickEvent = new EventEmitter<boolean>();
   isLoginUserFlag: boolean = false;
   userProfile: any;
-  constructor(private cookieService: CookieService, private router: Router, private authService : AuthService) {}
+  userImage: string;
+  constructor(
+    private cookieService: CookieService,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.isLoginUser();
-    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.sidebarShow = changes['sidebarShow'].currentValue;
-    if(this.cookieService.get('userProfile') !== '' && this.cookieService.get('userProfile') !== null){
+    if (
+      this.cookieService.get('userProfile') !== '' &&
+      this.cookieService.get('userProfile') !== null
+    ) {
       this.userProfile = JSON.parse(this.cookieService.get('userProfile'));
     }
+   this.userImage =  this.userProfile['userImage']
   }
 
-  closeSideNav() {
+  closeSideNav() :void{
     this.sidebarShow = false;
     this.closeSidebar.emit(this.sidebarShow);
   }
 
-  isLoginUser() {
-    this.authService.isloggedInUser.subscribe(value => this.isLoginUserFlag = value);
+  isLoginUser() :void{
+    this.authService.isloggedInUser.subscribe(
+      (value) => (this.isLoginUserFlag = value)
+    );
     if (
       this.cookieService.get('userToken') !== null &&
       this.cookieService.get('userToken') !== ''
@@ -52,16 +62,11 @@ export class SideNavComponent implements OnInit {
     }
   }
 
-
-
-
-
-
-  navigateLogin() {
+  navigateLogin():void {
     this.router.navigate(['/login']);
   }
 
-  logout() {
+  logout():void {
     this.cookieService.delete('userToken');
     this.authService.isloggedInUser.next(false);
     this.authService.loginUserDetailSub$.next(null);

@@ -7,6 +7,8 @@ import {
   CountryISO,
   PhoneNumberFormat,
 } from 'ngx-intl-tel-input';
+import { CommonService } from 'src/app/shared/common-service';
+import { AlertModelObj } from 'src/app/shared/models/alert.model';
 import Validation from 'src/app/shared/utils/validation';
 
 import { AuthService } from '../../auth.service';
@@ -45,7 +47,8 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
@@ -99,44 +102,41 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
   sendOTP(): void {
     this.ngOtpInput.otpForm.enable();
 
-
     let mobileNumber = {
-      mobileNumber :this.forgotPasswordForm.get('mobileNumber')?.value['e164Number'].substring(1)
-    }
+      mobileNumber: this.forgotPasswordForm
+        .get('mobileNumber')
+        ?.value['e164Number'].substring(1),
+    };
 
     this.authService.verifyMobileExist$(mobileNumber).subscribe({
       next: (mobileNumber: any) => {
         this.authService
-        .sendOtp(
-          this.forgotPasswordForm.get('mobileNumber')?.value['e164Number'].substring(1)
-        )
-        .subscribe((data) => {
-          this.ngOtpInput.otpForm.enable();
-          this.newOtpFlag = false;
-          this.otpHeader = 'Resend OTP';
-          this.timeLeft = 30;
-          this.isOtpDisabled = true;
-          this.interval = setInterval(() => {
-            if (this.timeLeft > 0) {
-              this.timeLeft--;
-            } else {
-              this.pauseTimer();
-            }
-          }, 1000);
-        });
+          .sendOtp(
+            this.forgotPasswordForm
+              .get('mobileNumber')
+              ?.value['e164Number'].substring(1)
+          )
+          .subscribe((data) => {
+            this.ngOtpInput.otpForm.enable();
+            this.newOtpFlag = false;
+            this.otpHeader = 'Resend OTP';
+            this.timeLeft = 30;
+            this.isOtpDisabled = true;
+            this.interval = setInterval(() => {
+              if (this.timeLeft > 0) {
+                this.timeLeft--;
+              } else {
+                this.pauseTimer();
+              }
+            }, 1000);
+          });
       },
-      error: (e) => { 
-        this.alerts = [];
-        let error = {
-          type: 'danger',
-          msg: `${e.error}`,
-          timeout: 5000,
-        };
-        this.alerts.push(error);
-      }
+      error: (e) => {
+        let alert: AlertModelObj = new AlertModelObj('danger', e.error);
+        this.commonService.alertMessageSub$.next(alert);
+        console.log(e);
+      },
     });
-
-    
   }
 
   clearCreateFormValidators(): void {
@@ -172,7 +172,6 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
     this.forgotPasswordForm.updateValueAndValidity();
   }
 
-
   pauseTimer(): void {
     clearInterval(this.interval);
     setTimeout(() => {
@@ -187,42 +186,42 @@ export class ForgotpasswordComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/create-account']);
   }
 
-  reSetPassword() {
+  reSetPassword():void {
     this.submitted = true;
     this.setCreateFormValidators();
     if (this.forgotPasswordForm.valid) {
-      
       let passwordRestObj: PasswordResetModel = {
-        mobileNumber: +(this.forgotPasswordForm.get('mobileNumber')?.value['e164Number'].substring(1)),
+        mobileNumber: +this.forgotPasswordForm
+          .get('mobileNumber')
+          ?.value['e164Number'].substring(1),
         password: this.forgotPasswordForm.get('password')?.value,
-        otp: +(this.forgotPasswordForm.get('otp')?.value),
+        otp: +this.forgotPasswordForm.get('otp')?.value,
       };
       this.authService.resetPassword$(passwordRestObj).subscribe({
         next: (accountDetails: any) => {
           this.router.navigate(['/login']);
+          let alert: AlertModelObj = new AlertModelObj(
+            'success',
+            'Password Changed Successfully!'
+          );
+          this.commonService.alertMessageSub$.next(alert);
         },
         error: (e) => {
           this.alerts = [];
-          let error: any = {
-            type: 'danger',
-            msg: `${e.error}`,
-            timeout: 5000,
-          };
-          this.alerts.push(error);
           console.error(e);
           this.ngOtpInput.setValue('');
           this.clearCreateFormValidators();
+          let alert: AlertModelObj = new AlertModelObj('danger', e.error);
+          this.commonService.alertMessageSub$.next(alert);
         },
       });
-      //this.router.navigate(['/login']);
     }
   }
 
-  showPassword() {
-    this.hidePassword  = !this.hidePassword;
+  showPassword() :void{
+    this.hidePassword = !this.hidePassword;
   }
-  confirmPasswordShow$() {
-this.confirmPasswordShow = !this.confirmPasswordShow
+  confirmPasswordShow$():void {
+    this.confirmPasswordShow = !this.confirmPasswordShow;
   }
-  
 }

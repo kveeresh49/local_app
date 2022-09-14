@@ -113,7 +113,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
       },
       error: (e) => {
         let alert: AlertModelObj = new AlertModelObj('danger', `${e.error}`);
-        this.commonService.alertMessageSub.next(alert);
+        this.commonService.alertMessageSub$.next(alert);
       },
     });
   }
@@ -145,7 +145,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
         error: (e) => {
           this.submitted = false;
           let alert: AlertModelObj = new AlertModelObj('danger', `${e.error}`);
-          this.commonService.alertMessageSub.next(alert);
+          this.commonService.alertMessageSub$.next(alert);
           this.ngOtpInput.setValue('');
         },
       });
@@ -162,7 +162,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
       },
       error: (e) => {
         let alert: AlertModelObj = new AlertModelObj('danger', `${e.error}`);
-        this.commonService.alertMessageSub.next(alert);
+        this.commonService.alertMessageSub$.next(alert);
       },
     });
   }

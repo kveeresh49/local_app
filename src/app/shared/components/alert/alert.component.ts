@@ -5,6 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { AlertModelObj } from '../../models/alert.model';
 
 @Component({
   selector: 'app-alert',
@@ -12,7 +13,7 @@ import {
   styleUrls: ['./alert.component.scss'],
 })
 export class AlertComponent implements OnInit, OnChanges {
-  @Input() alerts: any;
+  @Input() alerts: Array<AlertModelObj>;
   dismissible = true;
 
   constructor() {}

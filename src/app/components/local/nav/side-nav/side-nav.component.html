@@ -7,10 +7,12 @@
       <div class="profile">
         <span class="profile-logo">
           <span *ngIf="!isLoginUserFlag else loggedInUser">
-            G
+           G
           </span>
           <ng-template #loggedInUser>
-            V
+            <img [src]="userImage" style="width: 100%;
+            border-radius: 50%;
+            margin-top: -1.3rem;">
           </ng-template>
         </span>
         <div>

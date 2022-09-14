@@ -55,8 +55,8 @@ export class LoginComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(20),
+          Validators.minLength(8),
+          Validators.maxLength(32),
         ],
       ],
     });
@@ -91,8 +91,10 @@ export class LoginComponent implements OnInit {
           this.spinner.hide();
         },
         error: (e) => {
-          let alert: AlertModelObj = new AlertModelObj('danger', `${e.error}`);
-          this.commonService.alertMessageSub.next(alert);
+          let errorMessage = e.error;
+          console.log(errorMessage,'errorMessage')
+          let alert: AlertModelObj = new AlertModelObj('danger', errorMessage);
+          this.commonService.alertMessageSub$.next(alert);
           this.spinner.hide();
           this.clearCreateFormValidators();
           console.error(e);
@@ -113,13 +115,13 @@ export class LoginComponent implements OnInit {
           'success',
           `Login Successful!`
         );
-        this.commonService.alertMessageSub.next(alert);
+        this.commonService.alertMessageSub$.next(alert);
       },
 
       error: (e) => {
         this.router.navigate(['login']);
-        let alert: AlertModelObj = new AlertModelObj('danger', `${e.error}`);
-        this.commonService.alertMessageSub.next(alert);
+        let alert: AlertModelObj = new AlertModelObj('danger', e.error);
+        this.commonService.alertMessageSub$.next(alert);
       },
     });
   }

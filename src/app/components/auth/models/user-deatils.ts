@@ -19,9 +19,15 @@ export interface PasswordResetModel {
   password: string;
 }
 
-export interface EmailPhoneModel {
-  email: 'string';
-  mobileNumber: 'string';
+export class EmailPhoneModel {
+  email: string;
+  mobileNumber: string;
+  constructor( email: string,
+    mobileNumber: string) {
+      this.email = email;
+      this.mobileNumber = mobileNumber;
+
+  }
 }
 
 export interface MobileNumber {

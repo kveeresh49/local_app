@@ -36,6 +36,7 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    data: { isAuthComonent: false },
   },
 ];
 

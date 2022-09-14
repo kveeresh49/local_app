@@ -8,6 +8,8 @@ import {
 } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { CommonService } from 'src/app/shared/common-service';
+import { AlertModelObj } from 'src/app/shared/models/alert.model';
 import Validation from 'src/app/shared/utils/validation';
 import { AuthService } from '../../auth.service';
 import {
@@ -68,7 +70,8 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private profileService: ProfileService,
     private authService: AuthService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
@@ -201,12 +204,18 @@ export class ProfileComponent implements OnInit {
 
       switch (field) {
         case ProfileControls.name:
-          error['msg'] = 'Name is Invalid';
-          this.alerts = [{ ...error }];
+          // error['msg'] = 'Name is Invalid';
+          // this.alerts = [{ ...error }];
+          let alert: AlertModelObj = new AlertModelObj('success',
+          `${field?.toUpperCase()} is Invalid !`);
+      this.commonService.alertMessageSub$.next(alert);
           break;
         case ProfileControls.email: {
-          error['msg'] = 'Email is Invalid';
-          this.alerts = [{ ...error }];
+          // error['msg'] = 'Email is Invalid';
+          // this.alerts = [{ ...error }];
+          let alert: AlertModelObj = new AlertModelObj('success',
+          `${field} Invalid !`);
+      this.commonService.alertMessageSub$.next(alert);
           break;
         }
       }
@@ -226,9 +235,15 @@ export class ProfileComponent implements OnInit {
             this.userProfileVerification();
             this.spinner.hide();
             this.updateFieldsOnUpdate(field);
+            let alert: AlertModelObj = new AlertModelObj('success',
+                `${field.toUpperCase()} Updated Successfully !`);
+            this.commonService.alertMessageSub$.next(alert);
           },
           error: (error) => {
             this.spinner.hide();
+            let alert: AlertModelObj = new AlertModelObj('danger',
+            error.error);
+            this.commonService.alertMessageSub$.next(alert);
           },
         });
     }
@@ -268,13 +283,16 @@ export class ProfileComponent implements OnInit {
 
         this.authService.verifyMobileExist$(mobileNumber).subscribe({
           next: () => {
-            const error = {
-              type: 'danger',
-              msg: ``,
-              timeout: 5000,
-            };
-            error['msg'] = 'Please try a different mobile number';
-            this.alerts = [{ ...error }];
+            // const error = {
+            //   type: 'danger',
+            //   msg: ``,
+            //   timeout: 5000,
+            // };
+             // this.alerts = [{ ...error }];
+           let errorMessage= 'Please try a different mobile number';
+            let alert: AlertModelObj = new AlertModelObj('danger',
+            errorMessage);
+        this.commonService.alertMessageSub$.next(alert);
           },
           error: (err: HttpErrorResponse) => {
             if (err.status === 404) {
@@ -286,6 +304,10 @@ export class ProfileComponent implements OnInit {
                   this.hideMobileNumberActions = true;
                 },
                 error: () => {
+                  let errorMessage= 'Otp Miss Match, Please try Again';
+                  let alert: AlertModelObj = new AlertModelObj('danger',
+                  errorMessage);
+                  this.commonService.alertMessageSub$.next(alert);
                   console.log('failed - sendOtp');
                 },
               });
@@ -357,18 +379,28 @@ export class ProfileComponent implements OnInit {
                 this.hideOtpSection = true;
                 this.hideMobileNumberActions = false;
                 this.updateFieldsOnUpdate(ProfileControls.mobileNumber);
+                let alert: AlertModelObj = new AlertModelObj('success',
+                `Mobile Number is Updated Successfully !`);
+                this.commonService.alertMessageSub$.next(alert);
               },
-              error: () => {},
+              error: (e) => {
+                let alert: AlertModelObj = new AlertModelObj('danger',
+                e.error);
+                this.commonService.alertMessageSub$.next(alert);
+              },
             });
         },
         error: () => {
-          const error = {
-            type: 'danger',
-            msg: ``,
-            timeout: 5000,
-          };
-          error['msg'] = 'Please enter a valid OTP';
-          this.alerts = [{ ...error }];
+          // const error = {
+          //   type: 'danger',
+          //   msg: ``,
+          //   timeout: 5000,
+          // };
+          // this.alerts = [{ ...error }];
+          let errorMessage = 'Please enter a valid OTP';
+          let alert: AlertModelObj = new AlertModelObj('danger',
+          errorMessage);
+          this.commonService.alertMessageSub$.next(alert);
           this.profileForm.get(ProfileControls.otp)?.patchValue('');
         },
       });
@@ -382,15 +414,20 @@ export class ProfileComponent implements OnInit {
     }
 
     if (file.size / 1024 > 500) {
-      const error = {
-        type: 'danger',
-        msg: ``,
-        timeout: 5000,
-      };
-      error['msg'] = 'Image size should be less than 2Mb';
-      this.alerts = [{ ...error }];
+      // const error = {
+      //   type: 'danger',
+      //   msg: ``,
+      //   timeout: 5000,
+      // };
+      // error['msg'] = 'Image size should be less than 2Mb';
+      // this.alerts = [{ ...error }];
+
+      let errorMessage = 'Image size should be less than 2Mb';
+          let alert: AlertModelObj = new AlertModelObj('danger',
+          errorMessage);
       return;
     }
+
     formData.append('profileImageFile', data.target.files[0]);
     formData.append('loginID', this.loginId);
     let id: string = JSON.parse(this.cookieService.get('userProfile'))['id'];

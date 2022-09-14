@@ -14,6 +14,8 @@ import { AlertComponent } from 'ngx-bootstrap/alert/alert.component';
 import Validation from 'src/app/shared/utils/validation';
 import { CookieService } from 'ngx-cookie-service';
 import { EmailLoginModel, EmailPhoneModel } from '../../models/user-deatils';
+import { CommonService } from 'src/app/shared/common-service';
+import { AlertModelObj } from 'src/app/shared/models/alert.model';
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -27,10 +29,7 @@ export class CreateAccountComponent implements OnInit {
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   PhoneNumberFormat = PhoneNumberFormat;
-  preferredCountries: CountryISO[] = [
-    CountryISO.UnitedStates,
-    CountryISO.UnitedKingdom,
-  ];
+  preferredCountries: CountryISO[] = [CountryISO.India];
   timeLeft: number;
   interval: any;
   otpHeader: string;
@@ -53,7 +52,8 @@ export class CreateAccountComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
@@ -108,51 +108,43 @@ export class CreateAccountComponent implements OnInit {
   }
 
   changePreferredCountries(): void {
-    this.preferredCountries = [CountryISO.India, CountryISO.Canada];
+    this.preferredCountries = [CountryISO.India];
+  }
+
+  getMobileNumber(): string {
+    return this.createAccountForm
+      .get('phone')
+      ?.value['e164Number'].substring(1);
   }
 
   sendOTP(): void {
-    let emailPhoneModel: EmailPhoneModel = {
-      email: this.createAccountForm.get('email')?.value,
-      mobileNumber: this.createAccountForm
-        .get('phone')
-        ?.value['e164Number'].substring(1),
-    };
-
+    let emailPhoneModel: EmailPhoneModel = new EmailPhoneModel(
+      this.createAccountForm.get('email')?.value,
+      this.getMobileNumber()
+    );
     this.authService.verifyEmailOrMobileExist$(emailPhoneModel).subscribe({
       next: (accountDetails) => {
-        this.authService
-          .sendOtp(
-            this.createAccountForm
-              .get('phone')
-              ?.value['e164Number'].substring(1)
-          )
-          .subscribe((data) => {
-            this.ngOtpInput.otpForm.enable();
-            this.newOtpFlag = false;
-            this.otpHeader = 'Resend OTP';
-            this.timeLeft = 30;
-            this.isOtpDisabled = true;
-            this.interval = setInterval(() => {
-              if (this.timeLeft > 0) {
-                this.timeLeft--;
-              } else {
-                this.pauseTimer();
-              }
-            }, 1000);
-          });
+        this.authService.sendOtp(this.getMobileNumber()).subscribe((data) => {
+          this.ngOtpInput.otpForm.enable();
+          this.newOtpFlag = false;
+          this.otpHeader = 'Resend OTP';
+          this.timeLeft = 30;
+          this.isOtpDisabled = true;
+          this.interval = setInterval(() => {
+            if (this.timeLeft > 0) {
+              this.timeLeft--;
+            } else {
+              this.pauseTimer();
+            }
+          }, 1000);
+        });
       },
       error: (e) => {
-        this.alerts = [];
-        let error = {
-          type: 'danger',
-          msg: `${e.error}`,
-          timeout: 5000,
-        };
         this.isLoggedIn = true;
         this.verifyOtpFormSubmit = false;
         this.clearCreateFormValidators();
-        this.alerts = [error];
+        let alert: AlertModelObj = new AlertModelObj('danger', e.error);
+        this.commonService.alertMessageSub$.next(alert);
         console.error(e);
       },
     });
@@ -245,17 +237,11 @@ export class CreateAccountComponent implements OnInit {
           this.userProfileVerification();
         },
         error: (e) => {
-          this.alerts = [];
-          let error = {
-            type: 'danger',
-            msg: `${e.error}`,
-            timeout: 5000,
-          };
+          let alert: AlertModelObj = new AlertModelObj('danger', e.error);
+         this.commonService.alertMessageSub$.next(alert);
           this.isLoggedIn = false;
           this.verifyOtpFormSubmit = false;
           this.ngOtpInput.setValue('');
-         // this.clearCreateFormValidators();
-          this.alerts = [error];
           console.error(e);
         },
       });
@@ -269,29 +255,6 @@ export class CreateAccountComponent implements OnInit {
   showConfirmPassword() {
     this.hideconfirmPassword = !this.hideconfirmPassword;
   }
-  // emailLoginVerification() {
-  //   let emailLogin: EmailLoginModel = {
-  //     email: this.createAccountForm.get('email')?.value,
-  //     password: this.createAccountForm.get('password')?.value,
-  //   };
-  //   this.authService.emailLogin$(emailLogin).subscribe({
-  //     next: (userToken: any) => {
-  //       this.cookieService.set('userToken', JSON.stringify(userToken['token']));
-  //       this.id = userToken['id'];
-  //       this.authService.loginUserDetailSub$.next(userToken);
-  //       this.userProfileVerification();
-  //     },
-  //     error: (e) => {
-  //       this.alerts = [];
-  //       let error = {
-  //         type: 'danger',
-  //         msg: `${e.error}`,
-  //         timeout: 5000,
-  //       };
-  //       this.router.navigate(['login']);
-  //     },
-  //   });
-  // }
 
   navigateLogin(): void {
     this.router.navigate(['/login']);
@@ -302,16 +265,17 @@ export class CreateAccountComponent implements OnInit {
     this.authService.userProfile$(id).subscribe({
       next: (userProfile: any) => {
         this.cookieService.set('userProfile', JSON.stringify(userProfile));
+        let alert: AlertModelObj = new AlertModelObj('success',
+        `Login Successful!`);
+        this.commonService.alertMessageSub$.next(alert);
+        
         this.authService.isUserProfileSub$.next(userProfile);
         this.router.navigate(['dashboard']);
       },
       error: (e) => {
         this.alerts = [];
-        let error = {
-          type: 'danger',
-          msg: `${e.error}`,
-          timeout: 5000,
-        };
+        let alert: AlertModelObj = new AlertModelObj('danger', e.error);
+        this.commonService.alertMessageSub$.next(alert);
         this.router.navigate(['login']);
       },
     });

@@ -4,7 +4,7 @@ export class AlertModelObj {
     timeout?: number
   constructor(type: string, msg: string, timeout?: number) {
     this.type = type;
-    this.msg = this.msg;
+    this.msg = msg;
     this.timeout = 4000;
   }
 }
