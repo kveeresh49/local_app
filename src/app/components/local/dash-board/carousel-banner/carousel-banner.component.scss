@@ -83,8 +83,8 @@
 .carousel-indicators [data-bs-target] {
   cursor: pointer;
   margin: 0 2px;
-  width: 10px;
-  height: 5px;
+  width: 8px;
+  height: 0px;
   border-top: 0;
   background: #d9d9d9;
   border-radius: 50%;
@@ -95,10 +95,13 @@
 .carousel-indicators .active,
 .carousel-indicators [data-bs-target]:hover {
   background: $nav-text-color;
+  width: 15px !important;
+  border-radius: 10px !important;
 }
 
 :host .carousel-indicators {
   z-index: 1;
+  top: 240px;
 }
 
 .carousel-padding {
