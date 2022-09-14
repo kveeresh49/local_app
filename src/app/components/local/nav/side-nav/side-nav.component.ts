@@ -39,8 +39,9 @@ export class SideNavComponent implements OnInit {
       this.cookieService.get('userProfile') !== null
     ) {
       this.userProfile = JSON.parse(this.cookieService.get('userProfile'));
+      this.userImage =  this.userProfile['userImage']
     }
-   this.userImage =  this.userProfile['userImage']
+
   }
 
   closeSideNav() :void{
