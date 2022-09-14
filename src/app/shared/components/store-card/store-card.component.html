@@ -1,14 +1,7 @@
-<!-- <div class="offer-tag">
-  <div class="offer-text">
-    <div class="offer-percentage">
-      <div>{{ nearByStoreData.percentageText }}%</div>
-      <div>OFF</div>
-    </div>
-  </div>
-</div> -->
+
 <app-offer-tag></app-offer-tag>
 <div
-  class="store-img"
+  class="store-img cursor-pointer" (click)="onCardClick()"
   [style.background-image]="'url(' + nearByStoreData.shopImage + ')'"
 ></div>
 <div class="p-1">
@@ -22,12 +15,24 @@
       </i>
     </div>
   </div>
-  <div class="d-flex row">
-    <div class="d-flex white_color"></div>
+
+  <div class="d-flex row m-0">
+    <div class="col fw-semibold store-title mt-1 ">
+      <span class="shop-rating-card-store cursor-pointer" (click)="onCardClick()">Goto Store</span>
+    </div>
+    <div style="
+      width: 24%;
+      margin-top: 5px;
+      flex: 0.25 0%;">
+        {{ nearByStoreData.kilometers }}km
+    </div>
+  </div>
+  <!-- <div class="d-flex row">
+    <div class="d-flex white_color">Goto Store</div>
     <div class="d-flex popular-store-category mt-1 justify-content-end">
       {{ nearByStoreData.kilometers }}km
     </div>
-  </div>
+  </div> -->
   <!-- <div>
     <div class="flex justify-content-evenly shop-rating-card">
      
@@ -52,7 +57,7 @@
     <span class="orange-clr">Use NEWSTORE</span>
     <span class="heart-container"
       ><i
-        class="fa-regular fa-heart"
+        class="fa-regular fa-heart cursor-pointer"
         *ngIf="!favoriteIconColor"
         (click)="favoriteIconClick()"
       ></i>
