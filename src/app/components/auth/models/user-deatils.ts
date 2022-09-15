@@ -34,6 +34,10 @@ export interface MobileNumber {
   mobileNumber: string;
 }
 
+export interface EmailModel {
+  email: string;
+}
+
 
 export interface AlertModel {
   type:string,

@@ -261,7 +261,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   userProfileVerification() {
-    let id: string = JSON.parse(this.cookieService.get('userToken'))['id'];
+    let id: string = JSON.parse(this.cookieService.get('userToken'))['token']['id'];
     this.authService.getUserProfile$(id).subscribe({
       next: (userProfile: any) => {
         this.cookieService.set('userProfile', JSON.stringify(userProfile));

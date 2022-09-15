@@ -120,14 +120,40 @@
         <div class="row mt-2">
           <div class="offset-sm-1 col-sm-8">
             <label for="mNumber">Mobile Number</label>
-            <input
+            <div>
+              <ngx-intl-tel-input
+              [cssClass]="'custom form-control'"
+              [inputId]="'my-input-id'"
+              [preferredCountries]="[]"
+              [enableAutoCountrySelect]="false"
+              [enablePlaceholder]="true"
+              [searchCountryFlag]="true"
+              [searchCountryField]="[
+                SearchCountryField.Iso2,
+                SearchCountryField.Name
+              ]"
+              [selectFirstCountry]="false"
+              [selectedCountryISO]="CountryISO.India"
+              [maxLength]="10"
+              [phoneValidation]="true"
+              [customPlaceholder]="'950xxxxxxx0'"
+              #phoneField
+              formControlName="mobileNumber"
+              name="mobileNumber"
+              [ngClass]="{ 'is-invalid': f?.mobileNumber?.errors }"
+            ></ngx-intl-tel-input>
+            </div>
+           
+         
+
+            <!-- <input
               id="mNumber"
               type="text"
               class="form-control"
               formControlName="mobileNumber"
               placeholder="Enter Number"
               [ngClass]="{ 'is-invalid': f?.mobileNumber?.errors }"
-            />
+            /> -->
             <div *ngIf="f?.mobileNumber?.errors" class="invalid-feedback">
               <div
                 *ngIf="
@@ -139,7 +165,7 @@
               </div>
             </div>
           </div>
-          <div class="col-sm-3 px-0 align-self-end">
+          <div class="col-sm-3 px-0 align-self-end" style="z-index:2">
             <ng-container
               *ngIf="
                 profileForm.get('mobileNumber')?.disabled &&
@@ -169,13 +195,30 @@
         <div *ngIf="!hideOtpSection" class="row mt-2">
           <div class="offset-sm-1 col-sm-8">
             <label for="otp">Enter OTP</label>
-            <input
+            <div>
+              <ng-otp-input
+                    [config]="{
+                      length: 6,
+                      inputClass: 'otpClass',
+                      allowNumbersOnly: true,
+                      disableAutoFocus: true
+                    }"
+                    [formCtrl]="otp"
+                    name="otp"
+                    [ngClass]="{
+                      'is-invalid': f?.otp?.errors
+                    }"
+                    (onInputChange)="onOtpChange($event)"
+                  >
+                  </ng-otp-input>
+            </div>
+            <!-- <input
               id="otp"
               type="text"
               class="form-control"
               formControlName="otp"
               placeholder="Enter OTP"
-            />
+            /> -->
           </div>
           <div class="col-sm-3 px-0 align-self-end">
             <span

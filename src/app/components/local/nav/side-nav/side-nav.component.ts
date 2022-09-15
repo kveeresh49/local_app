@@ -8,7 +8,10 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AuthService } from 'src/app/components/auth/auth.service';
+import { CommonService } from 'src/app/shared/common-service';
+import { AlertModelObj } from 'src/app/shared/models/alert.model';
 
 @Component({
   selector: 'app-side-nav',
@@ -25,7 +28,9 @@ export class SideNavComponent implements OnInit {
   constructor(
     private cookieService: CookieService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private spinner: NgxSpinnerService,
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
@@ -34,14 +39,31 @@ export class SideNavComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.sidebarShow = changes['sidebarShow'].currentValue;
-    if (
-      this.cookieService.get('userProfile') !== '' &&
-      this.cookieService.get('userProfile') !== null
-    ) {
-      this.userProfile = JSON.parse(this.cookieService.get('userProfile'));
-      this.userImage =  this.userProfile['userImage']
-    }
+    this.userProfileVerification();
+  }
 
+  private userProfileVerification(): void {
+    let id: string = JSON.parse(this.cookieService.get('userToken')).token.id;
+    if(id) {
+      this.spinner.show();
+      this.authService.getUserProfile$(id).subscribe({
+        next: (userProfile: any) => {
+          this.cookieService.set('userProfile', JSON.stringify(userProfile));
+          setTimeout(() => {
+            this.userProfile = userProfile;
+          });
+          //this.setProfileDetails();
+          this.spinner.hide();
+        },
+        error: (error) => {
+          this.spinner.hide();
+          let errorMessage = 'Failed to load profile details';
+          let alert: AlertModelObj = new AlertModelObj('danger', errorMessage);
+          this.commonService.alertMessageSub$.next(alert);
+        },
+      });
+    }
+   
   }
 
   closeSideNav() :void{
@@ -58,6 +80,7 @@ export class SideNavComponent implements OnInit {
       this.cookieService.get('userToken') !== ''
     ) {
       this.isLoginUserFlag = true;
+    this.userProfileVerification();
     } else {
       this.isLoginUserFlag = false;
     }
@@ -75,5 +98,9 @@ export class SideNavComponent implements OnInit {
     this.closeSidebar.emit(this.sidebarShow);
     this.clickEvent.emit(true);
     this.router.navigate(['/dashboard']);
+    let alert: AlertModelObj = new AlertModelObj(
+      'success',
+      `Logout Successful!`
+    );
   }
 }

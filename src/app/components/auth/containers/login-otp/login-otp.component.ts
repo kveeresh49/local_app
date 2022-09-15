@@ -96,7 +96,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
     );
     this.authService.verifyMobileExist$(mobileNumber).subscribe({
       next: (mobileNumber: any) => {
-        this.authService.sendOtp(mobileNumber).subscribe((data) => {
+        this.authService.sendOtp(this.getMobileNumber()).subscribe((data) => {
           this.ngOtpInput.otpForm.enable();
           this.newOtpFlag = false;
           this.otpHeader = 'Resend OTP';
@@ -153,7 +153,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
   }
 
   userProfileVerification() {
-    let id: string = JSON.parse(this.cookieService.get('userToken'))['id'];
+    let id: string = JSON.parse(this.cookieService.get('userToken'))['token']['id'];
     this.authService.getUserProfile$(id).subscribe({
       next: (userProfile: any) => {
         this.cookieService.set('userProfile', JSON.stringify(userProfile));

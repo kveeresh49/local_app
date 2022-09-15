@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AccountDetails } from './models/account-details';
 import {
-  EmailLoginModel,
+  EmailModel,
   EmailPhoneModel,
   MobileNumber,
   OtpLoginModel,
@@ -84,7 +84,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}User/SendOTP`, number);
   }
 
-  emailLogin$(emailLogin: EmailLoginModel) {
+  emailLogin$(emailLogin: EmailModel) {
     return this.http.post(`${this.apiUrl}User/EmailLogin`, emailLogin);
   }
 
@@ -99,6 +99,13 @@ export class AuthService {
   getGooglePlaces(API_KEY_Google: string) {
     return this.http.get(
       `https://maps.googleapis.com/maps/api/js?key=${API_KEY_Google}&libraries=places&callback=initMap`
+    );
+  }
+
+  verifyEmailExist$(emailPhoneModel:any) {
+    return this.http.post(
+      `${this.apiUrl}User/VerifyEmailExist`,
+      emailPhoneModel
     );
   }
 }
