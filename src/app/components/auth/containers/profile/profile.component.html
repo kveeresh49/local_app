@@ -37,6 +37,7 @@
             id="file"
             type="file"
             (change)="uploadImage($event)"
+            name="myImage" accept="image/png, image/gif, image/jpeg"
           />
           <img
             [src]="profile?.userImage"
