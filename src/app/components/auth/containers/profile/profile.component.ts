@@ -8,7 +8,11 @@ import {
 } from '@angular/forms';
 import { NgOtpInputComponent } from 'ng-otp-input';
 import { CookieService } from 'ngx-cookie-service';
-import { CountryISO, PhoneNumberFormat, SearchCountryField } from 'ngx-intl-tel-input';
+import {
+  CountryISO,
+  PhoneNumberFormat,
+  SearchCountryField,
+} from 'ngx-intl-tel-input';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CommonService } from 'src/app/shared/common-service';
 import { AlertModelObj } from 'src/app/shared/models/alert.model';
@@ -29,27 +33,30 @@ import { ProfileService } from '../../services/profile.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  @ViewChild(NgOtpInputComponent, { static: false })
   profile: any;
-  profileForm: FormGroup;
+  interval: any;
+  timeLeft: number;
 
+  profileForm: FormGroup;
+  ngOtpInput: NgOtpInputComponent;
+
+  CountryISO = CountryISO;
   profileControls = ProfileControls;
   profileActiveTab = ProfileActiveTab;
-  activeTab = ProfileActiveTab.profileSettings;
+  PhoneNumberFormat = PhoneNumberFormat;
   SearchCountryField = SearchCountryField;
+  activeTab = ProfileActiveTab.profileSettings;
+
   hidePassword = true;
   hideOtpSection = true;
   isProfileSection = true;
   isPasswordChange = false;
   hideConfirmPassword = true;
   hideMobileNumberActions = false;
-  CountryISO = CountryISO;
-  PhoneNumberFormat = PhoneNumberFormat;
+
   preferredCountries: CountryISO[] = [CountryISO.India];
-  @ViewChild(NgOtpInputComponent, { static: false })
-  ngOtpInput: NgOtpInputComponent;
-  otp:any = "otp";
-  timeLeft: number;
-  interval: any;
+  otp: any = 'otp';
 
   savedAddresses: any[] = [
     {
@@ -70,6 +77,7 @@ export class ProfileComponent implements OnInit {
   ];
   alerts: any = [];
 
+  //#region Private Members
   private profilePathMapping: ProfilePathMapping = {
     name: 'firstname',
     email: 'email',
@@ -77,7 +85,9 @@ export class ProfileComponent implements OnInit {
     confirmPassword: 'password',
   };
   private loginId: string;
+  //#endregion
 
+  //#region Constructors
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -86,6 +96,7 @@ export class ProfileComponent implements OnInit {
     private cookieService: CookieService,
     private profileService: ProfileService
   ) {}
+  //#endregion
 
   //#region Life-cycle Hooks
   ngOnInit(): void {
@@ -117,10 +128,8 @@ export class ProfileComponent implements OnInit {
     formControlKeys
       .filter((key) => key !== field)
       .forEach((key) => {
-        this.onCancel(key);
         this.profileForm?.get(key)?.disable();
       });
-    this.onCancel(field);
     this.profileForm?.get(field)?.enable();
 
     if (field === ProfileControls.password) {
@@ -135,7 +144,7 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  onOtpChange(otp: any) {
+  public onOtpChange(otp: any): void {
     this.otp = otp;
     this.profileForm?.get('otp')?.setValue(otp);
   }
@@ -162,70 +171,20 @@ export class ProfileComponent implements OnInit {
       }
     } else {
       let newValue = this.profileForm.get(field)?.value;
-      //this.spinner.show();
-
-      if(ProfileControls.email ===field ) {
-        this.emailVerification(field,newValue);
-      }else {
-      this.updateUserProfileFields(field,newValue)
+      if (ProfileControls.email === field) {
+        this.emailVerification(field, newValue);
+      } else {
+        this.updateUserProfileFields(field, newValue);
       }
-     
     }
-  }
-
-  updateUserProfileFields(field:string,newValue:string) {
-    this.spinner.show();
-    this.profileService
-    .updateProfile$(this.loginId, [
-      new ProfileUpdateRequest(
-        this.profilePathMapping[field as keyof ProfilePathMapping],
-        'replace',
-        newValue
-      ),
-    ])
-    .subscribe({
-      next: (resp) => {
-        this.userProfileVerification();
-        this.updateFieldsOnUpdate(field);
-        let alert: AlertModelObj = new AlertModelObj(
-          'success',
-          `${field.toUpperCase()} Updated Successfully !`
-        );
-        this.commonService.alertMessageSub$.next(alert);
-      },
-      error: (error) => {
-        this.spinner.hide();
-        let alert: AlertModelObj = new AlertModelObj('danger', error.error);
-        this.commonService.alertMessageSub$.next(alert);
-      },
-    });
-  }
-
-  emailVerification(field:string,newValue:string) {
-    this.spinner.show();
-   let email: EmailModel = this.profileForm.get(field)?.value;
-    this.authService.verifyEmailExist$({"email":email}).subscribe({
-      next:(resp) => {
-        this.updateUserProfileFields(field,newValue);
-        this.spinner.hide();
-      },
-      error:(error) => {
-        let alert: AlertModelObj = new AlertModelObj(
-            'danger',
-            `${error.error};`
-          );
-          this.commonService.alertMessageSub$.next(alert);
-          this.spinner.hide();
-      }
-      
-    })
   }
 
   public onVerify(field: string): void {
     switch (field) {
       case ProfileControls.mobileNumber:
-        let number = this.profileForm.get(ProfileControls.mobileNumber)?.value['e164Number'].substring(1);
-       // number = `91${number}`;
+        let number = this.profileForm
+          .get(ProfileControls.mobileNumber)
+          ?.value['e164Number'].substring(1);
 
         let mobileNumber: MobileNumber = {
           mobileNumber: number,
@@ -275,16 +234,6 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  pauseTimer(): void {
-    clearInterval(this.interval);
-    setTimeout(() => {
-      if (this.timeLeft === 0) {
-        // this.isOtpDisabled = false;
-        // this.newOtpFlag = true;
-      }
-    }, 1);
-  }
-
   public onCancel(field: string): void {
     switch (field) {
       case ProfileControls.name:
@@ -317,12 +266,15 @@ export class ProfileComponent implements OnInit {
 
   public onConfirmOtp(): void {
     let otp = this.profileForm.get(ProfileControls.otp)?.value;
-    let mobileNumber = this.profileForm.get(ProfileControls.mobileNumber)?.value['e164Number'].substring(1);
-   // let mobileWithCountryCode = +`91${mobileNumber}`;
+    let mobileNumber = this.profileForm
+      .get(ProfileControls.mobileNumber)
+      ?.value['e164Number'].substring(1);
 
     this.profileService
       .verifyOtp$({
-        mobileNumber: this.profileForm.get(ProfileControls.mobileNumber)?.value['e164Number'].substring(1),
+        mobileNumber: this.profileForm
+          .get(ProfileControls.mobileNumber)
+          ?.value['e164Number'].substring(1),
         otp,
       })
       .subscribe({
@@ -508,6 +460,63 @@ export class ProfileComponent implements OnInit {
         this.profileForm.get(field)?.disable();
         break;
     }
+  }
+
+  private pauseTimer(): void {
+    clearInterval(this.interval);
+    setTimeout(() => {
+      if (this.timeLeft === 0) {
+        // this.isOtpDisabled = false;
+        // this.newOtpFlag = true;
+      }
+    }, 1);
+  }
+
+  private updateUserProfileFields(field: string, newValue: string): void {
+    this.spinner.show();
+    this.profileService
+      .updateProfile$(this.loginId, [
+        new ProfileUpdateRequest(
+          this.profilePathMapping[field as keyof ProfilePathMapping],
+          'replace',
+          newValue
+        ),
+      ])
+      .subscribe({
+        next: (resp) => {
+          this.userProfileVerification();
+          this.updateFieldsOnUpdate(field);
+          let alert: AlertModelObj = new AlertModelObj(
+            'success',
+            `${field.toUpperCase()} Updated Successfully !`
+          );
+          this.commonService.alertMessageSub$.next(alert);
+        },
+        error: (error) => {
+          this.spinner.hide();
+          let alert: AlertModelObj = new AlertModelObj('danger', error.error);
+          this.commonService.alertMessageSub$.next(alert);
+        },
+      });
+  }
+
+  private emailVerification(field: string, newValue: string): void {
+    this.spinner.show();
+    let email: EmailModel = this.profileForm.get(field)?.value;
+    this.authService.verifyEmailExist$({ email: email }).subscribe({
+      next: (resp) => {
+        this.updateUserProfileFields(field, newValue);
+        this.spinner.hide();
+      },
+      error: (error) => {
+        let alert: AlertModelObj = new AlertModelObj(
+          'danger',
+          `${error.error};`
+        );
+        this.commonService.alertMessageSub$.next(alert);
+        this.spinner.hide();
+      },
+    });
   }
   //#endregion
 }
