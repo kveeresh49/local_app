@@ -43,7 +43,7 @@ export class SideNavComponent implements OnInit {
   }
 
   private userProfileVerification(): void {
-    let id: string = JSON.parse(this.cookieService.get('userToken')).token.id;
+    let id: string =  this.cookieService.get('userToken') ?JSON.parse(this.cookieService.get('userToken'))?.token?.id : '';
     if(id) {
       this.spinner.show();
       this.authService.getUserProfile$(id).subscribe({

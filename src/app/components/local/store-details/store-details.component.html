@@ -58,8 +58,8 @@
         </div>
         <span class="divider"></span>
       </div>
-      <div class="gap-5 products-container">
-        <div *ngFor="let product of products" class="products">
+      <div class="products-container">
+        <div *ngFor="let product of products" class="products ms-4 mb-4">
           <div class="flex justify-content-between">
             <div>
               <div *ngIf="product?.discount">
@@ -101,13 +101,13 @@
         <div class="card ms-3 offer-border-color">
           <a class="prev" (click)="slideChange(-1)"><img src="../../../assets/images/left-vector.png" alt="Previous"
               width="9px" /></a>
-          <div class="card-body p-1 fs-11" style="height: 60px">
+          <div class="card-body p-1 fs-11">
             <div *ngFor="let offer of offers" class="myOffers">
-              <div class="d-flex align-items-center gap-3">
+              <div class="d-flex align-items-center">
                 <img src="../../../assets/images/offer-green.png" alt="" width="30px" height="30px"
                   style="margin-left: 10px" />
-                <div>
-                  <div>{{ offer.offerText }}</div>
+                <div style="text-align: initial" class="ms-3">
+                  <div style="text-align: initial;">{{ offer.offerText }}</div>
                   <div class="text-start">
                     Use code <b>{{ offer.coupon }}</b>
                   </div>
@@ -138,7 +138,7 @@
 <ng-template #cartTemplate let-product>
   <div class="card text-center ms-3">
     <h6 class="card-header cart-header">Items from Bhabji Sabji</h6>
-    <div class="card-body">
+    <div class="card-body checkout-height">
       <div *ngFor="let item of cart">
         <div class="flex mt-3">
           <div class="w-50">
