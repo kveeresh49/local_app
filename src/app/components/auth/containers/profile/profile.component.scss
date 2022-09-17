@@ -87,9 +87,9 @@
   border-bottom: 4px solid #ff7a00;
 }
 
-// .form-control:disabled {
-//   background-color: inherit;
-// }
+.form-control:disabled {
+  background-color: inherit;
+}
 
 @mixin object-center {
   display: flex;
@@ -148,16 +148,12 @@ $fontColor: rgb(250, 250, 250);
   }
 }
 
-
 ::ng-deep .otp-input {
   width: 7vh !important;
   height: 5vh !important;
   font-size: 12px !important;
   margin-right: 5px !important;
 }
-
-
-
 
 .password-container {
   position: relative;
