@@ -87,8 +87,17 @@
   border-bottom: 4px solid #ff7a00;
 }
 
-.form-control:disabled {
+input:disabled {
   background-color: inherit;
+}
+
+ngx-intl-tel-input {
+  ::ng-deep input:disabled {
+    background-color: inherit;
+  }
+  ::ng-deep .iti {
+    display: block;
+  }
 }
 
 @mixin object-center {

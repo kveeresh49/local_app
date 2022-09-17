@@ -128,10 +128,8 @@ export class ProfileComponent implements OnInit {
     formControlKeys
       .filter((key) => key !== field)
       .forEach((key) => {
-        this.onCancel(key);
         this.profileForm?.get(key)?.disable();
       });
-    this.onCancel(field);
     this.profileForm?.get(field)?.enable();
 
     if (field === ProfileControls.password) {
