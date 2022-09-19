@@ -7,7 +7,6 @@
   backdrop-filter: blur(4px);
 }
 
-
 .column {
   float: left;
   width: 30%;
@@ -267,7 +266,7 @@
   margin-top: 3.5rem;
   height: fit-content !important;
   position: sticky;
-  top: 17%;
+  top: 18%;
 }
 
 .today-deal-container {
@@ -286,11 +285,11 @@
 
 .content-header {
   height: 7vh;
-    position: sticky;
-    top: 9% !important;
-    top: 0;
-    background: white;
-    z-index: 1;
+  position: sticky;
+  top: 9% !important;
+  top: 0;
+  background: white;
+  z-index: 1;
 }
 
 .divider {
@@ -311,9 +310,9 @@
 
 .product-card {
   display: flex;
-    width: 82% !important;
-    margin: 14px 14px 0px 14px !important;
-    height: 15vh;
+  width: 82% !important;
+  margin: 14px 14px 0px 14px !important;
+  height: 15vh;
 }
 
 .product-count {
@@ -326,8 +325,9 @@
 
 .right-container {
   position: sticky;
-    top: 17%;
-    background: white;
+  top: 18%;
+  background: white;
+  height: fit-content !important;
 }
 
 .offer-border-color {
@@ -351,10 +351,9 @@
   margin-top: 15px;
 }
 
-
 .checkout-height {
   max-height: 71vh !important;
-    height: 72vh !important;
-    overflow: auto;
-    min-height: 72vh !important;
+  height: 72vh !important;
+  overflow: auto;
+  min-height: 72vh !important;
 }
