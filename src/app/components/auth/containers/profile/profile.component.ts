@@ -115,6 +115,9 @@ export class ProfileComponent implements OnInit {
   public onProfileSettingsClick(): void {
     this.isProfileSection = true;
     this.activeTab = ProfileActiveTab.profileSettings;
+    setTimeout(()=>{
+       this.profile =  {...JSON.parse(this.cookieService.get('userProfile'))};
+    });
   }
 
   public onManageAddressClick(): void {
@@ -336,7 +339,10 @@ export class ProfileComponent implements OnInit {
     this.spinner.show();
     this.profileService.uploadProfilePic$(formData).subscribe({
       next: (data: any) => {
-        this.profile.userImage = data['userImage'];
+        this.cookieService.set('userProfile', JSON.stringify(data));
+        setTimeout(() => {
+          this.profile.userImage = data['userImage'];
+        }, 10);
         this.spinner.hide();
       },
       error: (error) => {
