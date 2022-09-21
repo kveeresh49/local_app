@@ -109,3 +109,20 @@
 .carousel-padding {
   padding: 50px 30px;
 }
+
+::ng-deep .slick-dots > .slick-active, ::ng-deep .slick-dots > li:hover {
+  background: $nav-text-color !important;
+  width: 15px !important;
+  height: 10px !important;
+  border-radius: 10px !important;
+  top: 4px;
+  & button {
+    display: none !important;
+  }
+}
+
+::ng-deep .slick-dots li button:before {
+  color: #d9d9d9;
+  opacity: 1;
+  font-size: 10px;
+}
