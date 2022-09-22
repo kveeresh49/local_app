@@ -1,4 +1,3 @@
-import { GeocoderRequest } from '@agm/core';
 import {
   Component,
   ElementRef,
@@ -51,7 +50,7 @@ export class GoogleMapComponent implements OnInit, OnChanges {
           phoneNumber: changes[propName].currentValue.phone.number
         }
         this.reverseGeolocationAddress(data['latitude'], data['longitude'], addressFields);
-        //this.initMap(data['latitude'], data['longitude']);
+        this.initMap(data['latitude'], data['longitude']);
       }
     }
   }
