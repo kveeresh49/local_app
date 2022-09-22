@@ -140,6 +140,11 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
           this.cookieService.set('userToken', JSON.stringify(userToken));
           this.authService.isloggedInUser.next(true);
           this.authService.loginUserDetailSub$.next(userToken);
+          let alert: AlertModelObj = new AlertModelObj(
+            'success',
+            `Login Successful!`
+          );
+          this.commonService.alertMessageSub$.next(alert);
           this.userProfileVerification();
         },
         error: (e) => {
@@ -152,7 +157,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
     }
   }
 
-  userProfileVerification() {
+  userProfileVerification() :void {
     let id: string = JSON.parse(this.cookieService.get('userToken'))['token']['id'];
     this.authService.getUserProfile$(id).subscribe({
       next: (userProfile: any) => {
@@ -163,6 +168,7 @@ export class LoginOtpComponent implements OnInit, AfterViewInit {
       error: (e) => {
         let alert: AlertModelObj = new AlertModelObj('danger', `${e.error}`);
         this.commonService.alertMessageSub$.next(alert);
+        this.router.navigate(['dashboard']);
       },
     });
   }

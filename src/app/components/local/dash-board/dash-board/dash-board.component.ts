@@ -8,16 +8,15 @@ import { AuthService } from 'src/app/components/auth/auth.service';
   styleUrls: ['./dash-board.component.scss'],
 })
 export class DashBoardComponent implements OnInit {
-
- menuList = [
-    {menuItemName:'Medical'},
-{menuItemName:'Groceries'},
-{menuItemName:'Liquor'},
-{menuItemName:'Fruits & Vegetables'},
-{menuItemName:'From the Farms'},
-{menuItemName:'Terrace Gardens'},
-{menuItemName:'Gallery'},
-  ]
+  menuList = [
+    { menuItemName: 'Medical' },
+    { menuItemName: 'Groceries' },
+    { menuItemName: 'Liquor' },
+    { menuItemName: 'Fruits & Vegetables' },
+    { menuItemName: 'From the Farms' },
+    { menuItemName: 'Terrace Gardens' },
+    { menuItemName: 'Gallery' },
+  ];
   public categories = [
     {
       id: 1,

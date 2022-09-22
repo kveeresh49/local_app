@@ -125,6 +125,8 @@ export class CreateAccountComponent implements OnInit {
     this.authService.verifyEmailOrMobileExist$(emailPhoneModel).subscribe({
       next: (accountDetails) => {
         this.authService.sendOtp(this.getMobileNumber()).subscribe((data) => {
+          this.isLoggedIn = !this.isLoggedIn;
+          this.loggedOut = !this.loggedOut;
           this.ngOtpInput.otpForm.enable();
           this.newOtpFlag = false;
           this.otpHeader = 'Resend OTP';
@@ -168,14 +170,12 @@ export class CreateAccountComponent implements OnInit {
     this.isSubmitClick = true;
     this.setCreateFormValidators();
     if (this.createAccountForm.valid) {
-      this.isLoggedIn = !this.isLoggedIn;
-      this.loggedOut = !this.loggedOut;
       setTimeout(() => {
         this.verifyOtpForm
           .get('phone')
           ?.setValue(this.createAccountForm.get('phone')?.value);
-        this.ngOtpInput.otpForm.disable();
-        this.verifyOtpForm.get('phone')?.disable();
+        this.ngOtpInput?.otpForm?.disable();
+        this.verifyOtpForm?.get('phone')?.disable();
         this.sendOTP();
       }, 10);
     }
