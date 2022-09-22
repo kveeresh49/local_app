@@ -16,6 +16,8 @@ import { StoreCardComponent } from './components/store-card/store-card.component
 import { HighlightCardComponent } from './components/highlight-card/highlight-card.component';
 import { OfferTagComponent } from './components/offer-tag/offer-tag.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { GoogleMapComponent } from './components/google-map/google-map.component';
+import { AddressComponent } from './components/address/address.component';
 @NgModule({
   declarations: [
   LandinglogoComponent,
@@ -24,6 +26,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     StoreCardComponent,
     HighlightCardComponent,
     OfferTagComponent,
+    GoogleMapComponent,
+    AddressComponent,
   ],
   imports: [
     CommonModule,
@@ -53,7 +57,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     StoreCardComponent,
     HighlightCardComponent,
     OfferTagComponent,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    AddressComponent,
+    GoogleMapComponent
   ],
 })
 export class SharedModule {}

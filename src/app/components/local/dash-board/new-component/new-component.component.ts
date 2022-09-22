@@ -15,7 +15,7 @@ import { MapsAPILoader } from '@agm/core';
   templateUrl: './new-component.component.html',
   styleUrls: ['./new-component.component.scss'],
 })
-export class NewComponentComponent implements OnInit,AfterViewInit  {
+export class NewComponentComponent implements OnInit, AfterViewInit {
   title = 'google-places-autocomplete';
   userAddress: string = '';
   userLatitude: string = '';
@@ -50,17 +50,14 @@ export class NewComponentComponent implements OnInit,AfterViewInit  {
     // setTimeout(() => {
     //   this.getLocation();
     // }, 1);
-
     // this.initAutocomplete({
     //   fields: ["address_components","formatted_address", "geometry", "name"],
     //   componentRestrictions: { country: 'ind' },
     //   strictBounds: false,
     //   types: ["establishment"],
     // });
-
     // this.mapsAPILoader.load()
     //   .then(() => {
-
     //   })
     //   .catch((mapsError: any) => {
     //     console.warn('mapAPILoader failed to load', { error: mapsError });
@@ -196,11 +193,11 @@ export class NewComponentComponent implements OnInit,AfterViewInit  {
     });
   }
 
-  myfunction(event:any,self:this) {
+  myfunction(event: any, self: this) {
     self.lat = event.latLng.lat();
-    self.lng =  event.latLng.lng();
+    self.lng = event.latLng.lng();
     console.log(self.lat, 'this');
-    console.log(self.lng,'lnggg')
+    console.log(self.lng, 'lnggg');
   }
   // getLocation
 
@@ -213,8 +210,10 @@ export class NewComponentComponent implements OnInit,AfterViewInit  {
             this.lat = position.coords.latitude;
             this.lng = position.coords.longitude;
             console.log(this.lat, '1');
-            console.log(this.lng,'1')
-            setTimeout(() => {this.initMap();},1)
+            console.log(this.lng, '1');
+            setTimeout(() => {
+              this.initMap();
+            }, 1);
           }
         },
         (error: any) => console.log(error)

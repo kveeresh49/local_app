@@ -365,3 +365,17 @@ app-carousel-banner {
   background: #fd7e14;;
   border-radius: 3px;
 }
+
+:host ::ng-deep app-address {
+  :host ::ng-deep .iti--allow-dropdown {
+    width: 100% !important;
+  }
+  #my-input-id {
+    width: 100% !important;
+  }
+
+  
+  :host ::ng-deep .iti {
+  width: 100% !important;
+}
+}

@@ -58,23 +58,11 @@ export class ProfileComponent implements OnInit {
   preferredCountries: CountryISO[] = [CountryISO.India];
   otp: any = 'otp';
 
-  savedAddresses: any[] = [
-    {
-      type: 'home',
-      city: 'R K Nagar, Secunderabad',
-      area: 'R K Nagar west maredpally, secunderbad , Telangana, 500026, india',
-    },
-    {
-      type: 'work',
-      city: 'Gachibowli',
-      area: 'Biodiversity, Gachibowli, Telangana, 50050, india',
-    },
-    {
-      type: 'other',
-      city: 'Jntu',
-      area: 'Pragathi nagar, kukatpally, Jntu, Telangana, 500026, india',
-    },
-  ];
+  // address
+
+  isAddress = true;
+
+  savedAddresses: any[] = [];
   alerts: any = [];
 
   //#region Private Members
@@ -85,6 +73,7 @@ export class ProfileComponent implements OnInit {
     confirmPassword: 'password',
   };
   private loginId: string;
+  updatedAddress: any;
   //#endregion
 
   //#region Constructors
@@ -100,8 +89,23 @@ export class ProfileComponent implements OnInit {
 
   //#region Life-cycle Hooks
   ngOnInit(): void {
+   this.getAllAddress();
     this.createProfileForm();
     this.userProfileVerification();
+    this.profileService.manageAddress$.subscribe((data) => {
+      this.isAddress = true;
+      this.getAllAddress();
+    });
+  }
+
+  getAllAddress() {
+    let newAddress: any =
+    sessionStorage.getItem('addressObj') !== null
+      ? sessionStorage.getItem('addressObj')
+      : sessionStorage.setItem('addressObj', JSON.stringify([]));
+  if (newAddress && JSON.parse(newAddress) !== null && newAddress !== '') {
+    this.savedAddresses = JSON.parse(newAddress);
+  }
   }
   //#endregion
 
@@ -115,6 +119,7 @@ export class ProfileComponent implements OnInit {
   public onProfileSettingsClick(): void {
     this.isProfileSection = true;
     this.activeTab = ProfileActiveTab.profileSettings;
+    this.isAddress = true;
   }
 
   public onManageAddressClick(): void {
@@ -423,21 +428,23 @@ export class ProfileComponent implements OnInit {
   }
 
   private userProfileVerification(): void {
-    let id: string = JSON.parse(this.cookieService.get('userToken')).token.id;
-    this.spinner.show();
-    this.authService.getUserProfile$(id).subscribe({
-      next: (userProfile: any) => {
-        this.cookieService.set('userProfile', JSON.stringify(userProfile));
-        this.setProfileDetails();
-        this.spinner.hide();
-      },
-      error: (error) => {
-        this.spinner.hide();
-        let errorMessage = 'Failed to load profile details';
-        let alert: AlertModelObj = new AlertModelObj('danger', errorMessage);
-        this.commonService.alertMessageSub$.next(alert);
-      },
-    });
+    if (this.cookieService.get('userToken')) {
+      let id: string = JSON.parse(this.cookieService.get('userToken')).token.id;
+      this.spinner.show();
+      this.authService.getUserProfile$(id).subscribe({
+        next: (userProfile: any) => {
+          this.cookieService.set('userProfile', JSON.stringify(userProfile));
+          this.setProfileDetails();
+          this.spinner.hide();
+        },
+        error: (error) => {
+          this.spinner.hide();
+          let errorMessage = 'Failed to load profile details';
+          let alert: AlertModelObj = new AlertModelObj('danger', errorMessage);
+          this.commonService.alertMessageSub$.next(alert);
+        },
+      });
+    }
   }
 
   private updateFieldsOnUpdate(field: string): void {
@@ -519,4 +526,14 @@ export class ProfileComponent implements OnInit {
     });
   }
   //#endregion
+
+  // saveNewAddress
+  saveNewAddress() {
+    this.isAddress = false;
+  }
+
+  editAddress(address:any) {
+    this.isAddress = false;
+    this.updatedAddress = address;
+  }
 }

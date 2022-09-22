@@ -6,6 +6,7 @@ import { ForgotpasswordComponent } from './containers/forgotpassword/forgotpassw
 import { LoginOtpComponent } from './containers/login-otp/login-otp.component';
 import { LoginComponent } from './containers/login/login.component';
 import { ProfileComponent } from './containers/profile/profile.component';
+import { RedirectToLogin } from './redirect-login-gurd';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -36,6 +37,7 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [RedirectToLogin],
     data: { isAuthComonent: false },
   },
 ];

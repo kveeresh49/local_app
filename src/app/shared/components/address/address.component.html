@@ -1,0 +1,291 @@
+<form [formGroup]="addressForm">
+  <div class="form-group">
+    <label for="exampleInputEmail1"
+      >Name <span style="color: red">*</span></label
+    >
+    <input
+      type="text"
+      formControlName="name"
+      class="form-control"
+      id="exampleInputEmail1"
+      aria-describedby="emailHelp"
+      placeholder="Enter Name"
+      name="name"
+      [ngClass]="{
+        'is-invalid': f?.name?.errors
+      }"
+    />
+    <div *ngIf="isSubmitClick && f?.name?.errors" class="invalid-feedback">
+      <div *ngIf="f.name?.errors?.required">Name is required</div>
+      <div *ngIf="f.name?.errors?.minlength">
+        Name must be at least 6 characters
+      </div>
+      <div *ngIf="f.name.errors.maxlength">
+        Name must not exceed 20 characters
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group mt-2">
+    <label for="exampleInputPassword1 mb-1"
+      >location <span style="color: red">*</span></label
+    >
+
+    <input
+      #searchEle
+      placeholder="Enter Your Shop location"
+      autocorrect="off"
+      autocapitalize="off"
+      spellcheck="off"
+      type="text"
+      class="form-control"
+      id="search-input"
+      formControlName="location"
+      [ngClass]="{
+        'is-invalid': addressForm.get('location')?.value == ''
+      }"
+    />
+
+    <div *ngIf="isSubmitClick && addressForm?.get('location')?.value =='' " class="invalid-feedback">
+      <div *ngIf="addressForm?.get('location')?.value ==''">location is required</div>
+    </div>
+  </div>
+
+  <div class="form-group mt-2">
+    <label for="exampleInputPassword1 mb-1"
+      >address <span style="color: red">*</span></label
+    >
+    <input
+      type="text"
+      formControlName="addressLine1"
+      name="addressLine1"
+      class="form-control"
+      id="exampleInputPassword1"
+      placeholder="addressLine1"
+      [ngClass]="{
+        'is-invalid': f?.addressLine1?.errors
+      }"
+    />
+    <div
+      *ngIf="isSubmitClick && f?.addressLine1?.errors"
+      class="invalid-feedback"
+    >
+      <div *ngIf="f.addressLine1?.errors?.required">Address is required</div>
+    </div>
+  </div>
+
+  <div class="form-group mt-2">
+    <label for="exampleInputPassword1 mb-1">apartMent</label>
+    <input
+      type="text"
+      formControlName="apartMent"
+      name="apartMent"
+      class="form-control"
+      id="exampleInputPassword1"
+      placeholder="apartMent"
+      [ngClass]="{
+        'is-invalid': f?.apartMent?.errors
+      }"
+    />
+  </div>
+
+  <div class="form-group mt-2">
+    <label for="exampleInputPassword1 mb-1">landmark</label>
+    <input
+      type="text"
+      formControlName="landmark"
+      name="landmark"
+      class="form-control"
+      id="exampleInputPassword1"
+      placeholder="landmark"
+      [ngClass]="{
+        'is-invalid': f?.landmark?.errors
+      }"
+    />
+    <div *ngIf="isSubmitClick && f?.landmark?.errors" class="invalid-feedback">
+      <div *ngIf="f.landmark?.errors?.required">landmark is required</div>
+    </div>
+  </div>
+
+  <div class="form-group mt-2">
+    <label for="exampleInputPassword1 mb-1">state</label>
+    <input
+      type="text"
+      formControlName="state"
+      name="state"
+      class="form-control"
+      id="exampleInputPassword1"
+      placeholder="state"
+      [ngClass]="{
+        'is-invalid': f?.state?.errors
+      }"
+      [attr.disabled]="
+        !(
+          addressForm.get('state')?.value !== '' ||
+          addressForm.get('state')?.value !== null
+        )
+      "
+    />
+    <div *ngIf="isSubmitClick && f?.state?.errors" class="invalid-feedback">
+      <div *ngIf="f.state?.errors?.required">State is required</div>
+    </div>
+  </div>
+
+  <div class="form-group mt-2">
+    <label for="exampleInputPassword1 mb-1">city</label>
+    <input
+      type="text"
+      formControlName="city"
+      name="city"
+      class="form-control"
+      id="exampleInputPassword1"
+      placeholder="city"
+      [ngClass]="{
+        'is-invalid': f?.city?.errors
+      }"
+      [attr.disabled]="
+        !(
+          addressForm.get('city')?.value.trim('') !== '' ||
+          addressForm.get('city')?.value !== null
+        )
+      "
+    />
+    <div *ngIf="isSubmitClick && f?.city?.errors" class="invalid-feedback">
+      <div *ngIf="f.city?.errors?.required">City is required</div>
+    </div>
+  </div>
+
+  <div class="form-group mt-2">
+    <label for="exampleInputPassword1 mb-1">Pincode</label>
+    <input
+      type="text"
+      formControlName="pinCode"
+      name="pinCode"
+      class="form-control"
+      id="exampleInputPassword1"
+      placeholder="pinCode"
+      [ngClass]="{
+        'is-invalid': addressForm.get('city')?.value == 0
+      }"
+      [attr.disabled]="addressForm.get('city')?.value != 0 ? true : false"
+    />
+    <div *ngIf="isSubmitClick && f?.pinCode?.errors" class="invalid-feedback">
+      <div *ngIf="f.pinCode?.errors?.required">PinCode is required</div>
+    </div>
+  </div>
+
+  <div class="form-group mt-2">
+    <label for="exampleInputPassword1 mb-1">Phone Number</label>
+    <div class="col-md-12">
+      <ngx-intl-tel-input
+        [cssClass]="'custom form-control'"
+        [inputId]="'my-input-id'"
+        [preferredCountries]="[]"
+        [enableAutoCountrySelect]="false"
+        [enablePlaceholder]="true"
+        [searchCountryFlag]="true"
+        [searchCountryField]="[
+          SearchCountryField.Iso2,
+          SearchCountryField.Name
+        ]"
+        [selectFirstCountry]="false"
+        [selectedCountryISO]="CountryISO.India"
+        [maxLength]="10"
+        [phoneValidation]="true"
+        [customPlaceholder]="'950xxxxxxx0'"
+        #phoneField
+        formControlName="phone"
+        name="phone"
+        [ngClass]="{
+          'is-invalid': f?.phone?.errors
+        }"
+      ></ngx-intl-tel-input>
+
+      <div class="isInvalid" *ngIf="isSubmitClick && f?.phone?.errors">
+        <div *ngIf="f.phone?.errors?.required">Phone Number is required</div>
+        <div *ngIf="f.phone?.errors?.validatePhoneNumber">
+          Phone Number must be 10 characters
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group mt-2">
+    <div class="col-sm mt-3">
+      <p class="saved-address-subtitel mb-4">Address Type:</p>
+      <div class="row saved-address">
+        <div class="col-sm">
+          <div class="col-sm">
+            <img src="../../../../assets/images/home.png" height="35px" />
+            <div class="addressIcon">
+              <input
+                mdbRadio
+                class="form-check-input"
+                type="radio"
+                name="addressType"
+                id="inlineRadio1"
+                value="home"
+                formControlName="addressType"
+                [ngClass]="{
+                  'is-invalid':isSubmitClick && f?.addressType?.errors
+                }"
+              />
+            </div>
+            <div class="mt-2">Home</div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="col-sm">
+            <img src="../../../../assets/images/work.png" height="35px" />
+            <div class="addressIcon" >
+              <input
+                mdbRadio
+                class="form-check-input"
+                type="radio"
+                name="addressType"
+                id="inlineRadio1"
+                value="work"
+                formControlName="addressType"
+                [ngClass]="{
+                  'is-invalid': isSubmitClick && f?.addressType?.errors
+                }"
+              />
+            </div>
+            <div class="mt-2">work</div>
+          </div>
+        </div>
+        <div class="col-sm">
+          <div class="other-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="addressIcon"
+          >
+            <input
+              mdbRadio
+              class="form-check-input"
+              type="radio"
+              name="addressType"
+              id="inlineRadio1"
+              value="other"
+              formControlName="addressType"
+              [ngClass]="{
+                'is-invalid': isSubmitClick && f?.addressType?.errors
+              }"
+            />
+          </div>
+          <div class="mt-2">other</div>
+        </div>
+        
+      </div>
+      <div *ngIf="isSubmitClick && f?.addressType?.errors" class="isInvalid">
+        <div *ngIf="f.addressType?.errors?.required">AddressType is required</div>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary mt-2" (click)="saveNewAddress()">
+    Save
+  </button>
+</form>

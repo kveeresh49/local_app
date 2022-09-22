@@ -4,7 +4,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ProfileUpdateRequest } from '../models/profile-update';
 import { OtpLoginModel } from '../models/user-deatils';
@@ -13,8 +13,10 @@ import { OtpLoginModel } from '../models/user-deatils';
   providedIn: 'root',
 })
 export class ProfileService {
+  public addAddressSubject$ = new Subject();
+  public googleCoordinates$ = new Subject() as any;
+  public manageAddress$ = new Subject();
   constructor(private http: HttpClient) {}
-
   get apiUrl(): string {
     return `${environment.API_ENDPOINTS.Api_url}`;
   }
@@ -46,6 +48,10 @@ export class ProfileService {
       `${environment.API_ENDPOINTS.Api_url}User/VerifyOTP`,
       otpRequest
     );
+  }
+
+  getAddress(lat:any,lan:any) {
+   return this.http.get(`https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?key=AIzaSyBF0ojaCL0D4P3Na8c17Hs15JM6CEvE9Jc&f=pjson&featureTypes=&location=-${lat}%2C${lan}`)
   }
 
 }

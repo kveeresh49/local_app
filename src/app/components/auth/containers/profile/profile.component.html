@@ -341,61 +341,83 @@
   </div>
 </form>
 
-<div *ngIf="!isProfileSection" class="card mt-4 w-50 p-4 profile-card">
-  <div class="row offset-1">
+<div
+  *ngIf="!isProfileSection"
+  class="card mt-4 p-4 profile-card"
+  [ngClass]="isAddress ? 'w-50' : 'w-75'"
+>
+  <div>
     <div>
       <p class="select-address">Select Address:</p>
     </div>
-    <div
-      class="d-flex align-items-center"
-      *ngFor="let address of savedAddresses"
-    >
-      <div class="col-sm-9 saved-address cursor-pointer mb-1 mt-2">
-        <div class="row align-items-center address-section">
-          <div class="w-25" *ngIf="address.type === 'home'">
-            <img
-              src="../../../../../assets/images/home.png"
-              height="35px"
-              width="40px"
-            />
-            <p class="address-category">Home</p>
-          </div>
-          <div class="w-25" *ngIf="address.type === 'work'">
-            <img
-              src="../../../../../assets/images/work.png"
-              height="35px"
-              width="40px"
-            />
-            <p class="address-category">Work</p>
-          </div>
-          <div class="w-25" *ngIf="address.type === 'other'">
-            <div class="other-icon">
-              <span></span>
-              <span></span>
-              <span></span>
+    <div *ngIf="isAddress; else addNewAddress">
+      <div
+        class="d-flex align-items-center offset-1"
+        *ngFor="let address of savedAddresses"
+      >
+        <div class="col-sm-9 saved-address cursor-pointer mb-1 mt-2">
+          <div class="row align-items-center address-section">
+            <div class="w-25" *ngIf="address?.addressType === 'home'">
+              <img
+                src="../../../../../assets/images/home.png"
+                height="35px"
+                width="40px"
+              />
+              <p class="address-category">Home</p>
             </div>
-            <p class="address-category">Other</p>
-          </div>
-          <div class="w-75">
-            <h5 class="address-heading">{{ address.city }}</h5>
-            <p class="address-in-area-category">
-              {{ address.area }}
-            </p>
+            <div class="w-25" *ngIf="address?.addressType === 'work'">
+              <img
+                src="../../../../../assets/images/work.png"
+                height="35px"
+                width="40px"
+              />
+              <p class="address-category">Work</p>
+            </div>
+            <div class="w-25" *ngIf="address?.addressType === 'other'">
+              <div class="other-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <p class="address-category">Other</p>
+            </div>
+            <div class="w-75">
+              <h5 class="address-heading">
+                {{ address?.name }} , {{ address?.city }}
+              </h5>
+              <p class="address-in-area-category">
+                {{ address?.location }} {{ address?.state }} ,
+                {{ address?.pinCode }}
+              </p>
+            </div>
           </div>
         </div>
+        <div class="col-sm address-edit-section d-flex justify-content-center">
+          <span> <i class="fa-solid fa-pen" (click)="editAddress(address)"></i> </span>
+        </div>
+        <div class="col-sm address-edit-section d-flex justify-content-center">
+          <span> <i class="fa-solid fa-trash"></i> </span>
+        </div>
       </div>
-      <div class="col-sm address-edit-section d-flex justify-content-center">
-        <span> <i class="fa-solid fa-pen"></i> </span>
-      </div>
-      <div class="col-sm address-edit-section d-flex justify-content-center">
-        <span> <i class="fa-solid fa-trash"></i> </span>
+      <div class="d-flex mt-3">
+        <button
+          class="btn col-sm-7 offset-2 add-address text-center"
+          (click)="saveNewAddress()"
+        >
+          + Add Address
+        </button>
       </div>
     </div>
-    <div class="d-flex mt-3">
-      <button class="btn col-sm-7 offset-2 add-address text-center">
-        + Add Address
-      </button>
-    </div>
+    <ng-template class="w-75" #addNewAddress>
+      <div class="row">
+        <div class="col-md-6">
+          <app-google-map [updatedAddress]="updatedAddress"></app-google-map>
+        </div>
+        <div class="col-md-6">
+          <app-address></app-address>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>
 
